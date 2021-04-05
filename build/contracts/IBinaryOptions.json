@@ -1,0 +1,1917 @@
+{
+  "contractName": "IBinaryOptions",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newMax_",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newMin_",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMinT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "exerciserFee_",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateExerciserFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "expirerFee_",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateExpirerFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "nx_",
+          "type": "bool"
+        }
+      ],
+      "name": "enableRewards",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newLockSeconds_",
+          "type": "uint256"
+        }
+      ],
+      "name": "updatePoolLockSeconds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "devFundBetFee_",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateDevFundBetFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "closeStaking",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "newOwner_",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "newDevFund",
+          "type": "address"
+        }
+      ],
+      "name": "transferDevFund",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "a",
+          "type": "address"
+        }
+      ],
+      "name": "updateBIOPToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newUR",
+          "type": "address"
+        }
+      ],
+      "name": "updateUtilizationRewards",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newAPP",
+          "type": "address"
+        }
+      ],
+      "name": "updateAPP",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"closeStaking\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"nx_\",\"type\":\"bool\"}],\"name\":\"enableRewards\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newMax_\",\"type\":\"uint256\"}],\"name\":\"setMaxT\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newMin_\",\"type\":\"uint256\"}],\"name\":\"setMinT\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"newDevFund\",\"type\":\"address\"}],\"name\":\"transferDevFund\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"newOwner_\",\"type\":\"address\"}],\"name\":\"transferOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAPP\",\"type\":\"address\"}],\"name\":\"updateAPP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"a\",\"type\":\"address\"}],\"name\":\"updateBIOPToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"devFundBetFee_\",\"type\":\"uint256\"}],\"name\":\"updateDevFundBetFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"exerciserFee_\",\"type\":\"uint256\"}],\"name\":\"updateExerciserFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"expirerFee_\",\"type\":\"uint256\"}],\"name\":\"updateExpirerFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newLockSeconds_\",\"type\":\"uint256\"}],\"name\":\"updatePoolLockSeconds\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newUR\",\"type\":\"address\"}],\"name\":\"updateUtilizationRewards\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"****************************************************************************\\\\ Author: BIOPset (https://biopset.com) IBinaryOptions: Binary Option Settlement Protocol /*****************************************************************************\"}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IBinaryOptions.sol\":\"IBinaryOptions\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IBinaryOptions.sol\":{\"keccak256\":\"0xfb3e909fe068371503119eddc7aeab6d97e83b6ccd5b66ff953242d4d57be9e8\",\"urls\":[\"bzz-raw://7071967b64d6640cf49c6caa20324fd4d378c9a247302bdaeed9f1fbe4968bfd\",\"dweb:/ipfs/QmVypj1aoQeVesDk1xsRJoFB6h3WDLkrY8SSCBAe1ucEun\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.6;\n\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* IBinaryOptions: Binary Option Settlement Protocol\n/******************************************************************************/\n\ninterface IBinaryOptions {\n\n    function setMaxT(uint256 newMax_) external;\n    function setMinT(uint256 newMin_) external;\n    function updateExerciserFee(uint256 exerciserFee_) external;\n    function updateExpirerFee(uint256 expirerFee_) external;\n    function enableRewards(bool nx_) external ;\n    function updatePoolLockSeconds(uint256 newLockSeconds_) external;\n    function updateDevFundBetFee(uint256 devFundBetFee_) external;\n    function closeStaking() external;\n    function transferOwner(address payable newOwner_) external;\n    function transferDevFund(address payable newDevFund) external;\n    function updateBIOPToken(address payable a) external;\n    function updateUtilizationRewards(address newUR) external;\n    function updateAPP(address newAPP) external;\n    \n}\n",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IBinaryOptions.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IBinaryOptions.sol",
+    "exportedSymbols": {
+      "IBinaryOptions": [
+        8408
+      ]
+    },
+    "id": 8409,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8343,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:20"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 8344,
+          "nodeType": "StructuredDocumentation",
+          "src": "26:253:20",
+          "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nIBinaryOptions: Binary Option Settlement Protocol\n/*****************************************************************************"
+        },
+        "fullyImplemented": false,
+        "id": 8408,
+        "linearizedBaseContracts": [
+          8408
+        ],
+        "name": "IBinaryOptions",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "1d983e23",
+            "id": 8349,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setMaxT",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8347,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8346,
+                  "mutability": "mutable",
+                  "name": "newMax_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8349,
+                  "src": "330:15:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8345,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "330:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "329:17:20"
+            },
+            "returnParameters": {
+              "id": 8348,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "355:0:20"
+            },
+            "scope": 8408,
+            "src": "313:43:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "37637f45",
+            "id": 8354,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setMinT",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8351,
+                  "mutability": "mutable",
+                  "name": "newMin_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8354,
+                  "src": "378:15:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8350,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "378:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "377:17:20"
+            },
+            "returnParameters": {
+              "id": 8353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "403:0:20"
+            },
+            "scope": 8408,
+            "src": "361:43:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "8a0c6d26",
+            "id": 8359,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateExerciserFee",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8357,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8356,
+                  "mutability": "mutable",
+                  "name": "exerciserFee_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8359,
+                  "src": "437:21:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8355,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "437:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "436:23:20"
+            },
+            "returnParameters": {
+              "id": 8358,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "468:0:20"
+            },
+            "scope": 8408,
+            "src": "409:60:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "fd4cbc05",
+            "id": 8364,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateExpirerFee",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8362,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8361,
+                  "mutability": "mutable",
+                  "name": "expirerFee_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8364,
+                  "src": "500:19:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8360,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "500:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "499:21:20"
+            },
+            "returnParameters": {
+              "id": 8363,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "529:0:20"
+            },
+            "scope": 8408,
+            "src": "474:56:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "9b1559c3",
+            "id": 8369,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "enableRewards",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8367,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8366,
+                  "mutability": "mutable",
+                  "name": "nx_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8369,
+                  "src": "558:8:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 8365,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "558:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "557:10:20"
+            },
+            "returnParameters": {
+              "id": 8368,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "577:0:20"
+            },
+            "scope": 8408,
+            "src": "535:43:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "5009a613",
+            "id": 8374,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updatePoolLockSeconds",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8372,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8371,
+                  "mutability": "mutable",
+                  "name": "newLockSeconds_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8374,
+                  "src": "614:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8370,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "614:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "613:25:20"
+            },
+            "returnParameters": {
+              "id": 8373,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "647:0:20"
+            },
+            "scope": 8408,
+            "src": "583:65:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "ad33648a",
+            "id": 8379,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateDevFundBetFee",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8377,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8376,
+                  "mutability": "mutable",
+                  "name": "devFundBetFee_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8379,
+                  "src": "682:22:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8375,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "682:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "681:24:20"
+            },
+            "returnParameters": {
+              "id": 8378,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "714:0:20"
+            },
+            "scope": 8408,
+            "src": "653:62:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "98cfe587",
+            "id": 8382,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "closeStaking",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8380,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "741:2:20"
+            },
+            "returnParameters": {
+              "id": 8381,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "752:0:20"
+            },
+            "scope": 8408,
+            "src": "720:33:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "4fb2e45d",
+            "id": 8387,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferOwner",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8385,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8384,
+                  "mutability": "mutable",
+                  "name": "newOwner_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8387,
+                  "src": "781:25:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 8383,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "781:15:20",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "780:27:20"
+            },
+            "returnParameters": {
+              "id": 8386,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "816:0:20"
+            },
+            "scope": 8408,
+            "src": "758:59:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "f200fb20",
+            "id": 8392,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferDevFund",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8390,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8389,
+                  "mutability": "mutable",
+                  "name": "newDevFund",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8392,
+                  "src": "847:26:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 8388,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "847:15:20",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "846:28:20"
+            },
+            "returnParameters": {
+              "id": 8391,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "883:0:20"
+            },
+            "scope": 8408,
+            "src": "822:62:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "b57ef6a8",
+            "id": 8397,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateBIOPToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8395,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8394,
+                  "mutability": "mutable",
+                  "name": "a",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8397,
+                  "src": "914:17:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 8393,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "914:15:20",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "913:19:20"
+            },
+            "returnParameters": {
+              "id": 8396,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "941:0:20"
+            },
+            "scope": 8408,
+            "src": "889:53:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "6a92cf8b",
+            "id": 8402,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateUtilizationRewards",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8400,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8399,
+                  "mutability": "mutable",
+                  "name": "newUR",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8402,
+                  "src": "981:13:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8398,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "981:7:20",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "980:15:20"
+            },
+            "returnParameters": {
+              "id": 8401,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1004:0:20"
+            },
+            "scope": 8408,
+            "src": "947:58:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "07e665df",
+            "id": 8407,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateAPP",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8405,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8404,
+                  "mutability": "mutable",
+                  "name": "newAPP",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8407,
+                  "src": "1029:14:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8403,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1029:7:20",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1028:16:20"
+            },
+            "returnParameters": {
+              "id": 8406,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1053:0:20"
+            },
+            "scope": 8408,
+            "src": "1010:44:20",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8409,
+        "src": "281:780:20"
+      }
+    ],
+    "src": "0:1062:20"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IBinaryOptions.sol",
+      "exportedSymbols": {
+        "IBinaryOptions": [
+          8408
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 8343,
+        "name": "PragmaDirective",
+        "src": "0:23:20"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            8408
+          ],
+          "name": "IBinaryOptions",
+          "scope": 8409
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nIBinaryOptions: Binary Option Settlement Protocol\n/*****************************************************************************"
+            },
+            "id": 8344,
+            "name": "StructuredDocumentation",
+            "src": "26:253:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "1d983e23",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setMaxT",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newMax_",
+                      "overrides": null,
+                      "scope": 8349,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8345,
+                        "name": "ElementaryTypeName",
+                        "src": "330:7:20"
+                      }
+                    ],
+                    "id": 8346,
+                    "name": "VariableDeclaration",
+                    "src": "330:15:20"
+                  }
+                ],
+                "id": 8347,
+                "name": "ParameterList",
+                "src": "329:17:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8348,
+                "name": "ParameterList",
+                "src": "355:0:20"
+              }
+            ],
+            "id": 8349,
+            "name": "FunctionDefinition",
+            "src": "313:43:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "37637f45",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setMinT",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newMin_",
+                      "overrides": null,
+                      "scope": 8354,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8350,
+                        "name": "ElementaryTypeName",
+                        "src": "378:7:20"
+                      }
+                    ],
+                    "id": 8351,
+                    "name": "VariableDeclaration",
+                    "src": "378:15:20"
+                  }
+                ],
+                "id": 8352,
+                "name": "ParameterList",
+                "src": "377:17:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8353,
+                "name": "ParameterList",
+                "src": "403:0:20"
+              }
+            ],
+            "id": 8354,
+            "name": "FunctionDefinition",
+            "src": "361:43:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "8a0c6d26",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateExerciserFee",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "exerciserFee_",
+                      "overrides": null,
+                      "scope": 8359,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8355,
+                        "name": "ElementaryTypeName",
+                        "src": "437:7:20"
+                      }
+                    ],
+                    "id": 8356,
+                    "name": "VariableDeclaration",
+                    "src": "437:21:20"
+                  }
+                ],
+                "id": 8357,
+                "name": "ParameterList",
+                "src": "436:23:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8358,
+                "name": "ParameterList",
+                "src": "468:0:20"
+              }
+            ],
+            "id": 8359,
+            "name": "FunctionDefinition",
+            "src": "409:60:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "fd4cbc05",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateExpirerFee",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "expirerFee_",
+                      "overrides": null,
+                      "scope": 8364,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8360,
+                        "name": "ElementaryTypeName",
+                        "src": "500:7:20"
+                      }
+                    ],
+                    "id": 8361,
+                    "name": "VariableDeclaration",
+                    "src": "500:19:20"
+                  }
+                ],
+                "id": 8362,
+                "name": "ParameterList",
+                "src": "499:21:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8363,
+                "name": "ParameterList",
+                "src": "529:0:20"
+              }
+            ],
+            "id": 8364,
+            "name": "FunctionDefinition",
+            "src": "474:56:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "9b1559c3",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "enableRewards",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "nx_",
+                      "overrides": null,
+                      "scope": 8369,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 8365,
+                        "name": "ElementaryTypeName",
+                        "src": "558:4:20"
+                      }
+                    ],
+                    "id": 8366,
+                    "name": "VariableDeclaration",
+                    "src": "558:8:20"
+                  }
+                ],
+                "id": 8367,
+                "name": "ParameterList",
+                "src": "557:10:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8368,
+                "name": "ParameterList",
+                "src": "577:0:20"
+              }
+            ],
+            "id": 8369,
+            "name": "FunctionDefinition",
+            "src": "535:43:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "5009a613",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updatePoolLockSeconds",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newLockSeconds_",
+                      "overrides": null,
+                      "scope": 8374,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8370,
+                        "name": "ElementaryTypeName",
+                        "src": "614:7:20"
+                      }
+                    ],
+                    "id": 8371,
+                    "name": "VariableDeclaration",
+                    "src": "614:23:20"
+                  }
+                ],
+                "id": 8372,
+                "name": "ParameterList",
+                "src": "613:25:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8373,
+                "name": "ParameterList",
+                "src": "647:0:20"
+              }
+            ],
+            "id": 8374,
+            "name": "FunctionDefinition",
+            "src": "583:65:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "ad33648a",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateDevFundBetFee",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "devFundBetFee_",
+                      "overrides": null,
+                      "scope": 8379,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8375,
+                        "name": "ElementaryTypeName",
+                        "src": "682:7:20"
+                      }
+                    ],
+                    "id": 8376,
+                    "name": "VariableDeclaration",
+                    "src": "682:22:20"
+                  }
+                ],
+                "id": 8377,
+                "name": "ParameterList",
+                "src": "681:24:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8378,
+                "name": "ParameterList",
+                "src": "714:0:20"
+              }
+            ],
+            "id": 8379,
+            "name": "FunctionDefinition",
+            "src": "653:62:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "98cfe587",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "closeStaking",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8380,
+                "name": "ParameterList",
+                "src": "741:2:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8381,
+                "name": "ParameterList",
+                "src": "752:0:20"
+              }
+            ],
+            "id": 8382,
+            "name": "FunctionDefinition",
+            "src": "720:33:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "4fb2e45d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "transferOwner",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newOwner_",
+                      "overrides": null,
+                      "scope": 8387,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 8383,
+                        "name": "ElementaryTypeName",
+                        "src": "781:15:20"
+                      }
+                    ],
+                    "id": 8384,
+                    "name": "VariableDeclaration",
+                    "src": "781:25:20"
+                  }
+                ],
+                "id": 8385,
+                "name": "ParameterList",
+                "src": "780:27:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8386,
+                "name": "ParameterList",
+                "src": "816:0:20"
+              }
+            ],
+            "id": 8387,
+            "name": "FunctionDefinition",
+            "src": "758:59:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "f200fb20",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "transferDevFund",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newDevFund",
+                      "overrides": null,
+                      "scope": 8392,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 8388,
+                        "name": "ElementaryTypeName",
+                        "src": "847:15:20"
+                      }
+                    ],
+                    "id": 8389,
+                    "name": "VariableDeclaration",
+                    "src": "847:26:20"
+                  }
+                ],
+                "id": 8390,
+                "name": "ParameterList",
+                "src": "846:28:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8391,
+                "name": "ParameterList",
+                "src": "883:0:20"
+              }
+            ],
+            "id": 8392,
+            "name": "FunctionDefinition",
+            "src": "822:62:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "b57ef6a8",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateBIOPToken",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "a",
+                      "overrides": null,
+                      "scope": 8397,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 8393,
+                        "name": "ElementaryTypeName",
+                        "src": "914:15:20"
+                      }
+                    ],
+                    "id": 8394,
+                    "name": "VariableDeclaration",
+                    "src": "914:17:20"
+                  }
+                ],
+                "id": 8395,
+                "name": "ParameterList",
+                "src": "913:19:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8396,
+                "name": "ParameterList",
+                "src": "941:0:20"
+              }
+            ],
+            "id": 8397,
+            "name": "FunctionDefinition",
+            "src": "889:53:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "6a92cf8b",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateUtilizationRewards",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newUR",
+                      "overrides": null,
+                      "scope": 8402,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8398,
+                        "name": "ElementaryTypeName",
+                        "src": "981:7:20"
+                      }
+                    ],
+                    "id": 8399,
+                    "name": "VariableDeclaration",
+                    "src": "981:13:20"
+                  }
+                ],
+                "id": 8400,
+                "name": "ParameterList",
+                "src": "980:15:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8401,
+                "name": "ParameterList",
+                "src": "1004:0:20"
+              }
+            ],
+            "id": 8402,
+            "name": "FunctionDefinition",
+            "src": "947:58:20"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "07e665df",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateAPP",
+              "overrides": null,
+              "scope": 8408,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newAPP",
+                      "overrides": null,
+                      "scope": 8407,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8403,
+                        "name": "ElementaryTypeName",
+                        "src": "1029:7:20"
+                      }
+                    ],
+                    "id": 8404,
+                    "name": "VariableDeclaration",
+                    "src": "1029:14:20"
+                  }
+                ],
+                "id": 8405,
+                "name": "ParameterList",
+                "src": "1028:16:20"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8406,
+                "name": "ParameterList",
+                "src": "1053:0:20"
+              }
+            ],
+            "id": 8407,
+            "name": "FunctionDefinition",
+            "src": "1010:44:20"
+          }
+        ],
+        "id": 8408,
+        "name": "ContractDefinition",
+        "src": "281:780:20"
+      }
+    ],
+    "id": 8409,
+    "name": "SourceUnit",
+    "src": "0:1062:20"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-03-22T19:19:04.213Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {},
+    "notice": "****************************************************************************\\ Author: BIOPset (https://biopset.com) IBinaryOptions: Binary Option Settlement Protocol /*****************************************************************************"
+  }
+}

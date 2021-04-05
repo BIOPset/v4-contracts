@@ -1,0 +1,23 @@
+{
+  "name": "poolerc20",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shalaquiana",
+  "license": "MIT",
+  "dependencies": {
+    "@chainlink/contracts": "^0.0.11",
+    "@openzeppelin/contracts": "^3.3.0",
+    "hardhat": "^2.1.1",
+    "truffle": "^5.1.66",
+    "truffle-hdwallet-provider": "1.0.4",
+    "truffle-hdwallet-provider-privkey": "1.0.3",
+    "web3": "1.0.0-beta.46"
+  }
+}

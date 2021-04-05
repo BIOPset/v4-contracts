@@ -1,0 +1,686 @@
+{
+  "contractName": "IAPP",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pp",
+          "type": "address"
+        }
+      ],
+      "name": "aprvd",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newPP_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "rateCalc_",
+          "type": "address"
+        }
+      ],
+      "name": "addPP",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "oldPP_",
+          "type": "address"
+        }
+      ],
+      "name": "removePP",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newPP_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rateCalc_\",\"type\":\"address\"}],\"name\":\"addPP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp\",\"type\":\"address\"}],\"name\":\"aprvd\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oldPP_\",\"type\":\"address\"}],\"name\":\"removePP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"****************************************************************************\\\\ Author: BIOPset (https://biopset.com) IAPP: Approved Price Providers /*****************************************************************************\"}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol\":\"IAPP\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol\":{\"keccak256\":\"0x80db3beee7629b03cb4def02e54f2f00d19cdb1992b3f07e406130f586dd5128\",\"urls\":[\"bzz-raw://baceac801ed34767d6b3c0d6ecac390825c6026bb7d8000d01d58822ed0fe95c\",\"dweb:/ipfs/QmWxv8ekUGfVAaJ4SZKCFrRaS3vZKFdaMym8Fs6MbL28u2\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.6;\n\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* IAPP: Approved Price Providers\n/******************************************************************************/\n\ninterface IAPP {\n\n    function aprvd(address pp) external view returns(address);\n    function addPP(address newPP_, address rateCalc_) external;\n    function removePP(address oldPP_) external;\n    \n}\n",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
+    "exportedSymbols": {
+      "IAPP": [
+        8341
+      ]
+    },
+    "id": 8342,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8320,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:19"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 8321,
+          "nodeType": "StructuredDocumentation",
+          "src": "26:234:19",
+          "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nIAPP: Approved Price Providers\n/*****************************************************************************"
+        },
+        "fullyImplemented": false,
+        "id": 8341,
+        "linearizedBaseContracts": [
+          8341
+        ],
+        "name": "IAPP",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "b7a9eaa9",
+            "id": 8328,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "aprvd",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8324,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8323,
+                  "mutability": "mutable",
+                  "name": "pp",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8328,
+                  "src": "299:10:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8322,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "299:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "298:12:19"
+            },
+            "returnParameters": {
+              "id": 8327,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8326,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8328,
+                  "src": "333:7:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8325,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "333:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "332:9:19"
+            },
+            "scope": 8341,
+            "src": "284:58:19",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "bc086215",
+            "id": 8335,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addPP",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8333,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8330,
+                  "mutability": "mutable",
+                  "name": "newPP_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8335,
+                  "src": "362:14:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8329,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "362:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8332,
+                  "mutability": "mutable",
+                  "name": "rateCalc_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8335,
+                  "src": "378:17:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8331,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "378:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "361:35:19"
+            },
+            "returnParameters": {
+              "id": 8334,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "405:0:19"
+            },
+            "scope": 8341,
+            "src": "347:59:19",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "f4a6e1e2",
+            "id": 8340,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removePP",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 8338,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8337,
+                  "mutability": "mutable",
+                  "name": "oldPP_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 8340,
+                  "src": "429:14:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8336,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "429:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "428:16:19"
+            },
+            "returnParameters": {
+              "id": 8339,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "453:0:19"
+            },
+            "scope": 8341,
+            "src": "411:43:19",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8342,
+        "src": "262:199:19"
+      }
+    ],
+    "src": "0:462:19"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
+      "exportedSymbols": {
+        "IAPP": [
+          8341
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 8320,
+        "name": "PragmaDirective",
+        "src": "0:23:19"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            8341
+          ],
+          "name": "IAPP",
+          "scope": 8342
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nIAPP: Approved Price Providers\n/*****************************************************************************"
+            },
+            "id": 8321,
+            "name": "StructuredDocumentation",
+            "src": "26:234:19"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "b7a9eaa9",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "aprvd",
+              "overrides": null,
+              "scope": 8341,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "pp",
+                      "overrides": null,
+                      "scope": 8328,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8322,
+                        "name": "ElementaryTypeName",
+                        "src": "299:7:19"
+                      }
+                    ],
+                    "id": 8323,
+                    "name": "VariableDeclaration",
+                    "src": "299:10:19"
+                  }
+                ],
+                "id": 8324,
+                "name": "ParameterList",
+                "src": "298:12:19"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 8328,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8325,
+                        "name": "ElementaryTypeName",
+                        "src": "333:7:19"
+                      }
+                    ],
+                    "id": 8326,
+                    "name": "VariableDeclaration",
+                    "src": "333:7:19"
+                  }
+                ],
+                "id": 8327,
+                "name": "ParameterList",
+                "src": "332:9:19"
+              }
+            ],
+            "id": 8328,
+            "name": "FunctionDefinition",
+            "src": "284:58:19"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "bc086215",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "addPP",
+              "overrides": null,
+              "scope": 8341,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newPP_",
+                      "overrides": null,
+                      "scope": 8335,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8329,
+                        "name": "ElementaryTypeName",
+                        "src": "362:7:19"
+                      }
+                    ],
+                    "id": 8330,
+                    "name": "VariableDeclaration",
+                    "src": "362:14:19"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "rateCalc_",
+                      "overrides": null,
+                      "scope": 8335,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8331,
+                        "name": "ElementaryTypeName",
+                        "src": "378:7:19"
+                      }
+                    ],
+                    "id": 8332,
+                    "name": "VariableDeclaration",
+                    "src": "378:17:19"
+                  }
+                ],
+                "id": 8333,
+                "name": "ParameterList",
+                "src": "361:35:19"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8334,
+                "name": "ParameterList",
+                "src": "405:0:19"
+              }
+            ],
+            "id": 8335,
+            "name": "FunctionDefinition",
+            "src": "347:59:19"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "f4a6e1e2",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removePP",
+              "overrides": null,
+              "scope": 8341,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "oldPP_",
+                      "overrides": null,
+                      "scope": 8340,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8336,
+                        "name": "ElementaryTypeName",
+                        "src": "429:7:19"
+                      }
+                    ],
+                    "id": 8337,
+                    "name": "VariableDeclaration",
+                    "src": "429:14:19"
+                  }
+                ],
+                "id": 8338,
+                "name": "ParameterList",
+                "src": "428:16:19"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8339,
+                "name": "ParameterList",
+                "src": "453:0:19"
+              }
+            ],
+            "id": 8340,
+            "name": "FunctionDefinition",
+            "src": "411:43:19"
+          }
+        ],
+        "id": 8341,
+        "name": "ContractDefinition",
+        "src": "262:199:19"
+      }
+    ],
+    "id": 8342,
+    "name": "SourceUnit",
+    "src": "0:462:19"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-03-22T19:19:04.213Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {},
+    "notice": "****************************************************************************\\ Author: BIOPset (https://biopset.com) IAPP: Approved Price Providers /*****************************************************************************"
+  }
+}
