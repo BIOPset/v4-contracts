@@ -59,17 +59,20 @@ initial delgation tier ratios
         - remove trading pair/RateCalc
         - add/update trading pair/RateCalc
         - enable/disable BIOP reward distribution
+        - send treasury funds anywhere
     #3(75%)⭐️️️ ⭐️️️ ⭐️️️
         - disable pool
         - update bet fee
         - update pool lock time
         - update staking rewards epoch length
         - replace APP contract
+        - update treasury percent
     #4(90%)⭐️️️ ⭐️️️ ⭐️️️ ⭐️️️
         - close pool from new deposits
         - change delegation tiers ratios
         - update BIOP tokenn address
         - replace rewards contract
+        - update treasury address
 
 
 

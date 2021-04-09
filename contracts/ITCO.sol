@@ -121,7 +121,22 @@ contract ITCO { //We define that this is the Tiered IBCO(ITCO) contract
     fallback () external payable {//this is what happens when users send ETH to particpate in the itco
         require(sta > 0, "IBCO not opened yet");//return ETH if itco didn't start yet
         require(block.timestamp < end, "IBCO has ended");//return ETH if itco has already ended
-        (, uint256 price) = currentTier();// load the current price
+        
+        uint256 price;
+        if (totalDeps >= t5) {// if the total deposits so far exceeds the top of t5(tier five), use tier 6
+            price = p6;// set the price to the tier 6 price
+        } else if (totalDeps >= t4) {// if the total deposits so far exceeds the top of t4(tier four), use tier 5
+            price = p5;
+        } else if (totalDeps >= t3) {// if the total deposits so far exceeds the top of t4(tier three), use tier 4
+            price = p4;
+        } else if (totalDeps >= t2) {// if the total deposits so far exceeds the top of t2(tier two), use tier 3
+            price = p3;
+        } else if (totalDeps >= t1) {// if the total deposits so far exceeds the top of t1(tier one), use tier 2
+            price = p2;
+        } else {//use tier one if we haven't exceeded it's top yet
+            price = p1;
+        }
+        
         require(msg.value > price, "insufficent payment for one token");//minimum purchase from the itco during any one transaction is one full token
 
         //tokens to send
