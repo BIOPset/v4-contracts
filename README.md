@@ -49,76 +49,31 @@ These actions require the greatest consensous amound staked participants.
 
 
 
-
+# -
+# -
+# -
+# -
+# -
+# -
+# -
+# -
+# -
+# -
+# -
+# -
 #### Old stuff below this point
 
-TODOS
+
+### TODOS
     - write ebop20binaryotpions
     - add EBOP20 pools to DelegatedGov
     - write uniswap pool stake rewards contract
     - add more tests
     - tiered functions for (
  - Enable Pool: connect a deployed EBOP20 (ERC20 binary options pool) to the settlement dao.) and (
- - Shutdown A Pool: Deactivate a pool if the contract is EOL and a new one has taking it's place. It can be reactivated as a new pool at any time) (Update all pool interactions to accept a pool address variable for EBOP20s)
-
-
-
-DelegatedGov tests:
-    - exists✅
-    - allows staking✅
-    - allows withdraw✅
-    - allows delegation✅
-    - allows undelegation✅
-    - allows reward claim✅
-    - allows a sha to take an action✅
-
-contracts:
- - BinaryOptions✅
-    - update rewards system ✅
-    - replace AggregatorV3 with AggregatorProxy✅
-    - add/remove erc20 pools✅
-    - bet using pooled erc20s✅
-    - payout, exercise, expire from pooled erc20s✅
- - BIOPToken✅
-    - v2->v3 token swap✅
-    - single rewards system✅
-    - launch reward bonus 4x✅
-    - BIOP/ETH bonding curve✅
- - DelegratedGovernance✅
-    - stake BIOP tokens✅
-    - earn ETH for staked tokens✅
-    - unstake BIOP tokens✅
-    - delegrate voting power✅
-    - undelegate voting power✅
-    - voting power based guard functions✅
-    - only delegated voting power is used in guard tier calculations✅
-    - update settings based on voting power✅
-    - update voting power guard tiers✅
-
-
-
-   - t0(any%): 
-       t1 - transfer bet fees from proxy
-       t1 - enable pool
-   - t1(50%)⭐️️️
-        - update max time
-        - update min time
-    #2(66%)⭐️️️ ⭐️️️
-        
-    #3(75%)⭐️️️ ⭐️️️ ⭐️️️
-        - disable pool
-        - update bet fee
-        - update pool lock time
-        - update staking rewards epoch length
-        - replace APP contract
-        - update treasury percent
-    #4(90%)⭐️️️ ⭐️️️ ⭐️️️ ⭐️️️
-        - close pool from new deposits
-        - change delegation tiers ratios
-        - update BIOP tokenn address
-        - replace rewards contract
-        - update treasury address
-
+ - Shutdown A Pool: Deactivate a pool if the contract is EOL and a new one has taking it's place. It can be reactivated as a new pool at any time) 
+(
+ - Update all dao pool interactions to accept a pool address variable for EBOP20s)
 
 
 ## Testing (out of date)
