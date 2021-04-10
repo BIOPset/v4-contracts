@@ -45,11 +45,46 @@ contracts:
 
 
 
-initial delgation tier ratios
-   #0(any%)
-        - transfer bet fees from proxy
-        - enable pool
-   #1(50%)⭐️️️
+## Settlement DAO Actions
+Things you can do with a high enough percentage of staked $BIOP. 
+
+When changing high tier actions its recommended that voting power be delegated to predeployed well read smart contracts and not individual users accounts.
+
+### Tier 0
+These actions are able to be done by anyone in the community.
+ - Enable Pool: connect a deployed EBOP20 (ERC20 binary options pool) to the settlement dao.
+ - Proxy Transfer: send pool amassed fees to their destination (the treasury or direct to $BIOP stakers) and earn a fee for the task.
+
+### Tier 1
+These actions require low consensous from the staked community members.
+ - 
+
+### Tier 2
+These actions require a larger consensous and have larger consequences.
+
+### Tier 3 
+These actions aren't as potentially foundation shaking as Tier 4 but are hot.
+
+### Tier 4
+These actions require the greatest consensous amound staked participants.
+ - Shutdown A Pool: Deactivate a pool if the contract is EOL and a new one has taking it's place. It can be reactivated as a new pool at any time
+ - Update Consensous Tiers: Change the percentage of staker support needed to access the Settlement DAO tiers of actions.
+ - Shutdown A Token: Depreciate a EOL token if the contract is being replaced (this changes the token used to judge participation levels in the Settlment DAO).
+ - Replace Rewards Contract: Setup a new rewards contract to distribute governace tokens as utilization rewards to protocol participants on pool.
+ - Update Treasury Address: Switch the treasury contract being used by the Settlement DAO.
+
+#### initial delgation tier ratios
+- T0 = (any amount above 0.000000000000000100)
+- T1 = (50%)
+- T2 = (66%)
+- T3 = (75%)
+- T4 = (90%)
+
+
+   - t0(any%): 
+       t1 - transfer bet fees from proxy
+       t1 - enable pool
+   - t1(50%)⭐️️️
         - update max time
         - update min time
     #2(66%)⭐️️️ ⭐️️️
@@ -75,6 +110,8 @@ initial delgation tier ratios
         - update treasury address
 
 
+
+## Testing (out of date)
 
 for testing uncomment the "development" network in truffle-config.js
 
