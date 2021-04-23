@@ -661,6 +661,16 @@ contract BinaryOptions is ERC20, IBinaryOptions {
         return r.getBetExerciseBonus(amount, address(this).balance, completion);
     }
 
+    /**
+     * @dev Update the amount of rewards pending for this user
+     * @param amount the size of the trade
+     * @param stack the amount of options pending before this execution
+     */
+    function getCompleteBonus(uint256 amount, uint256 stack) public view returns(uint256) {
+        IUtilizationRewards r = IUtilizationRewards(uR);
+        return r.getCompleteBonus(amount, address(this).balance, stack);
+    }
+
 
     function getPendingClaims(address account) public view returns(uint256) {
 
@@ -965,6 +975,7 @@ contract BinaryOptions is ERC20, IBinaryOptions {
         AggregatorProxy priceProvider = AggregatorProxy(option.pP);
         (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
         require(lA != 0 && lR != 0, "not ready yet");
+        uint256 stack = oC.add(oP);
         if (option.dir) {
             //call option
             if (option.sP > lA) {
@@ -989,7 +1000,7 @@ contract BinaryOptions is ERC20, IBinaryOptions {
 
 
         if (rewEn) {
-            pClaims[msg.sender] = pClaims[msg.sender].add(getBetSizeBonus(option.lV, true));
+            pClaims[msg.sender] = pClaims[msg.sender].add(getCompleteBonus(option.lV, stack));
         }
     }
 

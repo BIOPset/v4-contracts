@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./interfaces/IBinaryOptions.sol";
 import "./interfaces/IAPP.sol";
 import "./GovProxy.sol";
+import "./Treasury.sol";
 interface AccessTiers {
     /**
      * @notice Returns the rate to pay out for a given amount
@@ -94,6 +95,7 @@ contract DelegatedGov {
     address public tA;//token address
     address public aTA;//access tiers address
     address payable public pX;//proxy
+    address payable public trsy;//treasury
     
     mapping(address=>uint256) public shas;//amounts of voting power held by each sha
     mapping(address=>address) public rep;//representative/delegate/governer currently backed by given address
@@ -412,6 +414,15 @@ contract DelegatedGov {
         gp.updateTFee(n_);
     }
 
+      /**
+     * @notice distribute treasury funds to some destination
+     * @param amount the new amount to send from the treasury, in wei
+     */
+    function sendTreasuryFunds(uint256 amount, address payable destination) external tierTwoDelegation {
+        Treasury ty = Treasury(trsy);
+        ty.sendFunds(amount, destination);
+    }
+
     /* 
                                                                                               
                                                                                           
@@ -484,6 +495,15 @@ contract DelegatedGov {
         pr.updateAPP(newAPP);
     }
 
+      /**
+     * @notice change the amount (as percent) that is sent from proxy to treasury
+     * @param new_ the new amount to send to treasury. (1 = 100%, 10 = 10%, 100 = 1%)
+     */
+    function updateTrsyPercent(uint256 new_) external tierThreeDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateTreasuryAmount(new_);
+    }
+
     /* 
                                                                                               
                                                                                           
@@ -519,6 +539,17 @@ contract DelegatedGov {
                                                                 ******:                   
                                                                                           
      */
+
+
+     /**
+     * @notice change the address that the proxy sends treasury funds too
+     * @param new_ the new address to use for treasury
+     */
+    function updateTrsyAddy(address payable new_) external tierFourDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateTreasury(new_);
+        trsy = new_;
+    }
 
      /**
      * @notice change the access tiers contract address used to guard all access tier functions

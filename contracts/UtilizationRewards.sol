@@ -164,6 +164,7 @@ contract UtilizationRewards is IUtilizationRewards{
         }
         return 1;
     }
+    
 
      /**
      * @dev called by the binary options contract to claim Reward for user
@@ -191,6 +192,23 @@ contract UtilizationRewards is IUtilizationRewards{
     function getBetExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external view override returns(uint256) {
         return rwd.div(1000);
     }
+
+     /**
+     * @dev used for exercise/expire calc
+     * @param amount the amount of value in bet
+     * @param totalLocked total LP pool size
+     * @param stack total LP pool size
+     **/
+    function getCompleteBonus(uint256 amount, uint256 totalLocked, uint256 stack) external view override returns(uint256) {
+        uint256 multiplier = stack.div(10);
+        if (multiplier > 1000) {
+            return rwd.mul(10);
+        } else {
+
+        return rwd.div(uint256(1000).sub(multiplier));
+        }
+    }
+
 
 
 

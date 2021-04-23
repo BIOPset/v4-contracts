@@ -3,7 +3,6 @@ pragma solidity ^0.6.6;
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-import "./BIOPToken.sol";
 contract BIOPTokenV4 is ERC20 {
     bool public whitelistEnabled = false;
     mapping(address=>bool) public whitelist;

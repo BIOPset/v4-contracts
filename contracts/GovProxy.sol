@@ -12,7 +12,9 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 contract GovProxy {
     using SafeMath for uint256;
     address payable public dgov;
-    uint256 public tFee = 100;//1%
+    address payable public treasury;
+    uint256 public tFee = 100;//1%. This fee is for the transfer caller
+    uint256 public treasuryFee = 10;//10%
 
     constructor() public {
         dgov = msg.sender;
@@ -32,14 +34,33 @@ contract GovProxy {
         dgov = new_;
     }
 
+    function updateTreasuryAmount(uint256 new_) external onlyDGov {
+        treasuryFee = new_;
+    }
+
+    function updateTreasury(address payable new_) external onlyDGov {
+        treasury = new_;
+    }
+
 
     function transferToGov() external onlyDGov returns(uint256){
         require(address(this).balance > 0, "Nothing to transfer");
         uint256 fee = address(this).balance.div(tFee);
-        uint256 tG = address(this).balance.sub(fee);
-        dgov.send(tG);
+        uint256 tT;
+        if (treasuryFee != 0) {
+            //if treasury fee is not zero then calculate it
+            tT = (address(this).balance.sub(fee)).div(treasuryFee);
+            treasury.send(tT);
+        }
+        uint256 fG = 0;//amount for gov direct is zero by default
+        if (treasuryFee > 1) {
+            //if treasury fee is not 100% send some direct to gov
+            uint256 tG = address(this).balance.sub(fee);
+            dgov.send(tG);
+            fG = tG;
+        }
         tx.origin.send(fee);
-        return tG;
+        return fG;
     }
 
     fallback () external payable {}
