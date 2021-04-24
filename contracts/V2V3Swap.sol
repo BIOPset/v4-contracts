@@ -1,13 +1,11 @@
 pragma solidity ^0.6.6;
 
-    //DEPRECIATE USER V2V3Claim intead!!!!!!!!
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 import "../BIOPToken.sol";
 contract V2V3Swap{
 
-    //DEPRECIATE USER V2V3Claim intead!!!!!!!!
     using SafeMath for uint256;
 
     address payable dao;
@@ -24,7 +22,6 @@ contract V2V3Swap{
       token = ERC20(token_);
       token.transferFrom(msg.sender, address(this), total);
     }
-    //DEPRECIATE USER V2V3Claim intead!!!!!!!!
 
      /**
      * @dev one time swap of v2 to v4 tokens
@@ -52,5 +49,4 @@ contract V2V3Swap{
         token.transfer(msg.sender, amount);
     }
 
-    //DEPRECIATE USER V2V3Claim intead!!!!!!!!
 }
