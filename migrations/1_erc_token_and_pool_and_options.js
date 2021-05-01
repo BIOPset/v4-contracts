@@ -4,6 +4,7 @@ const DelegatedGov = artifacts.require("DelegatedGov");
 const GovProxy = artifacts.require("GovProxy");
 const DelegatedAccessTiers = artifacts.require("DelegatedAccessTiers");
 const APP = artifacts.require("APP");
+const EBOP20Factory = artifacts.require("EBOP20Factory");
 const UtilizationRewards = artifacts.require("UtilizationRewards");
 
 const AdaptiveRateCalc = artifacts.require("AdaptiveRateCalc");
@@ -51,7 +52,7 @@ const FakeERC20Settings = {
 };
 
 //true for testrpc/ganache false for kovan
-const testing = false;
+const testing = true;
 
 module.exports = function (deployer) {
   try {
@@ -69,74 +70,83 @@ module.exports = function (deployer) {
                   .deploy(APP, ppInstance.address, rcInstance.address)
                   .then((appInstance) => {
                     return deployer
-                      .deploy(
-                        UtilizationRewards,
-                        biopInstance.address,
-                        UtilizationRewardsSettings.epochs,
-                        UtilizationRewardsSettings.launchTime
-                      )
-                      .then(async (urInstance) => {
+                      .deploy(EBOP20Factory)
+                      .then((factoryInstance) => {
                         return deployer
                           .deploy(
-                            LateStageBondingCurve,
+                            UtilizationRewards,
                             biopInstance.address,
-                            lateStageBondingCurveSettings.reserveRatio
+                            UtilizationRewardsSettings.epochs,
+                            UtilizationRewardsSettings.launchTime
                           )
-                          .then(async (lsbcInstance) => {
-                            await biopInstance.approve(
-                              urInstance.address,
-                              UtilizationRewardsSettings.toTransfer
-                            );
-                            await urInstance.deposit(
-                              UtilizationRewardsSettings.toTransfer
-                            );
-                            await biopInstance.approve(
-                              lsbcInstance.address,
-                              lateStageBondingCurveSettings.toTransfer
-                            );
-                            await lsbcInstance.open(
-                              lateStageBondingCurveSettings.toTransfer
-                            );
-                            console.log("deploy 2 complete");
-                            console.log(biopInstance.address);
+                          .then(async (urInstance) => {
                             return deployer
                               .deploy(
-                                BinaryOptions,
-                                boSettings.name,
-                                boSettings.symbol,
+                                LateStageBondingCurve,
                                 biopInstance.address,
-                                urInstance.address,
-                                appInstance.address
+                                lateStageBondingCurveSettings.reserveRatio
                               )
-                              .then(async (boInstance) => {
+                              .then(async (lsbcInstance) => {
+                                await biopInstance.approve(
+                                  urInstance.address,
+                                  UtilizationRewardsSettings.toTransfer
+                                );
+                                await urInstance.deposit(
+                                  UtilizationRewardsSettings.toTransfer
+                                );
+                                await biopInstance.approve(
+                                  lsbcInstance.address,
+                                  lateStageBondingCurveSettings.toTransfer
+                                );
+                                await lsbcInstance.open(
+                                  lateStageBondingCurveSettings.toTransfer
+                                );
+                                console.log("deploy 2 complete");
+                                console.log(biopInstance.address);
                                 return deployer
-                                  .deploy(DelegatedAccessTiers)
-                                  .then(async (tiersInstance) => {
+                                  .deploy(
+                                    BinaryOptions,
+                                    boSettings.name,
+                                    boSettings.symbol,
+                                    biopInstance.address,
+                                    urInstance.address,
+                                    appInstance.address
+                                  )
+                                  .then(async (boInstance) => {
                                     return deployer
-                                      .deploy(GovProxy)
-                                      .then(async (proxyInstance) => {
+                                      .deploy(DelegatedAccessTiers)
+                                      .then(async (tiersInstance) => {
                                         return deployer
-                                          .deploy(
-                                            DelegatedGov,
-                                            boInstance.address,
-                                            biopInstance.address,
-                                            tiersInstance.address,
-                                            proxyInstance.address
-                                          )
-                                          .then(async (govInstance) => {
-                                            await boInstance.transferDevFund(
-                                              proxyInstance.address
-                                            );
-                                            await boInstance.transferOwner(
-                                              govInstance.address
-                                            );
-                                            await proxyInstance.updateDGov(
-                                              govInstance.address
-                                            );
-                                            await biopInstance.disableWhitelist();
-                                            return await urInstance.setupBinaryOptions(
-                                              boInstance.address
-                                            );
+                                          .deploy(GovProxy)
+                                          .then(async (proxyInstance) => {
+                                            return deployer
+                                              .deploy(
+                                                DelegatedGov,
+                                                boInstance.address,
+                                                biopInstance.address,
+                                                tiersInstance.address,
+                                                proxyInstance.address,
+                                                factoryInstance.address,
+                                                appInstance.address
+                                              )
+                                              .then(async (govInstance) => {
+                                                await boInstance.transferDevFund(
+                                                  proxyInstance.address
+                                                );
+                                                await boInstance.transferOwner(
+                                                  govInstance.address
+                                                );
+                                                await factoryInstance.transferOwner(
+                                                  govInstance.address
+                                                );
+                                                await proxyInstance.updateDGov(
+                                                  govInstance.address
+                                                );
+                                                await biopInstance.disableWhitelist();
+                                                return await urInstance.setupBinaryOptions(
+                                                  boInstance.address
+                                                );
+                                              });
                                           });
                                       });
                                   });
@@ -163,58 +173,67 @@ module.exports = function (deployer) {
               .deploy(APP, appSettings.priceProviderAddress, rcInstance.address)
               .then((appInstance) => {
                 return deployer
-                  .deploy(
-                    UtilizationRewards,
-                    biopInstance.address,
-                    UtilizationRewardsSettings.epochs,
-                    UtilizationRewardsSettings.launchTime
-                  )
-                  .then(async (urInstance) => {
-                    await biopInstance.approve(
-                      urInstance.address,
-                      UtilizationRewardsSettings.toTransfer
-                    );
-                    await urInstance.deposit(
-                      UtilizationRewardsSettings.toTransfer
-                    );
+                  .deploy(EBOP20Factory)
+                  .then((factoryInstance) => {
                     return deployer
                       .deploy(
-                        BinaryOptions,
-                        boSettings.name,
-                        boSettings.symbol,
+                        UtilizationRewards,
                         biopInstance.address,
-                        urInstance.address,
-                        appInstance.address
+                        UtilizationRewardsSettings.epochs,
+                        UtilizationRewardsSettings.launchTime
                       )
-                      .then(async (boInstance) => {
+                      .then(async (urInstance) => {
+                        await biopInstance.approve(
+                          urInstance.address,
+                          UtilizationRewardsSettings.toTransfer
+                        );
+                        await urInstance.deposit(
+                          UtilizationRewardsSettings.toTransfer
+                        );
                         return deployer
-                          .deploy(DelegatedAccessTiers)
-                          .then(async (tiersInstance) => {
+                          .deploy(
+                            BinaryOptions,
+                            boSettings.name,
+                            boSettings.symbol,
+                            biopInstance.address,
+                            urInstance.address,
+                            appInstance.address
+                          )
+                          .then(async (boInstance) => {
                             return deployer
-                              .deploy(GovProxy)
-                              .then(async (proxyInstance) => {
+                              .deploy(DelegatedAccessTiers)
+                              .then(async (tiersInstance) => {
                                 return deployer
-                                  .deploy(
-                                    DelegatedGov,
-                                    boInstance.address,
-                                    biopInstance.address,
-                                    tiersInstance.address,
-                                    proxyInstance.address
-                                  )
-                                  .then(async (govInstance) => {
-                                    await boInstance.transferDevFund(
-                                      proxyInstance.address
-                                    );
-                                    await boInstance.transferOwner(
-                                      govInstance.address
-                                    );
-                                    await proxyInstance.updateDGov(
-                                      govInstance.address
-                                    );
+                                  .deploy(GovProxy)
+                                  .then(async (proxyInstance) => {
+                                    return deployer
+                                      .deploy(
+                                        DelegatedGov,
+                                        boInstance.address,
+                                        biopInstance.address,
+                                        tiersInstance.address,
+                                        proxyInstance.address,
+                                        factoryInstance.address,
+                                        appInstance.address
+                                      )
+                                      .then(async (govInstance) => {
+                                        await boInstance.transferDevFund(
+                                          proxyInstance.address
+                                        );
+                                        await boInstance.transferOwner(
+                                          govInstance.address
+                                        );
+                                        await factoryInstance.transferOwner(
+                                          govInstance.address
+                                        );
+                                        await proxyInstance.updateDGov(
+                                          govInstance.address
+                                        );
 
-                                    return await urInstance.setupBinaryOptions(
-                                      boInstance.address
-                                    );
+                                        return await urInstance.setupBinaryOptions(
+                                          boInstance.address
+                                        );
+                                      });
                                   });
                               });
                           });
