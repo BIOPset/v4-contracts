@@ -65,15 +65,7 @@ These actions require the greatest consensous amound staked participants.
 
 
 ### TODOS
-    - write ebop20binaryotpions
-    - add EBOP20 pools to DelegatedGov
-    - write uniswap pool stake rewards contract
     - add more tests
-    - tiered functions for (
- - Enable Pool: connect a deployed EBOP20 (ERC20 binary options pool) to the settlement dao.) and (
- - Shutdown A Pool: Deactivate a pool if the contract is EOL and a new one has taking it's place. It can be reactivated as a new pool at any time) 
-(
- - Update all dao pool interactions to accept a pool address variable for EBOP20s)
 
 
 ## Testing (out of date)
