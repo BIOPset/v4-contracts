@@ -582,6 +582,15 @@ contract DelegatedGov {
         factory.removePool(token_);
     }
 
+      /**
+     * @notice change the amount (as percent) that is sent from proxy to treasury
+     * @param new_ the new amount to send to treasury. (1 = 100%, 10 = 10%, 100 = 1%)
+     */
+    function updateTrsyPercent(uint256 new_) external tierThreeDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateTreasuryAmount(new_);
+    }
+
     /* 
                                                                                               
                                                                                           
@@ -623,7 +632,7 @@ contract DelegatedGov {
      * @notice change the address that the proxy sends treasury funds too
      * @param new_ the new address to use for treasury
      */
-    function updateTrsyaddy_(address payable new_) external tierFourDelegation {
+    function updateTrsyAddy(address payable new_) external tierFourDelegation {
         GovProxy py = GovProxy(pX);
         py.updateTreasury(new_);
         trsy = new_;
