@@ -39,4 +39,15 @@ interface IUtilizationRewards {
      **/
     function getBetExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external virtual view returns(uint256);
 
+
+ /**
+     **/
+     /**
+     * @dev used for exercise/expire calc
+     * @param amount the amount of value in bet
+     * @param totalLocked total LP pool size
+     * @param stack total LP pool size
+     **/
+    function getCompleteBonus(uint256 amount, uint256 totalLocked, uint256 stack) external virtual view returns(uint256);
+
 }

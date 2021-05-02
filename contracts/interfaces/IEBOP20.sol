@@ -10,9 +10,9 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 interface IEBOP20 is IERC20 {
 
     //constructor(string memory name_, string memory symbol_) public ERC20(name_, symbol_)
-    /* Skeleton EBOP20 implementation. not useable*/
-    function bet(int256 latestPrice, uint256 amount) external virtual returns (uint256, uint256);
-    function unlockAndPayExpirer(uint256 lockValue , uint256 purchaseValue, address expirer) external virtual returns (bool);
-    function payout(uint256 lockValue,uint256 purchaseValue, address sender, address buyer) external virtual returns (bool);
-
+    /* Skeleton EBOP20 implementation*/
+    function bet(bool k_, address pp_, uint80 t_, uint256 a_) external;
+    function complete(uint256 oID) external returns (bool);
+    function stake(uint256 amount) external;
+    function withdraw(uint256 amount) external;
 }

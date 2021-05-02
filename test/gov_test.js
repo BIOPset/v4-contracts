@@ -79,7 +79,7 @@ contract("DelegatedGov", (accounts) => {
     return DelegatedGov.deployed().then(async function (instance) {
       return BinaryOptions.deployed().then(async function (bo) {
         var t0 = 2000;
-        await instance.uMXOT(t0, { from: accounts[5] });
+        await instance.uMXOT(t0, bo.address, { from: accounts[5] });
         var t = await bo.maxT();
         assert.equal(t0.toString(), t.toString(), "time is not correct");
       });

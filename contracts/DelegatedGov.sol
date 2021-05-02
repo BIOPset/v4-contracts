@@ -6,8 +6,11 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 //import "./BIOPTokenV4.sol";
 
 import "./interfaces/IBinaryOptions.sol";
-import "./interfaces/IAPP.sol";
+import "./APP.sol";
 import "./GovProxy.sol";
+import "./Treasury.sol";
+import "./EBOP20/EBOP20.sol";
+import "./EBOP20/EBOP20Factory.sol";
 interface AccessTiers {
     /**
      * @notice Returns the rate to pay out for a given amount
@@ -91,9 +94,12 @@ contract DelegatedAccessTiers is AccessTiers {
 contract DelegatedGov {
     using SafeMath for uint256;
     address public pA;//protocol address
+    address public appA;//approved price providers address
     address public tA;//token address
     address public aTA;//access tiers address
+    address public fcry;//ebop20 factory address
     address payable public pX;//proxy
+    address payable public trsy;//treasury
     
     mapping(address=>uint256) public shas;//amounts of voting power held by each sha
     mapping(address=>address) public rep;//representative/delegate/governer currently backed by given address
@@ -105,11 +111,13 @@ contract DelegatedGov {
     mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address 
     
 
-     constructor(address bo_, address v3_, address accessTiers_, address payable proxy_) public {
+     constructor(address bo_, address v3_, address accessTiers_, address payable proxy_, address app_, address factory_) public {
       pA = bo_;
       tA = v3_;
       aTA = accessTiers_;
       pX = proxy_;
+      appA = app_;
+      fcry = factory_;
     }
 
 
@@ -239,6 +247,10 @@ contract DelegatedGov {
     }
 
 
+    //this function has to be present or transfers to the GOV fail silently
+    fallback () external payable {}
+
+
     // 0 tier anyone whose staked can do these two
     /**
      * @notice Send rewards from the proxy to gov and collect a fee
@@ -250,8 +262,17 @@ contract DelegatedGov {
         trg = trg.add(r);
     }
 
-    //this function has to be present or transfers to the GOV fail silently
-    fallback () external payable {}
+    /**
+     * @notice create a new EBOP20 pool
+     * @param token_ the erc20 address to underwrite the new pool
+     */
+    function createEBOP20(address token_) public {
+        EBOP20Factory factory = EBOP20Factory(fcry);
+        address tAddress = factory.getEBOP20Address(token_);
+        require(tAddress == 0x0000000000000000000000000000000000000000, "pool for this token already exists, replace it instead");
+        factory.createEBOP20(token_, trsy, appA);
+    }
+
 
 
     /* 
@@ -298,19 +319,33 @@ contract DelegatedGov {
     /**
      * @notice update the maximum time an option can be created for
      * @param nMT_ the time (in seconds) of maximum possible bet
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function uMXOT(uint256 nMT_) external tierOneDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.setMaxT(nMT_);
+    function uMXOT(uint256 nMT_, address addy_) external tierOneDelegation {
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.setMaxT(nMT_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updateMaxT(nMT_);
+        }
     }
 
     /**
      * @notice update the maximum time an option can be created for
-     * @param newMinTime_ the time (in seconds) of maximum possible bet
+     * @param nMT_ the time (in seconds) of maximum possible bet
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function uMNOT(uint256 newMinTime_) external tierOneDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.setMinT(newMinTime_);
+    function uMNOT(uint256 nMT_, address addy_) external tierOneDelegation {
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.setMinT(nMT_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updateMinT(nMT_);
+        }
     }
 
     /* 
@@ -358,19 +393,33 @@ contract DelegatedGov {
     /**
      * @notice update fee paid to exercisers
      * @param newFee_ the new fee
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function updateExerciserFee(uint256 newFee_) external tierTwoDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.updateExerciserFee(newFee_);
+    function updateExerciserFee(uint256 newFee_, address addy_) external tierTwoDelegation {
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.updateExerciserFee(newFee_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updateExerciserFee(newFee_);
+        }
     }
 
     /**
      * @notice update fee paid to expirers
      * @param newFee_ the new fee
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function updateExpirerFee(uint256 newFee_) external tierTwoDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.updateExpirerFee(newFee_);
+    function updateExpirerFee(uint256 newFee_, address addy_) external tierTwoDelegation {
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.updateExpirerFee(newFee_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updateExpirerFee(newFee_);
+        }
     }
 
     /**
@@ -378,7 +427,7 @@ contract DelegatedGov {
      * @param oldPP_ the address of trading pair to be removed
      */
     function removeTradingPair(address oldPP_) external tierTwoDelegation {
-        IAPP app = IAPP(pA);
+        APP app = APP(appA);
         app.removePP(oldPP_);
     }
 
@@ -388,14 +437,14 @@ contract DelegatedGov {
      * @param newRateCalc_ the address of the rate calc to be used for this pair
      */
     function addUpdateTradingPair(address newPP_, address newRateCalc_) external tierTwoDelegation {
-        IAPP app = IAPP(pA);
+        APP app = APP(appA);
         app.addPP(newPP_, newRateCalc_);
     }
 
    
 
     /**
-     * @notice enable or disable BIOP rewards
+     * @notice enable or disable BIOP rewards, only for the main ETH pool
      * @param nx_ the new boolean value of rewardsEnabled
      */
     function enableRewards(bool nx_) external tierTwoDelegation {
@@ -407,9 +456,18 @@ contract DelegatedGov {
      * @notice update the fee paid to the user whose tx transfers bet fees from GovProxy to the DelegatedGov
      * @param n_ the new fee
      */
-    function enableRewards(uint256 n_) external tierTwoDelegation {
+    function updateGovProxyFee(uint256 n_) external tierTwoDelegation {
         GovProxy gp = GovProxy(pX);
         gp.updateTFee(n_);
+    }
+
+      /**
+     * @notice distribute treasury funds to some destination
+     * @param amount the new amount to send from the treasury, in wei
+     */
+    function sendTreasuryFunds(uint256 amount, address payable destination) external tierTwoDelegation {
+        Treasury ty = Treasury(trsy);
+        ty.sendFunds(amount, destination);
     }
 
     /* 
@@ -460,28 +518,68 @@ contract DelegatedGov {
     /**
      * @notice update soft lock time for the main pool. 
      * @param newLockSeconds_ the time (in seconds) of the soft pool lock
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function updatePoolLockTime(uint256 newLockSeconds_) external tierThreeDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.updatePoolLockSeconds(newLockSeconds_);
+    function updatePoolLockTime(uint256 newLockSeconds_, address addy_) external tierThreeDelegation {
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.updatePoolLockSeconds(newLockSeconds_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updatePoolLockSeconds(newLockSeconds_);
+        }
     }
 
     /**
      * @notice update the fee paid by betters when they make a bet
      * @param newBetFee_ the time (in seconds) of the soft pool lock
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function updateBetFee(uint256 newBetFee_) external tierThreeDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.updateDevFundBetFee(newBetFee_);
+    function updateBetFee(uint256 newBetFee_, address addy_) external tierThreeDelegation {
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.updateDevFundBetFee(newBetFee_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updateDAOBetFee(newBetFee_);
+        }
     }
 
    /**
      * @dev update APP
-     * @param newAPP the new approved price provider (and ratecalc contract to use). Must be a IAPP
+     * @param newAPP_ the new approved price provider (and ratecalc contract to use). Must be a IAPP
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function updateAPP(address newAPP) external tierThreeDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.updateAPP(newAPP);
+    function updateAPP(address newAPP_, address addy_) external tierThreeDelegation {
+        
+        if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.updateAPP(newAPP_);
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.updateAPP(newAPP_);
+        }
+    }
+
+      /**
+     * @notice change the amount (as percent) that is sent from proxy to treasury
+     * @param new_ the new amount to send to treasury. (1 = 100%, 10 = 10%, 100 = 1%)
+     */
+    function updateTrsyPercent(uint256 new_) external tierThreeDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateTreasuryAmount(new_);
+    }
+
+    /**
+     * @notice deactivate a EBOP20 pool
+     */
+    function deactivateEBOP20(address token_) public {
+        EBOP20Factory factory = EBOP20Factory(fcry);
+        require(factory.getEBOP20Address(token_) != 0x0000000000000000000000000000000000000000, "pool for this token already exists, replace it instead");
+        factory.removePool(token_);
     }
 
     /* 
@@ -520,6 +618,17 @@ contract DelegatedGov {
                                                                                           
      */
 
+
+     /**
+     * @notice change the address that the proxy sends treasury funds too
+     * @param new_ the new address to use for treasury
+     */
+    function updateTrsyaddy_(address payable new_) external tierFourDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateTreasury(new_);
+        trsy = new_;
+    }
+
      /**
      * @notice change the access tiers contract address used to guard all access tier functions
      * @param newAccessTiers_ the new access tiers contract to use. It should conform to AccessTiers interface
@@ -529,15 +638,22 @@ contract DelegatedGov {
     }
 
     /**
-     * @notice prevent new deposits into the pool. Effectivly end the protocol. This cannot be undone.
+     * @notice prevent new deposits into the pool. Effectivly end that pool.
+     * @param addy_ the address of the pool to update or the token used for the EBOP20 pool (pass pA to use the default ETH pool)
      */
-    function closeStaking() external tierFourDelegation {
-        IBinaryOptions pr = IBinaryOptions(pA);
-        pr.closeStaking();
+    function closeStaking(address addy_) external tierFourDelegation {
+         if (addy_ == pA) {
+            IBinaryOptions pr = IBinaryOptions(pA);
+            pr.closeStaking();
+        } else {
+            EBOP20Factory factory = EBOP20Factory(fcry);
+            EBOP20 pr = EBOP20(factory.getEBOP20Address(addy_));
+            pr.closeStaking();
+        }
     }
 
     /**
-     * @dev update reward base amount
+     * @dev update reward base amount, only for main ETH pool
      * @param newUR the new UtilizationRewards contract to use
      */
     function updateUtilizationRewards(address newUR) external tierFourDelegation {
@@ -548,7 +664,7 @@ contract DelegatedGov {
 
 
     /**
-     * @notice prevent new deposits into the pool. Effectivly end the protocol. This cannot be undone.
+     * @notice update the biop token used by the DAO
      * @param a the address of the new ERC20 BIOP token to use
      */
     function updateBIOPToken(address payable a) external  {
@@ -558,12 +674,29 @@ contract DelegatedGov {
     }
 
     /**
-     * @notice prevent new deposits into the pool. Effectivly end the protocol. This cannot be undone.
-     * @param a the address of the new ERC20 BIOP token to use
+     * @notice update the main ETH pool
+     * @param a the address of the new BinaryOptions pool to use
      */
     function updateProtocol(address payable a) external  {
         IBinaryOptions t = IBinaryOptions(a);
         tA = a;
+    }
+
+    /**
+     * @notice update the factoryOwner
+     * @param a the address of the new DAO to control the factory
+     */
+    function updateFactoryOwner(address payable a) external  {
+        EBOP20Factory factory = EBOP20Factory(fcry);
+        factory.transferOwner(a);
+    }
+
+    /**
+     * @notice update the factory
+     * @param a the address of the new factory to be controlled by the DAO
+     */
+    function updateFactory(address payable a) external  {
+        fcry = a;
     }
 
 }
