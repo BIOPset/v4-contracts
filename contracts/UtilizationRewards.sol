@@ -201,11 +201,11 @@ contract UtilizationRewards is IUtilizationRewards{
      **/
     function getCompleteBonus(uint256 amount, uint256 totalLocked, uint256 stack) external view override returns(uint256) {
         uint256 multiplier = stack.div(10);
-        if (multiplier > 1000) {
+
+        if (multiplier > 100) {
             return rwd.mul(10);
         } else {
-
-        return rwd.div(uint256(1000).sub(multiplier));
+            return rwd.div(uint256(1000).sub(multiplier));
         }
     }
 

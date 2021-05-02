@@ -623,7 +623,7 @@ contract DelegatedGov {
      * @notice change the address that the proxy sends treasury funds too
      * @param new_ the new address to use for treasury
      */
-    function updateTrsyaddy_(address payable new_) external tierFourDelegation {
+    function updateTrsyAddy(address payable new_) external tierFourDelegation {
         GovProxy py = GovProxy(pX);
         py.updateTreasury(new_);
         trsy = new_;

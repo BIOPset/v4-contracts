@@ -150,17 +150,11 @@ module.exports = function (deployer) {
                                                       boInstance.address
                                                     );
                                                   });
-                                              });
-                                          });
-                                      });
-                                  });
-                              });
-                          });
-                      });
+                      });});
                   });
               });
           });
-        })
+        })})})})})})
         .catch((e) => {
           console.log("caught");
           console.log(e);
