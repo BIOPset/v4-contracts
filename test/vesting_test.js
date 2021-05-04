@@ -111,6 +111,7 @@ contract("Vesting", (accounts) => {
           var claimed3 = await instance.collect({from: accounts[1]});
 
           var claimed4 = await instance.claimed();
+          console.log(`first claimed ${claimed2.toString()} ${claimed2*1}. then claimed ${claimed4.toString()} ${claimed4*1}`);
             assert.equal(
                 `${claimed4*1}`,
             `${claimed2*2}`,

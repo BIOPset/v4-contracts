@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./EBOP20.sol";
 
 contract EBOP20Factory {
-    mapping(address => address) private ebop20Addresses;//erc20 token address mapped to ebop20 pool address
+    mapping(address => address) public ebop20Addresses;//erc20 token address mapped to ebop20 pool address
     event EBOP20Created(EBOP20 ebop20);
 
     address payable public owner;
@@ -36,7 +36,7 @@ contract EBOP20Factory {
     */
     function createEBOP20(address token_, address payable treasury_, address app_) external {
         ERC20 token = ERC20(token_);
-        EBOP20 newPool = new EBOP20(string(abi.encodePacked("Pool ", token.name)),  string(abi.encodePacked("p", token.name)), token_, owner, app_, treasury_);
+        EBOP20 newPool = new EBOP20(string(abi.encodePacked("Pool ", token.name)),  string(abi.encodePacked("p", token.symbol)), token_, owner, app_, treasury_);
         ebop20Addresses[address(token)] = address(newPool);
         emit EBOP20Created(newPool);
     }
