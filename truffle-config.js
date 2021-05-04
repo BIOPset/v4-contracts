@@ -21,6 +21,8 @@ const HDWalletProvider = require('truffle-hdwallet-provider-privkey');
 const KovanPrivateKey = "e4f3dcc2feaf05c8332d3416851f2e934ba2463409450116fce916b6aa166048";
 const endpointUrl = "https://kovan.infura.io/v3/ec1bd267c03c4b3e824ab2f2ad57f9c0";
 
+const RinkebyEndpointUrl = "https://rinkeby.infura.io/v3/ec1bd267c03c4b3e824ab2f2ad57f9c0";
+
 const MainNetPrivateKey = "fake";
 const mainNetEndpointURL = "https://mainnet.infura.io/v3/ec1bd267c03c4b3e824ab2f2ad57f9c0";
 
@@ -68,7 +70,20 @@ module.exports = {
       gas: 12457254,
       gasPrice: 12457254,
       network_id: 1
-    },  
+    }, 
+    rinkeby: {
+      provider: function() {
+        return new HDWalletProvider(
+          //private keys array
+          [KovanPrivateKey],
+          //url to ethereum node
+          RinkebyEndpointUrl
+        )
+      },
+      network_id: 4,
+      gas: 5000000,
+      gasPrice: 25000000000,
+    }
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal
