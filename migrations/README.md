@@ -3,7 +3,7 @@
 1. Clone repository:
 
 ```bash
-git clone https://github.com/usefulcoin/biopset-v4-contracts.git
+git clone https://github.com/BIOPset/v4-contracts.git
 ```
 
 2. Install Truffle:
@@ -24,7 +24,7 @@ truffle migrate --network rinkeby
 
 For example, change the variable value to your private key in the repository here:
 
-https://github.com/usefulcoin/biopset-v4-contracts/blob/main/truffle-config.js#L24
+https://github.com/BIOPset/v4-contracts/blob/main/truffle-config.js#L24
 
 5. Confirm the hardcoded oracle address is for Rinkeby. Here is a ETH/USD oracle address for Rinkeby:
 
