@@ -1,10 +1,42 @@
 # Biopset v4
-Repository of contract to deploy V4 of the Decentalized Binary Option Settlement Protocol. Contains trading protocol and surronding infrastructure like DAO (called Settlement DAO or DelegatedGov).
+Repository of contract to deploy V4 of the Decentralized Binary Option Settlement Protocol. Contains trading protocol and surronding infrastructure like DAO (called Settlement DAO or DelegatedGov).
 
+## Rinkeby Deployment Instructions
 
+1. Clone this Repository:
+
+```bash
+git clone https://github.com/usefulcoin/biopset-v4-contracts.git
+```
+
+2. Install Truffle:
+
+```bash
+sudo npm install -g truffle
+```
+
+3. Migrate contracts to Rinkeby
+
+```bash
+cd biopset-v4-contracts
+git checkout -b master
+truffle migrate --network rinkeby
+```
+
+4. Make yourself the contract owner (where ever such roles exist).
+
+For example, change the variable value to your private key in the repository here:
+
+https://github.com/usefulcoin/biopset-v4-contracts/blob/main/truffle-config.js#L24
+
+5. Confirm the hardcoded oracle address is for Rinkeby. Here is a ETH/USD oracle address for Rinkeby:
+
+```bash
+0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
+```
 
 ## Settlement DAO Actions
-Things you can do with a high enough percentage of staked $BIOP. 
+Things you can do with a high enough percentage of staked $BIOP.
 
 When changing high tier actions its recommended that voting power be delegated to predeployed well read smart contracts and not individual users accounts.
 
@@ -29,7 +61,7 @@ These actions require a larger consensous and have larger consequences.
 These actions aren't as potentially foundation shaking as Tier 4 but are hot.
  - Update Bet Fee: Update the percentage (2 decimal percision) fee charged to every bet and sent to the proxy.
  - Update Soft Lock Time: Change the minimum amount of time that pool participants must stake for in order to avoid any exit fee.
- - Update Staking Rewards Epoch: Change the interval at which pool staking utilization rewards compound. 
+ - Update Staking Rewards Epoch: Change the interval at which pool staking utilization rewards compound.
  - Replace APP: Activate a new Approved Price Providers contract which contains the list of approved Oracle / RateCalc pairs.
  - Update Direct Distribution: Change the amount of tokens which are sent from the proxy to all $BIOP stakers evenly and do not go to the DAO treasury.
 
@@ -77,4 +109,4 @@ deploy to kovan
 ```truffle migrate —-network kovan --reset```
 also comment out the pool deployment, it's deployed internally by the BinaryOptions contract
 
-after deploying the setPoolAddress function on BinaryOptions has to be called manually to set it 
+after deploying the setPoolAddress function on BinaryOptions has to be called manually to set it
