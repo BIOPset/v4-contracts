@@ -3,8 +3,6 @@ pragma solidity ^0.6.6;
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-//import "./BIOPTokenV4.sol";
-
 import "./interfaces/IBinaryOptions.sol";
 import "./APP.sol";
 import "./GovProxy.sol";
@@ -258,15 +256,12 @@ contract DelegatedGov {
     // 0 tier anyone whose staked can do these two
     /**
      * @notice Send rewards from the proxy to gov and collect a fee
-     * @param token_ token to transfer, if transfering ETH pass 0x0000000000000000000000000000000000000000
      */
     function sRTG(address token_) external {
         require(staked[msg.sender] > 100, "invalid user");
         GovProxy gp = GovProxy(pX);
-        uint256 r = gp.transferToGov(token_);
-        if (token_ == 0x0000000000000000000000000000000000000000) {
-            trg = trg.add(r);
-        } 
+        uint256 r = gp.transferToGov();
+        trg = trg.add(r);
     }
 
     /**
