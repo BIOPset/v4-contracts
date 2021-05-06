@@ -45,7 +45,7 @@ contract Vesting{
     function collect() public onlyClaimant returns(uint256) {
         uint256 elapsed = block.timestamp.sub(startTime);
         ERC20 token = ERC20(tokenAddress);
-        if (elapsed > block.timestamp.add(period)) {
+        if (elapsed > period) {
             //vesting totally complete
             uint256 amount = total.sub(claimed);
             claimed = total;
