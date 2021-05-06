@@ -257,7 +257,7 @@ contract DelegatedGov {
     /**
      * @notice Send rewards from the proxy to gov and collect a fee
      */
-    function sRTG(address token_) external {
+    function sRTG() external {
         require(staked[msg.sender] > 100, "invalid user");
         GovProxy gp = GovProxy(pX);
         uint256 r = gp.transferToGov();
