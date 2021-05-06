@@ -2,7 +2,7 @@ pragma solidity ^0.6.6;
 
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "./RateCalc.sol";
+import "./interfaces/IRCD.sol";
 import "./BinaryOptions.sol";
 
 contract AdaptiveRateCalc is IRCD {
