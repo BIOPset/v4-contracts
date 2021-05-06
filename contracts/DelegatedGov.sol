@@ -106,12 +106,13 @@ contract DelegatedGov {
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
     uint256 dBIOP = 0;//the total amount of staked BIOP which has been delegated for governance
 
-    //rewards for stakers
+    //ETH rewards for stakers
     uint256 public trg = 0;//total rewards generated
     mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address 
     
+    
 
-     constructor(address bo_, address v3_, address accessTiers_, address payable proxy_, address app_, address factory_) public {
+    constructor(address bo_, address v3_, address accessTiers_, address payable proxy_, address app_, address factory_) public {
       pA = bo_;
       tA = v3_;
       aTA = accessTiers_;
@@ -139,11 +140,14 @@ contract DelegatedGov {
         require(token.balanceOf(msg.sender) >= amount, "insufficent biop balance");
         require(token.transferFrom(msg.sender, address(this), amount), "staking failed");
         if (staked[msg.sender] == 0) {
+            //only for ETH
             lrc[msg.sender] = trg;
         }
         staked[msg.sender] = staked[msg.sender].add(amount);
         emit Stake(amount, totalStaked());
     }
+
+ 
 
     /**
      * @notice withdraw your BIOP and stop earning rewards. You must undelegate before you can withdraw
@@ -187,7 +191,7 @@ contract DelegatedGov {
     }
 
     /** 
-    * @notice base rewards since last claim
+    * @notice base ETH rewards since last claim
     * @param acc the account to get the answer for
     */
     function bRSLC(address acc) public view returns (uint256) {
@@ -201,7 +205,7 @@ contract DelegatedGov {
 
 
     function claimETHRewards() public {
-        require(lrc[msg.sender] < trg, "no rewards available");
+        require(lrc[msg.sender] <= trg, "no rewards available");
         
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
@@ -254,12 +258,15 @@ contract DelegatedGov {
     // 0 tier anyone whose staked can do these two
     /**
      * @notice Send rewards from the proxy to gov and collect a fee
+     * @param token_ token to transfer, if transfering ETH pass 0x0000000000000000000000000000000000000000
      */
-    function sRTG() external {
+    function sRTG(address token_) external {
         require(staked[msg.sender] > 100, "invalid user");
         GovProxy gp = GovProxy(pX);
-        uint256 r = gp.transferToGov();
-        trg = trg.add(r);
+        uint256 r = gp.transferToGov(token_);
+        if (token_ == 0x0000000000000000000000000000000000000000) {
+            trg = trg.add(r);
+        } 
     }
 
     /**
@@ -462,12 +469,24 @@ contract DelegatedGov {
     }
 
       /**
-     * @notice distribute treasury funds to some destination
+     * @notice distribute treasury ETH funds to some destination
      * @param amount the new amount to send from the treasury, in wei
+     * @param destination where the ETH should be sent
      */
     function sendTreasuryFunds(uint256 amount, address payable destination) external tierTwoDelegation {
         Treasury ty = Treasury(trsy);
         ty.sendFunds(amount, destination);
+    }
+
+      /**
+     * @notice distribute treasury ERC20 funds to some destination
+     * @param token the ERC20 address to transfer tokens of
+     * @param amount the new amount to send from the treasury, in wei equivalent
+     * @param destination where the tokens should be sent
+     */
+    function sendTreasuryERC20Funds(address token, uint256 amount, address payable destination) external tierTwoDelegation {
+        Treasury ty = Treasury(trsy);
+        ty.sendERC20Funds(token, amount, destination);
     }
 
     /* 
