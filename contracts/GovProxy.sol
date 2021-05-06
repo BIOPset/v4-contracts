@@ -45,10 +45,8 @@ contract GovProxy {
 
     /**
     * @dev transfer ETH or ERC20 tokens to the treasury or to the DGov directly for stakers to claim
-    * @param token_ the token of the ERC20 to transfer, pass 0x0000000000000000000000000000000000000000 for ETH
     */
-    function transferToGov(address token_) external onlyDGov returns(uint256){
-        if (token_ == 0x0000000000000000000000000000000000000000) {
+    function transferToGov() external onlyDGov returns(uint256){
             require(address(this).balance > 0, "Nothing to transfer");
             uint256 fee = address(this).balance.div(tFee);
             uint256 tT;
@@ -66,18 +64,7 @@ contract GovProxy {
             }
             tx.origin.send(fee);
             return fG;
-        } else {
-            //ERC20 transfer. Everything except fee always goes to the treasury
-            ERC20 token = ERC20(token_);
-            uint256 balance = token.balanceOf(address(this));
-            require(balance > 0, "Nothing to transfer");
-            uint256 fee = balance.div(tFee);
-            token.transfer(treasury, balance.sub(fee));
-            token.transfer(tx.origin, fee);
-            return 0;
-
-        }
-        
+       
     }
 
     fallback () external payable {}
