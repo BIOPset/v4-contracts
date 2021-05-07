@@ -17,6 +17,7 @@ contract TieredVesting {
     uint256 public tierLength;//time for each tier
     uint256 public perTier;//tokens unlocked at each tier
     uint256 public tiersCompleted;
+    bool started = false;
 
     constructor(address payable claimant_, address tokenAddress_, uint256 tiers_, uint256 tierLength_) public {
         claimant = claimant_;
@@ -39,8 +40,10 @@ contract TieredVesting {
     }
 
     function start(uint256 amount) public {
+        require(started == false, "already started");
         ERC20 token = ERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), amount);
+        started = true;
         total = amount;
         perTier = amount.div(tiers);
         startTime = block.timestamp;

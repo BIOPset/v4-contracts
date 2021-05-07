@@ -14,6 +14,7 @@ contract Vesting{
     uint256 public total;//total tokens to send over vesting period
     uint256 public startTime;//start time of the vesting
     uint256 public claimed;//amount claimed so far
+    bool started = false;
 
     constructor(address payable claimant_, address tokenAddress_) public {
         claimant = claimant_;
@@ -35,8 +36,10 @@ contract Vesting{
     }
 
     function start(uint256 amount, uint256 period_) public {
+        require(started == false, "already started");
         ERC20 token = ERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), amount);
+        started = true;
         period = period_;
         total = amount;
         startTime = block.timestamp;

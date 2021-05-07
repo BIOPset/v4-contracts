@@ -15,6 +15,7 @@ contract Unlock {
     address payable claimant;
     uint256 public period;
     uint256 public startTime;//start time of the vesting
+    bool started = false;
 
     constructor(address payable claimant_, address tokenAddress_) public {
         claimant = claimant_;
@@ -36,8 +37,10 @@ contract Unlock {
     }
 
     function start(uint256 amount, uint256 period_) public {
+        require(started == false, "already started");
         ERC20 token = ERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), amount);
+        started = true;
         period = period_;
         startTime = block.timestamp;
     }
