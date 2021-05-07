@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 
 
+
 contract TieredVesting {
 
     using SafeMath for uint256;
@@ -12,12 +13,11 @@ contract TieredVesting {
     address payable claimant;
     uint256 public total;//total tokens to send over vesting period
     uint256 public startTime;//start time of the vesting
-    uint256 public claimed = 0;//amount claimed so far
+    uint256 public claimed;//amount claimed so far
     uint256 public tiers;//the number of tiers
     uint256 public tierLength;//time for each tier
     uint256 public perTier;//tokens unlocked at each tier
-    uint256 public tiersCompleted;
-    bool started = false;
+    uint256 public tiersClaimed;//amount of tiers paid out
 
     constructor(address payable claimant_, address tokenAddress_, uint256 tiers_, uint256 tierLength_) public {
         claimant = claimant_;
@@ -40,40 +40,39 @@ contract TieredVesting {
     }
 
     function start(uint256 amount) public {
-        require(started == false, "already started");
         ERC20 token = ERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), amount);
-        started = true;
         total = amount;
         perTier = amount.div(tiers);
         startTime = block.timestamp;
     }
 
-    function collect() public onlyClaimant returns(uint256) {
+    function collect() public onlyClaimant {
         uint256 elapsed = block.timestamp.sub(startTime);
+        uint256 endTime = startTime.add(perTier.mul(tiers));
         ERC20 token = ERC20(tokenAddress);
-        uint256 completed = elapsed.div(tierLength);
-        if (completed > 0) {
-            completed = completed.sub(tiersCompleted);
-        }
-
-        if (completed == tierLength) {
-                uint256 amount = total.sub(claimed);
+        if (block.timestamp >= endTime) {
+                token.transfer(claimant, token.balanceOf(address(this)));
                 claimed = total;
-                tiersCompleted = tiers;
-                token.transfer(claimant, amount);
-                return amount;
-        } else if (completed > 0) {
-            uint256 sent = 0;
-            while (completed > 0) {
-                completed = completed.sub(1);
-                tiersCompleted = tiersCompleted.add(1);
-                claimed = claimed.add(perTier);
-                token.transfer(claimant, perTier);
-                sent = sent.add(perTier);
+        } else {
+            uint256 alreadyPaid = tiersClaimed;
+            while (elapsed > 0) {
+                if (elapsed > tierLength) {
+                    if (alreadyPaid > 0) {
+                        alreadyPaid.sub(1);
+                        elapsed = elapsed.sub(tierLength);
+                    } else {
+                        
+                    //pay out a tier
+                    elapsed = elapsed.sub(tierLength);
+                    token.transfer(claimant, perTier);
+                    claimed = claimed.add(perTier);
+                    }
+                } else {
+                    elapsed = 0;
+                }
             }
-            return sent;
         }
-        return 0;
     }
 }
+
