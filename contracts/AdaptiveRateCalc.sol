@@ -30,7 +30,7 @@ contract AdaptiveRateCalc is IRCD {
 
         //top 1.9x
         uint256 top = amount.mul(2);//.sub(amount.div(10));
-        if (t > 1800) { //options longer then 30 min have lower top
+        if (t > 2) { //options longer then 2 rounds have lower top
             top = top.sub(amount.div(4));//max 1.65x
         }
 
