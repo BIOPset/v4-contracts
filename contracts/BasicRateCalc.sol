@@ -222,12 +222,7 @@ contract AdaptiveRateCalc is IRCD {
             }
         }
         
-        uint256 variableRate = double.sub(amount.div(10));//find the highest amount that can be offered (max 1.9x)
-        while (variableRate > canLock) {
-            variableRate = variableRate.sub(amount.div(100));
-        }
-        return variableRate;
-     
+        return actualRate(amount, canLock, double.sub(amount.div(10)));
     }
     
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
