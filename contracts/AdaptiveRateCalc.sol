@@ -3,7 +3,6 @@ pragma solidity ^0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "./interfaces/IRCD.sol";
-import "./BinaryOptions.sol";
 
 contract AdaptiveRateCalc is IRCD {
     using SafeMath for uint256;
@@ -20,29 +19,12 @@ contract AdaptiveRateCalc is IRCD {
     function rate(uint256 amount, uint256 maxAvailable, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
         require(s > 0, "invalid stack");
 
-        if (l < maxAvailable.div(1000)) {
+        if (amount < maxAvailable.sub(l).div(1000)) {
             return amount.mul(2);
-        }
-        uint256 per = (maxAvailable.div(10)).div(s);
-        uint256 base = per.div(2);
-
-        
-
-        //top 1.9x
-        uint256 top = amount.mul(2);//.sub(amount.div(10));
-        if (t > 2) { //options longer then 2 rounds have lower top
-            top = top.sub(amount.div(4));//max 1.65x
-        }
-
-        if (base > top) {
-            return top;
-        } else if (base < amount) {
+        } else {
            //bottom 1.01x
            return amount.add(amount.div(100));
-        } 
-        //mids
-        return base;
-        
+        }
+
     }
 }
-
