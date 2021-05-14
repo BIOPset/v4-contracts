@@ -146,7 +146,6 @@ interface IRCD {
     /**
      * @notice Returns the rate to pay out for a given amount
      * @param amount the bet amount to calc a payout for
-     * @param maxAvailable the total pooled ETH unlocked and available to bet
      * @param l the current amount locked
      * @param t time for the option
      * @param k true for call false for put
@@ -154,7 +153,7 @@ interface IRCD {
      * @return profit total possible profit amount
      *
      */
-    function rate(uint256 amount, uint256 maxAvailable, uint256 l, uint256 t, bool k, uint256 s) external view returns (uint256);
+    function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s) external view returns (uint256);
 
 }
 
@@ -164,7 +163,6 @@ contract AdaptiveRateCalc is IRCD {
      /**
      * @notice Calculates maximum option buyer profit
      * @param amount Traders option payment
-     * @param maxAvailable the total pooled ETH unlocked and available to trade
      * @param l the current amount of locked ETH
      * @param t time/rounds for the option  (not used in this RateCalc)
      * @param k true for call false for put (Not used in this RateCalc)
@@ -177,12 +175,12 @@ contract AdaptiveRateCalc is IRCD {
     
      * 
      */
-    function rate(uint256 amount, uint256 maxAvailable, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
+    function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
         
         //check less then 1% is already locked
         require(l < address(msg.sender).balance.div(100), "pool is full");
         
-        uint256 canLock = maxAvailable.sub(l);
+        uint256 canLock = address(msg.sender).balance.sub(l);
         uint256 double = amount.mul(2);
         //check bet is less then 0.5%
         require(amount < canLock.div(200), "bet to big");
