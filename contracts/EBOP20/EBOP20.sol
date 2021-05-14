@@ -786,7 +786,7 @@ contract EBOP20 is ERC20, IEBOP20 {
       }
     }
           
-    return rc.rate(deposit, getMaxAvailable().sub(deposit),lockedAmount , t, k, s);
+    return rc.rate(deposit, lockedAmount , t, k, s);
   }
 
   /**
