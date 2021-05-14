@@ -896,7 +896,7 @@ contract BinaryOptions is ERC20, IBinaryOptions {
             }
         }
         
-        return rc.rate(deposit, getMaxAvailable().sub(deposit),lockedAmount , t, k, s);
+        return rc.rate(deposit, lockedAmount , t, k, s);
     }
 
      /**
