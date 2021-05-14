@@ -170,23 +170,25 @@ contract AdaptiveRateCalc is IRCD {
      * @param k true for call false for put (Not used in this RateCalc)
      * @param s stack, how many open options there are already in this direction
      * @return profit total possible profit amount
-     * 
+     *
      * @dev the amount returned represents the total amount which is to be locked. This means that any amount returned represents the traders full bet amount and the pools stake compbined.
-     * 
-     * 
-    
-     * 
+     *
+     *
+
+     *
      */
     function rate(uint256 amount, uint256 maxAvailable, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
-        
-        //check less then 1% is already locked
-        require(l <= maxAvailable.div(100), "pool is full");
-        
+
+        // check that no more than 1% is locked
+        // if l is more than maxAvailable/99 it means that the pool is full
+        // exit the function if the l≥(maxAvailable/99)
+        require(l >= maxAvailable.div(99), "pool is full");
+
         uint256 canLock = maxAvailable.sub(l);
         uint256 double = amount.mul(2);
         //check bet is less then 0.5%
         require(amount < canLock.div(200), "bet to big");
-        
+
         //for small bets less then 0.001% of pool
         if (amount < canLock.div(100000)) {
             if ( s > 150 ) {
@@ -202,7 +204,7 @@ contract AdaptiveRateCalc is IRCD {
                 return actualRate(amount, canLock, double);
             }
         }
-        
+
         //for bets between 0.001%-0.1% of pool
         if (amount < canLock.div(1000)) {
             if (s > 20) {
@@ -221,10 +223,10 @@ contract AdaptiveRateCalc is IRCD {
                 return actualRate(amount, canLock, double);
             }
         }
-        
+
         return actualRate(amount, canLock, double.sub(amount.div(10)));
     }
-    
+
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
         while (startRate > canLock) {
             startRate = startRate.sub(amount.div(100));
