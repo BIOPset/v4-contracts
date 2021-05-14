@@ -1,0 +1,2734 @@
+{
+  "contractName": "APP",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pp_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "rc_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pp",
+          "type": "address"
+        }
+      ],
+      "name": "aprvd",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newPP_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "rateCalc_",
+          "type": "address"
+        }
+      ],
+      "name": "addPP",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "oldPP_",
+          "type": "address"
+        }
+      ],
+      "name": "removePP",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rc_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newPP_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rateCalc_\",\"type\":\"address\"}],\"name\":\"addPP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp\",\"type\":\"address\"}],\"name\":\"aprvd\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oldPP_\",\"type\":\"address\"}],\"name\":\"removePP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"addPP(address,address)\":{\"details\":\"enable a new price provider\",\"params\":{\"newPP_\":\"the price provider to add\",\"rateCalc_\":\"the rate calc to use with the new price provider\"}},\"aprvd(address)\":{\"details\":\"get the ratecalc for a price provider\",\"params\":{\"pp\":\"the price provider to look up\"}},\"constructor\":{\"params\":{\"pp_\":\"the price provider to add initially\",\"rc_\":\"the ratecalc to add initially\"}},\"removePP(address)\":{\"details\":\"disable a new price provider\",\"params\":{\"oldPP_\":\"the price provider to disable\"}},\"transferOwner(address)\":{\"details\":\"transfer the owner\",\"params\":{\"newOwner\":\"new owner address\"}}}},\"userdoc\":{\"methods\":{},\"notice\":\"****************************************************************************\\\\ Author: BIOPset (https://biopset.com) APP: Approved Price Providers /*****************************************************************************\"}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol\":\"APP\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol\":{\"keccak256\":\"0x6676929788d6d9bba5ed733d66d0107e20f9d7a7e6dd5dcac45eca0286916690\",\"urls\":[\"bzz-raw://e855811552890892272e72ae22646cb1eaf6d56643e22d5ce0770c178fa83ba6\",\"dweb:/ipfs/QmWUwPR3puKXhdqAc32jn7Xa7EfFUWBnSB5Enr7ReBfrq2\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol\":{\"keccak256\":\"0x80db3beee7629b03cb4def02e54f2f00d19cdb1992b3f07e406130f586dd5128\",\"urls\":[\"bzz-raw://baceac801ed34767d6b3c0d6ecac390825c6026bb7d8000d01d58822ed0fe95c\",\"dweb:/ipfs/QmWxv8ekUGfVAaJ4SZKCFrRaS3vZKFdaMym8Fs6MbL28u2\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516103863803806103868339818101604052604081101561003357600080fd5b508051602091820151600080546001600160a01b0319908116331782556001600160a01b03938416825260019094526040902080549290911691909216179055610304806100826000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80634fb2e45d1461005c5780638da5cb5b14610084578063b7a9eaa9146100a8578063bc086215146100ce578063f4a6e1e2146100fc575b600080fd5b6100826004803603602081101561007257600080fd5b50356001600160a01b0316610122565b005b61008c61019c565b604080516001600160a01b039092168252519081900360200190f35b61008c600480360360208110156100be57600080fd5b50356001600160a01b03166101ab565b610082600480360360408110156100e457600080fd5b506001600160a01b03813581169160200135166101c9565b6100826004803603602081101561011257600080fd5b50356001600160a01b031661024f565b6000546001600160a01b0316331461017a576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b031681565b6001600160a01b039081166000908152600160205260409020541690565b6000546001600160a01b03163314610221576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b03918216600090815260016020526040902080546001600160a01b03191691909216179055565b6000546001600160a01b031633146102a7576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b0316600090815260016020526040902080546001600160a01b031916905556fea2646970667358221220a2aefe580bea25beaac0dc9769d5d07a901f0b1b706e1a25f14b8f1eb5bc78d964736f6c63430006060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80634fb2e45d1461005c5780638da5cb5b14610084578063b7a9eaa9146100a8578063bc086215146100ce578063f4a6e1e2146100fc575b600080fd5b6100826004803603602081101561007257600080fd5b50356001600160a01b0316610122565b005b61008c61019c565b604080516001600160a01b039092168252519081900360200190f35b61008c600480360360208110156100be57600080fd5b50356001600160a01b03166101ab565b610082600480360360408110156100e457600080fd5b506001600160a01b03813581169160200135166101c9565b6100826004803603602081101561011257600080fd5b50356001600160a01b031661024f565b6000546001600160a01b0316331461017a576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b031681565b6001600160a01b039081166000908152600160205260409020541690565b6000546001600160a01b03163314610221576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b03918216600090815260016020526040902080546001600160a01b03191691909216179055565b6000546001600160a01b031633146102a7576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b0316600090815260016020526040902080546001600160a01b031916905556fea2646970667358221220a2aefe580bea25beaac0dc9769d5d07a901f0b1b706e1a25f14b8f1eb5bc78d964736f6c63430006060033",
+  "immutableReferences": {},
+  "sourceMap": "294:1485:0:-:0;;;512:109;5:9:-1;2:2;;;27:1;24;17:12;2:2;512:109:0;;;;;;;;;;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;512:109:0;;;;;;;567:5;:18;;-1:-1:-1;;;;;;567:18:0;;;575:10;567:18;;;-1:-1:-1;;;;;595:13:0;;;;;567:18;595:13;;;512:109;595:13;;:19;;;;;;;;;;;;;294:1485;;;;;;",
+  "deployedSourceMap": "294:1485:0:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;294:1485:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;1126:93:0;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1126:93:0;-1:-1:-1;;;;;1126:93:0;;:::i;:::-;;321:20;;;:::i;:::-;;;;-1:-1:-1;;;;;321:20:0;;;;;;;;;;;;;;933:102;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;933:102:0;-1:-1:-1;;;;;933:102:0;;:::i;1398:123::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;;;;;;1398:123:0;;;;;;;;;;:::i;1632:140::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1632:140:0;-1:-1:-1;;;;;1632:140:0;;:::i;1126:93::-;766:5;;-1:-1:-1;;;;;766:5:0;752:10;:19;744:54;;;;;-1:-1:-1;;;744:54:0;;;;;;;;;;;;-1:-1:-1;;;744:54:0;;;;;;;;;;;;;;;1196:5:::1;:16:::0;;-1:-1:-1;;;;;;1196:16:0::1;-1:-1:-1::0;;;;;1196:16:0;;;::::1;::::0;;;::::1;::::0;;1126:93::o;321:20::-;;;-1:-1:-1;;;;;321:20:0;;:::o;933:102::-;-1:-1:-1;;;;;1016:12:0;;;992:7;1016:12;;;:8;:12;;;;;;;;933:102::o;1398:123::-;766:5;;-1:-1:-1;;;;;766:5:0;752:10;:19;744:54;;;;;-1:-1:-1;;;744:54:0;;;;;;;;;;;;-1:-1:-1;;;744:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;1486:16:0;;::::1;;::::0;;;:8:::1;:16;::::0;;;;:28;;-1:-1:-1;;;;;;1486:28:0::1;::::0;;;::::1;;::::0;;1398:123::o;1632:140::-;766:5;;-1:-1:-1;;;;;766:5:0;752:10;:19;744:54;;;;;-1:-1:-1;;;744:54:0;;;;;;;;;;;;-1:-1:-1;;;744:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;1704:16:0::1;1723:42;1704:16:::0;;;:8:::1;:16;::::0;;;;:61;;-1:-1:-1;;;;;;1704:61:0::1;::::0;;1632:140::o",
+  "source": "pragma solidity ^0.6.6;\n\n\nimport \"./interfaces/IAPP.sol\";\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* APP: Approved Price Providers\n/******************************************************************************/\n\ncontract APP is IAPP {\n    address public owner;\n    mapping(address=>address) private approved;\n\n     /**\n    * @param pp_ the price provider to add initially\n    * @param rc_ the ratecalc to add initially\n    */\n    constructor(address pp_, address rc_) public {\n        owner = msg.sender;\n        approved[pp_] = rc_;\n    }\n\n     /**\n    * @dev Reverts if called by anyone other than the contract owner.\n    */\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Only callable by owner\");\n        _;\n    }\n\n     /**\n    * @dev get the ratecalc for a price provider\n    * @param pp the price provider to look up\n    */\n    function aprvd(address pp)  external view override returns(address){\n       return approved[pp];\n    }\n\n    /**\n    * @dev transfer the owner\n    * @param newOwner new owner address\n    */\n    function transferOwner(address newOwner) external onlyOwner {\n        owner = newOwner;\n    }\n\n     /**\n    * @dev enable a new price provider\n    * @param newPP_ the price provider to add\n    * @param rateCalc_ the rate calc to use with the new price provider\n    */\n    function addPP(address newPP_, address rateCalc_) external override onlyOwner {\n        approved[newPP_] = rateCalc_;\n    }\n\n    /**\n    * @dev disable a new price provider\n    * @param oldPP_ the price provider to disable\n    */\n    function removePP(address oldPP_) external override onlyOwner {\n        approved[oldPP_] = 0x0000000000000000000000000000000000000000;\n    }\n    \n}\n",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol",
+    "exportedSymbols": {
+      "APP": [
+        106
+      ]
+    },
+    "id": 107,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
+        "file": "./interfaces/IAPP.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 107,
+        "sourceUnit": 12301,
+        "src": "26:31:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4,
+              "name": "IAPP",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 12300,
+              "src": "310:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IAPP_$12300",
+                "typeString": "contract IAPP"
+              }
+            },
+            "id": 5,
+            "nodeType": "InheritanceSpecifier",
+            "src": "310:4:0"
+          }
+        ],
+        "contractDependencies": [
+          12300
+        ],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 3,
+          "nodeType": "StructuredDocumentation",
+          "src": "59:233:0",
+          "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nAPP: Approved Price Providers\n/*****************************************************************************"
+        },
+        "fullyImplemented": true,
+        "id": 106,
+        "linearizedBaseContracts": [
+          106,
+          12300
+        ],
+        "name": "APP",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "8da5cb5b",
+            "id": 7,
+            "mutability": "mutable",
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 106,
+            "src": "321:20:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "321:7:0",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 11,
+            "mutability": "mutable",
+            "name": "approved",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 106,
+            "src": "347:42:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
+              "typeString": "mapping(address => address)"
+            },
+            "typeName": {
+              "id": 10,
+              "keyType": {
+                "id": 8,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "355:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "347:25:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
+                "typeString": "mapping(address => address)"
+              },
+              "valueType": {
+                "id": 9,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "364:7:0",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 30,
+              "nodeType": "Block",
+              "src": "557:64:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 22,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 19,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7,
+                      "src": "567:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 20,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -15,
+                        "src": "575:3:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 21,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "575:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "567:18:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 23,
+                  "nodeType": "ExpressionStatement",
+                  "src": "567:18:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 28,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 24,
+                        "name": "approved",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11,
+                        "src": "595:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
+                          "typeString": "mapping(address => address)"
+                        }
+                      },
+                      "id": 26,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 25,
+                        "name": "pp_",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 14,
+                        "src": "604:3:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "595:13:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 27,
+                      "name": "rc_",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16,
+                      "src": "611:3:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "595:19:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 29,
+                  "nodeType": "ExpressionStatement",
+                  "src": "595:19:0"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 12,
+              "nodeType": "StructuredDocumentation",
+              "src": "397:110:0",
+              "text": "@param pp_ the price provider to add initially\n@param rc_ the ratecalc to add initially"
+            },
+            "id": 31,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 17,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 14,
+                  "mutability": "mutable",
+                  "name": "pp_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 31,
+                  "src": "524:11:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "524:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16,
+                  "mutability": "mutable",
+                  "name": "rc_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 31,
+                  "src": "537:11:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "537:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "523:26:0"
+            },
+            "returnParameters": {
+              "id": 18,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "557:0:0"
+            },
+            "scope": 106,
+            "src": "512:109:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 43,
+              "nodeType": "Block",
+              "src": "734:82:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 38,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 35,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "752:3:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 36,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "752:10:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 37,
+                          "name": "owner",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7,
+                          "src": "766:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "752:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "4f6e6c792063616c6c61626c65206279206f776e6572",
+                        "id": 39,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "773:24:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_3bfd5788f2773712a5315b58174111e9db21853c8f7d7554f565be615cce78d3",
+                          "typeString": "literal_string \"Only callable by owner\""
+                        },
+                        "value": "Only callable by owner"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_3bfd5788f2773712a5315b58174111e9db21853c8f7d7554f565be615cce78d3",
+                          "typeString": "literal_string \"Only callable by owner\""
+                        }
+                      ],
+                      "id": 34,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "744:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 40,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "744:54:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 41,
+                  "nodeType": "ExpressionStatement",
+                  "src": "744:54:0"
+                },
+                {
+                  "id": 42,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "808:1:0"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 32,
+              "nodeType": "StructuredDocumentation",
+              "src": "628:80:0",
+              "text": "@dev Reverts if called by anyone other than the contract owner."
+            },
+            "id": 44,
+            "name": "onlyOwner",
+            "nodeType": "ModifierDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 33,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "731:2:0"
+            },
+            "src": "713:103:0",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              12287
+            ],
+            "body": {
+              "id": 57,
+              "nodeType": "Block",
+              "src": "1000:35:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 53,
+                      "name": "approved",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 11,
+                      "src": "1016:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
+                        "typeString": "mapping(address => address)"
+                      }
+                    },
+                    "id": 55,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 54,
+                      "name": "pp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 47,
+                      "src": "1025:2:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1016:12:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 52,
+                  "id": 56,
+                  "nodeType": "Return",
+                  "src": "1009:19:0"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 45,
+              "nodeType": "StructuredDocumentation",
+              "src": "823:105:0",
+              "text": "@dev get the ratecalc for a price provider\n@param pp the price provider to look up"
+            },
+            "functionSelector": "b7a9eaa9",
+            "id": 58,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "aprvd",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 49,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "975:8:0"
+            },
+            "parameters": {
+              "id": 48,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47,
+                  "mutability": "mutable",
+                  "name": "pp",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 58,
+                  "src": "948:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 46,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "948:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "947:12:0"
+            },
+            "returnParameters": {
+              "id": 52,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 51,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 58,
+                  "src": "992:7:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 50,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "992:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "991:9:0"
+            },
+            "scope": 106,
+            "src": "933:102:0",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 70,
+              "nodeType": "Block",
+              "src": "1186:33:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 68,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 66,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7,
+                      "src": "1196:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 67,
+                      "name": "newOwner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 61,
+                      "src": "1204:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1196:16:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 69,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1196:16:0"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 59,
+              "nodeType": "StructuredDocumentation",
+              "src": "1041:80:0",
+              "text": "@dev transfer the owner\n@param newOwner new owner address"
+            },
+            "functionSelector": "4fb2e45d",
+            "id": 71,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 64,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 63,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 44,
+                  "src": "1176:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1176:9:0"
+              }
+            ],
+            "name": "transferOwner",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 62,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 61,
+                  "mutability": "mutable",
+                  "name": "newOwner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 71,
+                  "src": "1149:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 60,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1149:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1148:18:0"
+            },
+            "returnParameters": {
+              "id": 65,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1186:0:0"
+            },
+            "scope": 106,
+            "src": "1126:93:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "baseFunctions": [
+              12294
+            ],
+            "body": {
+              "id": 88,
+              "nodeType": "Block",
+              "src": "1476:45:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 86,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 82,
+                        "name": "approved",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11,
+                        "src": "1486:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
+                          "typeString": "mapping(address => address)"
+                        }
+                      },
+                      "id": 84,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 83,
+                        "name": "newPP_",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 74,
+                        "src": "1495:6:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1486:16:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 85,
+                      "name": "rateCalc_",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 76,
+                      "src": "1505:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1486:28:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 87,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1486:28:0"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 72,
+              "nodeType": "StructuredDocumentation",
+              "src": "1226:167:0",
+              "text": "@dev enable a new price provider\n@param newPP_ the price provider to add\n@param rateCalc_ the rate calc to use with the new price provider"
+            },
+            "functionSelector": "bc086215",
+            "id": 89,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 80,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 79,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 44,
+                  "src": "1466:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1466:9:0"
+              }
+            ],
+            "name": "addPP",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 78,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1457:8:0"
+            },
+            "parameters": {
+              "id": 77,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 74,
+                  "mutability": "mutable",
+                  "name": "newPP_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 89,
+                  "src": "1413:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 73,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1413:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 76,
+                  "mutability": "mutable",
+                  "name": "rateCalc_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 89,
+                  "src": "1429:17:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 75,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1429:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1412:35:0"
+            },
+            "returnParameters": {
+              "id": 81,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1476:0:0"
+            },
+            "scope": 106,
+            "src": "1398:123:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "baseFunctions": [
+              12299
+            ],
+            "body": {
+              "id": 104,
+              "nodeType": "Block",
+              "src": "1694:78:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 102,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 98,
+                        "name": "approved",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11,
+                        "src": "1704:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
+                          "typeString": "mapping(address => address)"
+                        }
+                      },
+                      "id": 100,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 99,
+                        "name": "oldPP_",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 92,
+                        "src": "1713:6:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1704:16:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303030303030",
+                      "id": 101,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1723:42:0",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      },
+                      "value": "0x0000000000000000000000000000000000000000"
+                    },
+                    "src": "1704:61:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 103,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1704:61:0"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 90,
+              "nodeType": "StructuredDocumentation",
+              "src": "1527:100:0",
+              "text": "@dev disable a new price provider\n@param oldPP_ the price provider to disable"
+            },
+            "functionSelector": "f4a6e1e2",
+            "id": 105,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 96,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 95,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 44,
+                  "src": "1684:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1684:9:0"
+              }
+            ],
+            "name": "removePP",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 94,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1675:8:0"
+            },
+            "parameters": {
+              "id": 93,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 92,
+                  "mutability": "mutable",
+                  "name": "oldPP_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 105,
+                  "src": "1650:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 91,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1650:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1649:16:0"
+            },
+            "returnParameters": {
+              "id": 97,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1694:0:0"
+            },
+            "scope": 106,
+            "src": "1632:140:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 107,
+        "src": "294:1485:0"
+      }
+    ],
+    "src": "0:1780:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol",
+      "exportedSymbols": {
+        "APP": [
+          106
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 12301,
+          "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
+          "file": "./interfaces/IAPP.sol",
+          "scope": 107,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 2,
+        "name": "ImportDirective",
+        "src": "26:31:0"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "contractDependencies": [
+            12300
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            106,
+            12300
+          ],
+          "name": "APP",
+          "scope": 107
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nAPP: Approved Price Providers\n/*****************************************************************************"
+            },
+            "id": 3,
+            "name": "StructuredDocumentation",
+            "src": "59:233:0"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IAPP",
+                  "referencedDeclaration": 12300,
+                  "type": "contract IAPP"
+                },
+                "id": 4,
+                "name": "UserDefinedTypeName",
+                "src": "310:4:0"
+              }
+            ],
+            "id": 5,
+            "name": "InheritanceSpecifier",
+            "src": "310:4:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "8da5cb5b",
+              "mutability": "mutable",
+              "name": "owner",
+              "overrides": null,
+              "scope": 106,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 6,
+                "name": "ElementaryTypeName",
+                "src": "321:7:0"
+              }
+            ],
+            "id": 7,
+            "name": "VariableDeclaration",
+            "src": "321:20:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "mutability": "mutable",
+              "name": "approved",
+              "overrides": null,
+              "scope": 106,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => address)",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => address)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 8,
+                    "name": "ElementaryTypeName",
+                    "src": "355:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 9,
+                    "name": "ElementaryTypeName",
+                    "src": "364:7:0"
+                  }
+                ],
+                "id": 10,
+                "name": "Mapping",
+                "src": "347:25:0"
+              }
+            ],
+            "id": 11,
+            "name": "VariableDeclaration",
+            "src": "347:42:0"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "overrides": null,
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@param pp_ the price provider to add initially\n@param rc_ the ratecalc to add initially"
+                },
+                "id": 12,
+                "name": "StructuredDocumentation",
+                "src": "397:110:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "pp_",
+                      "overrides": null,
+                      "scope": 31,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 13,
+                        "name": "ElementaryTypeName",
+                        "src": "524:7:0"
+                      }
+                    ],
+                    "id": 14,
+                    "name": "VariableDeclaration",
+                    "src": "524:11:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "rc_",
+                      "overrides": null,
+                      "scope": 31,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 15,
+                        "name": "ElementaryTypeName",
+                        "src": "537:7:0"
+                      }
+                    ],
+                    "id": 16,
+                    "name": "VariableDeclaration",
+                    "src": "537:11:0"
+                  }
+                ],
+                "id": 17,
+                "name": "ParameterList",
+                "src": "523:26:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 18,
+                "name": "ParameterList",
+                "src": "557:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7,
+                              "type": "address",
+                              "value": "owner"
+                            },
+                            "id": 19,
+                            "name": "Identifier",
+                            "src": "567:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address payable"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": -15,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 20,
+                                "name": "Identifier",
+                                "src": "575:3:0"
+                              }
+                            ],
+                            "id": 21,
+                            "name": "MemberAccess",
+                            "src": "575:10:0"
+                          }
+                        ],
+                        "id": 22,
+                        "name": "Assignment",
+                        "src": "567:18:0"
+                      }
+                    ],
+                    "id": 23,
+                    "name": "ExpressionStatement",
+                    "src": "567:18:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "mapping(address => address)",
+                                  "value": "approved"
+                                },
+                                "id": 24,
+                                "name": "Identifier",
+                                "src": "595:8:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 14,
+                                  "type": "address",
+                                  "value": "pp_"
+                                },
+                                "id": 25,
+                                "name": "Identifier",
+                                "src": "604:3:0"
+                              }
+                            ],
+                            "id": 26,
+                            "name": "IndexAccess",
+                            "src": "595:13:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16,
+                              "type": "address",
+                              "value": "rc_"
+                            },
+                            "id": 27,
+                            "name": "Identifier",
+                            "src": "611:3:0"
+                          }
+                        ],
+                        "id": 28,
+                        "name": "Assignment",
+                        "src": "595:19:0"
+                      }
+                    ],
+                    "id": 29,
+                    "name": "ExpressionStatement",
+                    "src": "595:19:0"
+                  }
+                ],
+                "id": 30,
+                "name": "Block",
+                "src": "557:64:0"
+              }
+            ],
+            "id": 31,
+            "name": "FunctionDefinition",
+            "src": "512:109:0"
+          },
+          {
+            "attributes": {
+              "name": "onlyOwner",
+              "overrides": null,
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Reverts if called by anyone other than the contract owner."
+                },
+                "id": 32,
+                "name": "StructuredDocumentation",
+                "src": "628:80:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 33,
+                "name": "ParameterList",
+                "src": "731:2:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_3bfd5788f2773712a5315b58174111e9db21853c8f7d7554f565be615cce78d3",
+                                  "typeString": "literal_string \"Only callable by owner\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                -18,
+                                -18
+                              ],
+                              "referencedDeclaration": -18,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 34,
+                            "name": "Identifier",
+                            "src": "744:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": -15,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 35,
+                                    "name": "Identifier",
+                                    "src": "752:3:0"
+                                  }
+                                ],
+                                "id": 36,
+                                "name": "MemberAccess",
+                                "src": "752:10:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 7,
+                                  "type": "address",
+                                  "value": "owner"
+                                },
+                                "id": 37,
+                                "name": "Identifier",
+                                "src": "766:5:0"
+                              }
+                            ],
+                            "id": 38,
+                            "name": "BinaryOperation",
+                            "src": "752:19:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "4f6e6c792063616c6c61626c65206279206f776e6572",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Only callable by owner\"",
+                              "value": "Only callable by owner"
+                            },
+                            "id": 39,
+                            "name": "Literal",
+                            "src": "773:24:0"
+                          }
+                        ],
+                        "id": 40,
+                        "name": "FunctionCall",
+                        "src": "744:54:0"
+                      }
+                    ],
+                    "id": 41,
+                    "name": "ExpressionStatement",
+                    "src": "744:54:0"
+                  },
+                  {
+                    "id": 42,
+                    "name": "PlaceholderStatement",
+                    "src": "808:1:0"
+                  }
+                ],
+                "id": 43,
+                "name": "Block",
+                "src": "734:82:0"
+              }
+            ],
+            "id": 44,
+            "name": "ModifierDefinition",
+            "src": "713:103:0"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                12287
+              ],
+              "functionSelector": "b7a9eaa9",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "aprvd",
+              "scope": 106,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev get the ratecalc for a price provider\n@param pp the price provider to look up"
+                },
+                "id": 45,
+                "name": "StructuredDocumentation",
+                "src": "823:105:0"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 49,
+                "name": "OverrideSpecifier",
+                "src": "975:8:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "pp",
+                      "overrides": null,
+                      "scope": 58,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 46,
+                        "name": "ElementaryTypeName",
+                        "src": "948:7:0"
+                      }
+                    ],
+                    "id": 47,
+                    "name": "VariableDeclaration",
+                    "src": "948:10:0"
+                  }
+                ],
+                "id": 48,
+                "name": "ParameterList",
+                "src": "947:12:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 58,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 50,
+                        "name": "ElementaryTypeName",
+                        "src": "992:7:0"
+                      }
+                    ],
+                    "id": 51,
+                    "name": "VariableDeclaration",
+                    "src": "992:7:0"
+                  }
+                ],
+                "id": 52,
+                "name": "ParameterList",
+                "src": "991:9:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 52
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 11,
+                              "type": "mapping(address => address)",
+                              "value": "approved"
+                            },
+                            "id": 53,
+                            "name": "Identifier",
+                            "src": "1016:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 47,
+                              "type": "address",
+                              "value": "pp"
+                            },
+                            "id": 54,
+                            "name": "Identifier",
+                            "src": "1025:2:0"
+                          }
+                        ],
+                        "id": 55,
+                        "name": "IndexAccess",
+                        "src": "1016:12:0"
+                      }
+                    ],
+                    "id": 56,
+                    "name": "Return",
+                    "src": "1009:19:0"
+                  }
+                ],
+                "id": 57,
+                "name": "Block",
+                "src": "1000:35:0"
+              }
+            ],
+            "id": 58,
+            "name": "FunctionDefinition",
+            "src": "933:102:0"
+          },
+          {
+            "attributes": {
+              "functionSelector": "4fb2e45d",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "transferOwner",
+              "overrides": null,
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev transfer the owner\n@param newOwner new owner address"
+                },
+                "id": 59,
+                "name": "StructuredDocumentation",
+                "src": "1041:80:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newOwner",
+                      "overrides": null,
+                      "scope": 71,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 60,
+                        "name": "ElementaryTypeName",
+                        "src": "1149:7:0"
+                      }
+                    ],
+                    "id": 61,
+                    "name": "VariableDeclaration",
+                    "src": "1149:16:0"
+                  }
+                ],
+                "id": 62,
+                "name": "ParameterList",
+                "src": "1148:18:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 65,
+                "name": "ParameterList",
+                "src": "1186:0:0"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 44,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 63,
+                    "name": "Identifier",
+                    "src": "1176:9:0"
+                  }
+                ],
+                "id": 64,
+                "name": "ModifierInvocation",
+                "src": "1176:9:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7,
+                              "type": "address",
+                              "value": "owner"
+                            },
+                            "id": 66,
+                            "name": "Identifier",
+                            "src": "1196:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 61,
+                              "type": "address",
+                              "value": "newOwner"
+                            },
+                            "id": 67,
+                            "name": "Identifier",
+                            "src": "1204:8:0"
+                          }
+                        ],
+                        "id": 68,
+                        "name": "Assignment",
+                        "src": "1196:16:0"
+                      }
+                    ],
+                    "id": 69,
+                    "name": "ExpressionStatement",
+                    "src": "1196:16:0"
+                  }
+                ],
+                "id": 70,
+                "name": "Block",
+                "src": "1186:33:0"
+              }
+            ],
+            "id": 71,
+            "name": "FunctionDefinition",
+            "src": "1126:93:0"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                12294
+              ],
+              "functionSelector": "bc086215",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "addPP",
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev enable a new price provider\n@param newPP_ the price provider to add\n@param rateCalc_ the rate calc to use with the new price provider"
+                },
+                "id": 72,
+                "name": "StructuredDocumentation",
+                "src": "1226:167:0"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 78,
+                "name": "OverrideSpecifier",
+                "src": "1457:8:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "newPP_",
+                      "overrides": null,
+                      "scope": 89,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 73,
+                        "name": "ElementaryTypeName",
+                        "src": "1413:7:0"
+                      }
+                    ],
+                    "id": 74,
+                    "name": "VariableDeclaration",
+                    "src": "1413:14:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "rateCalc_",
+                      "overrides": null,
+                      "scope": 89,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 75,
+                        "name": "ElementaryTypeName",
+                        "src": "1429:7:0"
+                      }
+                    ],
+                    "id": 76,
+                    "name": "VariableDeclaration",
+                    "src": "1429:17:0"
+                  }
+                ],
+                "id": 77,
+                "name": "ParameterList",
+                "src": "1412:35:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 81,
+                "name": "ParameterList",
+                "src": "1476:0:0"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 44,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 79,
+                    "name": "Identifier",
+                    "src": "1466:9:0"
+                  }
+                ],
+                "id": 80,
+                "name": "ModifierInvocation",
+                "src": "1466:9:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "mapping(address => address)",
+                                  "value": "approved"
+                                },
+                                "id": 82,
+                                "name": "Identifier",
+                                "src": "1486:8:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 74,
+                                  "type": "address",
+                                  "value": "newPP_"
+                                },
+                                "id": 83,
+                                "name": "Identifier",
+                                "src": "1495:6:0"
+                              }
+                            ],
+                            "id": 84,
+                            "name": "IndexAccess",
+                            "src": "1486:16:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 76,
+                              "type": "address",
+                              "value": "rateCalc_"
+                            },
+                            "id": 85,
+                            "name": "Identifier",
+                            "src": "1505:9:0"
+                          }
+                        ],
+                        "id": 86,
+                        "name": "Assignment",
+                        "src": "1486:28:0"
+                      }
+                    ],
+                    "id": 87,
+                    "name": "ExpressionStatement",
+                    "src": "1486:28:0"
+                  }
+                ],
+                "id": 88,
+                "name": "Block",
+                "src": "1476:45:0"
+              }
+            ],
+            "id": 89,
+            "name": "FunctionDefinition",
+            "src": "1398:123:0"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                12299
+              ],
+              "functionSelector": "f4a6e1e2",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "removePP",
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev disable a new price provider\n@param oldPP_ the price provider to disable"
+                },
+                "id": 90,
+                "name": "StructuredDocumentation",
+                "src": "1527:100:0"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 94,
+                "name": "OverrideSpecifier",
+                "src": "1675:8:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "oldPP_",
+                      "overrides": null,
+                      "scope": 105,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 91,
+                        "name": "ElementaryTypeName",
+                        "src": "1650:7:0"
+                      }
+                    ],
+                    "id": 92,
+                    "name": "VariableDeclaration",
+                    "src": "1650:14:0"
+                  }
+                ],
+                "id": 93,
+                "name": "ParameterList",
+                "src": "1649:16:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 97,
+                "name": "ParameterList",
+                "src": "1694:0:0"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 44,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 95,
+                    "name": "Identifier",
+                    "src": "1684:9:0"
+                  }
+                ],
+                "id": 96,
+                "name": "ModifierInvocation",
+                "src": "1684:9:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "mapping(address => address)",
+                                  "value": "approved"
+                                },
+                                "id": 98,
+                                "name": "Identifier",
+                                "src": "1704:8:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 92,
+                                  "type": "address",
+                                  "value": "oldPP_"
+                                },
+                                "id": 99,
+                                "name": "Identifier",
+                                "src": "1713:6:0"
+                              }
+                            ],
+                            "id": 100,
+                            "name": "IndexAccess",
+                            "src": "1704:16:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "307830303030303030303030303030303030303030303030303030303030303030303030303030303030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "address payable",
+                              "value": "0x0000000000000000000000000000000000000000"
+                            },
+                            "id": 101,
+                            "name": "Literal",
+                            "src": "1723:42:0"
+                          }
+                        ],
+                        "id": 102,
+                        "name": "Assignment",
+                        "src": "1704:61:0"
+                      }
+                    ],
+                    "id": 103,
+                    "name": "ExpressionStatement",
+                    "src": "1704:61:0"
+                  }
+                ],
+                "id": 104,
+                "name": "Block",
+                "src": "1694:78:0"
+              }
+            ],
+            "id": 105,
+            "name": "FunctionDefinition",
+            "src": "1632:140:0"
+          }
+        ],
+        "id": 106,
+        "name": "ContractDefinition",
+        "src": "294:1485:0"
+      }
+    ],
+    "id": 107,
+    "name": "SourceUnit",
+    "src": "0:1780:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-14T23:07:18.602Z",
+  "devdoc": {
+    "methods": {
+      "addPP(address,address)": {
+        "details": "enable a new price provider",
+        "params": {
+          "newPP_": "the price provider to add",
+          "rateCalc_": "the rate calc to use with the new price provider"
+        }
+      },
+      "aprvd(address)": {
+        "details": "get the ratecalc for a price provider",
+        "params": {
+          "pp": "the price provider to look up"
+        }
+      },
+      "constructor": {
+        "params": {
+          "pp_": "the price provider to add initially",
+          "rc_": "the ratecalc to add initially"
+        }
+      },
+      "removePP(address)": {
+        "details": "disable a new price provider",
+        "params": {
+          "oldPP_": "the price provider to disable"
+        }
+      },
+      "transferOwner(address)": {
+        "details": "transfer the owner",
+        "params": {
+          "newOwner": "new owner address"
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {},
+    "notice": "****************************************************************************\\ Author: BIOPset (https://biopset.com) APP: Approved Price Providers /*****************************************************************************"
+  }
+}

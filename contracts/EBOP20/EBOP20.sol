@@ -785,8 +785,8 @@ contract EBOP20 is ERC20, IEBOP20 {
         s = oP.sub(oC);
       }
     }
-          
-    return rc.rate(deposit, lockedAmount , t, k, s);
+    ERC20 token = ERC20(sT);
+    return rc.rate(deposit, lockedAmount , t, k, s, token.balanceOf(address(this)));
   }
 
   /**
@@ -847,7 +847,7 @@ contract EBOP20 is ERC20, IEBOP20 {
       oP = oP+1;
     }
     options.push(op);
-    emit Create(oID, msg.sender, lA, lV, k_, lR, t_);
+    emit Create(oID, msg.sender, lA, lV, k_, lR, lR+t_);
   }
 
   /**
