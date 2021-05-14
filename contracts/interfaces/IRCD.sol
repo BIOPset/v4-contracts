@@ -1,6 +1,6 @@
 pragma solidity ^0.6.6;
 
-interface IRCD {
+interface IRateCalc {
     /**
      * @notice Returns the rate to pay out for a given amount
      * @param amount the bet amount to calc a payout for
