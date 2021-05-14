@@ -18,7 +18,7 @@ contract AdaptiveRateCalc is IRCD {
     function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
         require(s > 0, "invalid stack");
 
-        if (amount < address(msg.sender).balance.sub(l).div(1000)) {
+        if (amount < msg.sender.balance.sub(l).div(1000)) {
             return amount.mul(2);
         } else {
            //bottom 1.01x
