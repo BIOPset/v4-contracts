@@ -178,9 +178,9 @@ contract AdaptiveRateCalc is IRCD {
     function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
         
         //check less then 1% is already locked
-        require(l < address(msg.sender).balance.div(100), "pool is full");
+        require(l < msg.sender.balance.div(100), "pool is full");
         
-        uint256 canLock = address(msg.sender).balance.sub(l);
+        uint256 canLock = msg.sender.balance.sub(l);
         uint256 double = amount.mul(2);
         //check bet is less then 0.5%
         require(amount < canLock.div(200), "bet to big");
