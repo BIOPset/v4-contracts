@@ -6,7 +6,6 @@ interface IRCD {
     /**
      * @notice Returns the rate to pay out for a given amount
      * @param amount the bet amount to calc a payout for
-     * @param maxAvailable the total pooled ETH unlocked and available to bet
      * @param l the current amount locked
      * @param t time for the option
      * @param k true for call false for put
@@ -14,7 +13,7 @@ interface IRCD {
      * @return profit total possible profit amount
      *
      */
-    function rate(uint256 amount, uint256 maxAvailable, uint256 l, uint256 t, bool k, uint256 s) external view returns (uint256);
+    function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s) external view returns (uint256);
 
 }
 
@@ -23,18 +22,17 @@ contract RateCalc is IRCD {
      /**
      * @notice Calculates maximum option buyer profit
      * @param amount Option amount
-     * @param maxAvailable the total pooled ETH unlocked and available to bet
      * @param l the amount locked now
      * @param t time for the option
      * @param k true for call false for put
      * @param s number of open options in this direction
      * @return profit total possible profit amount
      */
-    function rate(uint256 amount, uint256 maxAvailable, uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
-        require(amount <= maxAvailable, "greater then pool funds available");
+    function rate(uint256 amount,  uint256 l, uint256 t, bool k, uint256 s) external view override returns (uint256)  {
+        require(amount <= msg.sender.balance, "greater then pool funds available");
         
         uint256 oneTenth = amount.div(10);
-        uint256 halfMax = maxAvailable.div(2);
+        uint256 halfMax = msg.sender.balance.div(2);
         if (amount > halfMax) {
             return amount.mul(2).add(oneTenth).add(oneTenth);
         } else {
