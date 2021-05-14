@@ -182,7 +182,7 @@ contract AdaptiveRateCalc is IRCD {
         // check that no more than 1% is locked
         // if l is more than maxAvailable/99 it means that the pool is full
         // exit the function if the l≥(maxAvailable/99)
-        require(l >= maxAvailable.div(99), "pool is full");
+        require(l <= maxAvailable.div(99), "pool is full");
 
         uint256 canLock = maxAvailable.sub(l);
         uint256 double = amount.mul(2);
