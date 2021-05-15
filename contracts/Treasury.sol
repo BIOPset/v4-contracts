@@ -5,8 +5,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract Treasury {
     using SafeMath for uint256;
-    
-    //the dao variable could be any address, but it should be the Settlement DAO address is designed so that the DAO can upgrade itself without losing the treasury
+
+    //the dao variable could be any address.
+    //it should be the Settlement DAO address.
+    //this is so that the DAO can upgrade itself without losing its treasury.
     address payable public dao;
 
     constructor() public {
