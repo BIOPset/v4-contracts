@@ -31,7 +31,6 @@ contract UtilizationRewards is IUtilizationRewards{
       dao = msg.sender;
       lEnd = block.timestamp + launchTime;
       eS = block.timestamp + 30 days;
-      tTE = 92857142857142850000000000000;
       maxEpoch = maxEpoch_;//7 was old default
       token = ERC20(token_);
     }
