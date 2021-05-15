@@ -1,4 +1,4 @@
-var EBOP20Factory = artifacts.require("EBOP20Factory");
+var TokenDenominatedBinaryOptionsFactory = artifacts.require("TokenDenominatedBinaryOptionsFactory");
 var FakeERC20 = artifacts.require("FakeERC20");
 
 var BN = web3.utils.BN;
@@ -28,9 +28,9 @@ const timeTravel = async (seconds) => {
 
 
 
-contract("EBOP20Factory", (accounts) => {
+contract("TokenDenominatedBinaryOptionsFactory", (accounts) => {
   it("exists", () => {
-    return EBOP20Factory.new().then(async function (instance) {
+    return TokenDenominatedBinaryOptionsFactory.new().then(async function (instance) {
       assert.equal(
         typeof instance,
         "object",
@@ -41,13 +41,13 @@ contract("EBOP20Factory", (accounts) => {
 
   it("can open", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
-      return EBOP20Factory.new().then(async function (
+      return TokenDenominatedBinaryOptionsFactory.new().then(async function (
         instance
       ) {
           await fakeerc20.getSome(1000000000, {from: accounts[0]});
           await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-          await instance.createEBOP20(fakeerc20.address, accounts[2], accounts[1], {from: accounts[0]});
-          var addy = await instance.ebop20Addresses(fakeerc20.address);
+          await instance.createTokenDenominatedBinaryOptions(fakeerc20.address, accounts[2], accounts[1], {from: accounts[0]});
+          var addy = await instance.getTokenDenominatedBinaryOptionsAddress(fakeerc20.address);
           console.log(`created pool at ${addy.toString()}`);
           assert.notEqual(
               addy.toString(),
@@ -59,22 +59,19 @@ contract("EBOP20Factory", (accounts) => {
   });
     it("can remove", () => {
       return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
-        return EBOP20Factory.new().then(async function (
+        return TokenDenominatedBinaryOptionsFactory.new().then(async function (
           instance
         ) {
             await fakeerc20.getSome(1000000000, {from: accounts[0]});
             await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-            await instance.createEBOP20(fakeerc20.address, accounts[2], accounts[1], {from: accounts[0]});
+            await instance.createTokenDenominatedBinaryOptions(fakeerc20.address, accounts[2], accounts[1], {from: accounts[0]});
+           
             await instance.removePool(fakeerc20.address, {from: accounts[0]});
-            
-            var addy = await instance.ebop20Addresses(fakeerc20.address);
-            console.log(`token pool removed to ${addy.toString()}`);
-            console.log(addy);
-            console.log(addy.toString());
+             
             assert.equal(
-                addy.toString(),
-              "0x0000000000000000000000000000000000000000",
-              "did not set address"
+                true,
+              true,
+              "removal failed tp  complete"
               );
         });
       });

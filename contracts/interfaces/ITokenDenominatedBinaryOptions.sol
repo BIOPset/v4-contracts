@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 
 
-interface IEBOP20 is IERC20 {
+interface ITokenDenominatedBinaryOptions is IERC20 {
 
     //constructor(string memory name_, string memory symbol_) public ERC20(name_, symbol_)
     /* Skeleton EBOP20 implementation*/

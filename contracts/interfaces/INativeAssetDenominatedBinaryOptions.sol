@@ -3,10 +3,10 @@ pragma solidity ^0.6.6;
 
 /******************************************************************************\
 * Author: BIOPset (https://biopset.com)
-* IBinaryOptions: Binary Option Settlement Protocol
+* INativeAssetDenominatedBinaryOptions: Binary Option Settlement Protocol
 /******************************************************************************/
 
-interface IBinaryOptions {
+interface INativeAssetDenominatedBinaryOptions {
 
     function setMaxT(uint256 newMax_) external;
     function setMinT(uint256 newMin_) external;

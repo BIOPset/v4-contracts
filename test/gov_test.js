@@ -1,4 +1,4 @@
-var BinaryOptions = artifacts.require("BinaryOptions");
+var NativeAssetDenominatedBinaryOptions = artifacts.require("NativeAssetDenominatedBinaryOptions");
 var DelegatedGov = artifacts.require("DelegatedGov");
 var BIOPTokenV4 = artifacts.require("BIOPTokenV4");
 var GovProxy = artifacts.require("GovProxy");
@@ -77,7 +77,7 @@ contract("DelegatedGov", (accounts) => {
   });
   it("allows sha action", () => {
     return DelegatedGov.deployed().then(async function (instance) {
-      return BinaryOptions.deployed().then(async function (bo) {
+      return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
         var t0 = 2000;
         await instance.uMXOT(t0, bo.address, { from: accounts[5] });
         var t = await bo.maxT();

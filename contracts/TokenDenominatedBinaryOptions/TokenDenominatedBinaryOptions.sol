@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 import "../RateCalc.sol";
 import "../interfaces/IUtilizationRewards.sol";
-import "../interfaces/IEBOP20.sol";
+import "../interfaces/ITokenDenominatedBinaryOptions.sol";
 import "../interfaces/IAPP.sol";
 
 
@@ -550,7 +550,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
 }
 
 
-contract EBOP20 is ERC20, IEBOP20 {
+contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions {
   address public sT;//the token pooled in this contract
   address payable public owner;
   address payable public treasury;

@@ -1228,7 +1228,7 @@
         "id": 730,
         "nodeType": "ImportDirective",
         "scope": 2959,
-        "sourceUnit": 10075,
+        "sourceUnit": 7967,
         "src": "164:24:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -22035,7 +22035,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RateCalc_$10074",
+                        "typeIdentifier": "t_contract$_RateCalc_$7966",
                         "typeString": "contract RateCalc"
                       },
                       "typeName": {
@@ -22043,10 +22043,10 @@
                         "id": 2336,
                         "name": "RateCalc",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 10074,
+                        "referencedDeclaration": 7966,
                         "src": "26478:8:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RateCalc_$10074",
+                          "typeIdentifier": "t_contract$_RateCalc_$7966",
                           "typeString": "contract RateCalc"
                         }
                       },
@@ -22136,10 +22136,10 @@
                       "name": "RateCalc",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 10074,
+                      "referencedDeclaration": 7966,
                       "src": "26492:8:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_RateCalc_$10074_$",
+                        "typeIdentifier": "t_type$_t_contract$_RateCalc_$7966_$",
                         "typeString": "type(contract RateCalc)"
                       }
                     },
@@ -22154,7 +22154,7 @@
                     "src": "26492:26:4",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RateCalc_$10074",
+                      "typeIdentifier": "t_contract$_RateCalc_$7966",
                       "typeString": "contract RateCalc"
                     }
                   },
@@ -22843,7 +22843,7 @@
                         "referencedDeclaration": 2337,
                         "src": "26834:2:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RateCalc_$10074",
+                          "typeIdentifier": "t_contract$_RateCalc_$7966",
                           "typeString": "contract RateCalc"
                         }
                       },
@@ -22854,7 +22854,7 @@
                       "lValueRequested": false,
                       "memberName": "rate",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 10073,
+                      "referencedDeclaration": 7965,
                       "src": "26834:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_uint256_$_t_uint256_$_t_uint256_$_t_bool_$_t_uint256_$_t_uint256_$returns$_t_uint256_$",
@@ -31105,7 +31105,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 10075,
+          "SourceUnit": 7967,
           "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol",
           "file": "./RateCalc.sol",
           "scope": 2959,
@@ -54026,7 +54026,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "RateCalc",
-                              "referencedDeclaration": 10074,
+                              "referencedDeclaration": 7966,
                               "type": "contract RateCalc"
                             },
                             "id": 2336,
@@ -54065,7 +54065,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 10074,
+                              "referencedDeclaration": 7966,
                               "type": "type(contract RateCalc)",
                               "value": "RateCalc"
                             },
@@ -54746,7 +54746,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "rate",
-                              "referencedDeclaration": 10073,
+                              "referencedDeclaration": 7965,
                               "type": "function (uint256,uint256,uint256,bool,uint256,uint256) view external returns (uint256)"
                             },
                             "children": [
@@ -63502,7 +63502,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-14T23:07:18.650Z",
+  "updatedAt": "2021-05-15T00:45:48.116Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./BIOPTokenV4.sol";
 import "./RateCalc.sol";
 import "./interfaces/IUtilizationRewards.sol";
-import "./interfaces/IBinaryOptions.sol";
+import "./interfaces/INativeAssetDenominatedBinaryOptions.sol";
 import "./interfaces/IAPP.sol";
 
 
@@ -551,7 +551,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
 }
 
 
-contract BinaryOptions is ERC20, IBinaryOptions {
+contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBinaryOptions {
     using SafeMath for uint56;
     address payable public devFund;
     address payable public owner;

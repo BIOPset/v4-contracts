@@ -1,4 +1,4 @@
-var BinaryOptions = artifacts.require("BinaryOptions");
+var NativeAssetDenominatedBinaryOptions = artifacts.require("NativeAssetDenominatedBinaryOptions");
 var FakePriceProvider = artifacts.require("FakePriceProvider");
 var UtilizationRewards = artifacts.require("UtilizationRewards");
 
@@ -25,9 +25,9 @@ const timeTravel = async(seconds) => {
 
 const btcPriceOracle = "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e";
 
-contract("BinaryOptions", (accounts) => {
+contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
   it("exists", () => {
-    return BinaryOptions.deployed().then(async function (instance) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (instance) {
       assert.equal(
         typeof instance,
         "object",
@@ -36,8 +36,8 @@ contract("BinaryOptions", (accounts) => {
     });
   });
 
-  it("stake in BinaryOptions", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+  it("stake in NativeAssetDenominatedBinaryOptions", () => {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return UtilizationRewards.deployed().then(async function (ur) {
 
       var pendingClaims = await bo.getPendingClaims(accounts[2]);
@@ -62,7 +62,7 @@ contract("BinaryOptions", (accounts) => {
     });
   });
   it("makes a call bet", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
       var balance = await bo.balanceOf(accounts[2]);
       console.log(`defaultpp ${pp.address}`);
@@ -74,7 +74,7 @@ contract("BinaryOptions", (accounts) => {
       \n${claimForBet}
       \n${pendingClaims}
       pending claims ${web3.utils.fromWei(pendingClaims, "ether")}. Will add ${web3.utils.fromWei(claimForBet, "ether")}`);
-      await bo.bet(1, pp.address, 1, {from: accounts[2], value: toWei(1)});
+      await bo.bet(1, pp.address, 1, {from: accounts[2], value: toWei(0.01)});
 
       var pendingClaims2 = await bo.getPendingClaims(accounts[2]);
       console.log(`pending claims after bet \n${web3.utils.fromWei(pendingClaims2, "ether")}.`); 
@@ -88,13 +88,13 @@ contract("BinaryOptions", (accounts) => {
   });
   }); 
   it("makes a put bet", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
       var balance = await bo.balanceOf(accounts[2]);
 
       var pendingClaims = await bo.getPendingClaims(accounts[2]);
       console.log(`pending claims ${web3.utils.fromWei(pendingClaims, "ether")} b4 bet`);
-      await bo.bet(0,pp.address,1, {from: accounts[2], value: toWei(1)});
+      await bo.bet(0,pp.address,1, {from: accounts[2], value: toWei(0.01)});
       var pendingClaims2 = await bo.getPendingClaims(accounts[2]);
       console.log(`pending claims after bet ${web3.utils.fromWei(pendingClaims2, "ether")}.`); 
     
@@ -107,14 +107,14 @@ contract("BinaryOptions", (accounts) => {
   }); 
 
   it('testing rewards', () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
         return UtilizationRewards.deployed().then(async function (ur) {
         
-      await bo.bet(1, pp.address, 1, {from: accounts[3], value: toWei(1)});
+      await bo.bet(1, pp.address, 1, {from: accounts[3], value: toWei(0.01)});
 
       var pendingClaims3 = await bo.getPendingClaims(accounts[3]);
-      await bo.bet(1, pp.address, 1, {from: accounts[3], value: toWei(1)});
+      await bo.bet(1, pp.address, 1, {from: accounts[3], value: toWei(0.01)});
 
       var pendingClaims4 = await bo.getPendingClaims(accounts[3]);
 console.log("got here");
@@ -138,7 +138,7 @@ console.log("got here");
       var totalStaked2 = await bo.totalSupply();
       var stakinBonus2 = await ur.getLPStakingBonus(lastStakeTime2, lastInterchange2, totalInterchange2, stakedAmount2, totalStaked2);
 
-      await bo.bet(1, pp.address, 1, {from: accounts[3], value: toWei(1)});
+      await bo.bet(1, pp.address, 1, {from: accounts[3], value: toWei(0.01)});
       var pendingClaims6= await bo.getPendingClaims(accounts[3]);
 
 
@@ -161,7 +161,7 @@ console.log("got here");
   });
   })
   it("exercise an call option", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
         var ethB1 = await web3.eth.getBalance(accounts[2]);
         //var balance = await bo.balanceOf(accounts[1]);
@@ -189,7 +189,7 @@ console.log("got here");
     });
   });
   it("exercise an put option", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
         var ethB1 = await web3.eth.getBalance(accounts[2]);
         //var balance = await bo.balanceOf(accounts[1]);
@@ -212,7 +212,7 @@ console.log("got here");
   });
 
   it("after actions, BIOP balance > 0", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       var balance = await bo.getPendingClaims(accounts[2]);
 
       var blockNumber = await web3.eth.getBlockNumber();
@@ -234,7 +234,7 @@ console.log("got here");
     });
   });
   it("early withdraw from bo", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
 
         await bo.stake( { from: accounts[2], value: toWei(9) });
@@ -252,7 +252,7 @@ console.log("got here");
     });
   });
   it("withdraw from bo", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
         await timeTravel(1209700);
         await bo.withdraw(toWei(1), { from: accounts[2] });
@@ -266,8 +266,8 @@ console.log("got here");
       });
     });
   });
-  it("stake and withdraw small amount without time BinaryOptions", () => {
-    return BinaryOptions.deployed().then(async function (bo) {
+  it("stake and withdraw small amount without time NativeAssetDenominatedBinaryOptions", () => {
+    return NativeAssetDenominatedBinaryOptions.deployed().then(async function (bo) {
       return FakePriceProvider.deployed().then(async function (pp) {
         await bo.stake({ from: accounts[3], value: toWei(0.5) });
         var balance1 = await bo.balanceOf(accounts[3]);

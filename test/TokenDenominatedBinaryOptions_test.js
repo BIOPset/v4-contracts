@@ -1,8 +1,8 @@
-var EBOP20 = artifacts.require("EBOP20");
+var TokenDenominatedBinaryOptions = artifacts.require("TokenDenominatedBinaryOptions");
 var FakeERC20 = artifacts.require("FakeERC20");
 var APP = artifacts.require("APP");
 var FakePriceProvider = artifacts.require("FakePriceProvider");
-var AdaptiveRateCalc = artifacts.require("AdaptiveRateCalc");
+var BasicRateCalc = artifacts.require("BasicRateCalc");
 
 var BN = web3.utils.BN;
 const toWei = (value) => web3.utils.toWei(value.toString(), "ether");
@@ -29,10 +29,10 @@ const timeTravel = async (seconds) => {
   });
 };
 
-contract("EBOP20", (accounts) => {
+contract("TokenDenominatedBinaryOptions", (accounts) => {
   it("exists", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
-      return EBOP20.new(
+      return TokenDenominatedBinaryOptions.new(
         "poolName",
         "PoolSymbol",
         fakeerc20.address,
@@ -51,7 +51,7 @@ contract("EBOP20", (accounts) => {
 
   it("can deposit", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
-      return EBOP20.new(
+      return TokenDenominatedBinaryOptions.new(
         "poolName",
         "PoolSymbol",
         fakeerc20.address,
@@ -78,7 +78,7 @@ contract("EBOP20", (accounts) => {
   });
   it("can withdraw", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
-      return EBOP20.new(
+      return TokenDenominatedBinaryOptions.new(
         "poolName",
         "PoolSymbol",
         fakeerc20.address,
@@ -107,10 +107,10 @@ contract("EBOP20", (accounts) => {
   it("can take a call bet", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
-        return AdaptiveRateCalc.new().then(async function (rcInstance) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
           return APP.new(fakePP.address, rcInstance.address).then(
             async function (fakeAPP) {
-              return EBOP20.new(
+              return TokenDenominatedBinaryOptions.new(
                 "poolName",
                 "PoolSymbol",
                 fakeerc20.address,
@@ -147,10 +147,10 @@ contract("EBOP20", (accounts) => {
   it("can take a put bet", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
-        return AdaptiveRateCalc.new().then(async function (rcInstance) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
           return APP.new(fakePP.address, rcInstance.address).then(
             async function (fakeAPP) {
-              return EBOP20.new(
+              return TokenDenominatedBinaryOptions.new(
                 "poolName",
                 "PoolSymbol",
                 fakeerc20.address,
@@ -187,10 +187,10 @@ contract("EBOP20", (accounts) => {
   it("can exercise a bet", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
-        return AdaptiveRateCalc.new().then(async function (rcInstance) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
           return APP.new(fakePP.address, rcInstance.address).then(
             async function (fakeAPP) {
-              return EBOP20.new(
+              return TokenDenominatedBinaryOptions.new(
                 "poolName",
                 "PoolSymbol",
                 fakeerc20.address,
@@ -229,10 +229,10 @@ contract("EBOP20", (accounts) => {
   it("can expire a bet", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
-        return AdaptiveRateCalc.new().then(async function (rcInstance) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
           return APP.new(fakePP.address, rcInstance.address).then(
             async function (fakeAPP) {
-              return EBOP20.new(
+              return TokenDenominatedBinaryOptions.new(
                 "poolName",
                 "PoolSymbol",
                 fakeerc20.address,
@@ -271,10 +271,10 @@ contract("EBOP20", (accounts) => {
   it("can unstake after pool changes", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
-        return AdaptiveRateCalc.new().then(async function (rcInstance) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
           return APP.new(fakePP.address, rcInstance.address).then(
             async function (fakeAPP) {
-              return EBOP20.new(
+              return TokenDenominatedBinaryOptions.new(
                 "poolName",
                 "PoolSymbol",
                 fakeerc20.address,
@@ -314,10 +314,10 @@ contract("EBOP20", (accounts) => {
   it("can unstake with no fee after stake time elapsed", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
-        return AdaptiveRateCalc.new().then(async function (rcInstance) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
           return APP.new(fakePP.address, rcInstance.address).then(
             async function (fakeAPP) {
-              return EBOP20.new(
+              return TokenDenominatedBinaryOptions.new(
                 "poolName",
                 "PoolSymbol",
                 fakeerc20.address,
