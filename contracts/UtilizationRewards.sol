@@ -22,7 +22,7 @@ contract UtilizationRewards is IUtilizationRewards{
     ERC20 token;
 
     //base rewards
-    uint256 public rwd = 20000000000000000;
+    uint256 public rwd = 20000000000000000;//0.02 BIOP
 
 
     /**
