@@ -20,15 +20,15 @@ contract BasicRateCalc is IRateCalc {
      */
     function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s, uint256 tP) external view override returns (uint256)  {
 
-        //check less then 1% is already locked
+        //check that no more than 1% of the pool is locked
         require(l < tP.div(100), "pool is full");
 
         uint256 canLock = tP.sub(l);
         uint256 double = amount.mul(2);
-        //check bet is less then 0.5%
-        require(amount < canLock.div(200), "bet to big");
+        //check that the option payment is less then 0.5% of the unlocked balance
+        require(amount < canLock.div(200), "position too large");
 
-        //for small bets less then 0.001% of pool
+        //for options less than 0.001% of the pool size
         if (amount < canLock.div(100000)) {
             if ( s > 150 ) {
                 return actualRate(amount, canLock, amount.add(amount.div(100)));
@@ -44,7 +44,7 @@ contract BasicRateCalc is IRateCalc {
             }
         }
 
-        //for bets between 0.001%-0.1% of pool
+        //for options between 0.001%-0.1% of the pool size
         if (amount < canLock.div(1000)) {
             if (s > 20) {
                 return actualRate(amount, canLock, amount);
