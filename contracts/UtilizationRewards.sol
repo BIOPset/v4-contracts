@@ -9,7 +9,11 @@ contract UtilizationRewards is IUtilizationRewards{
     using SafeMath for uint256;
     address public bO = 0x0000000000000000000000000000000000000000;//binary options
     address payable dao = 0x0000000000000000000000000000000000000000;
+    
+    //the launch period is an initial window during which all rewards distributed are multiplied by a bonus of 8x for early adopters
+    //the launch period length is set during the deployment of the contract using the launchTime variable. launchTime is the number of seconds for the launch period to last
     uint256 public lEnd;//launch end
+    
     uint256 public epoch = 0; //rewards epoch 
     uint256 public eS;//end of current epoch
     uint256 public perE;//rewards per epoch (650000000000000000000000000000 total)
