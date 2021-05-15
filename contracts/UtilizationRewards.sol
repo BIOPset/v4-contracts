@@ -27,10 +27,10 @@ contract UtilizationRewards is IUtilizationRewards{
      * @param maxEpoch_ total number of reward epochs
      * @param launchTime the length of the launch bonus multiplier (in seconds)
      */
-    constructor(address token_, uint256 maxEpoch_, uint256 launchTime) public {
+    constructor(address token_, uint256 maxEpoch_, uint256 launchTime, uint256 epochLength) public {
       dao = msg.sender;
       lEnd = block.timestamp + launchTime;
-      eS = block.timestamp + 30 days;
+      eS = block.timestamp + epochLength;
       maxEpoch = maxEpoch_;//7 was old default
       token = ERC20(token_);
     }
