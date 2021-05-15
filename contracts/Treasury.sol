@@ -5,29 +5,29 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract Treasury {
     using SafeMath for uint256;
-    address payable public dgov;
+    address payable public dao;
 
     constructor() public {
-     dgov = msg.sender;
+     dao = msg.sender;
     }
 
-    modifier onlyDGov() {
-        require(dgov == msg.sender, "Ownable: caller is not the dgov");
+    modifier onlyDAO() {
+        require(dao == msg.sender, "Ownable: caller is not the dao");
         _;
     }
 
-    function updateDGov(address payable dg) public onlyDGov {
+    function updateDGov(address payable dg) public onlyDAO {
         require(dg != 0x0000000000000000000000000000000000000000, "invalid gov");
-        dgov = dg;
+        dao = dg;
     }
 
-    function sendFunds(uint256 amount, address payable destination) public onlyDGov {
+    function sendFunds(uint256 amount, address payable destination) public onlyDAO {
         require(address(this).balance >= amount, "not enough to send");
         destination.send(amount);
         emit FundsSent(amount, destination);
     }
 
-    function sendERC20Funds(address token, uint256 amount, address payable destination) public onlyDGov {
+    function sendERC20Funds(address token, uint256 amount, address payable destination) public onlyDAO {
         ERC20 tk = ERC20(token);
         uint256 balance = tk.balanceOf(address(this));
         require(balance >= amount, "not enough to send");
