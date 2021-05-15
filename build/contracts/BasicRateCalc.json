@@ -43,7 +43,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"l\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"t\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"k\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"s\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tP\",\"type\":\"uint256\"}],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256)\":{\"details\":\"the amount returned represents the total amount which is to be locked. This means that any amount returned represents the traders full bet amount and the pools stake compbined.\",\"params\":{\"amount\":\"Traders option payment\",\"k\":\"true for call false for put (Not used in this RateCalc)\",\"l\":\"the current amount of locked ETH\",\"s\":\"stack, how many open options there are already in this direction\",\"t\":\"time/rounds for the option  (not used in this RateCalc)\",\"tP\":\"the amount of tokens stored currently in the pool the option be created on\"},\"returns\":{\"_0\":\"profit total possible profit amount \"}}}},\"userdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256)\":{\"notice\":\"Calculates maximum option buyer profit\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/BasicRateCalc.sol\":\"BasicRateCalc\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/BasicRateCalc.sol\":{\"keccak256\":\"0x8d0edb63cd7b33f8ec8031a9ef461938f460db32b21e6e00d3e25e8f74a43b06\",\"urls\":[\"bzz-raw://ec807ee3043f29e71a267d60880e2577c9f614ed8c45fe7f01192981a081ff43\",\"dweb:/ipfs/QmegiMesscxuF2oN7wz7SuHrfCjfs9qPGJdfajVxYkFNzQ\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol\":{\"keccak256\":\"0xc92225b8a05de46a9eaa1705c3d3101b6483bc9bd3eb900a29d6b77476193a6e\",\"urls\":[\"bzz-raw://5efc2fb71d09d0541115f52cd7d598edbae52c81092b11ecab9fc37cfd2577fc\",\"dweb:/ipfs/QmeyhSHkARxTt6qHqeGffuqBzmThHVKtrCJiQmKwi1D5Z8\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x3b21f2c8d626de3b9925ae33e972d8bf5c8b1bffb3f4ee94daeed7d0679036e6\",\"urls\":[\"bzz-raw://7f8d45329fecbf0836ad7543330c3ecd0f8d0ffa42d4016278c3eb2215fdcdfe\",\"dweb:/ipfs/QmXWLT7GcnHtA5NiD6MFi2CV3EWJY4wv5mLNnypqYDrxL3\"]}},\"version\":1}",
@@ -92,7 +93,7 @@
         "id": 478,
         "nodeType": "ImportDirective",
         "scope": 725,
-        "sourceUnit": 12424,
+        "sourceUnit": 12389,
         "src": "78:36:3",
         "symbolAliases": [],
         "unitAlias": ""
@@ -107,10 +108,10 @@
               "id": 479,
               "name": "IRateCalc",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 12423,
+              "referencedDeclaration": 12388,
               "src": "142:9:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IRateCalc_$12423",
+                "typeIdentifier": "t_contract$_IRateCalc_$12388",
                 "typeString": "contract IRateCalc"
               }
             },
@@ -120,7 +121,7 @@
           }
         ],
         "contractDependencies": [
-          12423
+          12388
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -128,7 +129,7 @@
         "id": 724,
         "linearizedBaseContracts": [
           724,
-          12423
+          12388
         ],
         "name": "BasicRateCalc",
         "nodeType": "ContractDefinition",
@@ -162,7 +163,7 @@
           },
           {
             "baseFunctions": [
-              12422
+              12387
             ],
             "body": {
               "id": 693,
@@ -3778,7 +3779,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 12424,
+          "SourceUnit": 12389,
           "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol",
           "file": "./interfaces/IRateCalc.sol",
           "scope": 725,
@@ -3795,14 +3796,14 @@
         "attributes": {
           "abstract": false,
           "contractDependencies": [
-            12423
+            12388
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             724,
-            12423
+            12388
           ],
           "name": "BasicRateCalc",
           "scope": 725
@@ -3817,7 +3818,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "IRateCalc",
-                  "referencedDeclaration": 12423,
+                  "referencedDeclaration": 12388,
                   "type": "contract IRateCalc"
                 },
                 "id": 479,
@@ -3859,7 +3860,7 @@
           {
             "attributes": {
               "baseFunctions": [
-                12422
+                12387
               ],
               "functionSelector": "3a951448",
               "implemented": true,
@@ -7687,9 +7688,17 @@
     "name": "solc",
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1621040305914": {
+      "events": {},
+      "links": {},
+      "address": "0xBA84E1daD66d5555d114ab56e8a25209060Fbe5D",
+      "transactionHash": "0x822081c5527e032855341abdaae94df6c0131e78ac3537dea77b4e64b6189ae5"
+    }
+  },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-14T23:07:18.609Z",
+  "updatedAt": "2021-05-15T01:01:11.540Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "rate(uint256,uint256,uint256,bool,uint256,uint256)": {

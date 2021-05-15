@@ -1,13 +1,13 @@
-const BinaryOptions = artifacts.require("BinaryOptions");
+const NativeAssetDenominatedBinaryOptions = artifacts.require("NativeAssetDenominatedBinaryOptions");
 const BIOPTokenV4 = artifacts.require("BIOPTokenV4");
 const DelegatedGov = artifacts.require("DelegatedGov");
 const GovProxy = artifacts.require("GovProxy");
 const DelegatedAccessTiers = artifacts.require("DelegatedAccessTiers");
 const APP = artifacts.require("APP");
-const EBOP20Factory = artifacts.require("EBOP20Factory");
+const TokenDenominatedBinaryOptionsFactory = artifacts.require("TokenDenominatedBinaryOptionsFactory");
 const UtilizationRewards = artifacts.require("UtilizationRewards");
 
-const AdaptiveRateCalc = artifacts.require("AdaptiveRateCalc");
+const BasicRateCalc = artifacts.require("BasicRateCalc");
 const LateStageBondingCurve = artifacts.require("LateStageBondingCurve");
 
 //fake tings used for testing
@@ -60,7 +60,7 @@ module.exports = function (deployer) {
       deployer
         .deploy(FakePriceProvider, FakePriceSettings.price)
         .then((ppInstance) => {
-          return deployer.deploy(AdaptiveRateCalc).then((rcInstance) => {
+          return deployer.deploy(BasicRateCalc).then((rcInstance) => {
             console.log("deploy 1 complete");
             console.log(ppInstance.address);
             return deployer
@@ -70,7 +70,7 @@ module.exports = function (deployer) {
                   .deploy(APP, ppInstance.address, rcInstance.address)
                   .then((appInstance) => {
                     return deployer
-                      .deploy(EBOP20Factory)
+                      .deploy(TokenDenominatedBinaryOptionsFactory)
                       .then((factoryInstance) => {
                         return deployer
                           .deploy(FakeERC20, FakeERC20Settings.toMint)
@@ -108,7 +108,7 @@ module.exports = function (deployer) {
                                     console.log(biopInstance.address);
                                     return deployer
                                       .deploy(
-                                        BinaryOptions,
+                                        NativeAssetDenominatedBinaryOptions,
                                         boSettings.name,
                                         boSettings.symbol,
                                         biopInstance.address,
@@ -166,12 +166,12 @@ module.exports = function (deployer) {
         .then((biopInstance) => {
           console.log("deploy 1 complete");
           console.log(biopInstance.address);
-          return deployer.deploy(AdaptiveRateCalc).then((rcInstance) => {
+          return deployer.deploy(BasicRateCalc).then((rcInstance) => {
             return deployer
               .deploy(APP, appSettings.priceProviderAddress, rcInstance.address)
               .then((appInstance) => {
                 return deployer
-                  .deploy(EBOP20Factory)
+                  .deploy(TokenDenominatedBinaryOptionsFactory)
                   .then((factoryInstance) => {
                     return deployer
                       .deploy(
@@ -190,7 +190,7 @@ module.exports = function (deployer) {
                         );
                         return deployer
                           .deploy(
-                            BinaryOptions,
+                            NativeAssetDenominatedBinaryOptions,
                             boSettings.name,
                             boSettings.symbol,
                             biopInstance.address,
@@ -252,7 +252,7 @@ deployer
         .then((biopInstance) => {
           console.log("deploy 1 complete");
           console.log(biopInstance.address);
-          return deployer.deploy(AdaptiveRateCalc).then((rcInstance) => {
+          return deployer.deploy(BasicRateCalc).then((rcInstance) => {
             return deployer.deploy(
               APP,
               appSettings.priceProviderAddress,
