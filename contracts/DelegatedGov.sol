@@ -251,6 +251,17 @@ contract DelegatedGov {
 
     //this function has to be present or transfers to the GOV fail silently
     fallback () external payable {}
+    
+     /**
+     * @notice create a new TokenDenominatedBinaryOptions pool
+     * @param token_ the erc20 address to underwrite the new pool
+     */
+    function createTokenDenominatedBinaryOptions(address token_) public {
+        TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
+        address tAddress = factory.getTokenDenominatedBinaryOptionsAddress(token_);
+        require(tAddress == 0x0000000000000000000000000000000000000000, "pool for this token already exists, replace it instead");
+        factory.createTokenDenominatedBinaryOptions(token_, trsy, appA);
+    }
 
 
     // 0 tier anyone whose staked can do these two
@@ -264,16 +275,7 @@ contract DelegatedGov {
         trg = trg.add(r);
     }
 
-    /**
-     * @notice create a new TokenDenominatedBinaryOptions pool
-     * @param token_ the erc20 address to underwrite the new pool
-     */
-    function createTokenDenominatedBinaryOptions(address token_) public {
-        TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
-        address tAddress = factory.getTokenDenominatedBinaryOptionsAddress(token_);
-        require(tAddress == 0x0000000000000000000000000000000000000000, "pool for this token already exists, replace it instead");
-        factory.createTokenDenominatedBinaryOptions(token_, trsy, appA);
-    }
+   
 
 
 
