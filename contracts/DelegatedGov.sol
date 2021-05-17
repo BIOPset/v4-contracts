@@ -100,9 +100,9 @@ contract DelegatedGov {
     address payable public trsy;//treasury
     
     mapping(address=>uint256) public shas;//amounts of voting power held by each sha
-    mapping(address=>address) public rep;//representative/delegate/governer currently backed by given address
+    mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
-    uint256 dBIOP = 0;//the total amount of staked BIOP which has been delegated for governance
+    uint256 dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
 
     //ETH rewards for stakers
     uint256 public trg = 0;//total rewards generated
@@ -148,7 +148,7 @@ contract DelegatedGov {
  
 
     /**
-     * @notice withdraw your BIOP and stop earning rewards. You must undelegate before you can withdraw
+     * @notice withdraw your BIOP and stop earning rewards. You must unendorse before you can withdraw
      * @param amount the amount in BIOP you want to withdraw
      */
     function withdraw(uint256 amount) public {
@@ -163,10 +163,10 @@ contract DelegatedGov {
     }
 
      /**
-     * @notice delegates your voting power to a specific address(sha)
-     * @param newSha the address of the delegate to voting power
+     * @notice endorses your voting power to a specific address(sha)
+     * @param newSha the address to endorse
      */
-    function delegate(address payable newSha) public {
+    function endorse(address payable newSha) public {
         address oldSha = rep[msg.sender];
         if (oldSha == 0x0000000000000000000000000000000000000000) {
             dBIOP = dBIOP.add(staked[msg.sender]);
@@ -178,10 +178,10 @@ contract DelegatedGov {
     }
 
      /**
-     * @notice undelegate your voting power. you will still earn staking rewards 
-     * but your voting power won't back any delegate.
+     * @notice unendorse your voting power. you will still earn staking rewards 
+     * but your voting power won't back anyone.
      */
-    function undelegate() public {
+    function unendorse() public {
         address oldSha = rep[msg.sender];
         shas[oldSha] = shas[oldSha].sub(staked[msg.sender]);
         rep[msg.sender] =  0x0000000000000000000000000000000000000000;
@@ -213,38 +213,38 @@ contract DelegatedGov {
     
 
     /**
-     * @notice modifier for actions requiring tier 1 delegation
+     * @notice modifier for actions requiring tier 1 endorsement
      */
     modifier tierOneDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier1(shas[msg.sender], dBIOP), "insufficent delegate power");
+        require(tiers.tier1(shas[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
     /**
-     * @notice modifier for actions requiring a tier 2 delegation
+     * @notice modifier for actions requiring a tier 2 endorsement
      */
     modifier tierTwoDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier2(shas[msg.sender], dBIOP), "insufficent delegate power");
+        require(tiers.tier2(shas[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
     /**
-     * @notice modifier for actions requiring a tier 3 delegation
+     * @notice modifier for actions requiring a tier 3 endorsement
      */
     modifier tierThreeDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier3(shas[msg.sender], dBIOP), "insufficent delegate power");
+        require(tiers.tier3(shas[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
     /**
-     * @notice modifier for actions requiring a tier 4 delegation
+     * @notice modifier for actions requiring a tier 4 endorsement
      */
     modifier tierFourDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier4(shas[msg.sender], dBIOP), "insufficent delegate power");
+        require(tiers.tier4(shas[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 

@@ -62,16 +62,16 @@ contract("DelegatedGov", (accounts) => {
     });
     });
   });
-  it("allows delegate", () => {
+  it("allows endorsement", () => {
     return DelegatedGov.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         var staked = await instance.staked(accounts[5]);
 
         var rep0 = await instance.rep(accounts[5]);
-        await instance.delegate(accounts[5], { from: accounts[5] });
+        await instance.endorse(accounts[5], { from: accounts[5] });
         var rep = await instance.rep(accounts[5]);
         console.log(`staked ${staked}.\nrep b4 ${rep0} \nrep af ${rep}`);
-        assert.equal(accounts[5], rep.toString(), "delegate is not correct");
+        assert.equal(accounts[5], rep.toString(), "endorse is not correct");
       });
     });
   });
@@ -136,26 +136,26 @@ contract("DelegatedGov", (accounts) => {
           assert.equal(
             toReceive.toString() != "0" && toReceive2.toString() == "0",
             true,
-            "delegate is not correct"
+            "is not correct"
           );
         });
         });
       });
     });
   });
-  it("allows undelegate", () => {
+  it("allows unendorse", () => {
     return DelegatedGov.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         var staked = await instance.staked(accounts[5]);
 
         var rep0 = await instance.rep(accounts[5]);
-        await instance.undelegate({ from: accounts[5] });
+        await instance.unendorse({ from: accounts[5] });
         var rep = await instance.rep(accounts[5]);
         console.log(`staked ${staked}.\nrep b4 ${rep0} \nrep af ${rep}`);
         assert.equal(
           "0x0000000000000000000000000000000000000000",
           rep.toString(),
-          "delegate is not correct"
+          "rep is not correct"
         );
       });
     });

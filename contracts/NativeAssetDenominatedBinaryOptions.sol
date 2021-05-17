@@ -157,9 +157,6 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @dev distribute pending governance token claims to user
      */
     function claimRewards() external {
-        
-        BIOPTokenV4 b = BIOPTokenV4(biop);
-        
         uint256 claims = getPendingClaims(msg.sender);
         if (balanceOf(msg.sender) >= 1) {
             updateLPmetrics();
