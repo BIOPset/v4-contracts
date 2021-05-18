@@ -20,7 +20,7 @@ contract GovProxy {
     constructor() public {
         dgov = msg.sender;
     }
-      
+
 
     modifier onlyDGov() {
         require(dgov == msg.sender, "Ownable: caller is not the dgov");
@@ -64,7 +64,7 @@ contract GovProxy {
             }
             tx.origin.send(fee);
             return fG;
-       
+
     }
 
     fallback () external payable {}
