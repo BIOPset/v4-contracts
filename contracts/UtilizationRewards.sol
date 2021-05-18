@@ -9,23 +9,23 @@ contract UtilizationRewards is IUtilizationRewards{
     using SafeMath for uint256;
     address public bO = 0x0000000000000000000000000000000000000000;//binary options
     address payable dao = 0x0000000000000000000000000000000000000000;
-    
+
     //the launch period is an initial window during which all rewards distributed are multiplied by a bonus of 8x for early adopters
     //the launch period length is set during the deployment of the contract using the launchTime variable. launchTime is the number of seconds for the launch period to last
     uint256 public lEnd;//launch end
-    
-    uint256 public epoch = 0; //rewards epoch 
+
+    uint256 public epoch = 0; //rewards epoch
     uint256 public eS;//end of current epoch
     uint256 public perE;//rewards per epoch (650000000000000000000000000000 total)
     uint256 public tTE;//claims left this epoch
     uint256 maxEpoch;
     ERC20 token;
 
-    //base rewards 
-    uint256 public rwd = 20000000000000000;
-                                      
+    //base rewards
+    uint256 public rwd = 20000000000000000;//0.02 BIOP
 
-    /** 
+
+    /**
      * @dev init the contract (dont forget to also configure setupBinaryOptions afterwards, and deposit tokens)
      * @param token_ the BIOP token addressss
      * @param maxEpoch_ total number of reward epochs
@@ -35,25 +35,25 @@ contract UtilizationRewards is IUtilizationRewards{
       dao = msg.sender;
       lEnd = block.timestamp + launchTime;
       eS = block.timestamp + epochLength;
-      maxEpoch = maxEpoch_;//7 was old default
+      maxEpoch = maxEpoch_;//a variable manually set during deployment
       token = ERC20(token_);
     }
 
-     /** 
+     /**
      * @dev deposit tokens into the utilization rewards
-    
+
      * @param total the BIOP tokens to transfer into this contract from multisig
      */
     function deposit(uint256 total) public onlyDAO {
 
       perE = total.div(maxEpoch); //amount per epoch
-      tTE = total.div(maxEpoch); 
+      tTE = total.div(maxEpoch);
 
       token.transferFrom(msg.sender, address(this), total);
     }
 
 
-    
+
     modifier onlyBinaryOptions() {
         require(bO == msg.sender, "Ownable: caller is not the Binary Options Contract");
         _;
@@ -63,7 +63,7 @@ contract UtilizationRewards is IUtilizationRewards{
         _;
     }
 
-    /** 
+    /**
      * @dev transfer ownership of this contract
      * @param g_ the new governance address
      */
@@ -72,8 +72,8 @@ contract UtilizationRewards is IUtilizationRewards{
         dao = g_;
     }
 
-    
-   
+
+
 
 
     /**
@@ -92,7 +92,7 @@ contract UtilizationRewards is IUtilizationRewards{
         }
     }
 
- 
+
 
     /**
      * @dev calculate the staking time bonus (1x every 9 days)
@@ -113,13 +113,13 @@ contract UtilizationRewards is IUtilizationRewards{
      * @param totalLocked the total amount staked by all LPs
      **/
     function getPoolBalanceBonus(uint256 locked, uint256 totalLocked) public view returns(uint256) {
-       
+
         if (locked > 0) {
 
             if (totalLocked < 100) { //guard
                 return 1;
             }
-            
+
 
             if (locked >= totalLocked.div(2)) {//50th percentile
                 return 20;
@@ -148,13 +148,13 @@ contract UtilizationRewards is IUtilizationRewards{
             if (locked >= totalLocked.div(100)) {//1st percentile
                 return 3;
             }
-           
+
            return 2;
-        } 
-        return 0; 
+        }
+        return 0;
     }
 
-     /**  
+     /**
     * @notice bonus based  on total interchange. The more bet's are used, the more rewards.
     * @param lastInterchange the total interchange the last time the LP staked/claimed
     * @param totalInterchange the total interchange now
@@ -167,7 +167,7 @@ contract UtilizationRewards is IUtilizationRewards{
         }
         return 1;
     }
-    
+
 
      /**
      * @dev called by the binary options contract to claim Reward for user
