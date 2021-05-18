@@ -62,8 +62,6 @@ These actions require the greatest consensus around staked participants.
 #### Old stuff below this point
 
 
-### TODOS
-    - add more tests
 
 
 ## Testing (out of date)
