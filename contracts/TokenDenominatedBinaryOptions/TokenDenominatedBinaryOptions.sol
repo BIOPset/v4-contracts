@@ -392,7 +392,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     //A % of the bet money is sent as a fee. see daoBetFee
     if (lv > daoBetFee && daoBetFee > 0) {
       uint256 fee = lv.div(daoBetFee);
-      require(owner.send(fee), "devFund fee transfer failed");
+      require(treasury.send(fee), "devFund fee transfer failed");
       lv = lv.sub(fee);
     }
     payout(lv, msg.sender, option.holder);
