@@ -412,13 +412,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     
     ERC20 token = ERC20(sT);
     require(option.lV <= token.balanceOf(address(this)), "insufficent balance in pool");
-    uint256 fee;
-    if (option.lV <= base) {//small options give bigger fee %
-      fee = option.lV.div(exerciserFee.mul(4)).div(100);
-    } else {
-      fee = option.lV.div(exerciserFee).div(100);
-    } 
-
+    
+    uint256 fee = option.lV.div(exerciserFee).div(100);
     if (fee > 0) {
       require(token.transfer(msg.sender, fee), "good samaritan transfer failed");
     }
