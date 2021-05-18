@@ -58,17 +58,17 @@ contract("Vesting", (accounts) => {
       return Vesting.new(accounts[1], fakeerc20.address).then(async function (
         instance
       ) {
-          await fakeerc20.getSome(1000000000, {from: accounts[0]});
-          await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-          await instance.start(1000000000, 60*60*24*7*56*3/* 3yrs */, {from: accounts[0]});
+        await fakeerc20.getSome(1000000000, { from: accounts[0] });
+        await fakeerc20.approve(instance.address, 1000000000, {
+          from: accounts[0],
+        });
+        await instance.start(1000000000, 60 * 60 * 24 * 7 * 56 * 3 /* 3yrs */, {
+          from: accounts[0],
+        });
 
-          var total = await instance.total();
-          console.log(total);
-            assert.equal(
-            total,
-            "1000000000",
-            "opened with correct amount"
-            );
+        var total = await instance.total();
+        console.log(total);
+        assert.equal(total, "1000000000", "opened with correct amount");
       });
     });
   });
@@ -78,18 +78,22 @@ contract("Vesting", (accounts) => {
       return Vesting.new(accounts[1], fakeerc20.address).then(async function (
         instance
       ) {
-          await fakeerc20.getSome(1000000000, {from: accounts[0]});
-          await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-          await instance.start(1000000000, 60*60*24*7*56*3/* 3yrs */, {from: accounts[0]});
-          await timeTravel((60*60*24*7*56*3)/10);//jump forward a bit
-          var claimed1 = await instance.collect({from: accounts[1]});
-          var claimed2 = await instance.claimed();
-          console.log(`claimed ${claimed1} ${claimed2}`);
-            assert.equal(
-                claimed2,
-            `${1000000000/10}`,
-            "collected correct amount"
-            );
+        await fakeerc20.getSome(1000000000, { from: accounts[0] });
+        await fakeerc20.approve(instance.address, 1000000000, {
+          from: accounts[0],
+        });
+        await instance.start(1000000000, 60 * 60 * 24 * 7 * 56 * 3 /* 3yrs */, {
+          from: accounts[0],
+        });
+        await timeTravel((60 * 60 * 24 * 7 * 56 * 3) / 10); //jump forward a bit
+        var claimed1 = await instance.collect({ from: accounts[1] });
+        var claimed2 = await instance.claimed();
+        console.log(`claimed ${claimed1} ${claimed2}`);
+        assert.equal(
+          claimed2,
+          `${1000000000 / 10}`,
+          "collected correct amount"
+        );
       });
     });
   });
@@ -99,24 +103,55 @@ contract("Vesting", (accounts) => {
       return Vesting.new(accounts[1], fakeerc20.address).then(async function (
         instance
       ) {
-          await fakeerc20.getSome(1000000000, {from: accounts[0]});
-          await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-          await instance.start(1000000000, 60*60*24*7*56*3/* 3yrs */, {from: accounts[0]});
-          await timeTravel((60*60*24*7*56*3)/10);//jump forward a bit
-          var claimed1 = await instance.collect({from: accounts[1]});
-          var claimed2 = await instance.claimed();
-          console.log(`claimed ${claimed1} ${claimed2}`);
-          await timeTravel((60*60*24*7*56*3)/10);//jump forward a bit
+        await fakeerc20.getSome(1000000000, { from: accounts[0] });
+        await fakeerc20.approve(instance.address, 1000000000, {
+          from: accounts[0],
+        });
+        await instance.start(1000000000, 60 * 60 * 24 * 7 * 56 * 3 /* 3yrs */, {
+          from: accounts[0],
+        });
+        await timeTravel((60 * 60 * 24 * 7 * 56 * 3) / 10); //jump forward a bit
+        var claimed1 = await instance.collect({ from: accounts[1] });
+        var claimed2 = await instance.claimed();
+        console.log(`claimed ${claimed1} ${claimed2}`);
+        await timeTravel((60 * 60 * 24 * 7 * 56 * 3) / 10); //jump forward a bit
 
-          var claimed3 = await instance.collect({from: accounts[1]});
+        var claimed3 = await instance.collect({ from: accounts[1] });
 
-          var claimed4 = await instance.claimed();
-          console.log(`first claimed ${claimed2.toString()} ${claimed2*1}. then claimed ${claimed4.toString()} ${claimed4*1}`);
-            assert.equal(
-                `${claimed4*1}`,
-            `${claimed2*2}`,
-            "collected correct amount"
-            );
+        var claimed4 = await instance.claimed();
+        console.log(
+          `first claimed ${claimed2.toString()} ${
+            claimed2 * 1
+          }. then claimed ${claimed4.toString()} ${claimed4 * 1}`
+        );
+        assert.equal(
+          `${claimed4 * 1}`,
+          `${claimed2 * 2}`,
+          "collected correct amount"
+        );
+      });
+    });
+  });
+  
+  it("non claimant can't claim", () => {
+    return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
+      return Vesting.new(accounts[1], fakeerc20.address).then(async function (
+        instance
+      ) {
+        await fakeerc20.getSome(1000000000, { from: accounts[0] });
+        await fakeerc20.approve(instance.address, 1000000000, {
+          from: accounts[0],
+        });
+        await instance.start(1000000000, 60 * 60 * 24 * 7 * 56 * 3 /* 3yrs */, {
+          from: accounts[0],
+        });
+
+        try {
+          var claimed1 = await instance.collect({ from: accounts[8] });
+          assert.equal(true, false, "should never reach this line");
+        } catch (e) {
+          assert.equal(true, true, "test should have thrown");
+        }
       });
     });
   });

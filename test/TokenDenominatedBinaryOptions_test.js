@@ -1,4 +1,6 @@
-var TokenDenominatedBinaryOptions = artifacts.require("TokenDenominatedBinaryOptions");
+var TokenDenominatedBinaryOptions = artifacts.require(
+  "TokenDenominatedBinaryOptions"
+);
 var FakeERC20 = artifacts.require("FakeERC20");
 var APP = artifacts.require("APP");
 var FakePriceProvider = artifacts.require("FakePriceProvider");
@@ -133,7 +135,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
-                  `${10000+1000000000}`,
+                  `${10000 + 1000000000}`,
                   `${poolBalance * 1}`,
                   "pool balance is invalid"
                 );
@@ -173,7 +175,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
-                  `${10000+1000000000}`,
+                  `${10000 + 1000000000}`,
                   `${poolBalance * 1}`,
                   "pool balance is invalid"
                 );
@@ -210,8 +212,8 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await instance.bet(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
-                await fakePP.updateRound(100005, 6, {from: accounts[0]});
-                await instance.complete(0, {from: accounts[4]});
+                await fakePP.updateRound(100005, 6, { from: accounts[0] });
+                await instance.complete(0, { from: accounts[4] });
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
@@ -252,12 +254,12 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await instance.bet(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
-                await fakePP.updateRound(090000, 6, {from: accounts[0]});
-                await instance.complete(0, {from: accounts[4]});
+                await fakePP.updateRound(090000, 6, { from: accounts[0] });
+                await instance.complete(0, { from: accounts[4] });
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
-                  `1000009999`,//pool is up the bet amount minus complete fee
+                  `1000009999`, //pool is up the bet amount minus complete fee
                   `${poolBalance * 1}`,
                   "pool balance is invalid after expire"
                 );
@@ -294,8 +296,8 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await instance.bet(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
-                await fakePP.updateRound(090000, 6, {from: accounts[0]});
-                await instance.complete(0, {from: accounts[4]});
+                await fakePP.updateRound(090000, 6, { from: accounts[0] });
+                await instance.complete(0, { from: accounts[4] });
                 await instance.withdraw(1000000000, { from: accounts[0] });
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
@@ -330,9 +332,9 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                   from: accounts[2],
                 });
                 await instance.stake(1000000000, { from: accounts[2] });
-                await timeTravel(60*60*24*8);//jump forward 8 days (default stake time is 7)
+                await timeTravel(60 * 60 * 24 * 8); //jump forward 8 days (default stake time is 7)
                 await instance.withdraw(1000000000, { from: accounts[2] });
-                
+
                 var poolBalance = await fakeerc20.balanceOf(accounts[2]);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
@@ -340,6 +342,92 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                   `${poolBalance * 1}`,
                   "staker balance is not the same after withdraw"
                 );
+              });
+            }
+          );
+        });
+      });
+    });
+  });
+
+  it("can't create a option thats to big for the ratecalc", () => {
+    return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
+      return FakePriceProvider.new(100000).then(async function (fakePP) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
+          return APP.new(fakePP.address, rcInstance.address).then(
+            async function (fakeAPP) {
+              return TokenDenominatedBinaryOptions.new(
+                "poolName",
+                "PoolSymbol",
+                fakeerc20.address,
+                accounts[2],
+                fakeAPP.address,
+                accounts[3]
+              ).then(async function (instance) {
+                try {
+                  await instance.bet(false, fakePP.address, 1, 1000000000, {
+                    from: accounts[4],
+                  });
+                  assert.equal(true, false, "should never reach this line");
+                } catch (e) {
+                  assert.equal(true, true, "test should have thrown");
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
+
+  it("can't withdraw more then they deposited", () => {
+    return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
+      return FakePriceProvider.new(100000).then(async function (fakePP) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
+          return APP.new(fakePP.address, rcInstance.address).then(
+            async function (fakeAPP) {
+              return TokenDenominatedBinaryOptions.new(
+                "poolName",
+                "PoolSymbol",
+                fakeerc20.address,
+                accounts[2],
+                fakeAPP.address,
+                accounts[3]
+              ).then(async function (instance) {
+                try {
+                  await instance.withdraw(1000000000, { from: accounts[8] });
+                  assert.equal(true, false, "should never reach this line");
+                } catch (e) {
+                  assert.equal(true, true, "test should have thrown");
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
+
+  it("can't complete an option that doesn't exist", () => {
+    return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
+      return FakePriceProvider.new(100000).then(async function (fakePP) {
+        return BasicRateCalc.new().then(async function (rcInstance) {
+          return APP.new(fakePP.address, rcInstance.address).then(
+            async function (fakeAPP) {
+              return TokenDenominatedBinaryOptions.new(
+                "poolName",
+                "PoolSymbol",
+                fakeerc20.address,
+                accounts[2],
+                fakeAPP.address,
+                accounts[3]
+              ).then(async function (instance) {
+                try {
+                  await instance.complete(9, { from: accounts[4] });
+                  assert.equal(true, false, "should never reach this line");
+                } catch (e) {
+                  assert.equal(true, true, "test should have thrown");
+                }
               });
             }
           );

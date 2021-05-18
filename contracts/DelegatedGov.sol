@@ -110,13 +110,14 @@ contract DelegatedGov {
     
     
 
-    constructor(address bo_, address v3_, address accessTiers_, address payable proxy_, address app_, address factory_) public {
+    constructor(address bo_, address v3_, address accessTiers_, address payable proxy_, address app_, address factory_, address payable trsy_) public {
       pA = bo_;
       tA = v3_;
       aTA = accessTiers_;
       pX = proxy_;
       appA = app_;
       fcry = factory_;
+      trsy = trsy_;
     }
 
 

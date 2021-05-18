@@ -48,23 +48,28 @@ contract GovProxy {
     */
     function transferToGov() external onlyDGov returns(uint256){
             require(address(this).balance > 0, "Nothing to transfer");
+
+            //the fee paid to the user that calls the function to transfer funds
             uint256 fee = address(this).balance.div(tFee);
-            uint256 tT;
+            uint256 tT;//to treasury
+            uint256 tG = 0;//to gov(stakers directly)
             if (treasuryFee != 0) {
                 //if treasury fee is not zero then calculate it
                 tT = (address(this).balance.sub(fee)).div(treasuryFee);
+                if (treasuryFee > 1) {
+                    //if the entire amount doesn't go to the treasury
+                    tG = (address(this).balance.sub(fee)).sub(tT);
+                    dgov.send(tG);
+                }
                 treasury.send(tT);
+                tx.origin.send(fee);
+            } else {
+                //treasury fee is 0 everything goes direct to stakers (minus transferfee, tFee)
+                tG = address(this).balance.sub(fee);
+                 dgov.send(tG);
+                tx.origin.send(fee);
             }
-            uint256 fG = 0;//amount for gov direct is zero by default
-            if (treasuryFee > 1) {
-                //if treasury fee is not 100% send some direct to gov
-                uint256 tG = address(this).balance.sub(fee);
-                dgov.send(tG);
-                fG = tG;
-            }
-            tx.origin.send(fee);
-            return fG;
-
+            return tG;
     }
 
     fallback () external payable {}

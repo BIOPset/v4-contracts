@@ -1,4 +1,6 @@
-var TokenDenominatedBinaryOptionsFactory = artifacts.require("TokenDenominatedBinaryOptionsFactory");
+var TokenDenominatedBinaryOptionsFactory = artifacts.require(
+  "TokenDenominatedBinaryOptionsFactory"
+);
 var FakeERC20 = artifacts.require("FakeERC20");
 
 var BN = web3.utils.BN;
@@ -26,11 +28,11 @@ const timeTravel = async (seconds) => {
   });
 };
 
-
-
 contract("TokenDenominatedBinaryOptionsFactory", (accounts) => {
   it("exists", () => {
-    return TokenDenominatedBinaryOptionsFactory.new().then(async function (instance) {
+    return TokenDenominatedBinaryOptionsFactory.new().then(async function (
+      instance
+    ) {
       assert.equal(
         typeof instance,
         "object",
@@ -44,38 +46,68 @@ contract("TokenDenominatedBinaryOptionsFactory", (accounts) => {
       return TokenDenominatedBinaryOptionsFactory.new().then(async function (
         instance
       ) {
-          await fakeerc20.getSome(1000000000, {from: accounts[0]});
-          await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-          await instance.createTokenDenominatedBinaryOptions(fakeerc20.address, accounts[2], accounts[1], {from: accounts[0]});
-          var addy = await instance.getTokenDenominatedBinaryOptionsAddress(fakeerc20.address);
-          console.log(`created pool at ${addy.toString()}`);
-          assert.notEqual(
-              addy.toString(),
-            "0x0000000000000000000000000000000000000000",
-            "did not set address"
-            );
+        await fakeerc20.getSome(1000000000, { from: accounts[0] });
+        await fakeerc20.approve(instance.address, 1000000000, {
+          from: accounts[0],
+        });
+        await instance.createTokenDenominatedBinaryOptions(
+          fakeerc20.address,
+          accounts[2],
+          accounts[1],
+          { from: accounts[0] }
+        );
+        var addy = await instance.getTokenDenominatedBinaryOptionsAddress(
+          fakeerc20.address
+        );
+        console.log(`created pool at ${addy.toString()}`);
+        assert.notEqual(
+          addy.toString(),
+          "0x0000000000000000000000000000000000000000",
+          "did not set address"
+        );
       });
     });
   });
-    it("can remove", () => {
-      return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
-        return TokenDenominatedBinaryOptionsFactory.new().then(async function (
-          instance
-        ) {
-            await fakeerc20.getSome(1000000000, {from: accounts[0]});
-            await fakeerc20.approve(instance.address, 1000000000, {from: accounts[0]});
-            await instance.createTokenDenominatedBinaryOptions(fakeerc20.address, accounts[2], accounts[1], {from: accounts[0]});
-           
-            await instance.removePool(fakeerc20.address, {from: accounts[0]});
-             
-            assert.equal(
-                true,
-              true,
-              "removal failed tp  complete"
-              );
+  it("can remove", () => {
+    return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
+      return TokenDenominatedBinaryOptionsFactory.new().then(async function (
+        instance
+      ) {
+        await fakeerc20.getSome(1000000000, { from: accounts[0] });
+        await fakeerc20.approve(instance.address, 1000000000, {
+          from: accounts[0],
         });
+        await instance.createTokenDenominatedBinaryOptions(
+          fakeerc20.address,
+          accounts[2],
+          accounts[1],
+          { from: accounts[0] }
+        );
+
+        await instance.removePool(fakeerc20.address, { from: accounts[0] });
+
+        assert.equal(true, true, "removal failed to  complete");
       });
+    });
   });
 
- 
+  it("non DAO can't create random pools", () => {
+    return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
+      return TokenDenominatedBinaryOptionsFactory.new().then(async function (
+        instance
+      ) {
+        try {
+          await instance.createTokenDenominatedBinaryOptions(
+            fakeerc20.address,
+            accounts[2],
+            accounts[1],
+            { from: accounts[3] }
+          );
+          assert.equal(false, true, "removal failed tp  complete");
+        } catch (e) {
+          assert.equal(true, true, "");
+        }
+      });
+    });
+  });
 });

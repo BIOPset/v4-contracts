@@ -1,11 +1,16 @@
-const NativeAssetDenominatedBinaryOptions = artifacts.require("NativeAssetDenominatedBinaryOptions");
+const NativeAssetDenominatedBinaryOptions = artifacts.require(
+  "NativeAssetDenominatedBinaryOptions"
+);
 const BIOPTokenV4 = artifacts.require("BIOPTokenV4");
 const DelegatedGov = artifacts.require("DelegatedGov");
 const GovProxy = artifacts.require("GovProxy");
 const DelegatedAccessTiers = artifacts.require("DelegatedAccessTiers");
 const APP = artifacts.require("APP");
-const TokenDenominatedBinaryOptionsFactory = artifacts.require("TokenDenominatedBinaryOptionsFactory");
+const TokenDenominatedBinaryOptionsFactory = artifacts.require(
+  "TokenDenominatedBinaryOptionsFactory"
+);
 const UtilizationRewards = artifacts.require("UtilizationRewards");
+const Treasury = artifacts.require("Treasury");
 
 const BasicRateCalc = artifacts.require("BasicRateCalc");
 const LateStageBondingCurve = artifacts.require("LateStageBondingCurve");
@@ -36,7 +41,7 @@ const UtilizationRewardsSettings = {
   toTransfer: 100000,
   epochs: 7,
   launchTime: 60 * 60 * 24 * 3, //3days
-  epochLength: 60 * 60 * 24 * 30//30 days
+  epochLength: 60 * 60 * 24 * 30, //30 days
 };
 
 const FakePriceSettings = {
@@ -125,38 +130,54 @@ module.exports = function (deployer) {
                                               .deploy(GovProxy)
                                               .then(async (proxyInstance) => {
                                                 return deployer
-                                                  .deploy(
-                                                    DelegatedGov,
-                                                    boInstance.address,
-                                                    biopInstance.address,
-                                                    tiersInstance.address,
-                                                    proxyInstance.address,
-                                                    factoryInstance.address,
-                                                    appInstance.address
-                                                  )
-                                                  .then(async (govInstance) => {
-                                                    await boInstance.transferDevFund(
-                                                      proxyInstance.address
-                                                    );
-                                                    await boInstance.transferOwner(
-                                                      govInstance.address
-                                                    );
-                                                    await factoryInstance.transferOwner(
-                                                      govInstance.address
-                                                    );
-                                                    await proxyInstance.updateDGov(
-                                                      govInstance.address
-                                                    );
-                                                    await biopInstance.disableWhitelist();
-                                                    return await urInstance.setupBinaryOptions(
-                                                      boInstance.address
-                                                    );
+                                                  .deploy(Treasury)
+                                                  .then((treasuryInstance) => {
+                                                    return deployer
+                                                      .deploy(
+                                                        DelegatedGov,
+                                                        boInstance.address,
+                                                        biopInstance.address,
+                                                        tiersInstance.address,
+                                                        proxyInstance.address,
+                                                        factoryInstance.address,
+                                                        appInstance.address,
+                                                        treasuryInstance.address
+                                                      )
+                                                      .then(
+                                                        async (govInstance) => {
+                                                          await boInstance.transferDevFund(
+                                                            proxyInstance.address
+                                                          );
+                                                          await boInstance.transferOwner(
+                                                            govInstance.address
+                                                          );
+                                                          await factoryInstance.transferOwner(
+                                                            govInstance.address
+                                                          );
+                                                          await proxyInstance.updateDGov(
+                                                            govInstance.address
+                                                          );
+                                                          await treasuryInstance.updateDGov(
+                                                            govInstance.address
+                                                          );
+                                                          await biopInstance.disableWhitelist();
+                                                          return await urInstance.setupBinaryOptions(
+                                                            boInstance.address
+                                                          );
+                                                        }
+                                                      );
                                                   });
-                      });});
+                                              });
+                                          });
+                                      });
+                                  });
+                              });
+                          });
+                      });
                   });
               });
           });
-        })})})})})})
+        })
         .catch((e) => {
           console.log("caught");
           console.log(e);
@@ -208,32 +229,38 @@ module.exports = function (deployer) {
                                   .deploy(GovProxy)
                                   .then(async (proxyInstance) => {
                                     return deployer
-                                      .deploy(
-                                        DelegatedGov,
-                                        boInstance.address,
-                                        biopInstance.address,
-                                        tiersInstance.address,
-                                        proxyInstance.address,
-                                        factoryInstance.address,
-                                        appInstance.address
-                                      )
-                                      .then(async (govInstance) => {
-                                        await boInstance.transferDevFund(
-                                          proxyInstance.address
-                                        );
-                                        await boInstance.transferOwner(
-                                          govInstance.address
-                                        );
-                                        await factoryInstance.transferOwner(
-                                          govInstance.address
-                                        );
-                                        await proxyInstance.updateDGov(
-                                          govInstance.address
-                                        );
-
-                                        return await urInstance.setupBinaryOptions(
-                                          boInstance.address
-                                        );
+                                      .deploy(Treasury)
+                                      .then((treasuryInstance) => {
+                                        return deployer
+                                          .deploy(
+                                            DelegatedGov,
+                                            boInstance.address,
+                                            biopInstance.address,
+                                            tiersInstance.address,
+                                            proxyInstance.address,
+                                            factoryInstance.address,
+                                            appInstance.address
+                                          )
+                                          .then(async (govInstance) => {
+                                            await boInstance.transferDevFund(
+                                              proxyInstance.address
+                                            );
+                                            await boInstance.transferOwner(
+                                              govInstance.address
+                                            );
+                                            await factoryInstance.transferOwner(
+                                              govInstance.address
+                                            );
+                                            await proxyInstance.updateDGov(
+                                              govInstance.address
+                                            );
+                                            await treasuryInstance.updateDGov(
+                                              govInstance.address
+                                            );
+                                            return await urInstance.setupBinaryOptions(
+                                              boInstance.address
+                                            );
+                                          });
                                       });
                                   });
                               });

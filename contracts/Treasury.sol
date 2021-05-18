@@ -43,4 +43,6 @@ contract Treasury {
     event FundsSent(uint256 amount, address destination);
     event ERC20FundsSent(address token, uint256 amount, address destination);
 
+
+    fallback () external payable {}
 }
