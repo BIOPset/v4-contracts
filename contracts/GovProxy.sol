@@ -14,7 +14,7 @@ contract GovProxy {
     using SafeMath for uint256;
     address payable public dao;
     address payable public treasury;
-    uint256 public tFee = 2000;//0.2%. This fee is for the transfer caller
+    uint256 public tFee = 5000;//0.2%. This fee is for the transfer caller
     uint256 public treasuryReserve = 900;//90%
 
     constructor() public {
