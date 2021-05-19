@@ -129,7 +129,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await fakeerc20.approve(instance.address, 10000, {
                   from: accounts[4],
                 });
-                await instance.bet(true, fakePP.address, 1, 10000, {
+                await instance.openPosition(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
@@ -169,7 +169,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await fakeerc20.approve(instance.address, 10000, {
                   from: accounts[4],
                 });
-                await instance.bet(false, fakePP.address, 1, 10000, {
+                await instance.openPosition(false, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
@@ -209,7 +209,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await fakeerc20.approve(instance.address, 10000, {
                   from: accounts[4],
                 });
-                await instance.bet(true, fakePP.address, 1, 10000, {
+                await instance.openPosition(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
                 await fakePP.updateRound(100005, 6, { from: accounts[0] });
@@ -251,7 +251,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await fakeerc20.approve(instance.address, 10000, {
                   from: accounts[4],
                 });
-                await instance.bet(true, fakePP.address, 1, 10000, {
+                await instance.openPosition(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
                 await fakePP.updateRound(090000, 6, { from: accounts[0] });
@@ -293,7 +293,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 await fakeerc20.approve(instance.address, 10000, {
                   from: accounts[4],
                 });
-                await instance.bet(true, fakePP.address, 1, 10000, {
+                await instance.openPosition(true, fakePP.address, 1, 10000, {
                   from: accounts[4],
                 });
                 await fakePP.updateRound(090000, 6, { from: accounts[0] });
@@ -365,7 +365,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 accounts[3]
               ).then(async function (instance) {
                 try {
-                  await instance.bet(false, fakePP.address, 1, 1000000000, {
+                  await instance.openPosition(false, fakePP.address, 1, 1000000000, {
                     from: accounts[4],
                   });
                   assert.equal(true, false, "should never reach this line");

@@ -10,11 +10,11 @@ interface INativeAssetDenominatedBinaryOptions {
 
     function setMaxT(uint256 newMax_) external;
     function setMinT(uint256 newMin_) external;
-    function updateExerciserFee(uint256 exerciserFee_) external;
-    function updateExpirerFee(uint256 expirerFee_) external;
+    function updateSettlerFee(uint256 fee_) external;
     function enableRewards(bool nx_) external ;
     function updatePoolLockSeconds(uint256 newLockSeconds_) external;
-    function updateDevFundBetFee(uint256 devFundBetFee_) external;
+    function updateProtocolFee(uint256 newProtocolFee_) external;
+    function openPosition(bool k_, address pp_, uint80 t_) external payable;
     function closeStaking() external;
     function transferOwner(address payable newOwner_) external;
     function transferDevFund(address payable newDevFund) external;

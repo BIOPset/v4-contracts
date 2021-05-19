@@ -1,11 +1,11 @@
 var NativeAssetDenominatedBinaryOptions = artifacts.require(
   "NativeAssetDenominatedBinaryOptions"
 );
-var DelegatedGov = artifacts.require("DelegatedGov");
+var DAO = artifacts.require("DAO");
 var BIOPTokenV4 = artifacts.require("BIOPTokenV4");
 var GovProxy = artifacts.require("GovProxy");
 var Treasury = artifacts.require("Treasury");
-var LateStageBondingCurve = artifacts.require("LateStageBondingCurve");
+var ReserveBondingCurve = artifacts.require("ReserveBondingCurve");
 
 var BN = web3.utils.BN;
 const toWei = (value) => web3.utils.toWei(value.toString(), "ether");
@@ -32,9 +32,9 @@ const timeTravel = async (seconds) => {
   });
 };
 
-contract("DelegatedGov", (accounts) => {
+contract("DAO", (accounts) => {
   it("exists", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       assert.equal(
         typeof instance,
         "object",
@@ -43,9 +43,9 @@ contract("DelegatedGov", (accounts) => {
     });
   });
   it("allows staking", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
-        return LateStageBondingCurve.deployed().then(async function (lsbc) {
+        return ReserveBondingCurve.deployed().then(async function (lsbc) {
           await lsbc.buy({ from: accounts[5], value: 1000 });
           var bought = await bp.balanceOf(accounts[5]);
           var ts = await bp.totalSupply();
@@ -66,7 +66,7 @@ contract("DelegatedGov", (accounts) => {
     });
   });
   it("allows endorsement", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         var staked = await instance.staked(accounts[5]);
 
@@ -79,7 +79,7 @@ contract("DelegatedGov", (accounts) => {
     });
   });
   it("allows sha action", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return NativeAssetDenominatedBinaryOptions.deployed().then(
         async function (bo) {
           var t0 = 2000;
@@ -91,10 +91,10 @@ contract("DelegatedGov", (accounts) => {
     });
   });
   it("allows withdraw earned fees % on balance increase", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         return GovProxy.deployed().then(async function (proxy) {
-          return LateStageBondingCurve.deployed().then(async function (lsbc) {
+          return ReserveBondingCurve.deployed().then(async function (lsbc) {
             //first a second user makes a deposit
             await lsbc.buy({ from: accounts[6], value: 1000 });
             var bought = await bp.balanceOf(accounts[6]);
@@ -151,7 +151,7 @@ contract("DelegatedGov", (accounts) => {
     });
   });
   it("allows unendorse", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         var staked = await instance.staked(accounts[5]);
 
@@ -168,7 +168,7 @@ contract("DelegatedGov", (accounts) => {
     });
   });
   it("allows withdraw", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         var staked = await instance.staked(accounts[5]);
 
@@ -181,9 +181,9 @@ contract("DelegatedGov", (accounts) => {
   });
 
   it("allows transfer from gov proxy", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
-        return LateStageBondingCurve.deployed().then(async function (lsbc) {
+        return ReserveBondingCurve.deployed().then(async function (lsbc) {
           return GovProxy.deployed().then(async function (proxy) {
             await lsbc.buy({ from: accounts[5], value: 1000 });
             var bought = await bp.balanceOf(accounts[5]);
@@ -216,9 +216,9 @@ contract("DelegatedGov", (accounts) => {
   });
 
   it("can't transfer when proxy empty", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
-        return LateStageBondingCurve.deployed().then(async function (lsbc) {
+        return ReserveBondingCurve.deployed().then(async function (lsbc) {
           return Treasury.deployed().then(async function (treasury) {
             return GovProxy.deployed().then(async function (proxy) {
             await lsbc.buy({ from: accounts[5], value: 1000 });
@@ -251,7 +251,7 @@ contract("DelegatedGov", (accounts) => {
   });
 
   it("can't call a tier protected function without enough endorsement", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       try {
         await instance.uMXOT(4, "0x0000000000000000000000000000000000000000", {
           from: accounts[5],
@@ -264,7 +264,7 @@ contract("DelegatedGov", (accounts) => {
   });
 
   it("can't withdraw when no deposit has been made", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       try {
         await instance.withdraw(staked, { from: accounts[8] });
         assert.equal(false, true, "test did not fail");
@@ -275,7 +275,7 @@ contract("DelegatedGov", (accounts) => {
   });
 
   it("can't get part of ETH earned when they aren't a staker", () => {
-    return DelegatedGov.deployed().then(async function (instance) {
+    return DAO.deployed().then(async function (instance) {
       try {
         await instance.claimETHRewards({ from: accounts[8] });
         assert.equal(false, true, "test did not fail");

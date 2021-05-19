@@ -20,7 +20,7 @@ contract Treasury {
         _;
     }
 
-    function updateDGov(address payable dg) public onlyDAO {
+    function updateDAO(address payable dg) public onlyDAO {
         require(dg != 0x0000000000000000000000000000000000000000, "invalid gov");
         dao = dg;
     }

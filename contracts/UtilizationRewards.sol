@@ -67,7 +67,7 @@ contract UtilizationRewards is IUtilizationRewards{
      * @dev transfer ownership of this contract
      * @param g_ the new governance address
      */
-    function transferGovernance(address payable g_) external override onlyDAO {
+    function transferDAO(address payable g_) external override onlyDAO {
         require(g_ != 0x0000000000000000000000000000000000000000);
         dao = g_;
     }
@@ -187,12 +187,12 @@ contract UtilizationRewards is IUtilizationRewards{
 
 
      /**
-     * @dev used for betting/exercise/expire calc
+     * @dev used for openposition/exercise/expire calc
      * @param amount the amount of value in bet
      * @param totalLocked total LP pool size
      * @param completion false for bet, true for exercise expire
      **/
-    function getBetExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external view override returns(uint256) {
+    function getTradeExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external view override returns(uint256) {
         return rwd.div(1000);
     }
 

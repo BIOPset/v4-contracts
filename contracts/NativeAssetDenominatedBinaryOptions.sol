@@ -35,9 +35,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     uint256 public minT;//min rounds
     uint256 public maxT;//max rounds
     uint256 public lockedAmount;
-    uint256 public exerciserFee = 50;//in tenth percent
-    uint256 public expirerFee = 50;//in tenth percent
-    uint256 public devFundBetFee = 0;//200;//0.5%
+    uint256 public settlerFee = 50;//in tenth percent
+    uint256 public protocolFee = 0;//200;//0.5%
     uint256 public poolLockSeconds = 7 days;
     uint256 public contractCreated;
     bool public open = true;
@@ -117,10 +116,10 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
   
 
-    //used for betting/exercise/expire calc
-    function getBetSizeBonus(uint256 amount, bool completion) public view returns(uint256) {
+    //used for openPosition/exercise/expire calc
+    function getTradeExerciseBonus(uint256 amount, bool completion) public view returns(uint256) {
         IUtilizationRewards r = IUtilizationRewards(uR);
-        return r.getBetExerciseBonus(amount, address(this).balance, completion);
+        return r.getTradeExerciseBonus(amount, address(this).balance, completion);
     }
 
     /**
@@ -227,30 +226,23 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     
 
     /**
-     * @dev set the fee users can recieve for exercising other users options
-     * @param exerciserFee_ the new fee (in tenth percent) for exercising a options itm
+     * @dev set the fee users can recieve for settling other users options
+     * @param fee_ the new fee (in tenth percent) for settling a options
      */
-    function updateExerciserFee(uint256 exerciserFee_) external override onlyOwner {
-        require(exerciserFee_ > 1 && exerciserFee_ < 500, "invalid fee");
-        exerciserFee = exerciserFee_;
+    function updateSettlerFee(uint256 fee_) external override onlyOwner {
+        require(fee_ > 1 && fee_ < 500, "invalid fee");
+        settlerFee = fee_;
     }
 
-     /**
-     * @dev set the fee users can recieve for expiring other users options
-     * @param expirerFee_ the new fee (in tenth percent) for expiring a options
-     */
-    function updateExpirerFee(uint256 expirerFee_) external override onlyOwner {
-        require(expirerFee_ > 1 && expirerFee_ < 50, "invalid fee");
-        expirerFee = expirerFee_;
-    }
+    
 
     /**
      * @dev set the fee users pay to buy an option
-     * @param devFundBetFee_ the new fee (in tenth percent) to buy an option
+     * @param newProtocolFee_ the new fee (in tenth percent) to buy an option
      */
-    function updateDevFundBetFee(uint256 devFundBetFee_) external override onlyOwner {
-        require(devFundBetFee_ == 0 || devFundBetFee_ > 50, "invalid fee");
-        devFundBetFee = devFundBetFee_;
+    function updateProtocolFee(uint256 newProtocolFee_) external override onlyOwner {
+        require(newProtocolFee_ == 0 || newProtocolFee_ > 50, "invalid fee");
+        protocolFee = newProtocolFee_;
     }
 
      /**
@@ -364,7 +356,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     @param pp_ the address of the price provider to use (must be in the list of aprvd from IAPP)
     @param t_ the rounds until your options expiration (must be minT < t_ > maxT)
     */
-    function bet(bool k_, address pp_, uint80 t_) external payable {
+    function openPosition(bool k_, address pp_, uint80 t_) external payable override {
         require(
             t_ >= minT && t_ <= maxT,
             "Invalid time"
@@ -387,7 +379,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             uint256 lV = getRate(pp_, msg.value, t_, k_);
             
             if (rewEn) {
-                pClaims[msg.sender] = pClaims[msg.sender].add(getBetSizeBonus(msg.value, false));
+                pClaims[msg.sender] = pClaims[msg.sender].add(getTradeExerciseBonus(msg.value, false));
             }
             lock(lV);
         
@@ -475,10 +467,10 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         uint256 lv = option.lV;
 
         //an optional (to be choosen by contract owner) fee on each option. 
-        //A % of the bet money is sent as a fee. see devFundBetFee
-        if (lv > devFundBetFee && devFundBetFee > 0) {
-                uint256 fee = lv.div(devFundBetFee);
-                require(devFund.send(fee), "devFund fee transfer failed");
+        //A % of the trade money is sent as a fee. see protocolFee
+        if (lv > protocolFee && protocolFee > 0) {
+                uint256 fee = lv.div(protocolFee);
+                require(devFund.send(fee), "protocolFee transfer failed");
                 lv = lv.sub(fee);
         }
 
@@ -519,9 +511,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         require(amount <= lockedAmount, "insufficent locked pool balance to unlock");
         uint256 fee;
         if (amount <= 10000000000000000) {//small options give bigger fee %
-            fee = amount.div(exerciserFee.mul(4)).div(100);
+            fee = amount.div(settlerFee.mul(4)).div(100);
         } else {
-            fee = amount.div(exerciserFee).div(100);
+            fee = amount.div(settlerFee).div(100);
         } 
         if (fee > 0) {
             require(goodSamaritan.send(fee), "good samaritan transfer failed");
@@ -542,9 +534,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             //good samaratin fee
             uint256 fee;
             if (amount <= 10000000000000000) {//small options give bigger fee %
-                fee = amount.div(exerciserFee.mul(4)).div(100);
+                fee = amount.div(settlerFee.mul(4)).div(100);
             } else {
-                fee = amount.div(exerciserFee).div(100);
+                fee = amount.div(settlerFee).div(100);
             } 
             if (fee > 0) {
                 require(exerciser.send(fee), "exerciser transfer failed");

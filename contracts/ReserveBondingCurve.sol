@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 import "./ContinuousToken/curves/BancorBondingCurve.sol";
-contract LateStageBondingCurve is BancorBondingCurve {
+contract ReserveBondingCurve is BancorBondingCurve {
     using SafeMath for uint256;
     ERC20 token;
     address payable dao = 0x0000000000000000000000000000000000000000;

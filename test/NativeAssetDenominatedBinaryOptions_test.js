@@ -83,7 +83,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
 
         var pendingClaims = await bo.getPendingClaims(accounts[2]);
         var betRewardBase = await bo.rwd();
-        var claimForBet = await bo.getBetSizeBonus(toWei(1), betRewardBase);
+        var claimForBet = await bo.getTradeExerciseBonus(toWei(1), betRewardBase);
         console.log(`
       \n${claimForBet}
       \n${pendingClaims}
@@ -91,7 +91,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
         pendingClaims,
         "ether"
       )}. Will add ${web3.utils.fromWei(claimForBet, "ether")}`);
-        await bo.bet(1, pp.address, 1, {
+        await bo.openPosition(1, pp.address, 1, {
           from: accounts[2],
           value: toWei(0.01),
         });
@@ -123,7 +123,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
         console.log(
           `pending claims ${web3.utils.fromWei(pendingClaims, "ether")} b4 bet`
         );
-        await bo.bet(0, pp.address, 1, {
+        await bo.openPosition(0, pp.address, 1, {
           from: accounts[2],
           value: toWei(0.01),
         });
@@ -150,13 +150,13 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
     ) {
       return FakePriceProvider.deployed().then(async function (pp) {
         return UtilizationRewards.deployed().then(async function (ur) {
-          await bo.bet(1, pp.address, 1, {
+          await bo.openPosition(1, pp.address, 1, {
             from: accounts[3],
             value: toWei(0.01),
           });
 
           var pendingClaims3 = await bo.getPendingClaims(accounts[3]);
-          await bo.bet(1, pp.address, 1, {
+          await bo.openPosition(1, pp.address, 1, {
             from: accounts[3],
             value: toWei(0.01),
           });
@@ -194,7 +194,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
             totalStaked2
           );
 
-          await bo.bet(1, pp.address, 1, {
+          await bo.openPosition(1, pp.address, 1, {
             from: accounts[3],
             value: toWei(0.01),
           });
@@ -378,7 +378,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
       bo
     ) {
       try {
-        await bo.bet(1, pp.address, 1, {
+        await bo.openPosition(1, pp.address, 1, {
           from: accounts[2],
           value: toWei(100),
         });

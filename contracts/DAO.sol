@@ -3,11 +3,11 @@ pragma solidity ^0.6.6;
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-import "./interfaces/INativeAssetDenominatedBinaryOptions.sol";
+import "./NativeAssetDenominatedBinaryOptions.sol";
 import "./APP.sol";
+import "./UtilizationRewards.sol";
 import "./GovProxy.sol";
 import "./Treasury.sol";
-import "./interfaces/ITokenDenominatedBinaryOptions.sol";
 import "./TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptionsFactory.sol";
 interface AccessTiers {
     /**
@@ -83,13 +83,13 @@ contract DelegatedAccessTiers is AccessTiers {
 
 
 /**
- * @title DelegatedGov
+ * @title DAO
  * @author github.com/Shalquiana
- * @dev governance for biopset protocol
- * @notice governance for biopset protocol
+ * @dev endorsement governance for biopset protocol
+ * @notice endorsement governance for biopset protocol
  * BIOP
  */
-contract DelegatedGov {
+contract DAO {
     using SafeMath for uint256;
     address public pA;//protocol address
     address public appA;//approved price providers address
@@ -110,9 +110,9 @@ contract DelegatedGov {
     
     
 
-    constructor(address bo_, address v3_, address accessTiers_, address payable proxy_, address app_, address factory_, address payable trsy_) public {
+    constructor(address bo_, address v4_, address accessTiers_, address payable proxy_, address app_, address factory_, address payable trsy_) public {
       pA = bo_;
-      tA = v3_;
+      tA = v4_;
       aTA = accessTiers_;
       pX = proxy_;
       appA = app_;
@@ -396,34 +396,18 @@ contract DelegatedGov {
      */
 
     /**
-     * @notice update fee paid to exercisers
+     * @notice update fee paid to settlers
      * @param newFee_ the new fee
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
-    function updateExerciserFee(uint256 newFee_, address addy_) external tierTwoDelegation {
+    function updateSettlerFee(uint256 newFee_, address addy_) external tierTwoDelegation {
         if (addy_ == pA) {
             INativeAssetDenominatedBinaryOptions pr = INativeAssetDenominatedBinaryOptions(pA);
-            pr.updateExerciserFee(newFee_);
+            pr.updateSettlerFee(newFee_);
         } else {
             TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
             TokenDenominatedBinaryOptions pr = TokenDenominatedBinaryOptions(factory.getTokenDenominatedBinaryOptionsAddress(addy_));
-            pr.updateExerciserFee(newFee_);
-        }
-    }
-
-    /**
-     * @notice update fee paid to expirers
-     * @param newFee_ the new fee
-     * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
-     */
-    function updateExpirerFee(uint256 newFee_, address addy_) external tierTwoDelegation {
-        if (addy_ == pA) {
-            INativeAssetDenominatedBinaryOptions pr = INativeAssetDenominatedBinaryOptions(pA);
-            pr.updateExpirerFee(newFee_);
-        } else {
-            TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
-            TokenDenominatedBinaryOptions pr = TokenDenominatedBinaryOptions(factory.getTokenDenominatedBinaryOptionsAddress(addy_));
-            pr.updateExpirerFee(newFee_);
+            pr.updateSettlerFee(newFee_);
         }
     }
 
@@ -549,18 +533,18 @@ contract DelegatedGov {
     }
 
     /**
-     * @notice update the fee paid by betters when they make a bet
-     * @param newBetFee_ the time (in seconds) of the soft pool lock
+     * @notice update the fee paid by trader when they make a trade
+     * @param newProtocolFee_ the time (in seconds) of the soft pool lock
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
-    function updateBetFee(uint256 newBetFee_, address addy_) external tierThreeDelegation {
+    function updateProtocolFee(uint256 newProtocolFee_, address addy_) external tierThreeDelegation {
         if (addy_ == pA) {
-            INativeAssetDenominatedBinaryOptions pr = INativeAssetDenominatedBinaryOptions(pA);
-            pr.updateDevFundBetFee(newBetFee_);
+            NativeAssetDenominatedBinaryOptions pr = NativeAssetDenominatedBinaryOptions(pA);
+            pr.updateProtocolFee(newProtocolFee_);
         } else {
             TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
             TokenDenominatedBinaryOptions pr = TokenDenominatedBinaryOptions(factory.getTokenDenominatedBinaryOptionsAddress(addy_));
-            pr.updateDAOBetFee(newBetFee_);
+            pr.updateProtocolFee(newProtocolFee_);
         }
     }
 
@@ -581,15 +565,17 @@ contract DelegatedGov {
         }
     }
 
-      /**
-     * @notice change the amount (as percent) that is sent from proxy to treasury
-     * @param new_ the new amount to send to treasury. (1 = 100%, 10 = 10%, 100 = 1%)
+    /**
+     * @dev update owner of Utilization rewards contract address
+     * @param uR_ the utilization rewards contract address
+     * @param addy_ the address of the new owner
      */
-    function updateTrsyPercent(uint256 new_) external tierThreeDelegation {
-        GovProxy py = GovProxy(pX);
-        py.updateTreasuryAmount(new_);
+    function updateUROwner(address uR_, address payable addy_) external tierThreeDelegation {
+        UtilizationRewards ur = UtilizationRewards(uR_);
+       ur.transferDAO(addy_);
     }
 
+     
     /**
      * @notice deactivate a TokenDenominatedBinaryOptions pool
      */
@@ -634,6 +620,35 @@ contract DelegatedGov {
                                                                 ******:                   
                                                                                           
      */
+
+      /**
+     * @notice change the amount (as percent) that is sent from proxy to treasury
+     * @param new_ the new amount to send to treasury. (1 = 100%, 10 = 10%, 100 = 1%)
+     */
+    function updateTreasuryReserve(uint256 new_) external tierFourDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateTreasuryReserve(new_);
+    }
+
+
+       /**
+     * @notice change the owner of treasury 
+     * @param new_ the address of new governance address
+     */
+    function updateTreasuryOwner(address payable new_) external tierFourDelegation {
+        Treasury ty = Treasury(trsy);
+        ty.updateDAO(new_);
+    }
+
+        /**
+     * @notice change the owner of proxy 
+     * @param new_ the address of new governance address
+     */
+    function updateProxyOwner(address payable new_) external tierFourDelegation {
+        GovProxy py = GovProxy(pX);
+        py.updateDAO(new_);
+    }
+
 
 
      /**
@@ -680,15 +695,6 @@ contract DelegatedGov {
 
 
 
-    /**
-     * @notice update the biop token used by the DAO
-     * @param a the address of the new ERC20 BIOP token to use
-     */
-    function updateBIOPToken(address payable a) external  {
-        ERC20 t = ERC20(a);
-        require(keccak256(abi.encodePacked((t.symbol()))) == keccak256(abi.encodePacked(("BIOP"))), "Invalid token");
-        tA = a;
-    }
 
     /**
      * @notice update the main ETH pool

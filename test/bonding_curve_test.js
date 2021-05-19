@@ -1,7 +1,7 @@
 
 
 var BIOPTokenV4 = artifacts.require('BIOPTokenV4');
-var LateStageBondingCurve = artifacts.require('LateStageBondingCurve');
+var ReserveBondingCurve = artifacts.require('ReserveBondingCurve');
 
 var BN = web3.utils.BN;
 const toWei = (value) => web3.utils.toWei(value.toString(), "ether");
@@ -26,7 +26,7 @@ const timeTravel = async(seconds) => {
 
 contract("Bonding curve", (accounts) => {
   it("exists", () => {
-    return LateStageBondingCurve.deployed().then(async function (instance) {
+    return ReserveBondingCurve.deployed().then(async function (instance) {
       assert.equal(
         typeof instance,
         "object",
@@ -37,7 +37,7 @@ contract("Bonding curve", (accounts) => {
 
   it("buy from curve", () => {
     return BIOPTokenV4.deployed().then(async function (token) {
-    return LateStageBondingCurve.deployed().then(async function (bp) {
+    return ReserveBondingCurve.deployed().then(async function (bp) {
       
       var balance1 = await token.balanceOf(accounts[4]);
       
@@ -112,7 +112,7 @@ contract("Bonding curve", (accounts) => {
  
   it("sell to curve", () => {
     return BIOPTokenV4.deployed().then(async function (token) {
-      return LateStageBondingCurve.deployed().then(async function (bp) {
+      return ReserveBondingCurve.deployed().then(async function (bp) {
       var sold1 = await bp.soldAmount();
       console.log(`sold1 ${web3.utils.fromWei(sold1)}`);
       var cBalance = await web3.eth.getBalance(bp.address);
