@@ -25,18 +25,22 @@ These actions require a larger consensus and have larger consequences.
 
 ### Tier 3🔥🔥🔥  
 These actions aren't as potentially foundation shaking as Tier 4 but are hot.
- - Update Bet Fee: Update the percentage (2 decimal precision) fee charged to every bet and sent to the proxy.
+ - Update trade Fee: Update the percentage (2 decimal precision) fee charged to every bet and sent to the proxy.
  - Update Soft Lock Time: Change the minimum amount of time that pool participants must stake for in order to avoid any exit fee.
  - Update Staking Rewards Epoch: Change the interval at which pool staking utilization rewards compound.
  - Replace APP: Activate a new Approved Price Providers contract which contains the list of approved Oracle / RateCalc pairs.
- - Update Direct Distribution: Change the amount of tokens which are sent from the proxy to all $BIOP stakers evenly and do not go to the DAO treasury.
+ 
 
 ### Tier 4🌏🌏🌏🌏
 These actions require the greatest consensus around staked participants.
+- Update Direct Distribution: Change the amount of tokens which are sent from the proxy to all $BIOP stakers evenly and do not go to the DAO treasury.
  - Update Consensus Tiers: Change the percentage of staker support needed to access the Settlement DAO tiers of actions.
  - Shutdown A Token: Depreciate a EOL token if the contract is being replaced (this changes the token used to judge participation levels in the Settlment DAO).
  - Replace Rewards Contract: Setup a new rewards contract to distribute governance tokens as utilization rewards to protocol participants on pool.
  - Update Treasury Address: Switch the treasury contract being used by the Settlement DAO.
+ - Update Treasury Owner
+ - Update Proxy Owner
+ - Update Treasury
 
 #### initial delgation tier ratios
 - T0 = (any amount above 0.000000000000000100)
