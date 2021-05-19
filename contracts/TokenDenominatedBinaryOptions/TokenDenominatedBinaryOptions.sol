@@ -380,10 +380,17 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
 
     uint256 lv = option.lV;
     //an optional (to be choosen by contract owner) fee on each option. 
+<<<<<<< HEAD
     //A % of the trade money is sent as a fee. see protocolFee
     if (lv > protocolFee && protocolFee > 0) {
       uint256 fee = lv.div(protocolFee);
       require(owner.send(fee), "devFund fee transfer failed");
+=======
+    //A % of the bet money is sent as a fee. see daoBetFee
+    if (lv > daoBetFee && daoBetFee > 0) {
+      uint256 fee = lv.div(daoBetFee);
+      require(treasury.send(fee), "devFund fee transfer failed");
+>>>>>>> a08cb9cc4c9048d9306701b0a1fbf5fc33869dee
       lv = lv.sub(fee);
     }
     payout(lv, msg.sender, option.holder);
@@ -403,13 +410,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     
     ERC20 token = ERC20(sT);
     require(option.lV <= token.balanceOf(address(this)), "insufficent balance in pool");
-    uint256 fee;
-    if (option.lV <= base) {//small options give bigger fee %
-      fee = option.lV.div(settlerFee.mul(4)).div(100);
-    } else {
-      fee = option.lV.div(settlerFee).div(100);
-    } 
 
+    uint256 fee = option.lV.div(exerciserFee).div(100);
     if (fee > 0) {
       require(token.transfer(msg.sender, fee), "good samaritan transfer failed");
     }

@@ -532,12 +532,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         require(amount <= address(this).balance, "insufficent balance in pool");
         if (exerciser != winner) {
             //good samaratin fee
-            uint256 fee;
-            if (amount <= 10000000000000000) {//small options give bigger fee %
-                fee = amount.div(settlerFee.mul(4)).div(100);
-            } else {
-                fee = amount.div(settlerFee).div(100);
-            } 
+            uint256 fee = amount.div(exerciserFee).div(100);
             if (fee > 0) {
                 require(exerciser.send(fee), "exerciser transfer failed");
                 require(winner.send(amount.sub(fee)), "winner transfer failed");
