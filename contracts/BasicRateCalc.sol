@@ -25,51 +25,20 @@ contract BasicRateCalc is IRateCalc {
 
         uint256 canLock = tP.sub(l);
         uint256 double = amount.mul(2);
-        //check that the option payment is less than 0.5% of the unlocked balance
-        require(amount < canLock.div(200), "position too large");
+        uint256 limited = amount.add((amount.div(2)));
 
-        //for options less than 0.001% of the pool size
-        if (amount < canLock.div(100000)) {
-            if ( s > 150 ) {
-                return actualRate(amount, canLock, amount.add(amount.div(100)));
-            } else if (s > 100) {
-                //more than 100 bets in the same direction: 1.25x
-                return actualRate(amount, canLock, amount.add(amount.div(4)));
-            } else  if (s > 50) {
-                //more than 50 bets in the same direction: 1.5x
-                return actualRate(amount, canLock, amount.add((amount.div(2))));
-            } else {
-                //the default return rate of biopset options is 2x
-                return actualRate(amount, canLock, double);
-            }
+        //if the amount of ETH that can be locked is less than (or equal to) 0.5% of the pool
+        if (canLock <= tP.div(200)) {
+            //the return rate of biopset options drops to 1.5x
+            return actualRate(amount, canLock, limited);
+        } else {
+            //the default return rate of biopset options is 2x
+            return actualRate(amount, canLock, double);
         }
-
-        //for options between 0.001%-0.1% of the pool size
-        if (amount < canLock.div(1000)) {
-            if (s > 20) {
-                return actualRate(amount, canLock, amount);
-            } else if (s > 15) {
-                //more then 15 bets in the same direction: 1.1x
-                return actualRate(amount, canLock, amount.add(amount.div(100)));
-            } else if (s > 10) {
-                // 1.25x
-                return actualRate(amount, canLock, amount.add(amount.div(4)));
-            } else  if (s > 5) {
-                //1.5x
-                return actualRate(amount, canLock, amount.add((amount.div(2))));
-            } else {
-                // 2x
-                return actualRate(amount, canLock, double);
-            }
-        }
-
-        return actualRate(amount, canLock, double.sub(amount.div(10)));
-    }
 
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
-        while (startRate > canLock) {
-            startRate = startRate.sub(amount.div(100));
-        }
+        //make sure that the option value is less than (or equal to) the amount that can be locked.
+        require(startRate <= canLock, "position too large");
         return startRate;
     }
 }
