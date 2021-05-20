@@ -15,7 +15,7 @@ import "./Chainlink/AggregatorProxy.sol";
 
 contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBinaryOptions {
     using SafeMath for uint56;
-    address payable public devFund;
+    address payable public treasury;
     address payable public owner;
     address public uR; //utilization rewards
     address public biop;
@@ -89,7 +89,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @param app_ address of approved price providerss contract
      */
       constructor(string memory name_, string memory symbol_, address biop_, address uR_, address app_) public ERC20(name_, symbol_){
-        devFund = msg.sender;
+        treasury = msg.sender;
         owner = msg.sender;
         biop = biop_;
         lockedAmount = 0;
@@ -263,11 +263,11 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-     * @dev used to transfer devfund 
-     * @param newDevFund the address of governance contract which takes over control
+     * @dev used to transfer fees 
+     * @param newTreasury_ the new address to use
      */
-    function transferDevFund(address payable newDevFund) external override onlyOwner {
-        devFund = newDevFund;
+    function transferDevFund(address payable newTreasury_) external override onlyOwner {
+        treasury = newTreasury_;
     }
 
 
@@ -312,7 +312,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         if (block.timestamp <= nW[msg.sender]) {
             //early withdraw fee
             uint256 penalty = vTR.div(100);
-            require(devFund.send(penalty), "transfer failed");
+            require(treasury.send(penalty), "transfer failed");
             require(msg.sender.send(vTR.sub(penalty)), "transfer failed");
         } else {
             require(msg.sender.send(vTR), "transfer failed");
@@ -470,7 +470,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         //A % of the trade money is sent as a fee. see protocolFee
         if (lv > protocolFee && protocolFee > 0) {
                 uint256 fee = lv.div(protocolFee);
-                require(devFund.send(fee), "protocolFee transfer failed");
+                require(treasury.send(fee), "protocolFee transfer failed");
                 lv = lv.sub(fee);
         }
 
@@ -532,7 +532,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         require(amount <= address(this).balance, "insufficent balance in pool");
         if (exerciser != winner) {
             //good samaratin fee
-            uint256 fee = amount.div(exerciserFee).div(100);
+            uint256 fee = amount.div(settlerFee).div(100);
             if (fee > 0) {
                 require(exerciser.send(fee), "exerciser transfer failed");
                 require(winner.send(amount.sub(fee)), "winner transfer failed");

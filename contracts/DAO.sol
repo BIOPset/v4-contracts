@@ -6,7 +6,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./NativeAssetDenominatedBinaryOptions.sol";
 import "./APP.sol";
 import "./UtilizationRewards.sol";
-import "./GovProxy.sol";
 import "./Treasury.sol";
 import "./TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptionsFactory.sol";
 interface AccessTiers {
@@ -96,13 +95,12 @@ contract DAO {
     address public tA;//token address
     address public aTA;//access tiers address
     address public fcry;//TokenDenominatedBinaryOptions factory address
-    address payable public pX;//proxy
     address payable public trsy;//treasury
     
     mapping(address=>uint256) public shas;//amounts of voting power held by each sha
     mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
-    uint256 dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
+    uint256 public dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
 
     //ETH rewards for stakers
     uint256 public trg = 0;//total rewards generated
@@ -110,11 +108,10 @@ contract DAO {
     
     
 
-    constructor(address bo_, address v4_, address accessTiers_, address payable proxy_, address app_, address factory_, address payable trsy_) public {
+    constructor(address bo_, address v4_, address accessTiers_, address app_, address factory_, address payable trsy_) public {
       pA = bo_;
       tA = v4_;
       aTA = accessTiers_;
-      pX = proxy_;
       appA = app_;
       fcry = factory_;
       trsy = trsy_;
@@ -249,9 +246,13 @@ contract DAO {
         _;
     }
 
+   
+   
+
 
     //this function has to be present or transfers to the GOV fail silently
-    fallback () external payable {}
+    fallback () external payable {
+    }
     
      /**
      * @notice create a new TokenDenominatedBinaryOptions pool
@@ -265,16 +266,6 @@ contract DAO {
     }
 
 
-    // 0 tier anyone whose staked can do these two
-    /**
-     * @notice Send rewards from the proxy to gov and collect a fee
-     */
-    function sRTG() external {
-        require(staked[msg.sender] > 100, "invalid user");
-        GovProxy gp = GovProxy(pX);
-        uint256 r = gp.transferToGov();
-        trg = trg.add(r);
-    }
 
    
 
@@ -441,15 +432,6 @@ contract DAO {
         pr.enableRewards(nx_);
     }
 
-    /**
-     * @notice update the fee paid to the user whose tx transfers bet fees from GovProxy to the DelegatedGov
-     * @param n_ the new fee
-     */
-    function updateGovProxyFee(uint256 n_) external tierTwoDelegation {
-        GovProxy gp = GovProxy(pX);
-        gp.updateTFee(n_);
-    }
-
       /**
      * @notice distribute treasury ETH funds to some destination
      * @param amount the new amount to send from the treasury, in wei
@@ -457,10 +439,11 @@ contract DAO {
      */
     function sendTreasuryFunds(uint256 amount, address payable destination) external tierTwoDelegation {
         Treasury ty = Treasury(trsy);
-        ty.sendFunds(amount, destination);
+        uint256 toAdd = ty.sendFunds(amount, destination);
+        trg = trg.add(toAdd);
     }
 
-      /**
+    /**
      * @notice distribute treasury ERC20 funds to some destination
      * @param token the ERC20 address to transfer tokens of
      * @param amount the new amount to send from the treasury, in wei equivalent
@@ -622,12 +605,12 @@ contract DAO {
      */
 
       /**
-     * @notice change the amount (as percent) that is sent from proxy to treasury
-     * @param new_ the new amount to send to treasury. (1 = 100%, 10 = 10%, 100 = 1%)
+     * @notice change the amount (as percent) that is sent direct to dao stakers when treasury sends ETH funds
+     * @param new_ the new percent. (100 = 100%, 10 = 10%, 2 = 2%)
      */
-    function updateTreasuryReserve(uint256 new_) external tierFourDelegation {
-        GovProxy py = GovProxy(pX);
-        py.updateTreasuryReserve(new_);
+    function updateStakersPercent(uint256 new_) external tierFourDelegation {
+        Treasury ty = Treasury(trsy);
+        ty.updateStakerPercent(new_);
     }
 
 
@@ -638,27 +621,6 @@ contract DAO {
     function updateTreasuryOwner(address payable new_) external tierFourDelegation {
         Treasury ty = Treasury(trsy);
         ty.updateDAO(new_);
-    }
-
-        /**
-     * @notice change the owner of proxy 
-     * @param new_ the address of new governance address
-     */
-    function updateProxyOwner(address payable new_) external tierFourDelegation {
-        GovProxy py = GovProxy(pX);
-        py.updateDAO(new_);
-    }
-
-
-
-     /**
-     * @notice change the address that the proxy sends treasury funds too
-     * @param new_ the new address to use for treasury
-     */
-    function updateTrsyAddy(address payable new_) external tierFourDelegation {
-        GovProxy py = GovProxy(pX);
-        py.updateTreasury(new_);
-        trsy = new_;
     }
 
      /**

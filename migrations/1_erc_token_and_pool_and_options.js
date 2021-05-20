@@ -3,7 +3,6 @@ const NativeAssetDenominatedBinaryOptions = artifacts.require(
 );
 const BIOPTokenV4 = artifacts.require("BIOPTokenV4");
 const DAO = artifacts.require("DAO");
-const GovProxy = artifacts.require("GovProxy");
 const DelegatedAccessTiers = artifacts.require("DelegatedAccessTiers");
 const APP = artifacts.require("APP");
 const TokenDenominatedBinaryOptionsFactory = artifacts.require(
@@ -126,9 +125,6 @@ module.exports = function (deployer) {
                                         return deployer
                                           .deploy(DelegatedAccessTiers)
                                           .then(async (tiersInstance) => {
-                                            return deployer
-                                              .deploy(GovProxy)
-                                              .then(async (proxyInstance) => {
                                                 return deployer
                                                   .deploy(Treasury)
                                                   .then((treasuryInstance) => {
@@ -138,7 +134,6 @@ module.exports = function (deployer) {
                                                         boInstance.address,
                                                         biopInstance.address,
                                                         tiersInstance.address,
-                                                        proxyInstance.address,
                                                         factoryInstance.address,
                                                         appInstance.address,
                                                         treasuryInstance.address
@@ -146,15 +141,12 @@ module.exports = function (deployer) {
                                                       .then(
                                                         async (govInstance) => {
                                                           await boInstance.transferDevFund(
-                                                            proxyInstance.address
+                                                            treasuryInstance.address
                                                           );
                                                           await boInstance.transferOwner(
                                                             govInstance.address
                                                           );
                                                           await factoryInstance.transferOwner(
-                                                            govInstance.address
-                                                          );
-                                                          await proxyInstance.updateDAO(
                                                             govInstance.address
                                                           );
                                                           await treasuryInstance.updateDAO(
@@ -170,7 +162,7 @@ module.exports = function (deployer) {
                                               });
                                           });
                                       });
-                                  });
+                                
                               });
                           });
                       });
@@ -225,9 +217,6 @@ module.exports = function (deployer) {
                             return deployer
                               .deploy(DelegatedAccessTiers)
                               .then(async (tiersInstance) => {
-                                return deployer
-                                  .deploy(GovProxy)
-                                  .then(async (proxyInstance) => {
                                     return deployer
                                       .deploy(Treasury)
                                       .then((treasuryInstance) => {
@@ -237,21 +226,17 @@ module.exports = function (deployer) {
                                             boInstance.address,
                                             biopInstance.address,
                                             tiersInstance.address,
-                                            proxyInstance.address,
                                             factoryInstance.address,
                                             appInstance.address
                                           )
                                           .then(async (govInstance) => {
                                             await boInstance.transferDevFund(
-                                              proxyInstance.address
+                                              treasuryInstance.address
                                             );
                                             await boInstance.transferOwner(
                                               govInstance.address
                                             );
                                             await factoryInstance.transferOwner(
-                                              govInstance.address
-                                            );
-                                            await proxyInstance.updateDAO(
                                               govInstance.address
                                             );
                                             await treasuryInstance.updateDAO(
@@ -263,7 +248,7 @@ module.exports = function (deployer) {
                                           });
                                       });
                                   });
-                              });
+                             
                           });
                       });
                   });

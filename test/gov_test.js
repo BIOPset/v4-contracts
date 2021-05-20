@@ -3,7 +3,6 @@ var NativeAssetDenominatedBinaryOptions = artifacts.require(
 );
 var DAO = artifacts.require("DAO");
 var BIOPTokenV4 = artifacts.require("BIOPTokenV4");
-var GovProxy = artifacts.require("GovProxy");
 var Treasury = artifacts.require("Treasury");
 var ReserveBondingCurve = artifacts.require("ReserveBondingCurve");
 
@@ -64,6 +63,74 @@ contract("DAO", (accounts) => {
         });
       });
     });
+  }); 
+  it("allows withdraw earned fees % on balance increase", () => {
+    return DAO.deployed().then(async function (instance) {
+      return BIOPTokenV4.deployed().then(async function (bp) {
+        return ReserveBondingCurve.deployed().then(async function (lsbc) {
+          return Treasury.deployed().then(async function (trsy) {
+            //first a second user makes a deposit
+            await lsbc.buy({ from: accounts[6], value: toWei(15) });
+            var bought = await bp.balanceOf(accounts[6]);
+            var ts = await bp.totalSupply();
+            await bp.approve(instance.address, ts, { from: accounts[6] });
+            await instance.stake(bought, { from: accounts[6] });
+
+            //then we send some eth to the treasury to simulate it recieving trade fee
+            await web3.eth.sendTransaction({
+              from: accounts[8],
+              to: trsy.address,
+              value: toWei(10),
+            });
+
+
+            var tb = await web3.eth.getBalance(trsy.address);
+            console.log(`treasury balance is ${tb}`);
+            //we endore ourselves in the dao
+            await instance.endorse(accounts[6], { from: accounts[6] });
+            const endorsed = await instance.shas(accounts[6]);
+            const dbiop = await instance.dBIOP();
+            console.log(`endorsement is ${endorsed} dbiop is ${dbiop}`);
+            await instance.sendTreasuryFunds(toWei(10), accounts[8], { from: accounts[6] });
+
+            var balance = await web3.eth.getBalance(instance.address);
+            
+            await instance.unendorse({ from: accounts[6] });
+            
+            var toReceive = await instance.pendingETHRewards(accounts[5]);
+            var staked = await instance.staked(accounts[5]);
+            var lrc = await instance.lrc(accounts[5]);
+            var trg = await instance.trg();
+            var ts = await instance.totalStaked();
+            var brslc = await instance.bRSLC(accounts[5]);
+
+            var dao = instance.address;
+            var owner = await trsy.dao();
+
+
+            console.log(`dao is ${dao} tresaury owner is ${owner} `);
+
+            console.log(`claiming ${brslc} of ${balance} `);
+            await instance.claimETHRewards({ from: accounts[5] });
+            var toReceive2 = await instance.pendingETHRewards(accounts[5]);
+            var lrc2 = await instance.lrc(accounts[5]);
+            console.log(
+              `to receive ${toReceive}. should be ${
+                ((trg - lrc) * staked) / ts
+              }. base ${brslc}. staked ${staked}. ts ${ts}. lrc ${lrc}. trg ${trg}. of balance ${balance}`
+            );
+            console.log(`to receive2 ${toReceive2}. lrc2 ${lrc2}`);
+
+            console.log(`to receive2 ${toReceive2.toString()}. receive ${toReceive.toString()}`);
+            assert.equal(
+              toReceive.toString() != "0" && toReceive2.toString() == "0",
+              true,
+              "is not correct"
+            );
+          });
+          });
+      });
+    });
   });
   it("allows endorsement", () => {
     return DAO.deployed().then(async function (instance) {
@@ -90,66 +157,7 @@ contract("DAO", (accounts) => {
       );
     });
   });
-  it("allows withdraw earned fees % on balance increase", () => {
-    return DAO.deployed().then(async function (instance) {
-      return BIOPTokenV4.deployed().then(async function (bp) {
-        return GovProxy.deployed().then(async function (proxy) {
-          return ReserveBondingCurve.deployed().then(async function (lsbc) {
-            //first a second user makes a deposit
-            await lsbc.buy({ from: accounts[6], value: 1000 });
-            var bought = await bp.balanceOf(accounts[6]);
-            var ts = await bp.totalSupply();
-            await bp.approve(instance.address, ts, { from: accounts[6] });
-            await instance.stake(bought, { from: accounts[6] });
-
-            //then we send some eth to the contract to simulate it recieving bet fees
-
-            console.log(`trsansfering to proxy @${proxy.address}`);
-            await web3.eth.sendTransaction({
-              from: accounts[8],
-              to: proxy.address,
-              value: 100000,
-            });
-
-            var pBalance = await web3.eth.getBalance(proxy.address);
-            console.log(`trsansfered ${pBalance}to proxy `);
-
-            //then we transfer the eth from the proxy contract
-            console.log("trsansfering to gov");
-            await instance.sRTG({ from: accounts[6] });
-            console.log("trsansfered to gov");
-
-            var balance = await web3.eth.getBalance(instance.address);
-            
-            var toReceive = await instance.pendingETHRewards(accounts[5]);
-            var staked = await instance.staked(accounts[5]);
-            var lrc = await instance.lrc(accounts[5]);
-            var trg = await instance.trg();
-            var ts = await instance.totalStaked();
-            var brslc = await instance.bRSLC(accounts[5]);
-
-            console.log(`claiming ${brslc} of ${balance} `);
-            await instance.claimETHRewards({ from: accounts[5] });
-            var toReceive2 = await instance.pendingETHRewards(accounts[5]);
-            var lrc2 = await instance.lrc(accounts[5]);
-            console.log(
-              `to receive ${toReceive}. should be ${
-                ((trg - lrc) * staked) / ts
-              }. base ${brslc}. staked ${staked}. ts ${ts}. lrc ${lrc}. trg ${trg}. of balance ${balance}`
-            );
-            console.log(`to receive2 ${toReceive2}. lrc2 ${lrc2}`);
-
-            console.log(`to receive2 ${toReceive2.toString()}. receive ${toReceive.toString()}`);
-            assert.equal(
-              toReceive.toString() != "0" && toReceive2.toString() == "0",
-              true,
-              "is not correct"
-            );
-          });
-        });
-      });
-    });
-  });
+ 
   it("allows unendorse", () => {
     return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
@@ -180,75 +188,7 @@ contract("DAO", (accounts) => {
     });
   });
 
-  it("allows transfer from gov proxy", () => {
-    return DAO.deployed().then(async function (instance) {
-      return BIOPTokenV4.deployed().then(async function (bp) {
-        return ReserveBondingCurve.deployed().then(async function (lsbc) {
-          return GovProxy.deployed().then(async function (proxy) {
-            await lsbc.buy({ from: accounts[5], value: 1000 });
-            var bought = await bp.balanceOf(accounts[5]);
-            var ts = await bp.totalSupply();
-            await bp.approve(instance.address, ts, { from: accounts[5] });
-            await instance.stake(bought, { from: accounts[5] });
 
-            await web3.eth.sendTransaction({
-              from: accounts[8],
-              to: proxy.address,
-              value: toWei(1),
-            });
-            var b1 = await web3.eth.getBalance(proxy.address);
-            await instance.sRTG({ from: accounts[5] });
-            var b2 = await web3.eth.getBalance(proxy.address);
-            console.log(`
-            b2 ${parseInt(b2.toString())}\n
-            should be less then then\n
-            b1 ${parseInt(b1.toString())}
-            `)
-            assert.equal(
-              parseInt(b2.toString()) < parseInt(b1.toString()),
-              true,
-              "proxy balance did not decrease"
-            );
-          }); 
-        });
-      });
-    });
-  });
-
-  it("can't transfer when proxy empty", () => {
-    return DAO.deployed().then(async function (instance) {
-      return BIOPTokenV4.deployed().then(async function (bp) {
-        return ReserveBondingCurve.deployed().then(async function (lsbc) {
-          return Treasury.deployed().then(async function (treasury) {
-            return GovProxy.deployed().then(async function (proxy) {
-            await lsbc.buy({ from: accounts[5], value: 1000 });
-            var bought = await bp.balanceOf(accounts[5]);
-            var ts = await bp.totalSupply();
-            await bp.approve(instance.address, ts, { from: accounts[5] });
-            await instance.stake(bought, { from: accounts[5] });
-
-            await web3.eth.sendTransaction({
-              from: accounts[8],
-              to: proxy.address,
-              value: toWei(1),
-            });
-            await instance.sRTG({ from: accounts[5] });
-
-            try {
-              
-              await instance.sRTG({ from: accounts[5] });
-              assert.equal(false, true, "test did not fail");
-            } catch (e) {
-              assert.equal(true, true, "this test was intended to fail");
-            }
-            
-
-           
-          }); });
-        });
-      });
-    });
-  });
 
   it("can't call a tier protected function without enough endorsement", () => {
     return DAO.deployed().then(async function (instance) {

@@ -259,7 +259,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
-                  `1000009999`, //pool is up the bet amount minus complete fee
+                  `1000009996`, //pool is up the bet amount minus complete fee
                   `${poolBalance * 1}`,
                   "pool balance is invalid after expire"
                 );
