@@ -62,7 +62,7 @@ DAO.sol - The Settlement DAO. From here $BIOP stakers oversee every aspect of th
 
 ReserveBondingCurve.sol - A AMM for $BIOP tokens. Not to be activated until after DEX rewards are complete. Controlled/owned by the DAO.
 
-Treasury.sol - The treasury of funds amassed from trading fees and owned collectively by the Settlement DAO. When ETH is sent from the treasury a percentage is sent to DAO stakers. Can be used to send amassed funds to anywhere by  the Settlement DAO. Controlled/owned by the DelegatedGov.
+Treasury.sol - The treasury of funds amassed from trading fees and owned collectively by the Settlement DAO. When ETH is sent from the treasury a percentage is sent to DAO stakers. Can be used to send amassed funds to anywhere by  the Settlement DAO. Controlled/owned by the DAO.
 
 UtilizationRewards.sol - holds and then disperse funds to traders, settlers, and writers using NativeAssetDenominatedBinaryOptions (but not TokenDenominatedBinaryOptions). Designed to be used over multiple "epochs". Controlled/owned by SettlementDAO. Interfaces with NativeAssetDenominatedBinaryOptions. Users call a method on NativeAssetDenominatedBinaryOptions to receive funds from the UtilizationRewards. The only direct calls to the UtilizationRewards are made by the Settlement DAO when depositing funds or updating contracts. 
 
