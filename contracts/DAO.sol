@@ -250,7 +250,7 @@ contract DAO {
 
 
 
-    //this function has to be present or transfers to the GOV fail silently
+    //this function has to be present or transfers to the DAO fail silently
     fallback () external payable {
     }
 
