@@ -6,9 +6,6 @@ Things you can do with a high enough percentage of staked $BIOP.
 
 When changing high tier actions its recommended that voting power be delegated to pre-deployed well read smart contracts and not individual users accounts.
 
-### Tier 0🏴
-These actions are able to be done by anyone in the community.
- - Proxy Transfer: send pool amassed fees to their destination (the treasury or direct to $BIOP stakers) and earn a bounty for the task.
 
 ### Tier 1🌲
 These actions require low consensus from the staked community members.
@@ -18,17 +15,19 @@ These actions require low consensus from the staked community members.
 ### Tier 2🤝🤝
 These actions require a larger consensus and have larger consequences.
  - Update Settlement Bounty: Change the amount received to exercise or expire a option someone (including you) has created.
- - Update Proxy Transfer Bounty: Change the amount a received to transfer the amassed proxy funds into the treasury or directly to all stakers (on a available until claimed basis).
  - Add/Remove/Update Oracle RateCalc pair that traders can use with the protocol pool.
  - Pause/Restart Rewards: Flip the switch to enable or disable utilization rewards in the protocol.
  - Harness Treasury Funds: Direct any percentage of total available treasury funds to a specific address.
+ - Enable Utilization Rewards.
 
 ### Tier 3🔥🔥🔥  
 These actions aren't as potentially foundation shaking as Tier 4 but are hot.
- - Update trade Fee: Update the percentage (2 decimal precision) fee charged to every bet and sent to the proxy.
+ - Update protocol Fee: Update the percentage (2 decimal precision) fee charged to every trade and sent to the proxy.
  - Update Soft Lock Time: Change the minimum amount of time that pool participants must stake for in order to avoid any exit fee.
  - Update Staking Rewards Epoch: Change the interval at which pool staking utilization rewards compound.
  - Replace APP: Activate a new Approved Price Providers contract which contains the list of approved Oracle / RateCalc pairs.
+ - Update UtilizationRewards owner.
+ - Deactivate TokenDenominatedBinaryOptions: remove a TokenDenominatedBinaryOptions instance when a new version is being introduced.
  
 
 ### Tier 4🌏🌏🌏🌏
@@ -41,6 +40,7 @@ These actions require the greatest consensus around staked participants.
  - Update Treasury Owner
  - Update Proxy Owner
  - Update Treasury
+ - Update Stakers percent: change the amount that is distributed evenly to stakers whenever treasury ETH is spent.
 
 #### initial delgation tier ratios
 - T0 = (any amount above 0.000000000000000100)
