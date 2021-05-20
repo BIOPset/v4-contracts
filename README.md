@@ -50,6 +50,45 @@ These actions require the greatest consensus around staked participants.
 - T4 = (90%)
 
 
+#### Audit Descriptions:
+
+APP.sol - Approved price providers, a set of key value pairs mapping Oracle addresses to RateCalcs addresses. Controlled/owned by the Settlement DAO (DAO) and utilized by NativeAssetDenominatedBinaryOptions and TokenDenominatedBinaryOptions.
+
+BasicRateCalc.sol - A rate calculator offering mostly 2x rates based on the belief this is good for marketing. The default RateCalc that will be deployed and mapped to the first Oracle approved in the APP.
+
+NativeAssetDenominatedBinaryOptions.sol - The main contract of the protocol. Allows traders to open trades, Writers to underwrite them, and settlers to exercise/expire them. The underlying asset is ETH. Controlled/owned by the Settlement DAO (DAO) and interfacing with APP, RateCalcs, and UtilizationRewards. Also keeps surface level record of utilization rewards owed to users.
+
+DAO.sol - The Settlement DAO. From here $BIOP stakers oversee every aspect of the protocol. Allows stakers to delegate power to governors who are able to update settings and replace contracts of the protocol. Controls the Oracle/RateCalc pairs in the APP. Also controls the EBOP20Factory. Can be used to pay a percentage of all trading fees directly to $BIOP stakers but doesn't by default. Interfaces with NativeAssetDenominatedBinaryOptions, APP, TokenDenominatedBinaryOptions, TokenDenominatedBinaryOptionsFactory,LateStageBondingCurve, and Treasury.
+
+ReserveBondingCurve.sol - A AMM for $BIOP tokens. Not to be activated until after DEX rewards are complete. Controlled/owned by the DAO.
+
+Treasury.sol - The treasury of funds amassed from trading fees and owned collectively by the Settlement DAO. When ETH is sent from the treasury a percentage is sent to DAO stakers. Can be used to send amassed funds to anywhere by  the Settlement DAO. Controlled/owned by the DelegatedGov.
+
+UtilizationRewards.sol - holds and then disperse funds to traders, settlers, and writers using NativeAssetDenominatedBinaryOptions (but not TokenDenominatedBinaryOptions). Designed to be used over multiple "epochs". Controlled/owned by SettlementDAO. Interfaces with NativeAssetDenominatedBinaryOptions. Users call a method on NativeAssetDenominatedBinaryOptions to receive funds from the UtilizationRewards. The only direct calls to the UtilizationRewards are made by the Settlement DAO when depositing funds or updating contracts. 
+
+Vesting.sol - For vesting team tokens over the given period. No cliff, once setup only the claimant can call the relevant funds and is able to transfer the claimant roll to other addresses at their discretion. Does not interface with other contracts.
+
+TieredVesting.sol - For vesting things like UtilizationReward tokens not activated yet. No cliff. Does not interface with other contracts.
+
+Unlock - For vesting things like LateStageBondingCurve tokens that activate all at once at a specific date. Does not interface with other contracts.
+
+TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptions.sol - TokenDenominatedBinaryOptions based binary options trading. Any fees it generates are sent directly to the Treasury. Created by TokenDenominatedBinaryOptionsFactory. Controlled/owned by the Settlement DAO. Interfaces with APP.
+
+TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptionsFactory.sol - Handlles creation of new TokenDenominatedBinaryOptions contracts. Controlled/owned by the Settlement DAO. Also contains a key value mapping of ERC20 addresses to TokenDenominatedBinaryOptions addresses used by the Settlement DAO to determine if a TokenDenominatedBinaryOptions exists for a arbitrary TokenDenominatedBinaryOptions already. Allows deactivation of a TokenDenominatedBinaryOptions address.
+
+Interfaces: (these are definitions of aspects that may have different implementations later on, like RateCalc):
+
+interfaces/ITokenDenominatedBinaryOptions.sol - interface for TokenDenominatedBinaryOptions.
+
+interfaces/INativeAssetDenominatedBinaryOptions.sol - interface for NativeAssetDenominatedBinaryOptions.
+
+interfaces/IAPP.sol - interface for APP.
+
+interfaces/IUtilizationRewards.sol - Interface for UtilizationRewards.
+
+interfaces/IRateCalc.sol - Interface for RateCalcs.
+
+
 
 # -
 # -
