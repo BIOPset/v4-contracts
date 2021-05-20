@@ -25,7 +25,7 @@ contract BasicRateCalc is IRateCalc {
 
         uint256 canLock = tP.sub(l);
         uint256 double = amount.mul(2);
-        //check that the option payment is less then 0.5% of the unlocked balance
+        //check that the option payment is less than 0.5% of the unlocked balance
         require(amount < canLock.div(200), "position too large");
 
         //for options less than 0.001% of the pool size
@@ -33,13 +33,13 @@ contract BasicRateCalc is IRateCalc {
             if ( s > 150 ) {
                 return actualRate(amount, canLock, amount.add(amount.div(100)));
             } else if (s > 100) {
-                //more then 100 bets in the same direction: 1.25x
+                //more than 100 bets in the same direction: 1.25x
                 return actualRate(amount, canLock, amount.add(amount.div(4)));
             } else  if (s > 50) {
-                //more then 50 bets in the same direction: 1.5x
+                //more than 50 bets in the same direction: 1.5x
                 return actualRate(amount, canLock, amount.add((amount.div(2))));
             } else {
-                // 2x
+                //the default return rate of biopset options is 2x
                 return actualRate(amount, canLock, double);
             }
         }
