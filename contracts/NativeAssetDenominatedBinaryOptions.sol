@@ -37,7 +37,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     uint256 public lockedAmount;
     uint256 public settlerFee = 5;//0.2%
     uint256 public protocolFee = 100;//1%
-    uint256 public poolLockSeconds = 7 days;
+    uint256 public poolLockSeconds = 1209600;//14 days
     uint256 public contractCreated;
     bool public open = true;
     Option[] public options;
@@ -250,7 +250,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @param newLockSeconds_ the new lock time, in seconds
      */
     function updatePoolLockSeconds(uint256 newLockSeconds_) external override onlyOwner {
-        require(newLockSeconds_ >= 0 && newLockSeconds_ < 14 days, "invalid fee");
+        //make sure that the pool lock period never exceeds 14 days (1209600 seconds)
+        require(newLockSeconds_ >= 0 && newLockSeconds_ < 1209600, "invalid pool lock period");
         poolLockSeconds = newLockSeconds_;
     }
 
