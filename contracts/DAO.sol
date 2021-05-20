@@ -10,7 +10,7 @@ import "./Treasury.sol";
 import "./TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptionsFactory.sol";
 interface AccessTiers {
     /**
-     * @notice Returns the rate to pay out for a given amount
+     * @notice checks if a user meets the requirement to call the given action
      * @param power the amount of control held by user trying to access this action
      * @param total the total amount of control available
      * @return boolean of users access to this tier
@@ -18,7 +18,7 @@ interface AccessTiers {
     function tier1(uint256 power, uint256 total) external returns (bool);
 
     /**
-     * @notice Returns the rate to pay out for a given amount
+     * @notice checks if a user meets the requirement to call the given action
      * @param power the amount of control held by user trying to access this action
      * @param total the total amount of control available
      * @return boolean of users access to this tier
@@ -27,7 +27,7 @@ interface AccessTiers {
 
 
     /**
-     * @notice Returns the rate to pay out for a given amount
+     * @notice checks if a user meets the requirement to call the given action
      * @param power the amount of control held by user trying to access this action
      * @param total the total amount of control available
      * @return boolean of users access to this tier
@@ -36,7 +36,7 @@ interface AccessTiers {
 
 
     /**
-     * @notice Returns the rate to pay out for a given amount
+     * @notice checks if a user meets the requirement to call the given action
      * @param power the amount of control held by user trying to access this action
      * @param total the total amount of control available
      * @return boolean of users access to this tier
