@@ -84,8 +84,8 @@ contract DelegatedAccessTiers is AccessTiers {
 /**
  * @title DAO
  * @author github.com/Shalquiana
- * @dev endorsement governance for biopset protocol
- * @notice endorsement governance for biopset protocol
+ * @dev governance for endorsing biopset protocol changes
+ * @notice governance for endorsing biopset protocol changes
  * BIOP
  */
 contract DAO {
@@ -96,7 +96,7 @@ contract DAO {
     address public aTA;//access tiers address
     address public fcry;//TokenDenominatedBinaryOptions factory address
     address payable public trsy;//treasury
-    
+
     mapping(address=>uint256) public shas;//amount of endorsement power currently directed at a address
     mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
@@ -104,9 +104,9 @@ contract DAO {
 
     //ETH rewards for stakers
     uint256 public trg = 0;//total rewards generated
-    mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address 
-    
-    
+    mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address
+
+
 
     constructor(address bo_, address v4_, address accessTiers_, address app_, address factory_, address payable trsy_) public {
       pA = bo_;
@@ -143,7 +143,7 @@ contract DAO {
         emit Stake(amount, totalStaked());
     }
 
- 
+
 
     /**
      * @notice withdraw your BIOP and stop earning rewards. You must unendorse before you can withdraw
@@ -176,7 +176,7 @@ contract DAO {
     }
 
      /**
-     * @notice unendorse your voting power. you will still earn staking rewards 
+     * @notice unendorse your voting power. you will still earn staking rewards
      * but your voting power won't back anyone.
      */
     function unendorse() public {
@@ -186,7 +186,7 @@ contract DAO {
         dBIOP = dBIOP.sub(staked[msg.sender]);
     }
 
-    /** 
+    /**
     * @notice base ETH rewards since last claim
     * @param acc the account to get the answer for
     */
@@ -202,13 +202,13 @@ contract DAO {
 
     function claimETHRewards() public {
         require(lrc[msg.sender] <= trg, "no rewards available");
-        
+
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
         require(msg.sender.send(toSend), "transfer failed");
     }
 
-    
+
 
     /**
      * @notice modifier for actions requiring tier 1 endorsement
@@ -246,14 +246,14 @@ contract DAO {
         _;
     }
 
-   
-   
+
+
 
 
     //this function has to be present or transfers to the GOV fail silently
     fallback () external payable {
     }
-    
+
      /**
      * @notice create a new TokenDenominatedBinaryOptions pool
      * @param token_ the erc20 address to underwrite the new pool
@@ -267,48 +267,48 @@ contract DAO {
 
 
 
-   
 
 
 
-    /* 
-                                                                                              
-                                                                                          
-                                                                                          
-                                                              .-=                         
-                      =                               :-=+#%@@@@@                         
-               @+@+* -*   -==: ==-+.           -=+#%@@@@@@@@@@@@@                         
-                :%    %. -%-=* :%              %@@@@@@@@@@@@@@@@@                         
-               .=== .===: -==: ===.            %@@@@%*+=--@@@@@@@                         
-                                               --.       .@@@@@@@                         
-                                                         .@@@@@@@                         
-                                                         .@@@@@@@                         
-                                                         .@@@@@@@                         
-                                                         .@@@@@@@                         
-                                                         .@@@@@@@                         
-                                                         .@@@@@@@                         
-                      .:    :.                           .@@@@@@@                         
-                     -@@#  #@@=                          .@@@@@@@                         
-                     +@@#  %@@=                          .@@@@@@@                         
-                     *@@*  @@@-                          .@@@@@@@                         
-                     #@@+ .@@@:                          .@@@@@@@                         
-                 .---@@@*-+@@@=--                        .@@@@@@@                         
-                 +@@@@@@@@@@@@@@@.                       .@@@@@@@                         
-                    .@@@: =@@@                           .@@@@@@@                         
-                    :@@@. +@@#                           .@@@@@@@                         
-                 -*##@@@##%@@@##*                        .@@@@@@@                         
-                 -##%@@@##@@@%##*                        .@@@@@@@                         
-                    +@@#  #@@=                           .@@@@@@@                         
-                    *@@*  @@@:                           .@@@@@@@                         
-                    *@@+  @@@.                 +**********@@@@@@@**********=              
-                    #@@= .@@@                  %@@@@@@@@@@@@@@@@@@@@@@@@@@@%              
-                    .--   :=:                  %@@@@@@@@@@@@@@@@@@@@@@@@@@@%              
-                                                                                          
-                                                                                          
-                                                                                          
-                                                                                          
-                                                                                          
-                                                                                          
+
+    /*
+
+
+
+                                                              .-=
+                      =                               :-=+#%@@@@@
+               @+@+* -*   -==: ==-+.           -=+#%@@@@@@@@@@@@@
+                :%    %. -%-=* :%              %@@@@@@@@@@@@@@@@@
+               .=== .===: -==: ===.            %@@@@%*+=--@@@@@@@
+                                               --.       .@@@@@@@
+                                                         .@@@@@@@
+                                                         .@@@@@@@
+                                                         .@@@@@@@
+                                                         .@@@@@@@
+                                                         .@@@@@@@
+                                                         .@@@@@@@
+                      .:    :.                           .@@@@@@@
+                     -@@#  #@@=                          .@@@@@@@
+                     +@@#  %@@=                          .@@@@@@@
+                     *@@*  @@@-                          .@@@@@@@
+                     #@@+ .@@@:                          .@@@@@@@
+                 .---@@@*-+@@@=--                        .@@@@@@@
+                 +@@@@@@@@@@@@@@@.                       .@@@@@@@
+                    .@@@: =@@@                           .@@@@@@@
+                    :@@@. +@@#                           .@@@@@@@
+                 -*##@@@##%@@@##*                        .@@@@@@@
+                 -##%@@@##@@@%##*                        .@@@@@@@
+                    +@@#  #@@=                           .@@@@@@@
+                    *@@*  @@@:                           .@@@@@@@
+                    *@@+  @@@.                 +**********@@@@@@@**********=
+                    #@@= .@@@                  %@@@@@@@@@@@@@@@@@@@@@@@@@@@%
+                    .--   :=:                  %@@@@@@@@@@@@@@@@@@@@@@@@@@@%
+
+
+
+
+
+
      */
 
 
@@ -344,45 +344,45 @@ contract DAO {
         }
     }
 
-    /* 
-                                                                                                  
-                                                                                          
-                                                    .:-+*##%@@@@@@%#*+=:                  
-              :::::   *                        .=+#@@@@@@@@@@@@@@@@@@@@@@%+:              
-              @-@=#: =*.  .+=+- :*=+*:        -@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=            
-               .@:    %:  #*--#. **           -@@@@@@@%#+=-::::::-=*@@@@@@@@@@%-          
-              :+**- :+*++ .++++ -**+          -@@@#=:                :*@@@@@@@@@=         
-                                              .=.                      :%@@@@@@@@=        
-                                                                        .@@@@@@@@@.       
-                                                                         +@@@@@@@@=       
-                                                                         :@@@@@@@@+       
-                                                                         -@@@@@@@@=       
-                                                                         #@@@@@@@@:       
-                                                                        -@@@@@@@@#        
-                                                                       :@@@@@@@@%         
-                                                                      -@@@@@@@@%.         
-                      *#*   -##-                                    .*@@@@@@@@*           
-                     =@@@-  @@@%                                   =@@@@@@@@#:            
-                     +@@@: .@@@#                                 =%@@@@@@@%-              
-                     *@@@. :@@@*                              .+@@@@@@@@#-                
-                     #@@@  -@@@=                            .*@@@@@@@@*.                  
-                  ...%@@@..=@@@=..                        :#@@@@@@@%=.                    
-                :@@@@@@@@@@@@@@@@@@                     -%@@@@@@@%-                       
-                 +++*@@@%++%@@@*++=                   :#@@@@@@@#:                         
-                    :@@@+  #@@@                     :#@@@@@@@#:                           
-                    -@@@=  %@@@                    +@@@@@@@%-                             
-                .#%%@@@@@%%@@@@%%%*              -@@@@@@@@*                               
-                .#%%@@@@%%%@@@@%%%*             *@@@@@@@@=                                
-                    #@@@  .@@@*               .%@@@@@@@@-                                 
-                    %@@@  :@@@+              .%@@@@@@@@*                                  
-                    @@@%  -@@@=              @@@@@@@@@@#**************************.       
-                    @@@#  =@@@-              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:       
-                    @@@+  =@@@.              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:       
-                     :.    .:.               @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:       
-                                                                                          
-                                                                                          
-                                                                                          
-                                                                                          
+    /*
+
+
+                                                    .:-+*##%@@@@@@%#*+=:
+              :::::   *                        .=+#@@@@@@@@@@@@@@@@@@@@@@%+:
+              @-@=#: =*.  .+=+- :*=+*:        -@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%=
+               .@:    %:  #*--#. **           -@@@@@@@%#+=-::::::-=*@@@@@@@@@@%-
+              :+**- :+*++ .++++ -**+          -@@@#=:                :*@@@@@@@@@=
+                                              .=.                      :%@@@@@@@@=
+                                                                        .@@@@@@@@@.
+                                                                         +@@@@@@@@=
+                                                                         :@@@@@@@@+
+                                                                         -@@@@@@@@=
+                                                                         #@@@@@@@@:
+                                                                        -@@@@@@@@#
+                                                                       :@@@@@@@@%
+                                                                      -@@@@@@@@%.
+                      *#*   -##-                                    .*@@@@@@@@*
+                     =@@@-  @@@%                                   =@@@@@@@@#:
+                     +@@@: .@@@#                                 =%@@@@@@@%-
+                     *@@@. :@@@*                              .+@@@@@@@@#-
+                     #@@@  -@@@=                            .*@@@@@@@@*.
+                  ...%@@@..=@@@=..                        :#@@@@@@@%=.
+                :@@@@@@@@@@@@@@@@@@                     -%@@@@@@@%-
+                 +++*@@@%++%@@@*++=                   :#@@@@@@@#:
+                    :@@@+  #@@@                     :#@@@@@@@#:
+                    -@@@=  %@@@                    +@@@@@@@%-
+                .#%%@@@@@%%@@@@%%%*              -@@@@@@@@*
+                .#%%@@@@%%%@@@@%%%*             *@@@@@@@@=
+                    #@@@  .@@@*               .%@@@@@@@@-
+                    %@@@  :@@@+              .%@@@@@@@@*
+                    @@@%  -@@@=              @@@@@@@@@@#**************************.
+                    @@@#  =@@@-              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                    @@@+  =@@@.              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                     :.    .:.               @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+
+
+
+
 
      */
 
@@ -412,7 +412,7 @@ contract DAO {
     }
 
     /**
-     * @notice add (or update the RateCalc of existing) trading pair 
+     * @notice add (or update the RateCalc of existing) trading pair
      * @param newPP_ the address of trading pair to be added
      * @param newRateCalc_ the address of the rate calc to be used for this pair
      */
@@ -421,7 +421,7 @@ contract DAO {
         app.addPP(newPP_, newRateCalc_);
     }
 
-   
+
 
     /**
      * @notice enable or disable BIOP rewards, only for the main ETH pool
@@ -454,53 +454,53 @@ contract DAO {
         ty.sendERC20Funds(token, amount, destination);
     }
 
-    /* 
-                                                                                              
-                                                                                          
-                                                        .:::::::::.                       
-                                               .-=*#%@@@@@@@@@@@@@@@@@#*=:                
-          -+++++   #.                         %@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=             
-          +:+%.%  +%-  .*++*: =%++#:          %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+           
-            +%     %-  +@==+=  @-             %@@@@#*=-:..      .:-+%@@@@@@@@@@%.         
-           ++++. -++++  -+++. ++++            *+-.                   .+@@@@@@@@@%         
-                                                                       :@@@@@@@@@-        
-                                                                        +@@@@@@@@*        
-                                                                        :@@@@@@@@*        
-                                                                        :@@@@@@@@+        
-                                                                        =@@@@@@@@:        
-                                                                       .@@@@@@@@=         
-                                                                      :%@@@@@@@=          
-                                                                    .*@@@@@@@%:           
-                                                                .:+#@@@@@@@#-             
-                    .      .                       :======++*#%@@@@@@@@@*-                
-                  -@@@-  =@@@:                     +@@@@@@@@@@@@@@@@%=.                   
-                  *@@@=  *@@@-                     +@@@@@@@@@@@@@@@@@@@#+-.               
-                  #@@@-  #@@@:                     -++++++**#%%@@@@@@@@@@@@%+:            
-                  %@@@.  %@@@.                                  .:=#@@@@@@@@@@%-          
-                  @@@@   @@@@                                        :*@@@@@@@@@%.        
-              :::-@@@@:::@@@@:::                                       .#@@@@@@@@@:       
-             #@@@@@@@@@@@@@@@@@@#                                        #@@@@@@@@@.      
-             :+++*@@@%++*@@@%+++:                                         @@@@@@@@@+      
-                 -@@@*  =@@@+                                             *@@@@@@@@#      
-                 =@@@+  +@@@=                                             +@@@@@@@@%      
-             =###%@@@%##%@@@%###=                                         *@@@@@@@@#      
-             *@@@@@@@@@@@@@@@@@@*                                        .@@@@@@@@@+      
-                 #@@@:  %@@@.                                            %@@@@@@@@@.      
-                 %@@@.  @@@@                                           .%@@@@@@@@@+       
-                 @@@@  .@@@%                 +=:                     :*@@@@@@@@@@+        
-                 @@@@  :@@@#                 %@@@@#+=-.          .-+%@@@@@@@@@@@-         
-                .@@@%  -@@@*                 %@@@@@@@@@@@@%%%%%@@@@@@@@@@@@@@@=           
-                 +%#-   *%#:                 %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*-             
-                                             -+*#%@@@@@@@@@@@@@@@@@@@@%*=.                
-                                                    ..:--=======--:.                      
-                                                                                          
+    /*
+
+
+                                                        .:::::::::.
+                                               .-=*#%@@@@@@@@@@@@@@@@@#*=:
+          -+++++   #.                         %@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=
+          +:+%.%  +%-  .*++*: =%++#:          %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+
+            +%     %-  +@==+=  @-             %@@@@#*=-:..      .:-+%@@@@@@@@@@%.
+           ++++. -++++  -+++. ++++            *+-.                   .+@@@@@@@@@%
+                                                                       :@@@@@@@@@-
+                                                                        +@@@@@@@@*
+                                                                        :@@@@@@@@*
+                                                                        :@@@@@@@@+
+                                                                        =@@@@@@@@:
+                                                                       .@@@@@@@@=
+                                                                      :%@@@@@@@=
+                                                                    .*@@@@@@@%:
+                                                                .:+#@@@@@@@#-
+                    .      .                       :======++*#%@@@@@@@@@*-
+                  -@@@-  =@@@:                     +@@@@@@@@@@@@@@@@%=.
+                  *@@@=  *@@@-                     +@@@@@@@@@@@@@@@@@@@#+-.
+                  #@@@-  #@@@:                     -++++++**#%%@@@@@@@@@@@@%+:
+                  %@@@.  %@@@.                                  .:=#@@@@@@@@@@%-
+                  @@@@   @@@@                                        :*@@@@@@@@@%.
+              :::-@@@@:::@@@@:::                                       .#@@@@@@@@@:
+             #@@@@@@@@@@@@@@@@@@#                                        #@@@@@@@@@.
+             :+++*@@@%++*@@@%+++:                                         @@@@@@@@@+
+                 -@@@*  =@@@+                                             *@@@@@@@@#
+                 =@@@+  +@@@=                                             +@@@@@@@@%
+             =###%@@@%##%@@@%###=                                         *@@@@@@@@#
+             *@@@@@@@@@@@@@@@@@@*                                        .@@@@@@@@@+
+                 #@@@:  %@@@.                                            %@@@@@@@@@.
+                 %@@@.  @@@@                                           .%@@@@@@@@@+
+                 @@@@  .@@@%                 +=:                     :*@@@@@@@@@@+
+                 @@@@  :@@@#                 %@@@@#+=-.          .-+%@@@@@@@@@@@-
+                .@@@%  -@@@*                 %@@@@@@@@@@@@%%%%%@@@@@@@@@@@@@@@=
+                 +%#-   *%#:                 %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*-
+                                             -+*#%@@@@@@@@@@@@@@@@@@@@%*=.
+                                                    ..:--=======--:.
+
 
      */
 
-    
+
 
     /**
-     * @notice update soft lock time for the main pool. 
+     * @notice update soft lock time for the main pool.
      * @param newLockSeconds_ the time (in seconds) of the soft pool lock
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
@@ -537,7 +537,7 @@ contract DAO {
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
     function updateAPP(address newAPP_, address addy_) external tierThreeDelegation {
-        
+
         if (addy_ == pA) {
             INativeAssetDenominatedBinaryOptions pr = INativeAssetDenominatedBinaryOptions(pA);
             pr.updateAPP(newAPP_);
@@ -558,7 +558,7 @@ contract DAO {
        ur.transferDAO(addy_);
     }
 
-     
+
     /**
      * @notice deactivate a TokenDenominatedBinaryOptions pool
      */
@@ -568,40 +568,40 @@ contract DAO {
         factory.removePool(token_);
     }
 
-    /* 
-                                                                                              
-                                                                                          
-                                                                                          
-                                                                                          
-                                                                                          
-                       -                                       +######:                   
-                %*@*+ =*   -=-  =:==                         .%@@@@@@@-                   
-                .:%    @  +#-+= ++ .                        =@@@@@@@@@-                   
-                .=== .===. -==:.==-                       .#@@@@@@@@@@-                   
-                                                         =@@@@@@%@@@@@-                   
-                                                        *@@@@@#.*@@@@@-                   
-                                                      -@@@@@@+  *@@@@@-                   
-                                                     *@@@@@#.   *@@@@@-                   
-                                                   -@@@@@@=     *@@@@@-                   
-                                                  *@@@@@%.      *@@@@@-                   
-                                                :%@@@@@+        *@@@@@-                   
-                       --   .-:                +@@@@@%:         *@@@@@-                   
-                      +@@*  @@@.             .%@@@@@+           *@@@@@-                   
-                      *@@+  @@@.            =@@@@@%:            *@@@@@-                   
-                      #@@= .@@@           .#@@@@@+              *@@@@@-                   
-                      %@@- -@@%          =@@@@@%-               *@@@@@-                   
-                  :***@@@#*#@@@**=      *@@@@@@#################@@@@@@%######-            
-                  =#%%@@@%%@@@@%%+      %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+            
-                     .@@@  +@@+         %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+            
-                     -@@@  #@@=         .......................:@@@@@@+......             
-                  +@@@@@@@@@@@@@@#                             .@@@@@@-                   
-                  .-=#@@%==@@@+==:                             .@@@@@@-                   
-                     *@@*  @@@.                                .@@@@@@-                   
-                     #@@+ .@@@                                 .@@@@@@-                   
-                     %@@= :@@@                                 .@@@@@@-                   
-                     *@%. .%@+                                 .@@@@@@-                   
-                                                                ******:                   
-                                                                                          
+    /*
+
+
+
+
+
+                       -                                       +######:
+                %*@*+ =*   -=-  =:==                         .%@@@@@@@-
+                .:%    @  +#-+= ++ .                        =@@@@@@@@@-
+                .=== .===. -==:.==-                       .#@@@@@@@@@@-
+                                                         =@@@@@@%@@@@@-
+                                                        *@@@@@#.*@@@@@-
+                                                      -@@@@@@+  *@@@@@-
+                                                     *@@@@@#.   *@@@@@-
+                                                   -@@@@@@=     *@@@@@-
+                                                  *@@@@@%.      *@@@@@-
+                                                :%@@@@@+        *@@@@@-
+                       --   .-:                +@@@@@%:         *@@@@@-
+                      +@@*  @@@.             .%@@@@@+           *@@@@@-
+                      *@@+  @@@.            =@@@@@%:            *@@@@@-
+                      #@@= .@@@           .#@@@@@+              *@@@@@-
+                      %@@- -@@%          =@@@@@%-               *@@@@@-
+                  :***@@@#*#@@@**=      *@@@@@@#################@@@@@@%######-
+                  =#%%@@@%%@@@@%%+      %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+
+                     .@@@  +@@+         %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+
+                     -@@@  #@@=         .......................:@@@@@@+......
+                  +@@@@@@@@@@@@@@#                             .@@@@@@-
+                  .-=#@@%==@@@+==:                             .@@@@@@-
+                     *@@*  @@@.                                .@@@@@@-
+                     #@@+ .@@@                                 .@@@@@@-
+                     %@@= :@@@                                 .@@@@@@-
+                     *@%. .%@+                                 .@@@@@@-
+                                                                ******:
+
      */
 
       /**
@@ -615,7 +615,7 @@ contract DAO {
 
 
        /**
-     * @notice change the owner of treasury 
+     * @notice change the owner of treasury
      * @param new_ the address of new governance address
      */
     function updateTreasuryOwner(address payable new_) external tierFourDelegation {
