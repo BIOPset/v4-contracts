@@ -88,7 +88,7 @@ contract("DAO", (accounts) => {
             console.log(`treasury balance is ${tb}`);
             //we endore ourselves in the dao
             await instance.endorse(accounts[6], { from: accounts[6] });
-            const endorsed = await instance.shas(accounts[6]);
+            const endorsed = await instance.votes(accounts[6]);
             const dbiop = await instance.dBIOP();
             console.log(`endorsement is ${endorsed} dbiop is ${dbiop}`);
             await instance.sendTreasuryFunds(toWei(10), accounts[8], { from: accounts[6] });

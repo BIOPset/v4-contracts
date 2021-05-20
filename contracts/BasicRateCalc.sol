@@ -35,6 +35,7 @@ contract BasicRateCalc is IRateCalc {
             //the default return rate of biopset options is 2x
             return actualRate(amount, canLock, double);
         }
+    }
 
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
         //make sure that the option value is less than (or equal to) the amount that can be locked.

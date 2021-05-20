@@ -97,7 +97,7 @@ contract DAO {
     address public fcry;//TokenDenominatedBinaryOptions factory address
     address payable public trsy;//treasury
 
-    mapping(address=>uint256) public shas;//amount of endorsement power currently directed at a address
+    mapping(address=>uint256) public votes;//amount of endorsement power currently directed at a address
     mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
     uint256 public dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
@@ -169,9 +169,9 @@ contract DAO {
         if (oldSha == 0x0000000000000000000000000000000000000000) {
             dBIOP = dBIOP.add(staked[msg.sender]);
         } else {
-            shas[oldSha] = shas[oldSha].sub(staked[msg.sender]);
+            votes[oldSha] = votes[oldSha].sub(staked[msg.sender]);
         }
-        shas[newSha] = shas[newSha].add(staked[msg.sender]);
+        votes[newSha] = votes[newSha].add(staked[msg.sender]);
         rep[msg.sender] = newSha;
     }
 
@@ -181,7 +181,7 @@ contract DAO {
      */
     function unendorse() public {
         address oldSha = rep[msg.sender];
-        shas[oldSha] = shas[oldSha].sub(staked[msg.sender]);
+        votes[oldSha] = votes[oldSha].sub(staked[msg.sender]);
         rep[msg.sender] =  0x0000000000000000000000000000000000000000;
         dBIOP = dBIOP.sub(staked[msg.sender]);
     }
@@ -215,7 +215,7 @@ contract DAO {
      */
     modifier tierOneDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier1(shas[msg.sender], dBIOP), "insufficent endorsement power");
+        require(tiers.tier1(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
@@ -224,7 +224,7 @@ contract DAO {
      */
     modifier tierTwoDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier2(shas[msg.sender], dBIOP), "insufficent endorsement power");
+        require(tiers.tier2(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
@@ -233,7 +233,7 @@ contract DAO {
      */
     modifier tierThreeDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier3(shas[msg.sender], dBIOP), "insufficent endorsement power");
+        require(tiers.tier3(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
@@ -242,7 +242,7 @@ contract DAO {
      */
     modifier tierFourDelegation() {
         AccessTiers tiers = AccessTiers(aTA);
-        require(tiers.tier4(shas[msg.sender], dBIOP), "insufficent endorsement power");
+        require(tiers.tier4(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
 
