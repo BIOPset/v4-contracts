@@ -97,7 +97,7 @@ contract DAO {
     address public fcry;//TokenDenominatedBinaryOptions factory address
     address payable public trsy;//treasury
     
-    mapping(address=>uint256) public shas;//amounts of voting power held by each sha
+    mapping(address=>uint256) public shas;//amount of endorsement power currently directed at a address
     mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
     uint256 public dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
