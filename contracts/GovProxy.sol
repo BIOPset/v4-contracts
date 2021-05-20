@@ -14,7 +14,7 @@ contract GovProxy {
     using SafeMath for uint256;
     address payable public dao;
     address payable public treasury;
-    uint256 public tFee = 2000;//0.2%. This fee is for the transfer caller
+    uint256 public tFee = 5000;//0.2%. This fee is for the transfer caller
     uint256 public treasuryReserve = 900;//90%
 
     constructor() public {
@@ -54,7 +54,7 @@ contract GovProxy {
             uint256 tG;
             if (treasuryReserve != 0) {
                 //if treasury fee is not zero then calculate it
-                tT = tT = (address(this).balance.sub(fee)).div(1000).mul(treasuryReserve);//to treasury
+                tT = (address(this).balance.sub(fee)).div(1000).mul(treasuryReserve);//to treasury
                 if (treasuryReserve < 1000) {
                     //if the entire amount doesn't go to the treasury
                     tG = (address(this).balance.sub(fee)).sub(tT);
