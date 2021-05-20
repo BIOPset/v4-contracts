@@ -70,7 +70,9 @@ Vesting.sol - For vesting team tokens over the given period. No cliff, once setu
 
 TieredVesting.sol - For vesting things like UtilizationReward tokens not activated yet. No cliff. Does not interface with other contracts.
 
-Unlock - For vesting things like LateStageBondingCurve tokens that activate all at once at a specific date. Does not interface with other contracts.
+Unlock.sol - For vesting things like LateStageBondingCurve tokens that activate all at once at a specific date. Does not interface with other contracts.
+
+DelegatedAccessTiers.sol - used by the DAO to protect access to actions. defines a number of guard functions to check if a user has sufficient endorsement power to call a action. Interfaced with by DAO and uses structure of IAccessTiers.
 
 TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptions.sol - TokenDenominatedBinaryOptions based binary options trading. Any fees it generates are sent directly to the Treasury. Created by TokenDenominatedBinaryOptionsFactory. Controlled/owned by the Settlement DAO. Interfaces with APP.
 
@@ -87,6 +89,8 @@ interfaces/IAPP.sol - interface for APP.
 interfaces/IUtilizationRewards.sol - Interface for UtilizationRewards.
 
 interfaces/IRateCalc.sol - Interface for RateCalcs.
+
+interfaces/IAccessTiers.sol - Interface for AccessTiers.
 
 
 

@@ -8,76 +8,8 @@ import "./APP.sol";
 import "./UtilizationRewards.sol";
 import "./Treasury.sol";
 import "./TokenDenominatedBinaryOptions/TokenDenominatedBinaryOptionsFactory.sol";
-interface AccessTiers {
-    /**
-     * @notice checks if a user meets the requirement to call the given action
-     * @param power the amount of control held by user trying to access this action
-     * @param total the total amount of control available
-     * @return boolean of users access to this tier
-     */
-    function tier1(uint256 power, uint256 total) external returns (bool);
+import "./interfaces/IAccessTiers.sol";
 
-    /**
-     * @notice checks if a user meets the requirement to call the given action
-     * @param power the amount of control held by user trying to access this action
-     * @param total the total amount of control available
-     * @return boolean of users access to this tier
-     */
-    function tier2(uint256 power, uint256 total) external returns (bool);
-
-
-    /**
-     * @notice checks if a user meets the requirement to call the given action
-     * @param power the amount of control held by user trying to access this action
-     * @param total the total amount of control available
-     * @return boolean of users access to this tier
-     */
-    function tier3(uint256 power, uint256 total) external returns (bool);
-
-
-    /**
-     * @notice checks if a user meets the requirement to call the given action
-     * @param power the amount of control held by user trying to access this action
-     * @param total the total amount of control available
-     * @return boolean of users access to this tier
-     */
-    function tier4(uint256 power, uint256 total) external returns (bool);
-}
-
-contract DelegatedAccessTiers is AccessTiers {
-    using SafeMath for uint256;
-    function tier1(uint256 power, uint256 total) external override returns (bool) {
-        uint256 half = total.div(2);
-        if (power >= half) {
-            return true;
-        }
-        return false;
-    }
-
-    function tier2(uint256 power, uint256 total) external override returns (bool) {
-        uint256 twothirds = total.div(3).mul(2);
-        if (power >= twothirds) {
-            return true;
-        }
-        return false;
-    }
-
-    function tier3(uint256 power, uint256 total) external override returns (bool) {
-        uint256 threeQuarters = total.div(4).mul(3);
-        if (power >= threeQuarters) {
-            return true;
-        }
-        return false;
-    }
-
-    function tier4(uint256 power, uint256 total) external override returns (bool) {
-        uint256 ninety = total.div(10).mul(9);
-        if (power >= ninety) {
-            return true;
-        }
-        return false;
-    }
-}
 
 
 
@@ -214,7 +146,7 @@ contract DAO {
      * @notice modifier for actions requiring tier 1 endorsement
      */
     modifier tierOneDelegation() {
-        AccessTiers tiers = AccessTiers(aTA);
+        IAccessTiers tiers = IAccessTiers(aTA);
         require(tiers.tier1(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
@@ -223,7 +155,7 @@ contract DAO {
      * @notice modifier for actions requiring a tier 2 endorsement
      */
     modifier tierTwoDelegation() {
-        AccessTiers tiers = AccessTiers(aTA);
+        IAccessTiers tiers = IAccessTiers(aTA);
         require(tiers.tier2(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
@@ -232,7 +164,7 @@ contract DAO {
      * @notice modifier for actions requiring a tier 3 endorsement
      */
     modifier tierThreeDelegation() {
-        AccessTiers tiers = AccessTiers(aTA);
+        IAccessTiers tiers = IAccessTiers(aTA);
         require(tiers.tier3(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }
@@ -241,7 +173,7 @@ contract DAO {
      * @notice modifier for actions requiring a tier 4 endorsement
      */
     modifier tierFourDelegation() {
-        AccessTiers tiers = AccessTiers(aTA);
+        IAccessTiers tiers = IAccessTiers(aTA);
         require(tiers.tier4(votes[msg.sender], dBIOP), "insufficent endorsement power");
         _;
     }

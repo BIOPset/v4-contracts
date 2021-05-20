@@ -509,12 +509,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     */
     function unlock(uint256 amount, address payable goodSamaritan) internal {
         require(amount <= lockedAmount, "insufficent locked pool balance to unlock");
-        uint256 fee;
-        if (amount <= 10000000000000000) {//small options give bigger fee %
-            fee = amount.div(settlerFee.mul(4)).div(100);
-        } else {
-            fee = amount.div(settlerFee).div(100);
-        } 
+        uint256 fee = amount.div(settlerFee).div(100);
         if (fee > 0) {
             require(goodSamaritan.send(fee), "good samaritan transfer failed");
         }
