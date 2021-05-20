@@ -43,7 +43,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     Option[] public options;
 
     uint256 public tI = 0;//total interchange
-    uint256 public rwd =  20000000000000000; //base utilitzation reward
+    uint256 public rwd =  20000000000000000; //base utilization reward (0.02 BIOP)
     bool public rewEn = true;//rewards enabled
 
 
@@ -59,7 +59,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         int256 sP;//strike
         uint80 pR;//purchase round
         uint256 pV;//purchase value
-        uint256 lV;// purchaseAmount+possible reward for correct bet
+        uint256 lV;// in-the-money option value
         uint80 exp;//final round of option s
         bool dir;//direction (true for call)
         address pP;//price provider
@@ -116,7 +116,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
 
-    //used for openPosition/exercise/expire calc
+    //used for openPosition/settlement calculations
     function getTradeExerciseBonus(uint256 amount, bool completion) public view returns(uint256) {
         IUtilizationRewards r = IUtilizationRewards(uR);
         return r.getTradeExerciseBonus(amount, address(this).balance, completion);
@@ -137,7 +137,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
         IUtilizationRewards r = IUtilizationRewards(uR);
         if (balanceOf(account) > 1) {
-            //staker reward bonus
+            //reward bonus for staking
             //base*(weeks)*(poolBalanceBonus/10)*optionsBacked
             return pClaims[account].add(
                 r.getLPStakingBonus(lST[account],iAL[account], tI, balanceOf(account), totalSupply())
@@ -171,14 +171,6 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      */
     function thisAddress() public view returns (address){
         return address(this);
-    }
-
-    /**
-     * @dev update BIOP token address
-     * @param a the address for a new BIOP token to be used
-     */
-    function updateBIOPToken(address payable a) external override onlyOwner {
-        biop = a;
     }
 
     /**
