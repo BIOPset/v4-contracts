@@ -36,7 +36,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     uint256 public maxT;//max rounds
     uint256 public lockedAmount;
     uint256 public settlerFee = 5;//0.2%
-    uint256 public protocolFee = 0;//200;//0.5%
+    uint256 public protocolFee = 100;//1%
     uint256 public poolLockSeconds = 7 days;
     uint256 public contractCreated;
     bool public open = true;
