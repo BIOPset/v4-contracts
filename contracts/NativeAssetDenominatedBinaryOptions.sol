@@ -23,7 +23,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     mapping(address=>uint256) public nW; //next withdraw (used for pool lock time)
     mapping(address=>uint256) public lW;//last withdraw.used for rewards calc
     mapping(address=>uint256) private pClaims;//pending claims
-    mapping(address=>uint256) public iAL;//interchange at last claim 
+    mapping(address=>uint256) public iAL;//interchange at last claim
     mapping(address=>uint256) public lST;//last stake time
 
 
@@ -35,13 +35,13 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     uint256 public minT;//min rounds
     uint256 public maxT;//max rounds
     uint256 public lockedAmount;
-    uint256 public settlerFee = 50;//in tenth percent
+    uint256 public settlerFee = 5;//0.2%
     uint256 public protocolFee = 0;//200;//0.5%
     uint256 public poolLockSeconds = 7 days;
     uint256 public contractCreated;
     bool public open = true;
     Option[] public options;
-    
+
     uint256 public tI = 0;//total interchange
     uint256 public rwd =  20000000000000000; //base utilitzation reward
     bool public rewEn = true;//rewards enabled
@@ -63,7 +63,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         uint80 exp;//final round of option s
         bool dir;//direction (true for call)
         address pP;//price provider
-        address aPA;//alt pool address 
+        address aPA;//alt pool address
     }
 
     /* Events */
@@ -114,7 +114,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     function getOptionCount() public view returns(uint256) {
         return options.length;
     }
-  
+
 
     //used for openPosition/exercise/expire calc
     function getTradeExerciseBonus(uint256 amount, bool completion) public view returns(uint256) {
@@ -178,7 +178,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @param a the address for a new BIOP token to be used
      */
     function updateBIOPToken(address payable a) external override onlyOwner {
-        biop = a; 
+        biop = a;
     }
 
     /**
@@ -186,7 +186,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @param newUR the new UtilizationRewards contract to use
      */
     function updateUtilizationRewards(address newUR) external override onlyOwner {
-        uR = newUR; 
+        uR = newUR;
     }
 
     /**
@@ -194,10 +194,10 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @param newAPP the new approved price provider (and ratecalc contract to use). Must be a IAPP
      */
     function updateAPP(address newAPP) external override onlyOwner {
-        app = newAPP; 
+        app = newAPP;
     }
 
-    
+
 
     /**
      * @dev enable or disable BIOP utilization rewards
@@ -223,7 +223,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         minT = newMin_;
     }
 
-    
+
 
     /**
      * @dev set the fee users can recieve for settling other users options
@@ -234,7 +234,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         settlerFee = fee_;
     }
 
-    
+
 
     /**
      * @dev set the fee users pay to buy an option
@@ -263,7 +263,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-     * @dev used to transfer fees 
+     * @dev used to transfer fees
      * @param newTreasury_ the new address to use
      */
     function transferDevFund(address payable newTreasury_) external override onlyOwner {
@@ -278,8 +278,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         open = !open;
     }
 
-   
-    
+
+
 
     /**
      * @dev send ETH to the pool. Recieve pETH token representing your claim.
@@ -294,12 +294,12 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         }
         updateLPmetrics();
         nW[msg.sender] = block.timestamp + poolLockSeconds;//this one is seperate because it isn't updated on reward claim
-        
+
         _mint(msg.sender, msg.value);
     }
 
     /**
-     * @dev recieve ETH from the pool. 
+     * @dev recieve ETH from the pool.
      * If the current time is before your next available withdraw a 1% fee will be applied.
      * @param amount The amount of pETH to return the pool (burn).
     */
@@ -330,7 +330,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     function getRate(address pair, uint256 deposit, uint256 t, bool k) public view returns (uint256) {
         IAPP app_ = IAPP(app);
         require(app_.aprvd(pair) != 0x0000000000000000000000000000000000000000, "invalid trading pair");
-        
+
         RateCalc rc = RateCalc(app_.aprvd(pair));
         uint256 s;
         if (k){
@@ -346,7 +346,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
               s = oP.sub(oC);
             }
         }
-        
+
         return rc.rate(deposit, lockedAmount , t, k, s, address(this).balance);
     }
 
@@ -363,26 +363,26 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         );
         IAPP app_ = IAPP(app);
         require(app_.aprvd(pp_) != 0x0000000000000000000000000000000000000000, "Invalid  price provider");
-        
+
         AggregatorProxy priceProvider = AggregatorProxy(pp_);
         (uint80 lR, int256 lA, , , ) = priceProvider.latestRoundData();
         uint256 oID = options.length;
 
-        
+
             //normal eth bet
             require(msg.value <= getMaxAvailable(), "bet to big");
 
 
-            
+
 
 
             uint256 lV = getRate(pp_, msg.value, t_, k_);
-            
+
             if (rewEn) {
                 pClaims[msg.sender] = pClaims[msg.sender].add(getTradeExerciseBonus(msg.value, false));
             }
             lock(lV);
-        
+
 
 
         Option memory op = Option(
@@ -407,11 +407,11 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         emit Create(oID, msg.sender, lA, lV, k_, lR, t_);
     }
 
-  
 
 
 
-    
+
+
 
      /**
      * @notice exercises or expire a option
@@ -466,7 +466,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
         uint256 lv = option.lV;
 
-        //an optional (to be choosen by contract owner) fee on each option. 
+        //an optional (to be choosen by contract owner) fee on each option.
         //A % of the trade money is sent as a fee. see protocolFee
         if (lv > protocolFee && protocolFee > 0) {
                 uint256 fee = lv.div(protocolFee);
@@ -476,7 +476,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
         payout(lv, msg.sender, option.holder);
         lockedAmount = lockedAmount.sub(option.lV);
-        
+
         emit Exercise(oID);
     }
 
@@ -488,14 +488,14 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      */
     function expire(Option memory option, uint256 oID)
         internal
-    {   
+    {
         unlock(option.lV, msg.sender);
         lockedAmount = lockedAmount.sub(option.lV);
         emit Expire(oID);
     }
 
     /**
-    @dev called by BinaryOptions contract to lock pool value coresponding to new binary options bought. 
+    @dev called by BinaryOptions contract to lock pool value coresponding to new binary options bought.
     @param amount amount in ETH to lock from the pool total.
     */
     function lock(uint256 amount) internal {
@@ -503,7 +503,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-    @dev called by BinaryOptions contract to unlock pool value coresponding to an option expiring otm. 
+    @dev called by BinaryOptions contract to unlock pool value coresponding to an option expiring otm.
     @param amount amount in ETH to unlock
     @param goodSamaritan the user paying to unlock these funds, they recieve a fee
     */
@@ -516,7 +516,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-    @dev called by BinaryOptions contract to payout pool value coresponding to binary options expiring itm. 
+    @dev called by BinaryOptions contract to payout pool value coresponding to binary options expiring itm.
     @param amount amount in ETH to unlock
     @param exerciser address calling the exercise/expire function, this may the winner or another user who then earns a fee.
     @param winner address of the winner.
@@ -532,7 +532,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
                 require(exerciser.send(fee), "exerciser transfer failed");
                 require(winner.send(amount.sub(fee)), "winner transfer failed");
             }
-        } else {  
+        } else {
             require(winner.send(amount), "winner transfer failed");
         }
         emit Payout(amount, winner);
