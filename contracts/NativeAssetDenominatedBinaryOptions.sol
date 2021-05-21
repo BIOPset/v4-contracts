@@ -32,9 +32,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
 
 
-    uint256 public minT;//min rounds
-    uint256 public maxT;//max rounds
-    uint256 public lockedAmount;
+    uint256 public minT;//minimum number of rounds
+    uint256 public maxT;//maximum number of rounds
+    uint256 public lockedAmount;//the amount locked into the pool by the liquidity provider
     uint256 public settlerFee = 5;//0.2%
     uint256 public protocolFee = 100;//1%
     uint256 public poolLockSeconds = 1209600;//14 days
@@ -59,8 +59,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         int256 sP;//strike
         uint80 pR;//purchase round
         uint256 pV;//purchase value
-        uint256 lV;// in-the-money option value
-        uint80 exp;//final round of option s
+        uint256 lV;// in-the-money option value (lockedValue)
+        uint80 exp;//expiration round
         bool dir;//direction (true for call)
         address pP;//price provider
         address aPA;//alt pool address
@@ -72,7 +72,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         address payable account,
         int256 sP,//strike
         uint256 lV,//locked value
-        bool dir,
+        bool dir,//direction (true for call)
         uint80 pR,//purchase round
         uint80 exp//expiration round
     );
@@ -86,7 +86,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * @param symbol_ the symbol of the LP token
      * @param biop_ address of the gov token
      * @param uR_ address of utilization rewards contract
-     * @param app_ address of approved price providerss contract
+     * @param app_ address of approved price providers contract
      */
       constructor(string memory name_, string memory symbol_, address biop_, address uR_, address app_) public ERC20(name_, symbol_){
         treasury = msg.sender;
@@ -209,7 +209,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
     /**
      * @dev update the min rounds for option bets
-     * @param newMin_ the new minimum rounds (in rounds) an option may be created for (inclusive).
+     * @param newMin_ the new minimum time (in rounds) an option may be created for (inclusive).
      */
     function setMinT(uint256 newMin_) external override onlyOwner {
         minT = newMin_;
@@ -407,8 +407,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
 
      /**
-     * @notice exercises or expire a option
-     * @dev exercise and expire functions have been depreciated in favor of this single complete option
+     * @notice settle an option
+     * @dev exercise and expire functions have been deprecated in favor of this single complete option
      * @param oID id of the option to complete
      */
     function complete(uint256 oID)
