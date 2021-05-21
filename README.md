@@ -1,48 +1,12 @@
 # Biopset V4
 A repository of contracts required to deploy version 4 of the Decentralized Binary Option Settlement Protocol. It contains the essential trading protocol and its surronding infrastructure (like the DAO contract, which is used to upgrade the protocol and control its settings).
 
-## Testing Instructions
+## Protocol Settings
 
-1. Download the repository.
+The protocol charges a 1% fee on ITM options. This and other configurable settings are listed below:
 
-```bash
-git clone https://github.com/BIOPset/v4-contracts.git
-```
-
-2. Navigate into a command line within the v4-contracts folder.
-
-```bash
-cd v4-contracts
-```
-
-3. Run NPM install
-
-```bash
-npm install
-```
-
-4. Globally install ganache-cli to your system.
-
-```bash
-npm install -g ganache-cli
-```
-
-5. Globally install truffle to your system.
-
-```bash
-npm install -g truffle
-```
-
-6. Launch ganache-cli.
-
-```bash
-ganache-cli
-```
-
-7. In a seperate command line window within the same v4-contracts folder, run truffle test.
-
-```bash
-truffle test
+```javascript
+protocolFee = 1%
 ```
 
 ## Contract List
@@ -199,13 +163,46 @@ These actions require the greatest consensus around staked participants.
 - T3 = (75%)
 - T4 = (90%)
 
-## Testing (out of date)
+## Testing Instructions
 
-for testing uncomment the "development" network in truffle-config.js
+1. Download the repository.
 
+```bash
+git clone https://github.com/BIOPset/v4-contracts.git
+```
 
-deploy to kovan
-```truffle migrate —-network kovan --reset```
-also comment out the pool deployment, it's deployed internally by the BinaryOptions contract
+2. Navigate into a command line within the v4-contracts folder.
 
-after deploying the setPoolAddress function on BinaryOptions has to be called manually to set it
+```bash
+cd v4-contracts
+```
+
+3. Run NPM install.
+
+```bash
+npm install
+```
+
+4. Globally install ganache-cli to your system.
+
+```bash
+npm install -g ganache-cli
+```
+
+5. Globally install truffle to your system.
+
+```bash
+npm install -g truffle
+```
+
+6. Launch ganache-cli.
+
+```bash
+ganache-cli
+```
+
+7. In a seperate command line window within the same v4-contracts folder, run truffle test.
+
+```bash
+truffle test
+```
