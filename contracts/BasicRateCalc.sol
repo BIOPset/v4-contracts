@@ -23,6 +23,9 @@ contract BasicRateCalc is IRateCalc {
         //check that no more than 1% of the pool is locked
         require(l < tP.div(100), "pool is full");
 
+        //check that option premium/payment is no more than 0.5% of the pool
+        require(amount < tP.div(2).div(100), "option too large");
+
         uint256 canLock = tP.sub(l);
         uint256 double = amount.mul(2);
         uint256 limited = amount.add((amount.div(2)));
