@@ -57,7 +57,7 @@ const FakeERC20Settings = {
 };
 
 //true for testrpc/ganache false for kovan
-const testing = true;
+const testing = false;
 
 module.exports = function (deployer) {
   try {
@@ -226,8 +226,9 @@ module.exports = function (deployer) {
                                             boInstance.address,
                                             biopInstance.address,
                                             tiersInstance.address,
+                                            appInstance.address,
                                             factoryInstance.address,
-                                            appInstance.address
+                                            treasuryInstance.address
                                           )
                                           .then(async (govInstance) => {
                                             await boInstance.transferDevFund(

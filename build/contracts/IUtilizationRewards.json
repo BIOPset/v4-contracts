@@ -1,0 +1,1591 @@
+{
+  "contractName": "IUtilizationRewards",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "g_",
+          "type": "address"
+        }
+      ],
+      "name": "transferDAO",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "distributeClaim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "lastStake",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastInterchange",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalInterchange",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "stakedAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalStaked",
+          "type": "uint256"
+        }
+      ],
+      "name": "getLPStakingBonus",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalLocked",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "completion",
+          "type": "bool"
+        }
+      ],
+      "name": "getTradeExerciseBonus",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalLocked",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "stack",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCompleteBonus",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"distributeClaim\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalLocked\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"stack\",\"type\":\"uint256\"}],\"name\":\"getCompleteBonus\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"lastStake\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastInterchange\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalInterchange\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"stakedAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalStaked\",\"type\":\"uint256\"}],\"name\":\"getLPStakingBonus\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalLocked\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"completion\",\"type\":\"bool\"}],\"name\":\"getTradeExerciseBonus\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"g_\",\"type\":\"address\"}],\"name\":\"transferDAO\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"distributeClaim(uint256)\":{\"details\":\"called by the binary options contract to claim Reward for user\",\"params\":{\"amount\":\"the amount in BIOP to add to transfer to this user*\"}},\"getCompleteBonus(uint256,uint256,uint256)\":{\"details\":\"used for exercise/expire calc\",\"params\":{\"amount\":\"the amount of value in bet\",\"stack\":\"total LP pool size*\",\"totalLocked\":\"total LP pool size\"}},\"getLPStakingBonus(uint256,uint256,uint256,uint256,uint256)\":{\"details\":\"called by the binary options contract to claim Reward for user\",\"params\":{\"lastInterchange\":\"the total interchange the last time the LP staked/claimed\",\"lastStake\":\"timestamp of LPs last stake/claim\",\"stakedAmount\":\"amount the user has staked\",\"totalInterchange\":\"amount interchanged since LPs last claim\",\"totalStaked\":\"the total amount staked by all LPs*\"}},\"getTradeExerciseBonus(uint256,uint256,bool)\":{\"details\":\"used for openPosition/exercise/expire calc\",\"params\":{\"amount\":\"the amount of value in bet\",\"completion\":\"false for bet, true for exercise expire*\",\"totalLocked\":\"total LP pool size\"}},\"transferDAO(address)\":{\"details\":\"transfer ownership of this contract\",\"params\":{\"g_\":\"the new governance address\"}}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IUtilizationRewards.sol\":\"IUtilizationRewards\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IUtilizationRewards.sol\":{\"keccak256\":\"0xb4e43de0e3c554497ccaee5cb1924a13069aafeea9d073cf80a3b0ac1f950ba7\",\"urls\":[\"bzz-raw://a154f0be3b857d19e625f2d50a37a7eceb3820a614acdde67d24c30c84124182\",\"dweb:/ipfs/QmTP8FGFuwoURjdCn939iM8rer6RTdnM8TsfU9NQd4YziH\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.6;\n\ninterface IUtilizationRewards {\n    \n\n    /** \n     * @dev transfer ownership of this contract\n     * @param g_ the new governance address\n     */\n    function transferDAO(address payable g_) external virtual;\n\n\n\n    /**\n     * @dev called by the binary options contract to claim Reward for user\n     * @param amount the amount in BIOP to add to transfer to this user\n     **/\n    function distributeClaim(uint256 amount ) external virtual;\n\n \n\n     /**\n     * @dev called by the binary options contract to claim Reward for user\n     * @param lastStake timestamp of LPs last stake/claim\n     * @param lastInterchange the total interchange the last time the LP staked/claimed\n     * @param totalInterchange amount interchanged since LPs last claim\n     * @param stakedAmount amount the user has staked\n     * @param totalStaked the total amount staked by all LPs\n     **/\n    function getLPStakingBonus(uint256 lastStake, uint256 lastInterchange, uint256 totalInterchange, uint256 stakedAmount, uint256 totalStaked) external virtual view returns(uint256);\n\n\n\n     /**\n     * @dev used for openPosition/exercise/expire calc\n     * @param amount the amount of value in bet\n     * @param totalLocked total LP pool size\n     * @param completion false for bet, true for exercise expire\n     **/\n    function getTradeExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external virtual view returns(uint256);\n\n\n /**\n     **/\n     /**\n     * @dev used for exercise/expire calc\n     * @param amount the amount of value in bet\n     * @param totalLocked total LP pool size\n     * @param stack total LP pool size\n     **/\n    function getCompleteBonus(uint256 amount, uint256 totalLocked, uint256 stack) external virtual view returns(uint256);\n\n}\n",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IUtilizationRewards.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IUtilizationRewards.sol",
+    "exportedSymbols": {
+      "IUtilizationRewards": [
+        11171
+      ]
+    },
+    "id": 11172,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11118,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:29"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 11171,
+        "linearizedBaseContracts": [
+          11171
+        ],
+        "name": "IUtilizationRewards",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 11119,
+              "nodeType": "StructuredDocumentation",
+              "src": "67:104:29",
+              "text": "@dev transfer ownership of this contract\n@param g_ the new governance address"
+            },
+            "functionSelector": "7a318866",
+            "id": 11124,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferDAO",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 11122,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11121,
+                  "mutability": "mutable",
+                  "name": "g_",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11124,
+                  "src": "197:18:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 11120,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "197:15:29",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "196:20:29"
+            },
+            "returnParameters": {
+              "id": 11123,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "233:0:29"
+            },
+            "scope": 11171,
+            "src": "176:58:29",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 11125,
+              "nodeType": "StructuredDocumentation",
+              "src": "242:159:29",
+              "text": "@dev called by the binary options contract to claim Reward for user\n@param amount the amount in BIOP to add to transfer to this user*"
+            },
+            "functionSelector": "03d7ea01",
+            "id": 11130,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "distributeClaim",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 11128,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11127,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11130,
+                  "src": "431:14:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11126,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "431:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "430:17:29"
+            },
+            "returnParameters": {
+              "id": 11129,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "464:0:29"
+            },
+            "scope": 11171,
+            "src": "406:59:29",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 11131,
+              "nodeType": "StructuredDocumentation",
+              "src": "475:420:29",
+              "text": "@dev called by the binary options contract to claim Reward for user\n@param lastStake timestamp of LPs last stake/claim\n@param lastInterchange the total interchange the last time the LP staked/claimed\n@param totalInterchange amount interchanged since LPs last claim\n@param stakedAmount amount the user has staked\n@param totalStaked the total amount staked by all LPs*"
+            },
+            "functionSelector": "57931484",
+            "id": 11146,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLPStakingBonus",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 11142,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11133,
+                  "mutability": "mutable",
+                  "name": "lastStake",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11146,
+                  "src": "927:17:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11132,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "927:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11135,
+                  "mutability": "mutable",
+                  "name": "lastInterchange",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11146,
+                  "src": "946:23:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11134,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "946:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11137,
+                  "mutability": "mutable",
+                  "name": "totalInterchange",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11146,
+                  "src": "971:24:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11136,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "971:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11139,
+                  "mutability": "mutable",
+                  "name": "stakedAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11146,
+                  "src": "997:20:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11138,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "997:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11141,
+                  "mutability": "mutable",
+                  "name": "totalStaked",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11146,
+                  "src": "1019:19:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11140,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1019:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "926:113:29"
+            },
+            "returnParameters": {
+              "id": 11145,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11144,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11146,
+                  "src": "1070:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11143,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1070:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1069:9:29"
+            },
+            "scope": 11171,
+            "src": "900:179:29",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 11147,
+              "nodeType": "StructuredDocumentation",
+              "src": "1088:225:29",
+              "text": "@dev used for openPosition/exercise/expire calc\n@param amount the amount of value in bet\n@param totalLocked total LP pool size\n@param completion false for bet, true for exercise expire*"
+            },
+            "functionSelector": "ed46ea20",
+            "id": 11158,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTradeExerciseBonus",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 11154,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11149,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11158,
+                  "src": "1349:14:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11148,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1349:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11151,
+                  "mutability": "mutable",
+                  "name": "totalLocked",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11158,
+                  "src": "1365:19:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11150,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1365:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11153,
+                  "mutability": "mutable",
+                  "name": "completion",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11158,
+                  "src": "1386:15:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 11152,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1386:4:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1348:54:29"
+            },
+            "returnParameters": {
+              "id": 11157,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11156,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11158,
+                  "src": "1433:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11155,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1433:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1432:9:29"
+            },
+            "scope": 11171,
+            "src": "1318:124:29",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 11159,
+              "nodeType": "StructuredDocumentation",
+              "src": "1464:186:29",
+              "text": "@dev used for exercise/expire calc\n@param amount the amount of value in bet\n@param totalLocked total LP pool size\n@param stack total LP pool size*"
+            },
+            "functionSelector": "b0aca09e",
+            "id": 11170,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCompleteBonus",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 11166,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11161,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11170,
+                  "src": "1681:14:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11160,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1681:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11163,
+                  "mutability": "mutable",
+                  "name": "totalLocked",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11170,
+                  "src": "1697:19:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11162,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1697:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11165,
+                  "mutability": "mutable",
+                  "name": "stack",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11170,
+                  "src": "1718:13:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11164,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1718:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1680:52:29"
+            },
+            "returnParameters": {
+              "id": 11169,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11168,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11170,
+                  "src": "1763:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11167,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1763:7:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1762:9:29"
+            },
+            "scope": 11171,
+            "src": "1655:117:29",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11172,
+        "src": "25:1750:29"
+      }
+    ],
+    "src": "0:1776:29"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IUtilizationRewards.sol",
+      "exportedSymbols": {
+        "IUtilizationRewards": [
+          11171
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 11118,
+        "name": "PragmaDirective",
+        "src": "0:23:29"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            11171
+          ],
+          "name": "IUtilizationRewards",
+          "scope": 11172
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "7a318866",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "transferDAO",
+              "overrides": null,
+              "scope": 11171,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev transfer ownership of this contract\n@param g_ the new governance address"
+                },
+                "id": 11119,
+                "name": "StructuredDocumentation",
+                "src": "67:104:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "g_",
+                      "overrides": null,
+                      "scope": 11124,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 11120,
+                        "name": "ElementaryTypeName",
+                        "src": "197:15:29"
+                      }
+                    ],
+                    "id": 11121,
+                    "name": "VariableDeclaration",
+                    "src": "197:18:29"
+                  }
+                ],
+                "id": 11122,
+                "name": "ParameterList",
+                "src": "196:20:29"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 11123,
+                "name": "ParameterList",
+                "src": "233:0:29"
+              }
+            ],
+            "id": 11124,
+            "name": "FunctionDefinition",
+            "src": "176:58:29"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "03d7ea01",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "distributeClaim",
+              "overrides": null,
+              "scope": 11171,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev called by the binary options contract to claim Reward for user\n@param amount the amount in BIOP to add to transfer to this user*"
+                },
+                "id": 11125,
+                "name": "StructuredDocumentation",
+                "src": "242:159:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 11130,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11126,
+                        "name": "ElementaryTypeName",
+                        "src": "431:7:29"
+                      }
+                    ],
+                    "id": 11127,
+                    "name": "VariableDeclaration",
+                    "src": "431:14:29"
+                  }
+                ],
+                "id": 11128,
+                "name": "ParameterList",
+                "src": "430:17:29"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 11129,
+                "name": "ParameterList",
+                "src": "464:0:29"
+              }
+            ],
+            "id": 11130,
+            "name": "FunctionDefinition",
+            "src": "406:59:29"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "57931484",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getLPStakingBonus",
+              "overrides": null,
+              "scope": 11171,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev called by the binary options contract to claim Reward for user\n@param lastStake timestamp of LPs last stake/claim\n@param lastInterchange the total interchange the last time the LP staked/claimed\n@param totalInterchange amount interchanged since LPs last claim\n@param stakedAmount amount the user has staked\n@param totalStaked the total amount staked by all LPs*"
+                },
+                "id": 11131,
+                "name": "StructuredDocumentation",
+                "src": "475:420:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "lastStake",
+                      "overrides": null,
+                      "scope": 11146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11132,
+                        "name": "ElementaryTypeName",
+                        "src": "927:7:29"
+                      }
+                    ],
+                    "id": 11133,
+                    "name": "VariableDeclaration",
+                    "src": "927:17:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "lastInterchange",
+                      "overrides": null,
+                      "scope": 11146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11134,
+                        "name": "ElementaryTypeName",
+                        "src": "946:7:29"
+                      }
+                    ],
+                    "id": 11135,
+                    "name": "VariableDeclaration",
+                    "src": "946:23:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "totalInterchange",
+                      "overrides": null,
+                      "scope": 11146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11136,
+                        "name": "ElementaryTypeName",
+                        "src": "971:7:29"
+                      }
+                    ],
+                    "id": 11137,
+                    "name": "VariableDeclaration",
+                    "src": "971:24:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "stakedAmount",
+                      "overrides": null,
+                      "scope": 11146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11138,
+                        "name": "ElementaryTypeName",
+                        "src": "997:7:29"
+                      }
+                    ],
+                    "id": 11139,
+                    "name": "VariableDeclaration",
+                    "src": "997:20:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "totalStaked",
+                      "overrides": null,
+                      "scope": 11146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11140,
+                        "name": "ElementaryTypeName",
+                        "src": "1019:7:29"
+                      }
+                    ],
+                    "id": 11141,
+                    "name": "VariableDeclaration",
+                    "src": "1019:19:29"
+                  }
+                ],
+                "id": 11142,
+                "name": "ParameterList",
+                "src": "926:113:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 11146,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11143,
+                        "name": "ElementaryTypeName",
+                        "src": "1070:7:29"
+                      }
+                    ],
+                    "id": 11144,
+                    "name": "VariableDeclaration",
+                    "src": "1070:7:29"
+                  }
+                ],
+                "id": 11145,
+                "name": "ParameterList",
+                "src": "1069:9:29"
+              }
+            ],
+            "id": 11146,
+            "name": "FunctionDefinition",
+            "src": "900:179:29"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "ed46ea20",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getTradeExerciseBonus",
+              "overrides": null,
+              "scope": 11171,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev used for openPosition/exercise/expire calc\n@param amount the amount of value in bet\n@param totalLocked total LP pool size\n@param completion false for bet, true for exercise expire*"
+                },
+                "id": 11147,
+                "name": "StructuredDocumentation",
+                "src": "1088:225:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 11158,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11148,
+                        "name": "ElementaryTypeName",
+                        "src": "1349:7:29"
+                      }
+                    ],
+                    "id": 11149,
+                    "name": "VariableDeclaration",
+                    "src": "1349:14:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "totalLocked",
+                      "overrides": null,
+                      "scope": 11158,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11150,
+                        "name": "ElementaryTypeName",
+                        "src": "1365:7:29"
+                      }
+                    ],
+                    "id": 11151,
+                    "name": "VariableDeclaration",
+                    "src": "1365:19:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "completion",
+                      "overrides": null,
+                      "scope": 11158,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 11152,
+                        "name": "ElementaryTypeName",
+                        "src": "1386:4:29"
+                      }
+                    ],
+                    "id": 11153,
+                    "name": "VariableDeclaration",
+                    "src": "1386:15:29"
+                  }
+                ],
+                "id": 11154,
+                "name": "ParameterList",
+                "src": "1348:54:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 11158,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11155,
+                        "name": "ElementaryTypeName",
+                        "src": "1433:7:29"
+                      }
+                    ],
+                    "id": 11156,
+                    "name": "VariableDeclaration",
+                    "src": "1433:7:29"
+                  }
+                ],
+                "id": 11157,
+                "name": "ParameterList",
+                "src": "1432:9:29"
+              }
+            ],
+            "id": 11158,
+            "name": "FunctionDefinition",
+            "src": "1318:124:29"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "b0aca09e",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getCompleteBonus",
+              "overrides": null,
+              "scope": 11171,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev used for exercise/expire calc\n@param amount the amount of value in bet\n@param totalLocked total LP pool size\n@param stack total LP pool size*"
+                },
+                "id": 11159,
+                "name": "StructuredDocumentation",
+                "src": "1464:186:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 11170,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11160,
+                        "name": "ElementaryTypeName",
+                        "src": "1681:7:29"
+                      }
+                    ],
+                    "id": 11161,
+                    "name": "VariableDeclaration",
+                    "src": "1681:14:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "totalLocked",
+                      "overrides": null,
+                      "scope": 11170,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11162,
+                        "name": "ElementaryTypeName",
+                        "src": "1697:7:29"
+                      }
+                    ],
+                    "id": 11163,
+                    "name": "VariableDeclaration",
+                    "src": "1697:19:29"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "stack",
+                      "overrides": null,
+                      "scope": 11170,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11164,
+                        "name": "ElementaryTypeName",
+                        "src": "1718:7:29"
+                      }
+                    ],
+                    "id": 11165,
+                    "name": "VariableDeclaration",
+                    "src": "1718:13:29"
+                  }
+                ],
+                "id": 11166,
+                "name": "ParameterList",
+                "src": "1680:52:29"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 11170,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11167,
+                        "name": "ElementaryTypeName",
+                        "src": "1763:7:29"
+                      }
+                    ],
+                    "id": 11168,
+                    "name": "VariableDeclaration",
+                    "src": "1763:7:29"
+                  }
+                ],
+                "id": 11169,
+                "name": "ParameterList",
+                "src": "1762:9:29"
+              }
+            ],
+            "id": 11170,
+            "name": "FunctionDefinition",
+            "src": "1655:117:29"
+          }
+        ],
+        "id": 11171,
+        "name": "ContractDefinition",
+        "src": "25:1750:29"
+      }
+    ],
+    "id": 11172,
+    "name": "SourceUnit",
+    "src": "0:1776:29"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-21T05:15:36.145Z",
+  "devdoc": {
+    "methods": {
+      "distributeClaim(uint256)": {
+        "details": "called by the binary options contract to claim Reward for user",
+        "params": {
+          "amount": "the amount in BIOP to add to transfer to this user*"
+        }
+      },
+      "getCompleteBonus(uint256,uint256,uint256)": {
+        "details": "used for exercise/expire calc",
+        "params": {
+          "amount": "the amount of value in bet",
+          "stack": "total LP pool size*",
+          "totalLocked": "total LP pool size"
+        }
+      },
+      "getLPStakingBonus(uint256,uint256,uint256,uint256,uint256)": {
+        "details": "called by the binary options contract to claim Reward for user",
+        "params": {
+          "lastInterchange": "the total interchange the last time the LP staked/claimed",
+          "lastStake": "timestamp of LPs last stake/claim",
+          "stakedAmount": "amount the user has staked",
+          "totalInterchange": "amount interchanged since LPs last claim",
+          "totalStaked": "the total amount staked by all LPs*"
+        }
+      },
+      "getTradeExerciseBonus(uint256,uint256,bool)": {
+        "details": "used for openPosition/exercise/expire calc",
+        "params": {
+          "amount": "the amount of value in bet",
+          "completion": "false for bet, true for exercise expire*",
+          "totalLocked": "total LP pool size"
+        }
+      },
+      "transferDAO(address)": {
+        "details": "transfer ownership of this contract",
+        "params": {
+          "g_": "the new governance address"
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

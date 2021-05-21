@@ -1,0 +1,1262 @@
+{
+  "contractName": "IAccessTiers",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "power",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "name": "tier1",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "power",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "name": "tier2",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "power",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "name": "tier3",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "power",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "name": "tier4",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier1\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier2\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier3\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier4\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"tier1(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier2(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier3(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier4(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}}}},\"userdoc\":{\"methods\":{\"tier1(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier2(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier3(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier4(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol\":\"IAccessTiers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol\":{\"keccak256\":\"0xf86ccd27b8ffddaf77bee116504d8b4391bf24d07966d06d9a4574edaed565fe\",\"urls\":[\"bzz-raw://36dfc1e31ed13139161137e1c2ef422fbdb1e51f3bf6fb4250d4f88a5907526c\",\"dweb:/ipfs/QmbPXyb7sbaeoyc9b85AeJkoaXAdt5TzPHADyQ6TeaKJUw\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.6;\ninterface IAccessTiers {\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier1(uint256 power, uint256 total) external returns (bool);\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier2(uint256 power, uint256 total) external returns (bool);\n\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier3(uint256 power, uint256 total) external returns (bool);\n\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier4(uint256 power, uint256 total) external returns (bool);\n}\n",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol",
+    "exportedSymbols": {
+      "IAccessTiers": [
+        10994
+      ]
+    },
+    "id": 10995,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10953,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:25"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 10994,
+        "linearizedBaseContracts": [
+          10994
+        ],
+        "name": "IAccessTiers",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 10954,
+              "nodeType": "StructuredDocumentation",
+              "src": "53:284:25",
+              "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+            },
+            "functionSelector": "60e96238",
+            "id": 10963,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tier1",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 10959,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10956,
+                  "mutability": "mutable",
+                  "name": "power",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10963,
+                  "src": "357:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10955,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "357:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10958,
+                  "mutability": "mutable",
+                  "name": "total",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10963,
+                  "src": "372:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10957,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "372:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "356:30:25"
+            },
+            "returnParameters": {
+              "id": 10962,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10961,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10963,
+                  "src": "405:4:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10960,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "405:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "404:6:25"
+            },
+            "scope": 10994,
+            "src": "342:69:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 10964,
+              "nodeType": "StructuredDocumentation",
+              "src": "417:284:25",
+              "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+            },
+            "functionSelector": "b930926b",
+            "id": 10973,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tier2",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 10969,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10966,
+                  "mutability": "mutable",
+                  "name": "power",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10973,
+                  "src": "721:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10965,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "721:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10968,
+                  "mutability": "mutable",
+                  "name": "total",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10973,
+                  "src": "736:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10967,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "736:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "720:30:25"
+            },
+            "returnParameters": {
+              "id": 10972,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10971,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10973,
+                  "src": "769:4:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10970,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "769:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "768:6:25"
+            },
+            "scope": 10994,
+            "src": "706:69:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 10974,
+              "nodeType": "StructuredDocumentation",
+              "src": "782:284:25",
+              "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+            },
+            "functionSelector": "6aac3462",
+            "id": 10983,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tier3",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 10979,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10976,
+                  "mutability": "mutable",
+                  "name": "power",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10983,
+                  "src": "1086:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10975,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1086:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10978,
+                  "mutability": "mutable",
+                  "name": "total",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10983,
+                  "src": "1101:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10977,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1101:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1085:30:25"
+            },
+            "returnParameters": {
+              "id": 10982,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10981,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10983,
+                  "src": "1134:4:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10980,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1134:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1133:6:25"
+            },
+            "scope": 10994,
+            "src": "1071:69:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 10984,
+              "nodeType": "StructuredDocumentation",
+              "src": "1147:284:25",
+              "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+            },
+            "functionSelector": "2786d65e",
+            "id": 10993,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tier4",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 10989,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10986,
+                  "mutability": "mutable",
+                  "name": "power",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10993,
+                  "src": "1451:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10985,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1451:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10988,
+                  "mutability": "mutable",
+                  "name": "total",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10993,
+                  "src": "1466:13:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10987,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1466:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1450:30:25"
+            },
+            "returnParameters": {
+              "id": 10992,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10991,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 10993,
+                  "src": "1499:4:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 10990,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1499:4:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1498:6:25"
+            },
+            "scope": 10994,
+            "src": "1436:69:25",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 10995,
+        "src": "24:1483:25"
+      }
+    ],
+    "src": "0:1508:25"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol",
+      "exportedSymbols": {
+        "IAccessTiers": [
+          10994
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 10953,
+        "name": "PragmaDirective",
+        "src": "0:23:25"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            10994
+          ],
+          "name": "IAccessTiers",
+          "scope": 10995
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "60e96238",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "tier1",
+              "overrides": null,
+              "scope": 10994,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+                },
+                "id": 10954,
+                "name": "StructuredDocumentation",
+                "src": "53:284:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "power",
+                      "overrides": null,
+                      "scope": 10963,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10955,
+                        "name": "ElementaryTypeName",
+                        "src": "357:7:25"
+                      }
+                    ],
+                    "id": 10956,
+                    "name": "VariableDeclaration",
+                    "src": "357:13:25"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "total",
+                      "overrides": null,
+                      "scope": 10963,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10957,
+                        "name": "ElementaryTypeName",
+                        "src": "372:7:25"
+                      }
+                    ],
+                    "id": 10958,
+                    "name": "VariableDeclaration",
+                    "src": "372:13:25"
+                  }
+                ],
+                "id": 10959,
+                "name": "ParameterList",
+                "src": "356:30:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 10963,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 10960,
+                        "name": "ElementaryTypeName",
+                        "src": "405:4:25"
+                      }
+                    ],
+                    "id": 10961,
+                    "name": "VariableDeclaration",
+                    "src": "405:4:25"
+                  }
+                ],
+                "id": 10962,
+                "name": "ParameterList",
+                "src": "404:6:25"
+              }
+            ],
+            "id": 10963,
+            "name": "FunctionDefinition",
+            "src": "342:69:25"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "b930926b",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "tier2",
+              "overrides": null,
+              "scope": 10994,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+                },
+                "id": 10964,
+                "name": "StructuredDocumentation",
+                "src": "417:284:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "power",
+                      "overrides": null,
+                      "scope": 10973,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10965,
+                        "name": "ElementaryTypeName",
+                        "src": "721:7:25"
+                      }
+                    ],
+                    "id": 10966,
+                    "name": "VariableDeclaration",
+                    "src": "721:13:25"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "total",
+                      "overrides": null,
+                      "scope": 10973,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10967,
+                        "name": "ElementaryTypeName",
+                        "src": "736:7:25"
+                      }
+                    ],
+                    "id": 10968,
+                    "name": "VariableDeclaration",
+                    "src": "736:13:25"
+                  }
+                ],
+                "id": 10969,
+                "name": "ParameterList",
+                "src": "720:30:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 10973,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 10970,
+                        "name": "ElementaryTypeName",
+                        "src": "769:4:25"
+                      }
+                    ],
+                    "id": 10971,
+                    "name": "VariableDeclaration",
+                    "src": "769:4:25"
+                  }
+                ],
+                "id": 10972,
+                "name": "ParameterList",
+                "src": "768:6:25"
+              }
+            ],
+            "id": 10973,
+            "name": "FunctionDefinition",
+            "src": "706:69:25"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "6aac3462",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "tier3",
+              "overrides": null,
+              "scope": 10994,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+                },
+                "id": 10974,
+                "name": "StructuredDocumentation",
+                "src": "782:284:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "power",
+                      "overrides": null,
+                      "scope": 10983,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10975,
+                        "name": "ElementaryTypeName",
+                        "src": "1086:7:25"
+                      }
+                    ],
+                    "id": 10976,
+                    "name": "VariableDeclaration",
+                    "src": "1086:13:25"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "total",
+                      "overrides": null,
+                      "scope": 10983,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10977,
+                        "name": "ElementaryTypeName",
+                        "src": "1101:7:25"
+                      }
+                    ],
+                    "id": 10978,
+                    "name": "VariableDeclaration",
+                    "src": "1101:13:25"
+                  }
+                ],
+                "id": 10979,
+                "name": "ParameterList",
+                "src": "1085:30:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 10983,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 10980,
+                        "name": "ElementaryTypeName",
+                        "src": "1134:4:25"
+                      }
+                    ],
+                    "id": 10981,
+                    "name": "VariableDeclaration",
+                    "src": "1134:4:25"
+                  }
+                ],
+                "id": 10982,
+                "name": "ParameterList",
+                "src": "1133:6:25"
+              }
+            ],
+            "id": 10983,
+            "name": "FunctionDefinition",
+            "src": "1071:69:25"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "2786d65e",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "tier4",
+              "overrides": null,
+              "scope": 10994,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
+                },
+                "id": 10984,
+                "name": "StructuredDocumentation",
+                "src": "1147:284:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "power",
+                      "overrides": null,
+                      "scope": 10993,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10985,
+                        "name": "ElementaryTypeName",
+                        "src": "1451:7:25"
+                      }
+                    ],
+                    "id": 10986,
+                    "name": "VariableDeclaration",
+                    "src": "1451:13:25"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "total",
+                      "overrides": null,
+                      "scope": 10993,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10987,
+                        "name": "ElementaryTypeName",
+                        "src": "1466:7:25"
+                      }
+                    ],
+                    "id": 10988,
+                    "name": "VariableDeclaration",
+                    "src": "1466:13:25"
+                  }
+                ],
+                "id": 10989,
+                "name": "ParameterList",
+                "src": "1450:30:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 10993,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 10990,
+                        "name": "ElementaryTypeName",
+                        "src": "1499:4:25"
+                      }
+                    ],
+                    "id": 10991,
+                    "name": "VariableDeclaration",
+                    "src": "1499:4:25"
+                  }
+                ],
+                "id": 10992,
+                "name": "ParameterList",
+                "src": "1498:6:25"
+              }
+            ],
+            "id": 10993,
+            "name": "FunctionDefinition",
+            "src": "1436:69:25"
+          }
+        ],
+        "id": 10994,
+        "name": "ContractDefinition",
+        "src": "24:1483:25"
+      }
+    ],
+    "id": 10995,
+    "name": "SourceUnit",
+    "src": "0:1508:25"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-21T05:15:36.141Z",
+  "devdoc": {
+    "methods": {
+      "tier1(uint256,uint256)": {
+        "params": {
+          "power": "the amount of control held by user trying to access this action",
+          "total": "the total amount of control available"
+        },
+        "returns": {
+          "_0": "boolean of users access to this tier"
+        }
+      },
+      "tier2(uint256,uint256)": {
+        "params": {
+          "power": "the amount of control held by user trying to access this action",
+          "total": "the total amount of control available"
+        },
+        "returns": {
+          "_0": "boolean of users access to this tier"
+        }
+      },
+      "tier3(uint256,uint256)": {
+        "params": {
+          "power": "the amount of control held by user trying to access this action",
+          "total": "the total amount of control available"
+        },
+        "returns": {
+          "_0": "boolean of users access to this tier"
+        }
+      },
+      "tier4(uint256,uint256)": {
+        "params": {
+          "power": "the amount of control held by user trying to access this action",
+          "total": "the total amount of control available"
+        },
+        "returns": {
+          "_0": "boolean of users access to this tier"
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "tier1(uint256,uint256)": {
+        "notice": "checks if a user meets the requirement to call the given action"
+      },
+      "tier2(uint256,uint256)": {
+        "notice": "checks if a user meets the requirement to call the given action"
+      },
+      "tier3(uint256,uint256)": {
+        "notice": "checks if a user meets the requirement to call the given action"
+      },
+      "tier4(uint256,uint256)": {
+        "notice": "checks if a user meets the requirement to call the given action"
+      }
+    }
+  }
+}

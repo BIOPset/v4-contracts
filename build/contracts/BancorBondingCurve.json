@@ -1,0 +1,2085 @@
+{
+  "contractName": "BancorBondingCurve",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "_reserveRatio",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_supply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_reserveBalance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_reserveRatio",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_depositAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculatePurchaseReturn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_supply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_reserveBalance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_reserveRatio",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sellAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateSaleReturn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "reserveRatio",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_reserveTokenAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "getContinuousMintReward",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_continuousTokenAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "getContinuousBurnRefund",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "continuousSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "reserveBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_reserveRatio\",\"type\":\"uint32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_supply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_reserveBalance\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"_reserveRatio\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"_depositAmount\",\"type\":\"uint256\"}],\"name\":\"calculatePurchaseReturn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_supply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_reserveBalance\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"_reserveRatio\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"_sellAmount\",\"type\":\"uint256\"}],\"name\":\"calculateSaleReturn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"continuousSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_continuousTokenAmount\",\"type\":\"uint256\"}],\"name\":\"getContinuousBurnRefund\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_reserveTokenAmount\",\"type\":\"uint256\"}],\"name\":\"getContinuousMintReward\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"reserveBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"reserveRatio\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"calculatePurchaseReturn(uint256,uint256,uint32,uint256)\":{\"details\":\"given a continuous token supply, reserve token balance, reserve ratio, and a deposit amount (in the reserve token), calculates the return for a given conversion (in the continuous token)    * Formula: Return = _supply * ((1 + _depositAmount / _reserveBalance) ^ (_reserveRatio / MAX_RESERVE_RATIO) - 1)\",\"params\":{\"_depositAmount\":\"deposit amount, in reserve token\",\"_reserveBalance\":\"total reserve token balance\",\"_reserveRatio\":\"reserve ratio, represented in ppm, 1-1000000\",\"_supply\":\"continuous token total supply\"},\"returns\":{\"_0\":\"purchase return amount\"}},\"calculateSaleReturn(uint256,uint256,uint32,uint256)\":{\"details\":\"given a continuous token supply, reserve token balance, reserve ratio and a sell amount (in the continuous token), calculates the return for a given conversion (in the reserve token)    * Formula: Return = _reserveBalance * (1 - (1 - _sellAmount / _supply) ^ (1 / (_reserveRatio / MAX_RESERVE_RATIO)))\",\"params\":{\"_reserveBalance\":\"total reserve token balance\",\"_reserveRatio\":\"constant reserve ratio, represented in ppm, 1-1000000\",\"_sellAmount\":\"sell amount, in the continuous token itself\",\"_supply\":\"continuous token total supply\"},\"returns\":{\"_0\":\"sale return amount\"}},\"continuousSupply()\":{\"details\":\"Abstract method that returns continuous token supply\"},\"reserveBalance()\":{\"details\":\"Abstract method that returns reserve token balance\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/curves/BancorBondingCurve.sol\":\"BancorBondingCurve\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/curves/BancorBondingCurve.sol\":{\"keccak256\":\"0xf49745f01087f3b067aeff6bc7cf7e5ff3000faad7f6902dc226b9455757e7fc\",\"urls\":[\"bzz-raw://6d58175bcdbade8227d898622b084ab7d26e158c04b388e3d4ade2525a4c149a\",\"dweb:/ipfs/QmWZkVWkWSzjNFfDwHRbfZPJz6DwMKdpTdXYaAS7Bp5tHZ\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/interfaces/IBondingCurve.sol\":{\"keccak256\":\"0x6708c45c11616c869e5d4c073ebc48739912f92f1dc02087626339b7c3b70665\",\"urls\":[\"bzz-raw://915f13f53eca60f2c6a0f53a061dd0d07c4ce68701238886519324e083d35702\",\"dweb:/ipfs/QmT8kG2i8QAohQoZW3jauKfqpenm8ARPH9sMM4scz5vgWa\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/math/BancorFormula.sol\":{\"keccak256\":\"0x9e728f4a0ec743682305be3e7f5ae64cfede71db8ff0d4d0aeaf8519cef5c1d7\",\"urls\":[\"bzz-raw://6a75efe5904569631492fb8e6b13abf92df289ff23395346f324beb91cfc6fe1\",\"dweb:/ipfs/QmWXaELUhREyvYfDy2y6eEqHmXkaU8VqqcheDXko42ZCxx\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/math/Power.sol\":{\"keccak256\":\"0x2a2d12bd3ab9ea58189d995cd9bde3960b2531e48a14662523f67905a89a1351\",\"urls\":[\"bzz-raw://b65742c61707c66a2343f0064776dd433200bae57a7971816f75f67396f47dc3\",\"dweb:/ipfs/QmdNbohXcBkpt5RXB8F4iv6kYCDa1Ei2n9DwDQNcvHdD6A\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x3b21f2c8d626de3b9925ae33e972d8bf5c8b1bffb3f4ee94daeed7d0679036e6\",\"urls\":[\"bzz-raw://7f8d45329fecbf0836ad7543330c3ecd0f8d0ffa42d4016278c3eb2215fdcdfe\",\"dweb:/ipfs/QmXWLT7GcnHtA5NiD6MFi2CV3EWJY4wv5mLNnypqYDrxL3\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.6;\n\nimport \"../math/BancorFormula.sol\";\nimport \"../interfaces/IBondingCurve.sol\";\n\n\nabstract contract BancorBondingCurve is IBondingCurve, BancorFormula {\n    /*\n        reserve ratio, represented in ppm, 1-1000000\n        1/3 corresponds to y= multiple * x^2\n        1/2 corresponds to y= multiple * x\n        2/3 corresponds to y= multiple * x^1/2\n    */\n    uint32 public reserveRatio;\n\n    constructor(uint32 _reserveRatio) public {\n        reserveRatio = _reserveRatio;\n    }\n\n    function getContinuousMintReward(uint _reserveTokenAmount) public override view returns (uint) {\n        return calculatePurchaseReturn(continuousSupply(), reserveBalance(), reserveRatio, _reserveTokenAmount);\n    }\n\n    function getContinuousBurnRefund(uint _continuousTokenAmount) public override view returns (uint) {\n        return calculateSaleReturn(continuousSupply(), reserveBalance(), reserveRatio, _continuousTokenAmount);\n    }\n\n    /**\n    * @dev Abstract method that returns continuous token supply\n    */\n    function continuousSupply() public virtual view returns (uint);\n\n    /**\n    * @dev Abstract method that returns reserve token balance\n    */    \n    function reserveBalance() public virtual view returns (uint);\n}",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/curves/BancorBondingCurve.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/curves/BancorBondingCurve.sol",
+    "exportedSymbols": {
+      "BancorBondingCurve": [
+        1419
+      ]
+    },
+    "id": 1420,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1352,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/math/BancorFormula.sol",
+        "file": "../math/BancorFormula.sol",
+        "id": 1353,
+        "nodeType": "ImportDirective",
+        "scope": 1420,
+        "sourceUnit": 1655,
+        "src": "25:35:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/interfaces/IBondingCurve.sol",
+        "file": "../interfaces/IBondingCurve.sol",
+        "id": 1354,
+        "nodeType": "ImportDirective",
+        "scope": 1420,
+        "sourceUnit": 1439,
+        "src": "61:41:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1355,
+              "name": "IBondingCurve",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1438,
+              "src": "145:13:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IBondingCurve_$1438",
+                "typeString": "contract IBondingCurve"
+              }
+            },
+            "id": 1356,
+            "nodeType": "InheritanceSpecifier",
+            "src": "145:13:5"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1357,
+              "name": "BancorFormula",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1654,
+              "src": "160:13:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BancorFormula_$1654",
+                "typeString": "contract BancorFormula"
+              }
+            },
+            "id": 1358,
+            "nodeType": "InheritanceSpecifier",
+            "src": "160:13:5"
+          }
+        ],
+        "contractDependencies": [
+          1438,
+          1654,
+          3842
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1419,
+        "linearizedBaseContracts": [
+          1419,
+          1654,
+          3842,
+          1438
+        ],
+        "name": "BancorBondingCurve",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "0c7d5cd8",
+            "id": 1360,
+            "mutability": "mutable",
+            "name": "reserveRatio",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 1419,
+            "src": "382:26:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint32",
+              "typeString": "uint32"
+            },
+            "typeName": {
+              "id": 1359,
+              "name": "uint32",
+              "nodeType": "ElementaryTypeName",
+              "src": "382:6:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint32",
+                "typeString": "uint32"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1369,
+              "nodeType": "Block",
+              "src": "456:45:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1367,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 1365,
+                      "name": "reserveRatio",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1360,
+                      "src": "466:12:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1366,
+                      "name": "_reserveRatio",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1362,
+                      "src": "481:13:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "src": "466:28:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "id": 1368,
+                  "nodeType": "ExpressionStatement",
+                  "src": "466:28:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1370,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1363,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1362,
+                  "mutability": "mutable",
+                  "name": "_reserveRatio",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1370,
+                  "src": "427:20:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 1361,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "427:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "426:22:5"
+            },
+            "returnParameters": {
+              "id": 1364,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "456:0:5"
+            },
+            "scope": 1419,
+            "src": "415:86:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              1429
+            ],
+            "body": {
+              "id": 1387,
+              "nodeType": "Block",
+              "src": "602:120:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 1379,
+                          "name": "continuousSupply",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1412,
+                          "src": "643:16:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view returns (uint256)"
+                          }
+                        },
+                        "id": 1380,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "643:18:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 1381,
+                          "name": "reserveBalance",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1418,
+                          "src": "663:14:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view returns (uint256)"
+                          }
+                        },
+                        "id": 1382,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "663:16:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1383,
+                        "name": "reserveRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1360,
+                        "src": "681:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1384,
+                        "name": "_reserveTokenAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1372,
+                        "src": "695:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 1378,
+                      "name": "calculatePurchaseReturn",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1543,
+                      "src": "619:23:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_uint256_$_t_uint32_$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (uint256,uint256,uint32,uint256) view returns (uint256)"
+                      }
+                    },
+                    "id": 1385,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "619:96:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1377,
+                  "id": 1386,
+                  "nodeType": "Return",
+                  "src": "612:103:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "0d8f9f7f",
+            "id": 1388,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContinuousMintReward",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1374,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "573:8:5"
+            },
+            "parameters": {
+              "id": 1373,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1372,
+                  "mutability": "mutable",
+                  "name": "_reserveTokenAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1388,
+                  "src": "540:24:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1371,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "540:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "539:26:5"
+            },
+            "returnParameters": {
+              "id": 1377,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1376,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1388,
+                  "src": "596:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1375,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "596:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "595:6:5"
+            },
+            "scope": 1419,
+            "src": "507:215:5",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              1437
+            ],
+            "body": {
+              "id": 1405,
+              "nodeType": "Block",
+              "src": "826:119:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 1397,
+                          "name": "continuousSupply",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1412,
+                          "src": "863:16:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view returns (uint256)"
+                          }
+                        },
+                        "id": 1398,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "863:18:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 1399,
+                          "name": "reserveBalance",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1418,
+                          "src": "883:14:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view returns (uint256)"
+                          }
+                        },
+                        "id": 1400,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "883:16:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1401,
+                        "name": "reserveRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1360,
+                        "src": "901:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1402,
+                        "name": "_continuousTokenAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1390,
+                        "src": "915:22:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 1396,
+                      "name": "calculateSaleReturn",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1653,
+                      "src": "843:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_uint256_$_t_uint32_$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (uint256,uint256,uint32,uint256) view returns (uint256)"
+                      }
+                    },
+                    "id": 1403,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "843:95:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1395,
+                  "id": 1404,
+                  "nodeType": "Return",
+                  "src": "836:102:5"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "7cbed3e0",
+            "id": 1406,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContinuousBurnRefund",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1392,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "797:8:5"
+            },
+            "parameters": {
+              "id": 1391,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1390,
+                  "mutability": "mutable",
+                  "name": "_continuousTokenAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1406,
+                  "src": "761:27:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1389,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "761:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "760:29:5"
+            },
+            "returnParameters": {
+              "id": 1395,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1394,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1406,
+                  "src": "820:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1393,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "820:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "819:6:5"
+            },
+            "scope": 1419,
+            "src": "728:217:5",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 1407,
+              "nodeType": "StructuredDocumentation",
+              "src": "951:74:5",
+              "text": "@dev Abstract method that returns continuous token supply"
+            },
+            "functionSelector": "da12457a",
+            "id": 1412,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "continuousSupply",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1408,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1055:2:5"
+            },
+            "returnParameters": {
+              "id": 1411,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1410,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1412,
+                  "src": "1087:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1409,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1087:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1086:6:5"
+            },
+            "scope": 1419,
+            "src": "1030:63:5",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 1413,
+              "nodeType": "StructuredDocumentation",
+              "src": "1099:72:5",
+              "text": "@dev Abstract method that returns reserve token balance"
+            },
+            "functionSelector": "a10954fe",
+            "id": 1418,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "reserveBalance",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1414,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1203:2:5"
+            },
+            "returnParameters": {
+              "id": 1417,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1416,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1418,
+                  "src": "1235:4:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1415,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1235:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1234:6:5"
+            },
+            "scope": 1419,
+            "src": "1180:61:5",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1420,
+        "src": "105:1138:5"
+      }
+    ],
+    "src": "0:1243:5"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/curves/BancorBondingCurve.sol",
+      "exportedSymbols": {
+        "BancorBondingCurve": [
+          1419
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 1352,
+        "name": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1655,
+          "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/math/BancorFormula.sol",
+          "file": "../math/BancorFormula.sol",
+          "scope": 1420,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 1353,
+        "name": "ImportDirective",
+        "src": "25:35:5"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1439,
+          "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/ContinuousToken/interfaces/IBondingCurve.sol",
+          "file": "../interfaces/IBondingCurve.sol",
+          "scope": 1420,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 1354,
+        "name": "ImportDirective",
+        "src": "61:41:5"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "contractDependencies": [
+            1438,
+            1654,
+            3842
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            1419,
+            1654,
+            3842,
+            1438
+          ],
+          "name": "BancorBondingCurve",
+          "scope": 1420
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IBondingCurve",
+                  "referencedDeclaration": 1438,
+                  "type": "contract IBondingCurve"
+                },
+                "id": 1355,
+                "name": "UserDefinedTypeName",
+                "src": "145:13:5"
+              }
+            ],
+            "id": 1356,
+            "name": "InheritanceSpecifier",
+            "src": "145:13:5"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "BancorFormula",
+                  "referencedDeclaration": 1654,
+                  "type": "contract BancorFormula"
+                },
+                "id": 1357,
+                "name": "UserDefinedTypeName",
+                "src": "160:13:5"
+              }
+            ],
+            "id": 1358,
+            "name": "InheritanceSpecifier",
+            "src": "160:13:5"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "0c7d5cd8",
+              "mutability": "mutable",
+              "name": "reserveRatio",
+              "overrides": null,
+              "scope": 1419,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint32",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint32",
+                  "type": "uint32"
+                },
+                "id": 1359,
+                "name": "ElementaryTypeName",
+                "src": "382:6:5"
+              }
+            ],
+            "id": 1360,
+            "name": "VariableDeclaration",
+            "src": "382:26:5"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "overrides": null,
+              "scope": 1419,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_reserveRatio",
+                      "overrides": null,
+                      "scope": 1370,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint32",
+                          "type": "uint32"
+                        },
+                        "id": 1361,
+                        "name": "ElementaryTypeName",
+                        "src": "427:6:5"
+                      }
+                    ],
+                    "id": 1362,
+                    "name": "VariableDeclaration",
+                    "src": "427:20:5"
+                  }
+                ],
+                "id": 1363,
+                "name": "ParameterList",
+                "src": "426:22:5"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1364,
+                "name": "ParameterList",
+                "src": "456:0:5"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1360,
+                              "type": "uint32",
+                              "value": "reserveRatio"
+                            },
+                            "id": 1365,
+                            "name": "Identifier",
+                            "src": "466:12:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1362,
+                              "type": "uint32",
+                              "value": "_reserveRatio"
+                            },
+                            "id": 1366,
+                            "name": "Identifier",
+                            "src": "481:13:5"
+                          }
+                        ],
+                        "id": 1367,
+                        "name": "Assignment",
+                        "src": "466:28:5"
+                      }
+                    ],
+                    "id": 1368,
+                    "name": "ExpressionStatement",
+                    "src": "466:28:5"
+                  }
+                ],
+                "id": 1369,
+                "name": "Block",
+                "src": "456:45:5"
+              }
+            ],
+            "id": 1370,
+            "name": "FunctionDefinition",
+            "src": "415:86:5"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                1429
+              ],
+              "documentation": null,
+              "functionSelector": "0d8f9f7f",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getContinuousMintReward",
+              "scope": 1419,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 1374,
+                "name": "OverrideSpecifier",
+                "src": "573:8:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_reserveTokenAmount",
+                      "overrides": null,
+                      "scope": 1388,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1371,
+                        "name": "ElementaryTypeName",
+                        "src": "540:4:5"
+                      }
+                    ],
+                    "id": 1372,
+                    "name": "VariableDeclaration",
+                    "src": "540:24:5"
+                  }
+                ],
+                "id": 1373,
+                "name": "ParameterList",
+                "src": "539:26:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1388,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1375,
+                        "name": "ElementaryTypeName",
+                        "src": "596:4:5"
+                      }
+                    ],
+                    "id": 1376,
+                    "name": "VariableDeclaration",
+                    "src": "596:4:5"
+                  }
+                ],
+                "id": 1377,
+                "name": "ParameterList",
+                "src": "595:6:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 1377
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint32",
+                                  "typeString": "uint32"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1543,
+                              "type": "function (uint256,uint256,uint32,uint256) view returns (uint256)",
+                              "value": "calculatePurchaseReturn"
+                            },
+                            "id": 1378,
+                            "name": "Identifier",
+                            "src": "619:23:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1412,
+                                  "type": "function () view returns (uint256)",
+                                  "value": "continuousSupply"
+                                },
+                                "id": 1379,
+                                "name": "Identifier",
+                                "src": "643:16:5"
+                              }
+                            ],
+                            "id": 1380,
+                            "name": "FunctionCall",
+                            "src": "643:18:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1418,
+                                  "type": "function () view returns (uint256)",
+                                  "value": "reserveBalance"
+                                },
+                                "id": 1381,
+                                "name": "Identifier",
+                                "src": "663:14:5"
+                              }
+                            ],
+                            "id": 1382,
+                            "name": "FunctionCall",
+                            "src": "663:16:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1360,
+                              "type": "uint32",
+                              "value": "reserveRatio"
+                            },
+                            "id": 1383,
+                            "name": "Identifier",
+                            "src": "681:12:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1372,
+                              "type": "uint256",
+                              "value": "_reserveTokenAmount"
+                            },
+                            "id": 1384,
+                            "name": "Identifier",
+                            "src": "695:19:5"
+                          }
+                        ],
+                        "id": 1385,
+                        "name": "FunctionCall",
+                        "src": "619:96:5"
+                      }
+                    ],
+                    "id": 1386,
+                    "name": "Return",
+                    "src": "612:103:5"
+                  }
+                ],
+                "id": 1387,
+                "name": "Block",
+                "src": "602:120:5"
+              }
+            ],
+            "id": 1388,
+            "name": "FunctionDefinition",
+            "src": "507:215:5"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                1437
+              ],
+              "documentation": null,
+              "functionSelector": "7cbed3e0",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getContinuousBurnRefund",
+              "scope": 1419,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 1392,
+                "name": "OverrideSpecifier",
+                "src": "797:8:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_continuousTokenAmount",
+                      "overrides": null,
+                      "scope": 1406,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1389,
+                        "name": "ElementaryTypeName",
+                        "src": "761:4:5"
+                      }
+                    ],
+                    "id": 1390,
+                    "name": "VariableDeclaration",
+                    "src": "761:27:5"
+                  }
+                ],
+                "id": 1391,
+                "name": "ParameterList",
+                "src": "760:29:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1406,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1393,
+                        "name": "ElementaryTypeName",
+                        "src": "820:4:5"
+                      }
+                    ],
+                    "id": 1394,
+                    "name": "VariableDeclaration",
+                    "src": "820:4:5"
+                  }
+                ],
+                "id": 1395,
+                "name": "ParameterList",
+                "src": "819:6:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 1395
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint32",
+                                  "typeString": "uint32"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1653,
+                              "type": "function (uint256,uint256,uint32,uint256) view returns (uint256)",
+                              "value": "calculateSaleReturn"
+                            },
+                            "id": 1396,
+                            "name": "Identifier",
+                            "src": "843:19:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1412,
+                                  "type": "function () view returns (uint256)",
+                                  "value": "continuousSupply"
+                                },
+                                "id": 1397,
+                                "name": "Identifier",
+                                "src": "863:16:5"
+                              }
+                            ],
+                            "id": 1398,
+                            "name": "FunctionCall",
+                            "src": "863:18:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1418,
+                                  "type": "function () view returns (uint256)",
+                                  "value": "reserveBalance"
+                                },
+                                "id": 1399,
+                                "name": "Identifier",
+                                "src": "883:14:5"
+                              }
+                            ],
+                            "id": 1400,
+                            "name": "FunctionCall",
+                            "src": "883:16:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1360,
+                              "type": "uint32",
+                              "value": "reserveRatio"
+                            },
+                            "id": 1401,
+                            "name": "Identifier",
+                            "src": "901:12:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1390,
+                              "type": "uint256",
+                              "value": "_continuousTokenAmount"
+                            },
+                            "id": 1402,
+                            "name": "Identifier",
+                            "src": "915:22:5"
+                          }
+                        ],
+                        "id": 1403,
+                        "name": "FunctionCall",
+                        "src": "843:95:5"
+                      }
+                    ],
+                    "id": 1404,
+                    "name": "Return",
+                    "src": "836:102:5"
+                  }
+                ],
+                "id": 1405,
+                "name": "Block",
+                "src": "826:119:5"
+              }
+            ],
+            "id": 1406,
+            "name": "FunctionDefinition",
+            "src": "728:217:5"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "da12457a",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "continuousSupply",
+              "overrides": null,
+              "scope": 1419,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Abstract method that returns continuous token supply"
+                },
+                "id": 1407,
+                "name": "StructuredDocumentation",
+                "src": "951:74:5"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1408,
+                "name": "ParameterList",
+                "src": "1055:2:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1412,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1409,
+                        "name": "ElementaryTypeName",
+                        "src": "1087:4:5"
+                      }
+                    ],
+                    "id": 1410,
+                    "name": "VariableDeclaration",
+                    "src": "1087:4:5"
+                  }
+                ],
+                "id": 1411,
+                "name": "ParameterList",
+                "src": "1086:6:5"
+              }
+            ],
+            "id": 1412,
+            "name": "FunctionDefinition",
+            "src": "1030:63:5"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "a10954fe",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "reserveBalance",
+              "overrides": null,
+              "scope": 1419,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Abstract method that returns reserve token balance"
+                },
+                "id": 1413,
+                "name": "StructuredDocumentation",
+                "src": "1099:72:5"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1414,
+                "name": "ParameterList",
+                "src": "1203:2:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1418,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1415,
+                        "name": "ElementaryTypeName",
+                        "src": "1235:4:5"
+                      }
+                    ],
+                    "id": 1416,
+                    "name": "VariableDeclaration",
+                    "src": "1235:4:5"
+                  }
+                ],
+                "id": 1417,
+                "name": "ParameterList",
+                "src": "1234:6:5"
+              }
+            ],
+            "id": 1418,
+            "name": "FunctionDefinition",
+            "src": "1180:61:5"
+          }
+        ],
+        "id": 1419,
+        "name": "ContractDefinition",
+        "src": "105:1138:5"
+      }
+    ],
+    "id": 1420,
+    "name": "SourceUnit",
+    "src": "0:1243:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-21T05:15:36.014Z",
+  "devdoc": {
+    "methods": {
+      "calculatePurchaseReturn(uint256,uint256,uint32,uint256)": {
+        "details": "given a continuous token supply, reserve token balance, reserve ratio, and a deposit amount (in the reserve token), calculates the return for a given conversion (in the continuous token)    * Formula: Return = _supply * ((1 + _depositAmount / _reserveBalance) ^ (_reserveRatio / MAX_RESERVE_RATIO) - 1)",
+        "params": {
+          "_depositAmount": "deposit amount, in reserve token",
+          "_reserveBalance": "total reserve token balance",
+          "_reserveRatio": "reserve ratio, represented in ppm, 1-1000000",
+          "_supply": "continuous token total supply"
+        },
+        "returns": {
+          "_0": "purchase return amount"
+        }
+      },
+      "calculateSaleReturn(uint256,uint256,uint32,uint256)": {
+        "details": "given a continuous token supply, reserve token balance, reserve ratio and a sell amount (in the continuous token), calculates the return for a given conversion (in the reserve token)    * Formula: Return = _reserveBalance * (1 - (1 - _sellAmount / _supply) ^ (1 / (_reserveRatio / MAX_RESERVE_RATIO)))",
+        "params": {
+          "_reserveBalance": "total reserve token balance",
+          "_reserveRatio": "constant reserve ratio, represented in ppm, 1-1000000",
+          "_sellAmount": "sell amount, in the continuous token itself",
+          "_supply": "continuous token total supply"
+        },
+        "returns": {
+          "_0": "sale return amount"
+        }
+      },
+      "continuousSupply()": {
+        "details": "Abstract method that returns continuous token supply"
+      },
+      "reserveBalance()": {
+        "details": "Abstract method that returns reserve token balance"
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

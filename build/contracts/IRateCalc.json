@@ -1,0 +1,655 @@
+{
+  "contractName": "IRateCalc",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "l",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "t",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "k",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "s",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tP",
+          "type": "uint256"
+        }
+      ],
+      "name": "rate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"l\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"t\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"k\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"s\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tP\",\"type\":\"uint256\"}],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256)\":{\"params\":{\"amount\":\"the bet amount to calc a payout for\",\"k\":\"true for call false for put\",\"l\":\"the current amount locked\",\"s\":\"number of open options in this direction     \",\"t\":\"time for the option\",\"tP\":\"the amount of tokens stored currently in the pool the option be created on\"},\"returns\":{\"_0\":\"profit total possible profit amount     \"}}}},\"userdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256)\":{\"notice\":\"Returns the rate to pay out for a given amount\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol\":\"IRateCalc\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol\":{\"keccak256\":\"0xc92225b8a05de46a9eaa1705c3d3101b6483bc9bd3eb900a29d6b77476193a6e\",\"urls\":[\"bzz-raw://5efc2fb71d09d0541115f52cd7d598edbae52c81092b11ecab9fc37cfd2577fc\",\"dweb:/ipfs/QmeyhSHkARxTt6qHqeGffuqBzmThHVKtrCJiQmKwi1D5Z8\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.6;\n\ninterface IRateCalc {\n    /**\n     * @notice Returns the rate to pay out for a given amount\n     * @param amount the bet amount to calc a payout for\n     * @param l the current amount locked\n     * @param t time for the option\n     * @param k true for call false for put\n     * @param s number of open options in this direction     \n     * @param tP the amount of tokens stored currently in the pool the option be created on\n     * @return profit total possible profit amount\n     *\n     */\n    function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s, uint256 tP) external view returns (uint256);\n\n}\n",
+  "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol",
+  "ast": {
+    "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol",
+    "exportedSymbols": {
+      "IRateCalc": [
+        11081
+      ]
+    },
+    "id": 11082,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11062,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:27"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 11081,
+        "linearizedBaseContracts": [
+          11081
+        ],
+        "name": "IRateCalc",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 11063,
+              "nodeType": "StructuredDocumentation",
+              "src": "51:464:27",
+              "text": "@notice Returns the rate to pay out for a given amount\n@param amount the bet amount to calc a payout for\n@param l the current amount locked\n@param t time for the option\n@param k true for call false for put\n@param s number of open options in this direction     \n@param tP the amount of tokens stored currently in the pool the option be created on\n@return profit total possible profit amount\n     "
+            },
+            "functionSelector": "3a951448",
+            "id": 11080,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rate",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 11076,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11065,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "534:14:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11064,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "534:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11067,
+                  "mutability": "mutable",
+                  "name": "l",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "550:9:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11066,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "550:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11069,
+                  "mutability": "mutable",
+                  "name": "t",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "561:9:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11068,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "561:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11071,
+                  "mutability": "mutable",
+                  "name": "k",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "572:6:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 11070,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "572:4:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11073,
+                  "mutability": "mutable",
+                  "name": "s",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "580:9:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11072,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "580:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11075,
+                  "mutability": "mutable",
+                  "name": "tP",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "591:10:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11074,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "591:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "533:69:27"
+            },
+            "returnParameters": {
+              "id": 11079,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11078,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 11080,
+                  "src": "626:7:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11077,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "626:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "625:9:27"
+            },
+            "scope": 11081,
+            "src": "520:115:27",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11082,
+        "src": "25:613:27"
+      }
+    ],
+    "src": "0:639:27"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol",
+      "exportedSymbols": {
+        "IRateCalc": [
+          11081
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".6"
+          ]
+        },
+        "id": 11062,
+        "name": "PragmaDirective",
+        "src": "0:23:27"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            11081
+          ],
+          "name": "IRateCalc",
+          "scope": 11082
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "3a951448",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "rate",
+              "overrides": null,
+              "scope": 11081,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Returns the rate to pay out for a given amount\n@param amount the bet amount to calc a payout for\n@param l the current amount locked\n@param t time for the option\n@param k true for call false for put\n@param s number of open options in this direction     \n@param tP the amount of tokens stored currently in the pool the option be created on\n@return profit total possible profit amount\n     "
+                },
+                "id": 11063,
+                "name": "StructuredDocumentation",
+                "src": "51:464:27"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11064,
+                        "name": "ElementaryTypeName",
+                        "src": "534:7:27"
+                      }
+                    ],
+                    "id": 11065,
+                    "name": "VariableDeclaration",
+                    "src": "534:14:27"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "l",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11066,
+                        "name": "ElementaryTypeName",
+                        "src": "550:7:27"
+                      }
+                    ],
+                    "id": 11067,
+                    "name": "VariableDeclaration",
+                    "src": "550:9:27"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "t",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11068,
+                        "name": "ElementaryTypeName",
+                        "src": "561:7:27"
+                      }
+                    ],
+                    "id": 11069,
+                    "name": "VariableDeclaration",
+                    "src": "561:9:27"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "k",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 11070,
+                        "name": "ElementaryTypeName",
+                        "src": "572:4:27"
+                      }
+                    ],
+                    "id": 11071,
+                    "name": "VariableDeclaration",
+                    "src": "572:6:27"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "s",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11072,
+                        "name": "ElementaryTypeName",
+                        "src": "580:7:27"
+                      }
+                    ],
+                    "id": 11073,
+                    "name": "VariableDeclaration",
+                    "src": "580:9:27"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tP",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11074,
+                        "name": "ElementaryTypeName",
+                        "src": "591:7:27"
+                      }
+                    ],
+                    "id": 11075,
+                    "name": "VariableDeclaration",
+                    "src": "591:10:27"
+                  }
+                ],
+                "id": 11076,
+                "name": "ParameterList",
+                "src": "533:69:27"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 11080,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11077,
+                        "name": "ElementaryTypeName",
+                        "src": "626:7:27"
+                      }
+                    ],
+                    "id": 11078,
+                    "name": "VariableDeclaration",
+                    "src": "626:7:27"
+                  }
+                ],
+                "id": 11079,
+                "name": "ParameterList",
+                "src": "625:9:27"
+              }
+            ],
+            "id": 11080,
+            "name": "FunctionDefinition",
+            "src": "520:115:27"
+          }
+        ],
+        "id": 11081,
+        "name": "ContractDefinition",
+        "src": "25:613:27"
+      }
+    ],
+    "id": 11082,
+    "name": "SourceUnit",
+    "src": "0:639:27"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-21T05:15:36.143Z",
+  "devdoc": {
+    "methods": {
+      "rate(uint256,uint256,uint256,bool,uint256,uint256)": {
+        "params": {
+          "amount": "the bet amount to calc a payout for",
+          "k": "true for call false for put",
+          "l": "the current amount locked",
+          "s": "number of open options in this direction     ",
+          "t": "time for the option",
+          "tP": "the amount of tokens stored currently in the pool the option be created on"
+        },
+        "returns": {
+          "_0": "profit total possible profit amount     "
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "rate(uint256,uint256,uint256,bool,uint256,uint256)": {
+        "notice": "Returns the rate to pay out for a given amount"
+      }
+    }
+  }
+}

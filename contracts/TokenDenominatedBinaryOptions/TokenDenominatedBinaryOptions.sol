@@ -382,7 +382,9 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     //A % of the trade money is sent as a fee. see protocolFee
     if (lv > protocolFee && protocolFee > 0) {
       uint256 fee = lv.div(protocolFee);
-      require(treasury.send(fee), "devFund fee transfer failed");
+
+      ERC20 token = ERC20(sT);
+      require(token.transfer(treasury, fee), "protocol fee transfer failed");
       lv = lv.sub(fee);
     }
 

@@ -18,7 +18,6 @@ interface INativeAssetDenominatedBinaryOptions {
     function closeStaking() external;
     function transferOwner(address payable newOwner_) external;
     function transferDevFund(address payable newDevFund) external;
-    function updateBIOPToken(address payable a) external;
     function updateUtilizationRewards(address newUR) external;
     function updateAPP(address newAPP) external;
     
