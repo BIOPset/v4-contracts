@@ -100,7 +100,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         app = app_;
     }
 
-
+    /**
+      @dev Get the largest amount a bet can be created for
+      */
     function getMaxAvailable() public view returns(uint256) {
         uint256 balance = address(this).balance;
         if (balance > lockedAmount) {
