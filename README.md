@@ -1,6 +1,50 @@
 # Biopset V4
 A repository of contracts required to deploy version 4 of the Decentralized Binary Option Settlement Protocol. It contains the essential trading protocol and its surronding infrastructure (like the DAO contract, which is used to upgrade the protocol and control its settings).
 
+## Testing Instructions
+
+1. Download the repository.
+
+```bash
+git clone https://github.com/BIOPset/v4-contracts.git
+```
+
+2. Navigate into a command line within the v4-contracts folder.
+
+```bash
+cd v4-contracts
+```
+
+3. Run NPM install
+
+```bash
+npm install
+```
+
+4. Globally install ganache-cli to your system.
+
+```bash
+npm install -g ganache-cli
+```
+
+5. Globally install truffle to your system.
+
+```bash
+npm install -g truffle
+```
+
+6. Launch ganache-cli.
+
+```bash
+ganache-cli
+```
+
+7. In a seperate command line window within the same v4-contracts folder, run truffle test.
+
+```bash
+truffle test
+```
+
 ## Contract List
 
 Here are a list of the contracts that comprize the protocol:
