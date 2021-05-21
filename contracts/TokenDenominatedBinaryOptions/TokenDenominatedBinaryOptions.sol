@@ -274,7 +274,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
       t_ >= minT && t_ <= maxT,
       "Invalid time"
     );
-    require(isApproved(pp_), "Invalid  price provider");
+    require(isApproved(pp_), "Invalid price provider");
     require(a_ <= getMaxAvailable(), "option size too big");
 
     ERC20 token = ERC20(sT);
