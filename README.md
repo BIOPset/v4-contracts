@@ -5,6 +5,7 @@ A repository of contracts required to deploy version 4 of the Decentralized Bina
 
 Here are a list of the contracts that comprize the protocol:
 
+```javascript
 APP.sol
 BasicRateCalc.sol
 NativeAssetDenominatedBinaryOptions.sol
@@ -24,6 +25,7 @@ interfaces/IAPP.sol
 interfaces/IUtilizationRewards.sol
 interfaces/IRateCalc.sol
 interfaces/IAccessTiers.sol
+```
 
 ## Contract Descriptions
 
@@ -133,7 +135,7 @@ These actions aren't as potentially foundation shaking as Tier 4 but are hot.
  - Replace APP: Activate a new Approved Price Providers contract which contains the list of approved Oracle / RateCalc pairs.
  - Update UtilizationRewards owner.
  - Deactivate TokenDenominatedBinaryOptions: remove a TokenDenominatedBinaryOptions instance when a new version is being introduced.
- 
+
 ### Tier 4🌏🌏🌏🌏
 These actions require the greatest consensus around staked participants.
 - Update Direct Distribution: Change the amount of tokens which are sent from the proxy to all $BIOP stakers evenly and do not go to the DAO treasury.
