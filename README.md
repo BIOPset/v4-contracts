@@ -1,6 +1,8 @@
 # Biopset V4
 A repository of contracts required to deploy version 4 of the Decentralized Binary Option Settlement Protocol. It contains the essential trading protocol and its surronding infrastructure (like the DAO contract, which is used to upgrade the protocol and control its settings).
 
+To learn more about BIOPset please read the [Medium Publication](https://medium.com/biopset).
+
 ## Protocol Settings
 
 The protocol charges a 1% fee on ITM options. This and other configurable settings are listed below:
@@ -150,6 +152,17 @@ Interface for RateCalcs.
 ### interfaces/IAccessTiers.sol
 
 Interface for AccessTiers.
+
+## The Process For Creating BIOPSET Options
+
+![slide0](./images/the-smart-contract-process-for-creating-biopset-options-0.png)
+![slide1](./images/the-smart-contract-process-for-creating-biopset-options-1.png)
+![slide2](./images/the-smart-contract-process-for-creating-biopset-options-2.png)
+![slide3](./images/the-smart-contract-process-for-creating-biopset-options-3.png)
+![slide4](./images/the-smart-contract-process-for-creating-biopset-options-4.png)
+![slide5](./images/the-smart-contract-process-for-creating-biopset-options-5.png)
+![slide6](./images/the-smart-contract-process-for-creating-biopset-options-6.png)
+![slide7](./images/the-smart-contract-process-for-creating-biopset-options-7.png)
 
 ## Settlement DAO Actions
 Things you can do with a high enough percentage of staked $BIOP.
