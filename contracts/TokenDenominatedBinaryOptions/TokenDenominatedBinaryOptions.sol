@@ -225,24 +225,9 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   function getRate(address pair, uint256 deposit, uint256 t, bool k) public view returns (uint256) {
     IAPP app_ = IAPP(app);
     require(app_.aprvd(pair) != 0x0000000000000000000000000000000000000000, "invalid trading pair");
-
     RateCalc rc = RateCalc(app_.aprvd(pair));
-    uint256 s;
-    if (k){
-      if (oP >= oC) {
-        s = 1;
-      } else {
-        s = oC.sub(oP);
-      }
-    } else {
-      if (oC >= oP) {
-        s = 1;
-      } else {
-        s = oP.sub(oC);
-      }
-    }
     ERC20 token = ERC20(sT);
-    return rc.rate(deposit, lockedAmount , t, k, s, token.balanceOf(address(this)));
+    return rc.rate(deposit, lockedAmount , t, k, oC, oP, token.balanceOf(address(this)));
   }
 
   /**
