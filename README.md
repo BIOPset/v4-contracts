@@ -11,7 +11,7 @@ The protocol charges a 1% fee on ITM options. This and other key configurable se
 actualRate = 2x  // The rate of return on ITM options. This drops to 1.5x during periods of high usage.
 protocolFee = 1% // The fee charged by BIOPset on ITM options. Accrues to the BIOPset treasury.
 sP = 10% // The percentage of treasury expenditures accruing to BIOP token holders participating in governance by staking their tokens.
-settlerFee = 0.2% // The fee charged for settling options. Traders may settle options themselves.
+settlerFee = 0.2% // The bounty paid for settling options. Traders may settle options themselves to avoid this cost.
 l < 1% // The maximum utilization of the pool (the collective liquidity provided by options sellers).
 amount < 0.5% // The maximum position size as a percentage of the pool (the collective liquidity provided by options sellers).
 ```
