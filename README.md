@@ -41,44 +41,67 @@ interfaces/IAccessTiers.sol
 
 Please note that **interfaces** are definitions of aspects of the protocol that may have a different implementations later on (like RateCalc).
 
+### AggregatorProxy.sol
+
+The contract retrieving trading pair pricing information from Chainlink. It’s taken from the NPM dependencies and placed in the “Chainlink” folder to make compilation easier. It could be replaced by another provider if necessary.
+
+Interfaces with: TokenDenominatedBinaryOptions.sol and NativeAssetDenominatedBinaryOptions.sol.
+
 ### APP.sol
 
-Approved price providers, a set of key value pairs mapping Oracle addresses to RateCalcs addresses. Controlled/owned by the Settlement DAO (DAO) and utilized by NativeAssetDenominatedBinaryOptions and TokenDenominatedBinaryOptions.
+Approved price providers, a set of key value pairs mapping oracle addresses to RateCalc addresses.
 
-Initialization Parameters: pp_ the initial price provider(oracle) contract address, rc_ the initial rate calc contract address.
+Controlled/owned by: DAO.sol.
+
+Interfaces with: NativeAssetDenominatedBinaryOptions.sol and TokenDenominatedBinaryOptions.sol.
+
+Initialization parameters: pp_ the initial price provider(oracle) contract address, rc_ the initial rate calc contract address.
 
 ### BasicRateCalc.sol
 
-A rate calculator offering mostly 2x rates based on the belief this is good for marketing. The default RateCalc that will be deployed and mapped to the first Oracle approved in the APP.
+The default RateCalc that will be deployed and mapped to the first oracle approved in the APP. It is responsible for limiting the percentage of the pool that can be allocated to 1%. This prevents the pool from being depleted before the laws of probability kick in.
 
+Interfaces with: NativeAssetDenominatedBinaryOptions.sol and TokenDenominatedBinaryOptions.sol.
 
-Initialization Parameters: none.
+Initialization parameters: none.
 
 ### NativeAssetDenominatedBinaryOptions.sol
 
-The main contract of the protocol. Allows traders to open trades, Writers to underwrite them, and settlers to exercise/expire them. The underlying asset is ETH. Controlled/owned by the Settlement DAO (DAO) and interfacing with APP, RateCalcs, and UtilizationRewards. Also keeps surface level record of utilization rewards owed to users.
+The main contract of the protocol. Allows traders to open positions, writers the ability to underwrite them, and settlers the ability to settle them. Binary options are denominated in the native asset of the underlying blockchain. On the Ethereum Blockchain, the options are denominated in ETH.
 
+Also keeps surface level record of utilization rewards owed to users.
 
-Initialization Parameters: name_ the name of the pool token (like Pool ETH), symbol_ the symbol of the pool token(like pETH), biop_ the address of the BIOP token contract, uR_ the address of the utilization rewards contract, app_ the address of the APP contract to be used with this pool at launch.
+Controlled/owned by: DAO.sol.
+
+Interfaces with: APP.sol, BasicRateCalc.sol, UtilizationRewards.sol, and GovProxy.sol.
+
+Initialization parameters: name_ the name of the pool token (like Pool ETH), symbol_ the symbol of the pool token(like pETH), biop_ the address of the BIOP token contract, uR_ the address of the utilization rewards contract, app_ the address of the APP contract to be used with this pool at launch.
 
 ### DAO.sol
 
-The Settlement DAO. From here $BIOP stakers oversee every aspect of the protocol. Allows stakers to delegate power to governors who are able to update settings and replace contracts of the protocol. Controls the Oracle/RateCalc pairs in the APP. Also controls the EBOP20Factory. Can be used to pay a percentage of all trading fees directly to $BIOP stakers but doesn't by default. Interfaces with NativeAssetDenominatedBinaryOptions, APP, TokenDenominatedBinaryOptions, TokenDenominatedBinaryOptionsFactory,LateStageBondingCurve, and Treasury.
+The Settlement DAO essentially. Those staking BIOP tokens use this contract to oversee every aspect of the protocol. It allows them to endorse contracts. Those contracts are then able to update settings and/or swap out contracts of the protocol. In particular, this component of the protocol controls the oracle & RateCalc pairs used.
 
+It also controls the NativeAssetDenominatedBinaryOptions.sol contract.
 
-Initialization Parameters: bo_ the address of the NativeAssetDenominatedBinaryOptions contract, v4_ the address of the deployed BIOP token contract, accessTiers_ the address of the deployed DelegatedAccessTiers contract, factory_ the address of the TokenDenominatedBinaryOptionsFactory contract, trsy_ the address of the Treasury contract.
+Interfaces with: NativeAssetDenominatedBinaryOptions.sol, TokenDenominatedBinaryOptions.sol, APP.sol, TokenDenominatedBinaryOptionsFactory.sol, GovProxy.sol, LateStageBondingCurve.sol, and Treasury.sol.
+
+Initialization parameters: bo_ the address of the NativeAssetDenominatedBinaryOptions contract, v4_ the address of the deployed BIOP token contract, accessTiers_ the address of the deployed DelegatedAccessTiers contract, factory_ the address of the TokenDenominatedBinaryOptionsFactory contract, trsy_ the address of the Treasury contract.
 
 ### ReserveBondingCurve.sol
 
-A AMM for $BIOP tokens. Not to be activated until after DEX rewards are complete. Controlled/owned by the DAO.
+An automatic market maker (or "**AMM**") for BIOP governance tokens. The purpose is to ensure there is always a marketplace for buying and selling BIOP tokens. It is not to be activated until after DEX rewards are complete.
 
-Initialization Parameters: token_ the address of the BIOP token contract, _reserveRatio the ratio (initial price) of tokens to ETH (intended to be 500000 in testing).
+Controlled/owned by: DAO.sol.
+
+Initialization parameters: token_ the address of the BIOP token contract, _reserveRatio the ratio (initial price) of tokens to ETH (intended to be 500000 in testing).
 
 ### Treasury.sol
 
-The treasury of funds amassed from trading fees and owned collectively by the Settlement DAO. When ETH is sent from the treasury a percentage is sent to DAO stakers. Can be used to send amassed funds to anywhere by  the Settlement DAO. Controlled/owned by the DAO.
+The treasury of funds amassed from protocol fees on ITM options. It is collectively managed by Settlement DAO members staking their BIOP governance tokens. Wheneve the treasury's ETH is spent, a percentage is sent to DAO stakers. Can be used to send amassed funds to anywhere by approved by the Settlement DAO.
 
-Initialization Parameters: none.
+Controlled/owned by: DAO.sol.
+
+Initialization parameters: none.
 
 ### UtilizationRewards.sol
 
