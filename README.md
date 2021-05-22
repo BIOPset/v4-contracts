@@ -1,6 +1,8 @@
 # Biopset V4
 A repository of contracts required to deploy version 4 of the Decentralized Binary Option Settlement Protocol. It contains the essential trading protocol and its surronding infrastructure (like the DAO contract, which is used to upgrade the protocol and control its settings).
 
+To learn more about BIOPset please read the [Medium Publication](https://medium.com/biopset).
+
 ## Protocol Settings
 
 The protocol charges a 1% fee on ITM options. This and other configurable settings are listed below:
