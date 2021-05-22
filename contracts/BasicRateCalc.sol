@@ -12,13 +12,14 @@ contract BasicRateCalc is IRateCalc {
      * @param l the current amount of locked ETH
      * @param t time/rounds for the option  (not used in this RateCalc)
      * @param k true for call false for put (not used in this RateCalc)
-     * @param s stack, how many open options there are already in this direction
+     * @param oC  how many open call options there are currently
+     * @param oP  how many open put options there are currently
      * @param tP the amount of tokens currently stored in the active pool
      * @return profit total possible profit amount
      *
      * @dev the amount returned represents the total amount which is to be locked. This means that any amount returned represents the option's purchase price and the pool's stake combined.
      */
-    function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 s, uint256 tP) external view override returns (uint256)  {
+    function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 oC, uint256 oP, uint256 tP) external view override returns (uint256)  {
 
         //check that no more than 1% of the pool is locked
         require(l < tP.div(100), "pool is full");
