@@ -97,7 +97,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   }
 
   /**
-    * @dev set the new address of the treasury that early withdraw fees or bet fees go to
+    * @dev set the new address of the treasury that early withdraw fees or protocol fees go to
     * @param newTreasury_ the new Treasury address
     */
   function updateTreasury(address payable newTreasury_) public onlyOwner {
@@ -142,7 +142,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   }
 
   /**
-    * @dev update the max rounds for option bets
+    * @dev update the max rounds for an option position
     * @param newMax_ the new maximum time (in rounds) an option may be created for (inclusive).
     */
   function updateMaxT(uint256 newMax_) external onlyOwner {
@@ -150,7 +150,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   }
 
   /**
-    * @dev update the min rounds for option bets
+    * @dev update the min rounds for an option position
     * @param newMin_ the new minimum time (in rounds) an option may be created for (inclusive).
     */
   function updateMinT(uint256 newMin_) external onlyOwner {
@@ -202,7 +202,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   }
 
   /**
-    @dev Get the largest amount a bet can be created for
+    @dev Get the maximum possible option size
     */
   function getMaxAvailable() public view returns(uint256) {
     ERC20 token = ERC20(sT);
@@ -217,7 +217,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   /**
     @dev helper for getting rate
     @param pair the price provider
-    @param deposit bet amount
+    @param deposit option premium (payment) amount
     @param t time
     @param k direction bool, true is call
     @return the rate

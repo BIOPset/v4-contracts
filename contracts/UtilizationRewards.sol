@@ -155,7 +155,7 @@ contract UtilizationRewards is IUtilizationRewards{
     }
 
      /**
-    * @notice bonus based  on total interchange. The more bet's are used, the more rewards.
+    * @notice bonus based on total interchange. The more options created, the more rewards.
     * @param lastInterchange the total interchange the last time the LP staked/claimed
     * @param totalInterchange the total interchange now
     */
@@ -188,9 +188,9 @@ contract UtilizationRewards is IUtilizationRewards{
 
      /**
      * @dev used for openposition/exercise/expire calc
-     * @param amount the amount of value in bet
+     * @param amount the option value
      * @param totalLocked total LP pool size
-     * @param completion false for bet, true for exercise expire
+     * @param completion false for an open position, true for exercise expire
      **/
     function getTradeExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external view override returns(uint256) {
         return rwd.div(1000);
@@ -198,7 +198,7 @@ contract UtilizationRewards is IUtilizationRewards{
 
      /**
      * @dev used for exercise/expire calc
-     * @param amount the amount of value in bet
+     * @param amount the option value
      * @param totalLocked total LP pool size
      * @param stack total LP pool size
      **/
