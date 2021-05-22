@@ -128,7 +128,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
    * @dev #[deprecated] Use latestRoundData instead. This does not error if no
    * answer has been reached, it will simply return 0. Either wait to point to
    * an already answered Aggregator or use the recommended latestRoundData
-   * instead which includes better verification information.
+   * instead which includes trader verification information.
    */
   function latestAnswer()
     public
@@ -146,7 +146,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
    * @dev #[deprecated] Use latestRoundData instead. This does not error if no
    * answer has been reached, it will simply return 0. Either wait to point to
    * an already answered Aggregator or use the recommended latestRoundData
-   * instead which includes better verification information.
+   * instead which includes trader verification information.
    */
   function latestTimestamp()
     public
@@ -165,7 +165,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
    * @dev #[deprecated] Use getRoundData instead. This does not error if no
    * answer has been reached, it will simply return 0. Either wait to point to
    * an already answered Aggregator or use the recommended getRoundData
-   * instead which includes better verification information.
+   * instead which includes trader verification information.
    */
   function getAnswer(uint256 _roundId)
     public
@@ -190,7 +190,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
    * @dev #[deprecated] Use getRoundData instead. This does not error if no
    * answer has been reached, it will simply return 0. Either wait to point to
    * an already answered Aggregator or use the recommended getRoundData
-   * instead which includes better verification information.
+   * instead which includes trader verification information.
    */
   function getTimestamp(uint256 _roundId)
     public
@@ -216,7 +216,7 @@ contract AggregatorProxy is AggregatorV2V3Interface, Owned {
    * @dev #[deprecated] Use latestRoundData instead. This does not error if no
    * answer has been reached, it will simply return 0. Either wait to point to
    * an already answered Aggregator or use the recommended latestRoundData
-   * instead which includes better verification information.
+   * instead which includes trader verification information.
    */
   function latestRound()
     public

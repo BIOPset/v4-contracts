@@ -3,11 +3,11 @@ pragma solidity ^0.6.6;
 interface IRateCalc {
     /**
      * @notice Returns the rate to pay out for a given amount
-     * @param amount the bet amount to calc a payout for
+     * @param amount the option premium to calc a payout for
      * @param l the current amount locked
      * @param t time for the option
      * @param k true for call false for put
-     * @param s number of open options in this direction     
+     * @param s number of open options in this direction
      * @param tP the amount of tokens stored currently in the pool the option be created on
      * @return profit total possible profit amount
      *

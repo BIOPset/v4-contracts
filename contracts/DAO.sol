@@ -246,7 +246,7 @@ contract DAO {
 
     /**
      * @notice update the maximum time an option can be created for
-     * @param nMT_ the time (in seconds) of maximum possible bet
+     * @param nMT_ the time (in seconds) of maximum possible binary option
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
     function uMXOT(uint256 nMT_, address addy_) external tierOneDelegation {
@@ -262,7 +262,7 @@ contract DAO {
 
     /**
      * @notice update the maximum time an option can be created for
-     * @param nMT_ the time (in seconds) of maximum possible bet
+     * @param nMT_ the time (in seconds) of maximum possible binary option
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
     function uMNOT(uint256 nMT_, address addy_) external tierOneDelegation {

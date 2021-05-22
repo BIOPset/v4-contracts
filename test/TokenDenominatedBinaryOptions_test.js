@@ -106,7 +106,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
       });
     });
   });
-  it("can take a call bet", () => {
+  it("takes a call", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
         return BasicRateCalc.new().then(async function (rcInstance) {
@@ -146,7 +146,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
       });
     });
   });
-  it("can take a put bet", () => {
+  it("takes a put", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
         return BasicRateCalc.new().then(async function (rcInstance) {
@@ -186,7 +186,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
       });
     });
   });
-  it("can exercise a bet", () => {
+  it("exercises an option", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
         return BasicRateCalc.new().then(async function (rcInstance) {
@@ -217,7 +217,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
-                  `999990000`, //pool is down the bet amount
+                  `999990000`, //pool is down the option premium
                   `${poolBalance * 1}`,
                   "pool balance is invalid after exercise"
                 );
@@ -228,7 +228,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
       });
     });
   });
-  it("can expire a bet", () => {
+  it("expires an option", () => {
     return FakeERC20.new(4000000000000000).then(async function (fakeerc20) {
       return FakePriceProvider.new(100000).then(async function (fakePP) {
         return BasicRateCalc.new().then(async function (rcInstance) {
@@ -259,7 +259,7 @@ contract("TokenDenominatedBinaryOptions", (accounts) => {
                 var poolBalance = await fakeerc20.balanceOf(instance.address);
                 console.log(`pool balance = ${poolBalance * 1}`);
                 assert.equal(
-                  `1000009960`, //pool is up the bet amount minus complete fee
+                  `1000009960`, //pool is up the option premium minus complete fee
                   `${poolBalance * 1}`,
                   "pool balance is invalid after expire"
                 );

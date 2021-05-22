@@ -59,7 +59,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
         console.log(`pending claims b4 stake ${web3.utils.fromWei(
           pendingClaims,
           "ether"
-        )}. 
+        )}.
       \n after stake ${web3.utils.fromWei(pendingClaims2, "ether")}
       \n pool bonus = ${pbb}
       `);
@@ -73,7 +73,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
       });
     });
   });
-  it("makes a call bet", () => {
+  it("opens a call", () => {
     return NativeAssetDenominatedBinaryOptions.deployed().then(async function (
       bo
     ) {
@@ -82,15 +82,15 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
         console.log(`defaultpp ${pp.address}`);
 
         var pendingClaims = await bo.getPendingClaims(accounts[2]);
-        var betRewardBase = await bo.rwd();
-        var claimForBet = await bo.getTradeExerciseBonus(toWei(1), betRewardBase);
+        var optionRewardBase = await bo.rwd();
+        var claimForOption = await bo.getTradeExerciseBonus(toWei(1), optionRewardBase);
         console.log(`
-      \n${claimForBet}
+      \n${claimForOption}
       \n${pendingClaims}
       pending claims ${web3.utils.fromWei(
         pendingClaims,
         "ether"
-      )}. Will add ${web3.utils.fromWei(claimForBet, "ether")}`);
+      )}. Will add ${web3.utils.fromWei(claimForOption, "ether")}`);
         await bo.openPosition(1, pp.address, 1, {
           from: accounts[2],
           value: toWei(0.01),
@@ -98,7 +98,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
 
         var pendingClaims2 = await bo.getPendingClaims(accounts[2]);
         console.log(
-          `pending claims after bet \n${web3.utils.fromWei(
+          `pending claims after position closure \n${web3.utils.fromWei(
             pendingClaims2,
             "ether"
           )}.`
@@ -112,7 +112,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
       });
     });
   });
-  it("makes a put bet", () => {
+  it("opens a put", () => {
     return NativeAssetDenominatedBinaryOptions.deployed().then(async function (
       bo
     ) {
@@ -121,7 +121,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
 
         var pendingClaims = await bo.getPendingClaims(accounts[2]);
         console.log(
-          `pending claims ${web3.utils.fromWei(pendingClaims, "ether")} b4 bet`
+          `pending claims ${web3.utils.fromWei(pendingClaims, "ether")} b4 option`
         );
         await bo.openPosition(0, pp.address, 1, {
           from: accounts[2],
@@ -129,7 +129,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
         });
         var pendingClaims2 = await bo.getPendingClaims(accounts[2]);
         console.log(
-          `pending claims after bet ${web3.utils.fromWei(
+          `pending claims after option closure ${web3.utils.fromWei(
             pendingClaims2,
             "ether"
           )}.`
@@ -200,7 +200,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
           });
           var pendingClaims6 = await bo.getPendingClaims(accounts[3]);
 
-          console.log(`pending claims after bet for fresh account:
+          console.log(`pending claims after option closure for fresh account:
       \n#2 ${web3.utils.fromWei(pendingClaims3, "ether")}
       \n#4 ${web3.utils.fromWei(pendingClaims4, "ether")}
       \n#5 ${web3.utils.fromWei(pendingClaims5, "ether")}

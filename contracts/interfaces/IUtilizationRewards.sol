@@ -1,9 +1,9 @@
 pragma solidity ^0.6.6;
 
 interface IUtilizationRewards {
-    
 
-    /** 
+
+    /**
      * @dev transfer ownership of this contract
      * @param g_ the new governance address
      */
@@ -17,7 +17,7 @@ interface IUtilizationRewards {
      **/
     function distributeClaim(uint256 amount ) external virtual;
 
- 
+
 
      /**
      * @dev called by the binary options contract to claim Reward for user
@@ -33,9 +33,9 @@ interface IUtilizationRewards {
 
      /**
      * @dev used for openPosition/exercise/expire calc
-     * @param amount the amount of value in bet
+     * @param amount the amount of value in the binary option
      * @param totalLocked total LP pool size
-     * @param completion false for bet, true for exercise expire
+     * @param completion false for open position, true for exercise expire
      **/
     function getTradeExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external virtual view returns(uint256);
 
@@ -44,7 +44,7 @@ interface IUtilizationRewards {
      **/
      /**
      * @dev used for exercise/expire calc
-     * @param amount the amount of value in bet
+     * @param amount the amount of value in the binary option
      * @param totalLocked total LP pool size
      * @param stack total LP pool size
      **/

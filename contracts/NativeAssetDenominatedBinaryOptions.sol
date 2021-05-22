@@ -101,7 +101,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-      @dev Get the largest amount a bet can be created for
+      @dev Get the maximum option premium (payment) possible
       */
     function getMaxAvailable() public view returns(uint256) {
         uint256 balance = address(this).balance;
@@ -202,7 +202,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-     * @dev update the max rounds for option bets
+     * @dev update the max rounds for an option position
      * @param newMax_ the new maximum time (in rounds) an option may be created for (inclusive).
      */
     function setMaxT(uint256 newMax_) external override onlyOwner {
@@ -210,7 +210,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     /**
-     * @dev update the min rounds for option bets
+     * @dev update the min rounds for an option position
      * @param newMin_ the new minimum time (in rounds) an option may be created for (inclusive).
      */
     function setMinT(uint256 newMin_) external override onlyOwner {
@@ -317,7 +317,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      /**
     @dev helper for getting rate
     @param pair the price provider
-    @param deposit bet amount
+    @param deposit option premium (payment) amount
     @param t time
     @param k direction bool, true is call
     @return the rate
@@ -364,7 +364,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         uint256 oID = options.length;
 
 
-            //normal eth bet
+            //normal eth binary option
             require(msg.value <= getMaxAvailable(), "option value too large");
 
 
