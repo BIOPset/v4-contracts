@@ -74,7 +74,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     app = app_;
     treasury = treasury_;
     minT = 1;
-    maxT = 3;
+    maxT = 1;
     lockedAmount = 0;
   }
 
