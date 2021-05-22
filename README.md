@@ -116,6 +116,17 @@ Interface for RateCalcs.
 
 Interface for AccessTiers.
 
+## The Process For Creating BIOPSET Options
+
+![slide0](./images/the-smart-contract-process-for-creating-biopset-options-0.png)
+![slide1](./images/the-smart-contract-process-for-creating-biopset-options-1.png)
+![slide2](./images/the-smart-contract-process-for-creating-biopset-options-2.png)
+![slide3](./images/the-smart-contract-process-for-creating-biopset-options-3.png)
+![slide4](./images/the-smart-contract-process-for-creating-biopset-options-4.png)
+![slide5](./images/the-smart-contract-process-for-creating-biopset-options-5.png)
+![slide6](./images/the-smart-contract-process-for-creating-biopset-options-6.png)
+![slide7](./images/the-smart-contract-process-for-creating-biopset-options-7.png)
+
 ## Settlement DAO Actions
 Things you can do with a high enough percentage of staked $BIOP.
 
