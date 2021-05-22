@@ -95,7 +95,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         lockedAmount = 0;
         contractCreated = block.timestamp;
         minT = 1;
-        maxT = 3;
+        maxT = 1;
         uR = uR_;
         app = app_;
     }
