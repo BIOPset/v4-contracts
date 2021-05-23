@@ -283,9 +283,9 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
       pp_
     );
     if (k_) {
-      oC = oC+1;
+      oC = oC.add(lV);
     } else {
-      oP = oP+1;
+      oP = oP.add(lV);
     }
     options.push(op);
     emit Create(oID, msg.sender, lA, lV, k_, lR, lR+t_);
@@ -301,7 +301,6 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     AggregatorProxy priceProvider = AggregatorProxy(option.pP);
     (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
     require(lA != 0 && lR != 0, "not ready yet");
-    uint256 stack = oC.add(oP);
     if (option.dir) {
       //call option
       if (option.sP > lA) {
@@ -311,7 +310,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
         //ITM exercise
         exercise(option, oID);
       }
-      oC = oC-1;
+      oC = oC.sub(option.lV);
     } else {
       //put option
       if (lA > option.sP) {
@@ -321,7 +320,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
         //ITM exercise
         exercise(option, oID);
       }
-      oP = oP-1;
+      oP = oP.sub(oP);
       return option.dir;
     }
   }

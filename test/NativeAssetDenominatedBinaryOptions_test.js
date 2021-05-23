@@ -196,7 +196,7 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
 
           await bo.openPosition(1, pp.address, 1, {
             from: accounts[3],
-            value: toWei(0.01),
+            value: toWei(0.0001),
           });
           var pendingClaims6 = await bo.getPendingClaims(accounts[3]);
 

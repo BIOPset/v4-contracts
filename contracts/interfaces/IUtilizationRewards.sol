@@ -46,8 +46,7 @@ interface IUtilizationRewards {
      * @dev used for exercise/expire calc
      * @param amount the amount of value in the binary option
      * @param totalLocked total LP pool size
-     * @param stack total LP pool size
      **/
-    function getCompleteBonus(uint256 amount, uint256 totalLocked, uint256 stack) external virtual view returns(uint256);
+    function getCompleteBonus(uint256 amount, uint256 totalLocked) external virtual view returns(uint256);
 
 }

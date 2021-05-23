@@ -200,16 +200,9 @@ contract UtilizationRewards is IUtilizationRewards{
      * @dev used for exercise/expire calc
      * @param amount the option value
      * @param totalLocked total LP pool size
-     * @param stack total LP pool size
      **/
-    function getCompleteBonus(uint256 amount, uint256 totalLocked, uint256 stack) external view override returns(uint256) {
-        uint256 multiplier = stack.div(10);
-
-        if (multiplier > 100) {
-            return rwd.mul(10);
-        } else {
-            return rwd.div(uint256(1000).sub(multiplier));
-        }
+    function getCompleteBonus(uint256 amount, uint256 totalLocked) external view override returns(uint256) {
+        return rwd;
     }
 
 

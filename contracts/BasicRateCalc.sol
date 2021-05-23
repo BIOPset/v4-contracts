@@ -28,20 +28,21 @@ contract BasicRateCalc is IRateCalc {
         //check that option premium/payment is no more than 0.5% of the pool
         require(amount < tP.div(200), "position too large");
 
+        uint256 canLock;
         //if the difference between calls and puts is zero
         if (oC == oP) {
-          uint256 canLock = tP.div(200); //limit the lock to 0.5% of pool
+          canLock = tP.div(200); //limit the lock to 0.5% of pool
         } else if (oC > oP) {
           if (k) { //opening a call option
-            uint256 canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock downward for balance
+            canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock downward for balance
           } else { //opening a put option
-            uint256 canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock upward for balance
+            canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock upward for balance
           }
         } else if (oP > oC) {
           if (k) { //opening a call option
-            uint256 canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock upward for balance
+            canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock upward for balance
           } else { //opening a put option
-            uint256 canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock downward for balance
+            canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock downward for balance
           }
 
         }

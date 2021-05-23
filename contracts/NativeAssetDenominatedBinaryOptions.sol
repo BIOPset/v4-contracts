@@ -27,8 +27,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     mapping(address=>uint256) public lST;//last stake time
 
 
-    uint256 public oC = 0;
-    uint256 public oP = 0;
+    uint256 public oC = 0;//the total amount of captial locked in call direction
+    uint256 public oP = 0;//the total amount of capital locked in put direction
 
 
 
@@ -127,11 +127,10 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     /**
      * @dev Update the amount of rewards pending for this user
      * @param amount the size of the trade
-     * @param stack the amount of options pending before this execution
      */
-    function getCompleteBonus(uint256 amount, uint256 stack) public view returns(uint256) {
+    function getCompleteBonus(uint256 amount) public view returns(uint256) {
         IUtilizationRewards r = IUtilizationRewards(uR);
-        return r.getCompleteBonus(amount, address(this).balance, stack);
+        return r.getCompleteBonus(amount, address(this).balance);
     }
 
 
@@ -379,9 +378,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         options.push(op);
         tI = tI.add(lV);
         if (k_) {
-            oC = oC+1;
+            oC = oC+lV;
         } else {
-            oP = oP+1;
+            oP = oP+lV;
         }
         emit Create(oID, msg.sender, lA, lV, k_, lR, t_);
     }
@@ -405,7 +404,6 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         AggregatorProxy priceProvider = AggregatorProxy(option.pP);
         (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
         require(lA != 0 && lR != 0, "not ready yet");
-        uint256 stack = oC.add(oP);
         if (option.dir) {
             //call option
             if (option.sP > lA) {
@@ -415,7 +413,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
               //ITM exercise
               exercise(option, oID);
             }
-            oC = oC-1;
+            oC = oC.sub(option.lV);
         } else {
             //put option
             if (lA > option.sP) {
@@ -425,12 +423,12 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
               //ITM exercise
               exercise(option, oID);
             }
-            oP = oP-1;
+            oP = oP.sub(option.lV);
         }
 
 
         if (rewEn) {
-            pClaims[msg.sender] = pClaims[msg.sender].add(getCompleteBonus(option.lV, stack));
+            pClaims[msg.sender] = pClaims[msg.sender].add(getCompleteBonus(option.lV));
         }
     }
 
