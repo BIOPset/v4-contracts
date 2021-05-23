@@ -26,7 +26,7 @@ contract BasicRateCalc is IRateCalc {
         require(uP < tP.div(10), "pool is at maximum utilization"); //limit pool utilization to 10% of the pool
 
         //check that option premium/payment is no more than 0.5% of the pool
-        require(amount < tP.div(200), "option too large");
+        require(amount < tP.div(200), "position too large");
 
         //if the difference between calls and puts is zero
         if (oC == oP) {
