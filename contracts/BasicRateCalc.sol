@@ -21,24 +21,34 @@ contract BasicRateCalc is IRateCalc {
      */
     function rate(uint256 amount, uint256 l, uint256 t, bool k, uint256 oC, uint256 oP, uint256 tP) external view override returns (uint256)  {
 
-        //check that no more than 1% of the pool is locked
-        require(l < tP.div(100), "pool is full");
+        //limit pool utilization (should never exceed 99% if amount is 0.5% of the pool)
+        uint256 uP = oC.add(oP); //define pool utilization to be the sum of open calls and open puts
+        require(uP < tP.div(10), "pool is at maximum utilization"); //limit pool utilization to 10% of the pool
 
         //check that option premium/payment is no more than 0.5% of the pool
-        require(amount < tP.div(2).div(100), "option too large");
+        require(amount < tP.div(200), "position too large");
 
-        uint256 canLock = tP.sub(l);
-        uint256 double = amount.mul(2);
-        uint256 limited = amount.add((amount.div(2)));
+        //if the difference between calls and puts is zero
+        if (oC == oP) {
+          uint256 canLock = tP.div(200); //limit the lock to 0.5% of pool
+        } else if (oC > oP) {
+          if (k) { //opening a call option
+            uint256 canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock downward for balance
+          } else { //opening a put option
+            uint256 canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock upward for balance
+          }
+        } else if (oP > oC) {
+          if (k) { //opening a call option
+            uint256 canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock upward for balance
+          } else { //opening a put option
+            uint256 canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock downward for balance
+          }
 
-        //if the amount of ETH that can be locked is less than (or equal to) 0.5% of the pool
-        if (canLock <= tP.div(200)) {
-            //the return rate of biopset options drops to 1.5x
-            return actualRate(amount, canLock, limited);
-        } else {
-            //the default return rate of biopset options is 2x
-            return actualRate(amount, canLock, double);
         }
+
+        //the default return rate of biopset options is 2x
+        uint256 double = amount.mul(2);
+        return actualRate(amount, canLock, double);
     }
 
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
