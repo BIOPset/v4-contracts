@@ -92,19 +92,28 @@ contract UtilizationRewards is IUtilizationRewards{
         }
     }
 
-
+function sqrt(uint x) private view returns (uint y) {
+    uint z = (x + 1) / 2;
+    y = x;
+    while (z < y) {
+        y = z;
+        z = (x / z + z) / 2;
+    }
+}
 
     /**
-     * @dev calculate the staking time bonus (1x every 9 days)
-     * @param lastStake timestamp of LPs last stake/claim
+     * @dev calculate the staking time bonus
+     * @param lastStake blocknumber of LPs last stake/claim
      **/
     function getStakingTimeBonus(uint256 lastStake) public view returns(uint256) {
-        uint256 dif = block.timestamp.sub(lastStake);
-        uint256 bonus = dif.div(777600);//9 days
-        if (dif < 777600) {
+        if (lastStake == 0) {
             return 1;
         }
-        return bonus;
+        uint256 b = block.number.div(lastStake);
+        if (b == 0) {
+            return 1;
+        }
+        return uint256(1).add(sqrt(b));
     }
 
     /**
@@ -154,20 +163,6 @@ contract UtilizationRewards is IUtilizationRewards{
         return 0;
     }
 
-     /**
-    * @notice bonus based on total interchange. The more options created, the more rewards.
-    * @param lastInterchange the total interchange the last time the LP staked/claimed
-    * @param totalInterchange the total interchange now
-    */
-    function getOptionValueBonus(uint256 lastInterchange, uint256 totalInterchange) public view returns(uint256) {
-        uint256 dif = totalInterchange.sub(lastInterchange);
-        uint256 bonus = dif.div(100000000000000000);//.1ETH
-        if(bonus > 0){
-            return bonus;
-        }
-        return 1;
-    }
-
 
      /**
      * @dev called by the binary options contract to claim Reward for user
@@ -180,8 +175,7 @@ contract UtilizationRewards is IUtilizationRewards{
     function getLPStakingBonus(uint256 lastStake, uint256 lastInterchange, uint256 totalInterchange, uint256 stakedAmount, uint256 totalStaked) external override view returns(uint256) {
         return rwd.mul(10)
                 .mul(getStakingTimeBonus(lastStake))
-                .mul(getPoolBalanceBonus(stakedAmount, totalStaked))
-                .mul(getOptionValueBonus(lastInterchange, totalInterchange));
+                .mul(getPoolBalanceBonus(stakedAmount, totalStaked));
     }
 
 

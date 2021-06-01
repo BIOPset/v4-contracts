@@ -150,7 +150,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     function updateLPmetrics() internal {
-        lST[msg.sender] = block.timestamp;
+        lST[msg.sender] = block.number;
         iAL[msg.sender] = tI;
     }
      /**
