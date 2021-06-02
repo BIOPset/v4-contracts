@@ -124,14 +124,6 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         return r.getTradeExerciseBonus(amount, address(this).balance, completion);
     }
 
-    /**
-     * @dev Update the amount of rewards pending for this user
-     * @param amount the size of the trade
-     */
-    function getCompleteBonus(uint256 amount) public view returns(uint256) {
-        IUtilizationRewards r = IUtilizationRewards(uR);
-        return r.getCompleteBonus(amount, address(this).balance);
-    }
 
 
     function getPendingClaims(address account) public view returns(uint256) {
@@ -150,21 +142,24 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     }
 
     function updateLPmetrics() internal {
-        lST[msg.sender] = block.timestamp;
+        lST[msg.sender] = block.number;
         iAL[msg.sender] = tI;
     }
+
      /**
      * @dev distribute pending governance token claims to user
      */
     function claimRewards() external {
-        uint256 claims = getPendingClaims(msg.sender);
+        IUtilizationRewards r = IUtilizationRewards(uR);
+        uint256 stakerClaims = r.getLPStakingBonus(lST[msg.sender],iAL[msg.sender], tI, balanceOf(msg.sender), totalSupply());
+        uint256 otherClaims = pClaims[msg.sender];
         if (balanceOf(msg.sender) >= 1) {
             updateLPmetrics();
         }
-        pClaims[msg.sender] = 0;
 
-        IUtilizationRewards r = IUtilizationRewards(uR);
-        r.distributeClaim(claims);
+        uint256 otherClaimed = r.distributeClaim(stakerClaims, otherClaims);
+        
+        pClaims[msg.sender] = pClaims[msg.sender].sub(otherClaimed);
     }
 
     /**
@@ -428,7 +423,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
 
         if (rewEn) {
-            pClaims[msg.sender] = pClaims[msg.sender].add(getCompleteBonus(option.lV));
+            pClaims[msg.sender] = pClaims[msg.sender].add(getTradeExerciseBonus(option.lV, true));
         }
     }
 
