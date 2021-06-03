@@ -13,9 +13,10 @@ interface IUtilizationRewards {
 
     /**
      * @dev called by the binary options contract to claim Reward for user
-     * @param amount the amount in BIOP to add to transfer to this user
+     * @param amountStaker the amount in BIOP to transfer to this user for staking
+     * @param amountOther the amount in BIOP to transfer to this user for trading/settling
      **/
-    function distributeClaim(uint256 amount ) external virtual;
+    function distributeClaim(uint256 amountStaker, uint256 amountOther) external virtual returns(uint256);
 
 
 
@@ -40,13 +41,5 @@ interface IUtilizationRewards {
     function getTradeExerciseBonus(uint256 amount, uint256 totalLocked, bool completion) external virtual view returns(uint256);
 
 
- /**
-     **/
-     /**
-     * @dev used for exercise/expire calc
-     * @param amount the amount of value in the binary option
-     * @param totalLocked total LP pool size
-     **/
-    function getCompleteBonus(uint256 amount, uint256 totalLocked) external virtual view returns(uint256);
 
 }
