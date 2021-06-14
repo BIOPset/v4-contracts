@@ -117,10 +117,10 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
 
   /**
     * @dev set the fee users can recieve for exercising/expiring other users options
-    * @param fee_ the new fee (in tenth percent) for exercising/expiring a options
+    * @param fee_ the new fee for exercising/expiring a options
     */
   function updateSettlerFee(uint256 fee_) external onlyOwner {
-    require(fee_ > 1 && fee_ < 100, "invalid fee");
+    require(fee_ >= 5, "invalid fee");
     settlerFee = settlerFee;
   }
 

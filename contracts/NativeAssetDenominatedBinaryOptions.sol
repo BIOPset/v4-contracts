@@ -216,10 +216,10 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
     /**
      * @dev set the fee users can recieve for settling other users options
-     * @param fee_ the new fee (in tenth percent) for settling a options
+     * @param fee_ the new fee for settling a options
      */
     function updateSettlerFee(uint256 fee_) external override onlyOwner {
-        require(fee_ > 1 && fee_ < 100, "invalid fee");
+        require(fee_ >= 5, "invalid fee");
         settlerFee = fee_;
     }
 
