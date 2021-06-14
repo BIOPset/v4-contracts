@@ -67,11 +67,20 @@ contract DAO {
         ERC20 token = ERC20(tA);
         require(token.balanceOf(msg.sender) >= amount, "insufficent biop balance");
         require(token.transferFrom(msg.sender, address(this), amount), "staking failed");
+        
+        address delegate;
         if (staked[msg.sender] == 0) {
             //only for ETH
             lrc[msg.sender] = trg;
+        } else {
+            //automatically unendorse and rendorse if depositing to an existing non-zero stake to prevent endorsement amounts from becoming out of sync
+            delegate = rep[msg.sender];
+            unendorse();
         }
         staked[msg.sender] = staked[msg.sender].add(amount);
+        if (delegate != 0x0000000000000000000000000000000000000000) {
+            endorse(delegate);
+        }
         emit Stake(amount, totalStaked());
     }
 
