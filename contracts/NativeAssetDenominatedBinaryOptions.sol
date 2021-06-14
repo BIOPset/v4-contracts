@@ -64,6 +64,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         bool dir;//direction (true for call)
         address pP;//price provider
         address aPA;//alt pool address
+        bool complete;
     }
 
     /* Events */
@@ -367,7 +368,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             t_,//rounds until expiration
             k_,
             pp_,
-            address(this)
+            address(this),
+            false
         );
 
         options.push(op);
@@ -395,10 +397,11 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         external
     {
         Option memory option = options[oID];
-
+        require(option.complete == false, "option already completed");
         AggregatorProxy priceProvider = AggregatorProxy(option.pP);
         (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
         require(lA != 0 && lR != 0, "not ready yet");
+        option.complete = true;
         if (option.dir) {
             //call option
             if (option.sP > lA) {

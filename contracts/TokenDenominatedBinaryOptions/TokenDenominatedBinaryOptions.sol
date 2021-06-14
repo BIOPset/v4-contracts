@@ -52,6 +52,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     uint80 exp;//final round of option s
     bool dir;//direction (true for call)
     address pP;//price provider
+    bool complete;//has the option been exercised/expired yet
   }
 
   /* Events */
@@ -280,7 +281,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
       lV,
       t_,//rounds until expiration
       k_,
-      pp_
+      pp_,
+      false
     );
     if (k_) {
       oC = oC.add(lV);
@@ -298,9 +300,11 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     */
   function complete(uint256 oID) external override{
     Option memory option = options[oID];
+    require(option.complete == false, "option already completed");
     AggregatorProxy priceProvider = AggregatorProxy(option.pP);
     (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
     require(lA != 0 && lR != 0, "not ready yet");
+    option.complete = true;
     if (option.dir) {
       //call option
       if (option.sP > lA) {
