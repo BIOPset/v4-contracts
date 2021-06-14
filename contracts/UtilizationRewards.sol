@@ -60,11 +60,9 @@ contract UtilizationRewards is IUtilizationRewards{
      * @param other the BIOP tokens to transfer into this contract from the multisig for trader/settler rewards
      */
     function deposit(uint256 staker, uint256 other) public onlyDAO {
-
+      token.transferFrom(msg.sender, address(this), staker.add(other));
       stakerBalance = stakerBalance.add(staker);
       otherBalance = otherBalance.add(other);
-
-      token.transferFrom(msg.sender, address(this), staker.add(other));
     }
 
      /**
@@ -225,7 +223,7 @@ contract UtilizationRewards is IUtilizationRewards{
 
     // UTILS
      /**
-     * @notice one time function used at deployment to configure the connected binary options contract
+     * @notice function used at deployment to configure the connected binary options contract
      * @param options_ the address of the binary options contract
      */
     function setupBinaryOptions(address payable options_) external onlyDAO {
