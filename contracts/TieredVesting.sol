@@ -67,6 +67,7 @@ contract TieredVesting {
                     elapsed = elapsed.sub(tierLength);
                     token.transfer(claimant, perTier);
                     claimed = claimed.add(perTier);
+                    tiersClaimed = tiersClaimed.add(1);
                     }
                 } else {
                     elapsed = 0;
