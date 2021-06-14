@@ -8,6 +8,7 @@ contract TokenDenominatedBinaryOptionsFactory {
     event TokenDenominatedBinaryOptionsCreated(TokenDenominatedBinaryOptions tokenDelegatedBinaryOptions);
 
     address payable public owner;
+    address payable public pendingOwner;
 
     constructor() public {
         owner = msg.sender ;
@@ -18,12 +19,21 @@ contract TokenDenominatedBinaryOptionsFactory {
     }
 
     /**
-    * @dev set the new address to control this contract
+    * @dev set the new pending address to control this contract, before ownership is transfered the new address must accept
     * @param newDAO_ the new owner's address
     */
     function transferOwner(address payable newDAO_) public onlyOwner {
-        owner = newDAO_;
+        pendingOwner = newDAO_;
     }
+
+    /**
+    * @dev accept ownership of the factory contract
+    */
+    function acceptOwnership() public {
+        require(pendingOwner == msg.sender, "only pending owner can accept ownership");
+        owner = pendingOwner;
+    }
+
 
     modifier onlyOwner() {
         require(owner == msg.sender, "Ownable: caller is not the owner");
