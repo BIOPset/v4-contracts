@@ -296,7 +296,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     * @dev exercise and expire functions have been depreciated in favor of this single complete option
     * @param oID id of the option to complete
     */
-  function complete(uint256 oID) external override returns(bool){
+  function complete(uint256 oID) external override{
     Option memory option = options[oID];
     AggregatorProxy priceProvider = AggregatorProxy(option.pP);
     (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
@@ -321,7 +321,6 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
         exercise(option, oID);
       }
       oP = oP.sub(oP);
-      return option.dir;
     }
   }
 
