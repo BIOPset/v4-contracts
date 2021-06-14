@@ -15,8 +15,9 @@ interface IUtilizationRewards {
      * @dev called by the binary options contract to claim Reward for user
      * @param amountStaker the amount in BIOP to transfer to this user for staking
      * @param amountOther the amount in BIOP to transfer to this user for trading/settling
+     * @param claimant the address who triggered the function and is paying the gas cost
      **/
-    function distributeClaim(uint256 amountStaker, uint256 amountOther) external virtual returns(uint256);
+    function distributeClaim(uint256 amountStaker, uint256 amountOther, address payable claimant) external virtual returns(uint256);
 
 
 

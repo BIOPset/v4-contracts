@@ -158,7 +158,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             updateLPmetrics();
         }
 
-        uint256 otherClaimed = r.distributeClaim(stakerClaims, otherClaims);
+        uint256 otherClaimed = r.distributeClaim(stakerClaims, otherClaims, msg.sender);
         
         pClaims[msg.sender] = pClaims[msg.sender].sub(otherClaimed);
     }

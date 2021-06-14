@@ -151,8 +151,9 @@ contract UtilizationRewards is IUtilizationRewards{
      * @dev called by the binary options contract to claim Reward for user
      * @param amountStaker the amount in BIOP to transfer to this user for staking
      * @param amountOther the amount in BIOP to transfer to this user for trading/settling
+     * @param claimant the address who triggered the function higher up and should receive the claim
      **/
-    function distributeClaim(uint256 amountStaker, uint256 amountOther ) external override onlyBinaryOptions returns(uint256) {
+    function distributeClaim(uint256 amountStaker, uint256 amountOther, address payable claimant ) external override onlyBinaryOptions returns(uint256) {
        if (amountStaker > 0) {
             amountStaker = stakerAmountGuard(amountStaker);
        }
@@ -162,7 +163,7 @@ contract UtilizationRewards is IUtilizationRewards{
        uint256 total = dailyMaxGuard(amountStaker.add(amountOther));
        require(token.balanceOf(address(this)) >= total, "insufficent balance remaining");
        if (total > 0) {
-            token.safeTransfer(tx.origin, total);
+            token.safeTransfer(claimant, total);
        }
        return amountOther;
     }
