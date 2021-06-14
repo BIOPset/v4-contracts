@@ -23,12 +23,12 @@ import "./interfaces/IAccessTiers.sol";
  */
 contract DAO {
     using SafeMath for uint256;
-    address public pA;//protocol address
-    address public appA;//approved price providers address
+    address public immutable pA;//protocol address
+    address public immutable appA;//approved price providers address
     address public tA;//token address
     address public aTA;//access tiers address
     address public fcry;//TokenDenominatedBinaryOptions factory address
-    address payable public trsy;//treasury
+    address payable public immutable trsy;//treasury
 
     mapping(address=>uint256) public votes;//amount of endorsement power currently directed at a address
     mapping(address=>address payable) public rep;//representative/delegate/governer/endorsement currently backed by given address
