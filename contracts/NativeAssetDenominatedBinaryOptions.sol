@@ -275,7 +275,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * If rewards are available recieve BIOP governance tokens as well.
     */
     function stake() external payable {
-        require(open == true, "pool deposit closed");
+        require(open, "pool deposit closed");
         require(msg.value >= 100, "stake to small");
         if (balanceOf(msg.sender) == 0) {
             lW[msg.sender] = block.timestamp;
