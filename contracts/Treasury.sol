@@ -3,6 +3,8 @@ pragma solidity 0.6.6;
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
+
 
 contract Treasury {
     using SafeMath for uint256;
@@ -42,9 +44,9 @@ contract Treasury {
         if (sP > 0) {
             toStakers = amount.div(100).mul(sP);
             amount = amount.sub(toStakers);
-            require(msg.sender.send(toStakers), "staker transfer failed");
+            Address.sendValue(msg.sender, toStakers);
         }
-        require(destination.send(amount), "transfer failed");
+        Address.sendValue(destination, amount);
 
         emit FundsSent(amount, destination);
         return toStakers;
