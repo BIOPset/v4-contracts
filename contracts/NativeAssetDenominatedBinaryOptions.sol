@@ -27,8 +27,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     mapping(address=>uint256) public lST;//last stake time
 
 
-    uint256 public oC = 0;//the total amount of captial locked in call direction
-    uint256 public oP = 0;//the total amount of capital locked in put direction
+    uint256 public oC;//the total amount of captial locked in call direction
+    uint256 public oP;//the total amount of capital locked in put direction
 
 
 
@@ -42,7 +42,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     bool public open = true;
     Option[] public options;
 
-    uint256 public tI = 0;//total interchange
+    uint256 public tI;//total interchange
     uint256 public rwd =  20000000000000000; //base utilization reward (0.02 BIOP)
     bool public rewEn = true;//rewards enabled
 
