@@ -55,6 +55,7 @@ contract Vesting{
             uint256 amount = total.sub(claimed);
             claimed = total;
             token.safeTransfer(claimant, amount);
+            return amount;
         } else {
             uint256 perComplete = period.div(elapsed);
             uint256 amount = total.div(perComplete);
