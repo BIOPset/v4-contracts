@@ -23,26 +23,26 @@ contract BasicRateCalc is IRateCalc {
 
         //limit pool utilization (should never exceed 99% if amount is 0.5% of the pool)
         uint256 uP = oC.add(oP); //define pool utilization to be the sum of open calls and open puts
-        require(uP < tP.div(10), "pool is at maximum utilization"); //limit pool utilization to 10% of the pool
+        require(uP < tP/10, "pool is at maximum utilization"); //limit pool utilization to 10% of the pool
 
         //check that option premium/payment is no more than 0.5% of the pool
-        require(amount < tP.div(200), "position too large");
+        require(amount < tP/200, "position too large");
 
         uint256 canLock;
         //if the difference between calls and puts is zero
         if (oC == oP) {
-          canLock = tP.div(200); //limit the lock to 0.5% of pool
+          canLock = tP/200; //limit the lock to 0.5% of pool
         } else if (oC > oP) {
           if (k) { //opening a call option
-            canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock downward for balance
+            canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock downward for balance
           } else { //opening a put option
-            canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock upward for balance
+            canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock upward for balance
           }
         } else if (oP > oC) {
           if (k) { //opening a call option
-            canLock = tP.div(200).add(oP).sub(oC); //adjust the lock the lock upward for balance
+            canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock upward for balance
           } else { //opening a put option
-            canLock = tP.div(200).add(oC).sub(oP); //adjust the lock the lock downward for balance
+            canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock downward for balance
           }
 
         }
