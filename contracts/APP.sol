@@ -10,6 +10,7 @@ import "./interfaces/IAPP.sol";
 
 contract APP is IAPP {
     address public owner;
+    address public pendingOwner;
     mapping(address=>address) private approved;
 
      /**
@@ -42,7 +43,16 @@ contract APP is IAPP {
     * @param newOwner new owner address
     */
     function transferOwner(address newOwner) external onlyOwner {
-        owner = newOwner;
+        require(newOwner != 0x0000000000000000000000000000000000000000, "invalid owner");
+        pendingOwner = newOwner;
+    }
+
+    /**
+    * @dev Accept pending ownership of this contract
+    */
+    function acceptOwnership(address newOwner) external {
+        require(msg.sender == pendingOwner, "only callable by pendingOwner");
+        owner = pendingOwner;
     }
 
      /**
