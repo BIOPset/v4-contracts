@@ -51,6 +51,8 @@ contract APP is IAPP {
     * @param rateCalc_ the rate calc to use with the new price provider
     */
     function addPP(address newPP_, address rateCalc_) external override onlyOwner {
+        require(newPP_ != 0x0000000000000000000000000000000000000000, "Invalid Price Provider");
+        require(rateCalc_ != 0x0000000000000000000000000000000000000000, "Invalid RateCalc");
         approved[newPP_] = rateCalc_;
     }
 
