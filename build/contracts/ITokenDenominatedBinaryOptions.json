@@ -264,7 +264,7 @@
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "\npragma solidity ^0.6.6;\n\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\n\n\n\n\ninterface ITokenDenominatedBinaryOptions is IERC20 {\n\n    /* Skeleton EBOP20 implementation*/\n    function openPosition(bool k_, address pp_, uint80 t_, uint256 a_) external;\n    function complete(uint256 oID) external returns (bool);\n    function stake(uint256 amount) external;\n    function withdraw(uint256 amount) external;\n}",
+  "source": "\npragma solidity 0.6.6;\n\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\n\n\n\n\ninterface ITokenDenominatedBinaryOptions is IERC20 {\n\n    /* Skeleton EBOP20 implementation*/\n    function openPosition(bool k_, address pp_, uint80 t_, uint256 a_) external;\n    function complete(uint256 oID) external returns (bool);\n    function stake(uint256 amount) external;\n    function withdraw(uint256 amount) external;\n}",
   "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/ITokenDenominatedBinaryOptions.sol",
   "ast": {
     "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/ITokenDenominatedBinaryOptions.sol",

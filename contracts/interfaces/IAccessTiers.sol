@@ -1,4 +1,4 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 interface IAccessTiers {
     /**
      * @notice checks if a user meets the requirement to call the given action

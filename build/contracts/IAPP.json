@@ -58,7 +58,7 @@
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.6.6;\n\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* IAPP: Approved Price Providers\n/******************************************************************************/\n\ninterface IAPP {\n\n    function aprvd(address pp) external view returns(address);\n    function addPP(address newPP_, address rateCalc_) external;\n    function removePP(address oldPP_) external;\n    \n}\n",
+  "source": "pragma solidity 0.6.6;\n\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* IAPP: Approved Price Providers\n/******************************************************************************/\n\ninterface IAPP {\n\n    function aprvd(address pp) external view returns(address);\n    function addPP(address newPP_, address rateCalc_) external;\n    function removePP(address oldPP_) external;\n    \n}\n",
   "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
   "ast": {
     "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
