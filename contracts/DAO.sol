@@ -2,6 +2,7 @@ pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
 
 import "./NativeAssetDenominatedBinaryOptions.sol";
 import "./APP.sol";
@@ -147,7 +148,7 @@ contract DAO {
 
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
-        require(msg.sender.send(toSend), "transfer failed");
+        require(sendValue(msg.sender, toSend), "transfer failed");
     }
 
 
