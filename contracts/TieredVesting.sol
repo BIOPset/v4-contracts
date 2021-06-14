@@ -1,7 +1,8 @@
 pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 
 
@@ -9,6 +10,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract TieredVesting {
 
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
     address public tokenAddress;
     address payable claimant;
     uint256 public total;//total tokens to send over vesting period
@@ -40,8 +42,8 @@ contract TieredVesting {
     }
 
     function start(uint256 amount) public {
-        ERC20 token = ERC20(tokenAddress);
-        token.transferFrom(msg.sender, address(this), amount);
+        IERC20 token = IERC20(tokenAddress);
+        token.safeTransferFrom(msg.sender, address(this), amount);
         total = amount;
         perTier = amount.div(tiers);
         startTime = block.timestamp;
@@ -50,9 +52,9 @@ contract TieredVesting {
     function collect() public onlyClaimant {
         uint256 elapsed = block.timestamp.sub(startTime);
         uint256 endTime = startTime.add(perTier.mul(tiers));
-        ERC20 token = ERC20(tokenAddress);
+        IERC20 token = IERC20(tokenAddress);
         if (block.timestamp >= endTime) {
-                token.transfer(claimant, token.balanceOf(address(this)));
+                token.safeTransfer(claimant, token.balanceOf(address(this)));
                 claimed = total;
         } else {
             uint256 alreadyPaid = tiersClaimed;
@@ -65,7 +67,7 @@ contract TieredVesting {
                         
                     //pay out a tier
                     elapsed = elapsed.sub(tierLength);
-                    token.transfer(claimant, perTier);
+                    token.safeTransfer(claimant, perTier);
                     claimed = claimed.add(perTier);
                     tiersClaimed = tiersClaimed.add(1);
                     }
