@@ -320,7 +320,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
         //ITM exercise
         exercise(option, oID);
       }
-      oP = oP.sub(oP);
+      oP = oP.sub(option.lV);
     }
   }
 
