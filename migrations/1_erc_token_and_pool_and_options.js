@@ -37,10 +37,7 @@ const appSettings = {
 };
 
 const UtilizationRewardsSettings = {
-  toTransfer: 100000,
-  epochs: 7,
-  launchTime: 60 * 60 * 24 * 3, //3days
-  epochLength: 60 * 60 * 24 * 30, //30 days
+  toTransfer: 10000000000,
 };
 
 const FakePriceSettings = {
@@ -84,9 +81,6 @@ module.exports = function (deployer) {
                               .deploy(
                                 UtilizationRewards,
                                 biopInstance.address,
-                                UtilizationRewardsSettings.epochs,
-                                UtilizationRewardsSettings.launchTime,
-                                UtilizationRewardsSettings.epochLength
                               )
                               .then(async (urInstance) => {
                                 return deployer
@@ -101,7 +95,8 @@ module.exports = function (deployer) {
                                       UtilizationRewardsSettings.toTransfer
                                     );
                                     await urInstance.deposit(
-                                      UtilizationRewardsSettings.toTransfer
+                                      UtilizationRewardsSettings.toTransfer/2,
+                                      UtilizationRewardsSettings.toTransfer/2
                                     );
                                     await biopInstance.approve(
                                       lsbcInstance.address,
@@ -192,9 +187,6 @@ module.exports = function (deployer) {
                       .deploy(
                         UtilizationRewards,
                         biopInstance.address,
-                        UtilizationRewardsSettings.epochs,
-                        UtilizationRewardsSettings.launchTime,
-                        UtilizationRewardsSettings.epochLength
                       )
                       .then(async (urInstance) => {
                         await biopInstance.approve(

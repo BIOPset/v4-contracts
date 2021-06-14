@@ -55,13 +55,11 @@ contract("NativeAssetDenominatedBinaryOptions", (accounts) => {
         var pendingClaims2 = await bo.getPendingClaims(accounts[2]);
         var locked = await bo.balanceOf(accounts[2]);
         var totalLocked = await bo.totalSupply();
-        var pbb = await ur.getPoolBalanceBonus(locked, totalLocked);
         console.log(`pending claims b4 stake ${web3.utils.fromWei(
           pendingClaims,
           "ether"
         )}.
       \n after stake ${web3.utils.fromWei(pendingClaims2, "ether")}
-      \n pool bonus = ${pbb}
       `);
         var balance = await bo.balanceOf(accounts[2]);
 
