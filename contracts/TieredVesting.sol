@@ -42,6 +42,7 @@ contract TieredVesting {
 
     function start(uint256 amount) public {
         IERC20 token = IERC20(tokenAddress);
+        require (token.balanceOf(address(this)) == 0, "Vesting already initialized");
         token.safeTransferFrom(msg.sender, address(this), amount);
         total = amount;
         perTier = amount.div(tiers);
