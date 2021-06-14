@@ -35,6 +35,7 @@ contract TokenDenominatedBinaryOptionsFactory {
     * @param token_ the token which will be used as the underlying asset
     */
     function createTokenDenominatedBinaryOptions(address token_, address payable treasury_, address app_) external {
+        require(tokenDenominatedBinaryOptionsAddresses[token_] == 0x0000000000000000000000000000000000000000, "a pool for this token already exists");
         ERC20 token = ERC20(token_);
         TokenDenominatedBinaryOptions newPool = new TokenDenominatedBinaryOptions(string(abi.encodePacked("Pool ", token.name)),  string(abi.encodePacked("p", token.symbol)), token_, owner, app_, treasury_);
         tokenDenominatedBinaryOptionsAddresses[address(token)] = address(newPool);
