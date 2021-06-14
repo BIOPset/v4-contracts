@@ -12,7 +12,7 @@ contract Vesting{
     using SafeERC20 for IERC20;
     address public tokenAddress;
     address payable claimant;
-    uint256 public period;
+    uint256 public period;//total length of the vesting period
     uint256 public total;//total tokens to send over vesting period
     uint256 public startTime;//start time of the vesting
     uint256 public claimed;//amount claimed so far
@@ -58,8 +58,7 @@ contract Vesting{
             return amount;
         } else {
             uint256 perComplete = period.div(elapsed);
-            uint256 amount = total.div(perComplete);
-            amount = amount.sub(claimed);
+            uint256 amount = total.div(perComplete).sub(claimed);
             claimed = claimed.add(amount);
             token.safeTransfer(claimant, amount);
             return amount;

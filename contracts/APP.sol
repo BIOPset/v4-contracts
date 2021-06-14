@@ -71,7 +71,7 @@ contract APP is IAPP {
     * @param oldPP_ the price provider to disable
     */
     function removePP(address oldPP_) external override onlyOwner {
-        approved[oldPP_] = 0x0000000000000000000000000000000000000000;
+        delete approved[oldPP_];
     }
     
 }
