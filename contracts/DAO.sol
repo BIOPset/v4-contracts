@@ -97,6 +97,7 @@ contract DAO {
      * @param newSha the address to endorse
      */
     function endorse(address payable newSha) public {
+        require(newSha != 0x0000000000000000000000000000000000000000, "may not endorse 0 address");
         address oldSha = rep[msg.sender];
         if (oldSha == 0x0000000000000000000000000000000000000000) {
             dBIOP = dBIOP.add(staked[msg.sender]);
