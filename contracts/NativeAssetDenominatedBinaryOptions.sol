@@ -505,8 +505,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             uint256 fee = amount.div(settlerFee).div(100);
             if (fee > 0) {
                 require(exerciser.send(fee), "exerciser transfer failed");
-                require(winner.send(amount.sub(fee)), "winner transfer failed");
             }
+            require(winner.send(amount.sub(fee)), "winner transfer failed");
         } else {
             require(winner.send(amount), "winner transfer failed");
         }

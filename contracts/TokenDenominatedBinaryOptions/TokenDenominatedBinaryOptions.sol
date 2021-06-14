@@ -342,8 +342,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
 
       if (fee > 0) {
         sT.safeTransfer(exerciser, fee);
-        sT.safeTransfer(winner, amount.sub(fee));
       }
+      sT.safeTransfer(winner, amount.sub(fee));
     } else {
       sT.safeTransfer(winner, amount);
     }
