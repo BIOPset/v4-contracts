@@ -31,7 +31,7 @@ contract DAO {
     address payable public trsy;//treasury
 
     mapping(address=>uint256) public votes;//amount of endorsement power currently directed at a address
-    mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
+    mapping(address=>address payable) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
     uint256 public dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
 
@@ -69,7 +69,7 @@ contract DAO {
         require(token.balanceOf(msg.sender) >= amount, "insufficent biop balance");
         require(token.transferFrom(msg.sender, address(this), amount), "staking failed");
         
-        address delegate;
+        address payable delegate;
         if (staked[msg.sender] == 0) {
             //only for ETH
             lrc[msg.sender] = trg;
@@ -148,7 +148,7 @@ contract DAO {
 
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
-        require(sendValue(msg.sender, toSend), "transfer failed");
+        Address.sendValue(msg.sender, toSend);
     }
 
 
