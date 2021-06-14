@@ -19,8 +19,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   address public app;//the approved pp/ratecalc
   mapping(address=>uint256) public nW; //next withdraw (used for pool lock time)
 
-  uint256 public oC = 0;
-  uint256 public oP = 0;
+  uint256 public oC;
+  uint256 public oP;
 
 
 
