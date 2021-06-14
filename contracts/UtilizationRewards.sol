@@ -62,6 +62,7 @@ contract UtilizationRewards is IUtilizationRewards{
      * @param other the BIOP tokens to transfer into this contract from the multisig for trader/settler rewards
      */
     function deposit(uint256 staker, uint256 other) public onlyDAO {
+        require(token.balanceOf(address(this)) == 0, "can't deposit while reward balance is not zero");
       token.safeTransferFrom(msg.sender, address(this), staker.add(other));
       stakerBalance = stakerBalance.add(staker);
       otherBalance = otherBalance.add(other);
