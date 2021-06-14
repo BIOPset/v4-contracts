@@ -32,20 +32,14 @@ contract BasicRateCalc is IRateCalc {
         //if the difference between calls and puts is zero
         if (oC == oP) {
           canLock = tP/200; //limit the lock to 0.5% of pool
-        } else if (oC > oP) {
-          if (k) { //opening a call option
-            canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock downward for balance
-          } else { //opening a put option
-            canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock upward for balance
-          }
-        } else if (oP > oC) {
-          if (k) { //opening a call option
-            canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock upward for balance
-          } else { //opening a put option
-            canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock downward for balance
-          }
-
         }
+
+        if (k) { //opening a call option
+          canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock downward for balance
+        } else { //opening a put option
+          canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock upward for balance
+        }
+       
 
         //the default return rate of biopset options is 2x
         uint256 double = amount.mul(2);
