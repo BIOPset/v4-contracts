@@ -37,7 +37,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   Option[] public options;
 
   IERC20 public sT;//the token pooled in this contract
-  uint256 base = 1000000000000000000;//one token of the underlying, used for expiring
+  uint256 public base = 1000000000000000000;//one token of the underlying, used for expiring
 
   modifier onlyOwner() {
     require(owner == msg.sender, "Ownable: caller is not the owner");
