@@ -173,7 +173,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     * @param amount_ the amount you want to deposit to be used for underwriting options
     */
   function stake(uint256 amount_) public override {
-    require(open == true, "pool deposits has closed");
+    require(open, "pool deposits has closed");
     ERC20 token = ERC20(sT);
     require(token.transferFrom(msg.sender, address(this), amount_), "deposit failed");
     nW[msg.sender] = block.timestamp + poolLockSeconds;
