@@ -10,13 +10,13 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 contract TieredVesting { 
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
-    address public tokenAddress;
+    address public immutable tokenAddress;
     address payable claimant;
     uint256 public total;//total tokens to send over vesting period
     uint256 public startTime;//start time of the vesting
     uint256 public claimed;//amount claimed so far
-    uint256 public tiers;//the number of tiers
-    uint256 public tierLength;//time for each tier
+    uint256 public immutable tiers;//the number of tiers
+    uint256 public immutable tierLength;//time for each tier
     uint256 public perTier;//tokens unlocked at each tier
     uint256 public tiersClaimed;//amount of tiers paid out
 
