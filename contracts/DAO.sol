@@ -594,7 +594,7 @@ contract DAO {
      * @notice update the main ETH pool
      * @param a the address of the new INativeAssetDenominatedBinaryOptions pool to use
      */
-    function updateProtocol(address payable a) external  {
+    function updateProtocol(address payable a) external tierFourDelegation {
         INativeAssetDenominatedBinaryOptions t = INativeAssetDenominatedBinaryOptions(a);
         tA = a;
     }
@@ -603,7 +603,7 @@ contract DAO {
      * @notice update the factoryOwner
      * @param a the address of the new DAO to control the factory
      */
-    function updateFactoryOwner(address payable a) external  {
+    function updateFactoryOwner(address payable a) external tierFourDelegation {
         TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
         factory.transferOwner(a);
     }
@@ -612,7 +612,7 @@ contract DAO {
      * @notice update the factory
      * @param a the address of the new factory to be controlled by the DAO
      */
-    function updateFactory(address payable a) external  {
+    function updateFactory(address payable a) external tierFourDelegation {
         fcry = a;
     }
 
