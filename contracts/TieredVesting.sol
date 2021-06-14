@@ -7,8 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 
 
-contract TieredVesting {
-
+contract TieredVesting { 
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
     address public tokenAddress;
