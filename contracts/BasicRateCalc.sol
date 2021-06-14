@@ -11,7 +11,7 @@ contract BasicRateCalc is IRateCalc {
      * @param amount the trader's option payment
      * @param l the current amount of locked ETH
      * @param t time/rounds for the option  (not used in this RateCalc)
-     * @param k true for call false for put (not used in this RateCalc)
+     * @param k true for call false for put
      * @param oC  how many open call options there are currently
      * @param oP  how many open put options there are currently
      * @param tP the amount of tokens currently stored in the active pool
