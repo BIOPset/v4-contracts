@@ -189,7 +189,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     require (balanceOf(msg.sender) >= amount_, "Insufficent Share Balance");
     ERC20 token = ERC20(sT);
     //value to receive
-    uint256 vTR = amount_.mul(token.balanceOf(address(this))).div(totalSupply().sub(lockedAmount));
+    uint256 vTR = amount_.mul(token.balanceOf(address(this)).sub(lockedAmount)).div(totalSupply());
     _burn(msg.sender, amount_);
     if (block.timestamp <= nW[msg.sender]) {
       //early withdraw fee
