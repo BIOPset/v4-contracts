@@ -14,7 +14,7 @@ import "./Chainlink/AggregatorProxy.sol";
 
 
 contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBinaryOptions {
-    using SafeMath for uint56;
+    using SafeMath for uint256;
     address payable public treasury;
     address payable public owner;
     address public uR; //utilization rewards
