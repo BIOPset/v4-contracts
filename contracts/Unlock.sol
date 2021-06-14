@@ -1,8 +1,8 @@
 pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 /* 
 * @dev Unlock: A one time lock for ERC20 tokens that are available to withdraw all at once. A time vault.
@@ -10,6 +10,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
  */
 contract Unlock {
 
+    using SafeERC20 for IERC20;
     using SafeMath for uint256;
     address public tokenAddress;
     address payable claimant;
@@ -38,8 +39,8 @@ contract Unlock {
 
     function start(uint256 amount, uint256 period_) public {
         require(started == false, "already started");
-        ERC20 token = ERC20(tokenAddress);
-        token.transferFrom(msg.sender, address(this), amount);
+        IERC20 token = IERC20(tokenAddress);
+        token.safeTransferFrom(msg.sender, address(this), amount);
         started = true;
         period = period_;
         startTime = block.timestamp;
@@ -47,11 +48,11 @@ contract Unlock {
 
     function collect() public onlyClaimant returns(uint256) {
         uint256 elapsed = block.timestamp.sub(startTime);
-        ERC20 token = ERC20(tokenAddress);
+        IERC20 token = IERC20(tokenAddress);
         if (elapsed > period) {
             //vesting totally complete
             uint256 total = token.balanceOf(address(this));
-            token.transfer(claimant, total);
+            token.safeTransfer(claimant, total);
             return total;
         } 
         return 0;
