@@ -14,7 +14,7 @@ contract DelegatedAccessTiers is IAccessTiers {
     }
 
     function tier2(uint256 power, uint256 total) external override returns (bool) {
-        uint256 twothirds = total.div(3).mul(2);
+        uint256 twothirds = total.mul(2).div(3);
         if (power >= twothirds) {
             return true;
         }
@@ -22,7 +22,7 @@ contract DelegatedAccessTiers is IAccessTiers {
     }
 
     function tier3(uint256 power, uint256 total) external override returns (bool) {
-        uint256 threeQuarters = total.div(4).mul(3);
+        uint256 threeQuarters = total.mul(3).div(4);
         if (power >= threeQuarters) {
             return true;
         }
@@ -30,7 +30,7 @@ contract DelegatedAccessTiers is IAccessTiers {
     }
 
     function tier4(uint256 power, uint256 total) external override returns (bool) {
-        uint256 ninety = total.div(10).mul(9);
+        uint256 ninety = total.mul(9).div(10);
         if (power >= ninety) {
             return true;
         }
