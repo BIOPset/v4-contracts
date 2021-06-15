@@ -12,7 +12,7 @@ contract Unlock {
 
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
-    address public tokenAddress;
+    address public immutable tokenAddress;
     address payable claimant;
     uint256 public period;
     uint256 public startTime;//start time of the vesting
