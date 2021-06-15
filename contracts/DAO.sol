@@ -35,11 +35,12 @@ contract DAO {
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
     uint256 public dBIOP;//the total amount of staked BIOP which has been endorsed for governance
     uint256 public totalStakedAtLastPayment;
+    uint256 public lastPaymentReceived;
 
     //ETH rewards for stakers
     uint256 public trg;//total rewards generated
     mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address
-
+    mapping(address=>uint256) public lST;//last stake time
 
 
     constructor(address bo_, address v4_, address accessTiers_, address app_, address factory_, address payable trsy_) public {
@@ -80,6 +81,13 @@ contract DAO {
             unendorse();
         }
         staked[msg.sender] = staked[msg.sender].add(amount);
+
+        //claim pending rewards automatically if applicable before updating lST
+        if (lST[msg.sender] < lastPaymentReceived) {
+            claimETHRewards();
+        }
+        lST[msg.sender] = block.timestamp;
+
         if (delegate != 0x0000000000000000000000000000000000000000) {
             endorse(delegate);
         }
@@ -145,7 +153,8 @@ contract DAO {
 
 
     function claimETHRewards() public {
-        require(lrc[msg.sender] <= trg, "no rewards available");
+        require(lrc[msg.sender] <= trg, "no rewards available, already claimed all pending");
+        require(lST[msg.sender] <= lastPaymentReceived, "no rewards available, not staked long enough");
 
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
@@ -197,6 +206,7 @@ contract DAO {
     //this function has to be present or transfers to the DAO fail silently
     fallback () external payable {
         totalStakedAtLastPayment = totalStaked();
+        lastPaymentReceived = block.timestamp;
     }
 
      /**

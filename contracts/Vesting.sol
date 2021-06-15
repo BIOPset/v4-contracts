@@ -57,33 +57,21 @@ contract Vesting{
             token.safeTransfer(claimant, amount);
             return amount;
         } else {
-            uint256 amount;
-            uint256 half = period.div(2);
-            if (elapsed > half) {
-            //more than 50% done
-                uint256 twentiethDone;
-                uint256 fivePercent = period.div(20);
-                while (elapsed > 0) {
-                    if (elapsed >= fivePercent) {
-                        elapsed = elapsed.sub(fivePercent);
-                        twentiethDone = twentiethDone.add(1);
-                    } else {
-                        elapsed = 0;
-                    }
+            uint256 percentDone;
+            uint256 onePercent = period.div(100);
+            while (elapsed > 0) {
+                if (elapsed >= onePercent) {
+                    elapsed = elapsed.sub(onePercent);
+                    percentDone = percentDone.add(1);
+                } else {
+                    elapsed = 0;
                 }
-                amount = (total.div(20).mul(twentiethDone)).sub(claimed);    
-            } else if (elapsed == half) {
-                //50% done
-                uint256  perComplete = 2;
-                amount = total.div(perComplete).sub(claimed);
-            } else {
-                //less the 50% done
-                uint256  perComplete = period.div(elapsed);
-                amount = total.div(perComplete).sub(claimed);
-            } 
-                claimed = claimed.add(amount);
-                token.safeTransfer(claimant, amount);
-                return amount;
+            }
+            uint256 amount = (total.div(100).mul(percentDone)).sub(claimed);    
+            
+            claimed = claimed.add(amount);
+            token.safeTransfer(claimant, amount);
+            return amount;
         }
     }
 }
