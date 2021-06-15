@@ -10,7 +10,7 @@ contract Vesting{
 
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
-    address public tokenAddress;
+    address public immutable tokenAddress;
     address payable claimant;
     uint256 public period;//total length of the vesting period
     uint256 public total;//total tokens to send over vesting period
