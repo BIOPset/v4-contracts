@@ -57,9 +57,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     struct Option {
         address payable holder;
         int256 sP;//strike
-        uint80 pR;//purchase round
         uint256 pV;//purchase value
         uint256 lV;// in-the-money option value (lockedValue)
+        uint80 pR;//purchase round
         uint80 exp;//expiration round
         bool dir;//direction (true for call)
         address pP;//price provider
@@ -362,9 +362,9 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         Option memory op = Option(
             msg.sender,
             lA,
-            lR,
             msg.value,
             lV,
+            lR,
             t_,//rounds until expiration
             k_,
             pp_,

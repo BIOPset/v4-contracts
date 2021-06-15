@@ -48,9 +48,9 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   struct Option {
     address payable holder;
     int256 sP;//strike
-    uint80 pR;//purchase round
     uint256 pV;//purchase value
     uint256 lV;//in-the-money option value (lockedValue)
+    uint80 pR;//purchase round
     uint80 exp;//final round of option s
     bool dir;//direction (true for call)
     address pP;//price provider
@@ -273,9 +273,9 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     Option memory op = Option(
       msg.sender,
       lA,
-      lR,
       a_,
       lV,
+      lR,
       t_,//rounds until expiration
       k_,
       pp_,
