@@ -1,5 +1,5 @@
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 import "./TokenDenominatedBinaryOptions.sol";
 
@@ -46,7 +46,7 @@ contract TokenDenominatedBinaryOptionsFactory {
     */
     function createTokenDenominatedBinaryOptions(address token_, address payable treasury_, address app_) external {
         require(tokenDenominatedBinaryOptionsAddresses[token_] == 0x0000000000000000000000000000000000000000, "a pool for this token already exists");
-        IERC20 token = IERC20(token_);
+        ERC20 token = ERC20(token_);
         TokenDenominatedBinaryOptions newPool = new TokenDenominatedBinaryOptions(string(abi.encodePacked("Pool ", token.name)),  string(abi.encodePacked("p", token.symbol)), token_, owner, app_, treasury_);
         tokenDenominatedBinaryOptionsAddresses[address(token)] = address(newPool);
         emit TokenDenominatedBinaryOptionsCreated(newPool);
