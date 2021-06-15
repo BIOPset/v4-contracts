@@ -36,7 +36,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   bool public open = true;
   Option[] public options;
 
-  IERC20 public sT;//the token pooled in this contract
+  IERC20 public immutable sT;//the token pooled in this contract
   uint256 public base = 1000000000000000000;//one token of the underlying, used for expiring
 
   modifier onlyOwner() {
