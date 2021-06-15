@@ -57,6 +57,6 @@ contract TokenDenominatedBinaryOptionsFactory {
     * @param tokenAddress_ the underlying asset of the pool to delist
     */
     function removePool(address tokenAddress_) external onlyOwner {
-        tokenDenominatedBinaryOptionsAddresses[tokenAddress_] = 0x0000000000000000000000000000000000000000;
+        delete tokenDenominatedBinaryOptionsAddresses[tokenAddress_];
     }
 }
