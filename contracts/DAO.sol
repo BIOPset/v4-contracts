@@ -33,10 +33,11 @@ contract DAO {
     mapping(address=>uint256) public votes;//amount of endorsement power currently directed at a address
     mapping(address=>address payable) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
-    uint256 public dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
+    uint256 public dBIOP;//the total amount of staked BIOP which has been endorsed for governance
+    uint256 public totalStakedAtLastPayment;
 
     //ETH rewards for stakers
-    uint256 public trg = 0;//total rewards generated
+    uint256 public trg;//total rewards generated
     mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address
 
 
@@ -139,7 +140,7 @@ contract DAO {
 
     function pendingETHRewards(address account) public view returns (uint256) {
         uint256 base = bRSLC(account);
-        return base.mul(staked[account]).div(totalStaked());
+        return base.mul(staked[account]).div(totalStakedAtLastPayment);
     }
 
 
@@ -195,6 +196,7 @@ contract DAO {
 
     //this function has to be present or transfers to the DAO fail silently
     fallback () external payable {
+        totalStakedAtLastPayment = totalStaked();
     }
 
      /**
