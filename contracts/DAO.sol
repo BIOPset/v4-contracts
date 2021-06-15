@@ -578,14 +578,14 @@ contract DAO {
      * @notice prevent new deposits into the pool. Effectivly end that pool.
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
-    function closeStaking(address addy_) external tierFourDelegation {
+    function toggleStaking(address addy_) external tierFourDelegation {
          if (addy_ == pA) {
             INativeAssetDenominatedBinaryOptions pr = INativeAssetDenominatedBinaryOptions(pA);
-            pr.closeStaking();
+            pr.toggleStaking();
         } else {
             TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
             TokenDenominatedBinaryOptions pr = TokenDenominatedBinaryOptions(factory.getTokenDenominatedBinaryOptionsAddress(addy_));
-            pr.closeStaking();
+            pr.toggleStaking();
         }
     }
 

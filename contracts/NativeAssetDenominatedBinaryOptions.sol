@@ -264,7 +264,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      /**
      * @dev used to send this pool into EOL mode when a newer one is open
      */
-    function closeStaking() external override onlyOwner {
+    function toggleStaking() external override onlyOwner {
         open = !open;
     }
 

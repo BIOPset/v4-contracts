@@ -163,7 +163,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
    /**
      * @dev used to send this pool into EOL mode when a newer one is open
      */
-    function closeStaking() external onlyOwner {
+    function toggleStaking() external onlyOwner {
         open = !open;
     }
 
