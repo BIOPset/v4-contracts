@@ -18,7 +18,7 @@ contract UtilizationRewards is IUtilizationRewards{
 
     uint256 public stakerBalance = 0; //balance of BIOP tokens for stakers
     uint256 public otherBalance = 0;//balance of BIOP tokens for trader/settler
-    IERC20 token;
+    IERC20 public token;
 
     uint256 pricePoint = 1;//the BIOP/ETH price ratio used to determine Trader/Settler gas rewards
 
