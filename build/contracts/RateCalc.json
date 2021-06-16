@@ -25,7 +25,12 @@
         },
         {
           "internalType": "uint256",
-          "name": "s",
+          "name": "oC",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "oP",
           "type": "uint256"
         },
         {
@@ -46,54 +51,53 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"l\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"t\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"k\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"s\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tP\",\"type\":\"uint256\"}],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256)\":{\"params\":{\"amount\":\"Option amount\",\"k\":\"true for call false for put\",\"l\":\"the amount locked now\",\"s\":\"number of open options in this direction\",\"t\":\"time for the option\",\"tP\":\"the amount of tokens stored currently in the pool the option be created on\"},\"returns\":{\"_0\":\"profit total possible profit amount\"}}}},\"userdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256)\":{\"notice\":\"Calculates maximum option buyer profit\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol\":\"RateCalc\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol\":{\"keccak256\":\"0x568ac5c65a3fb1d81c3bee9936ad2fd49d2e03ac3ace47a171920c9b1777287f\",\"urls\":[\"bzz-raw://61b0c95bca42e924ea05bdabcf3ab51b38f61d668e8873b1d28ade9e51cf9281\",\"dweb:/ipfs/QmZc7R9jgCivwn98qkYXWmDBuN1zRz5Fv6Bqx68BMkhpcF\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol\":{\"keccak256\":\"0xc92225b8a05de46a9eaa1705c3d3101b6483bc9bd3eb900a29d6b77476193a6e\",\"urls\":[\"bzz-raw://5efc2fb71d09d0541115f52cd7d598edbae52c81092b11ecab9fc37cfd2577fc\",\"dweb:/ipfs/QmeyhSHkARxTt6qHqeGffuqBzmThHVKtrCJiQmKwi1D5Z8\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x3b21f2c8d626de3b9925ae33e972d8bf5c8b1bffb3f4ee94daeed7d0679036e6\",\"urls\":[\"bzz-raw://7f8d45329fecbf0836ad7543330c3ecd0f8d0ffa42d4016278c3eb2215fdcdfe\",\"dweb:/ipfs/QmXWLT7GcnHtA5NiD6MFi2CV3EWJY4wv5mLNnypqYDrxL3\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5061011b806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80633a95144814602d575b600080fd5b6067600480360360c0811015604157600080fd5b50803590602081013590604081013590606081013515159060808101359060a001356079565b60408051918252519081900360200190f35b600060405162461bcd60e51b81526004018080602001828103825260338152602001806100b36033913960400191505060405180910390fdfe446f6e2774207573652074686973207261746563616c632069747320666f7220666f726d617420707572706f7365206f6e6c79a2646970667358221220149496470ba1485acbb91620fcc1d85e00e30aa962fd3d02ffe7560f3017d3cd64736f6c63430006060033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80633a95144814602d575b600080fd5b6067600480360360c0811015604157600080fd5b50803590602081013590604081013590606081013515159060808101359060a001356079565b60408051918252519081900360200190f35b600060405162461bcd60e51b81526004018080602001828103825260338152602001806100b36033913960400191505060405180910390fdfe446f6e2774207573652074686973207261746563616c632069747320666f7220666f726d617420707572706f7365206f6e6c79a2646970667358221220149496470ba1485acbb91620fcc1d85e00e30aa962fd3d02ffe7560f3017d3cd64736f6c63430006060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"l\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"t\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"k\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"oC\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"oP\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tP\",\"type\":\"uint256\"}],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256,uint256)\":{\"params\":{\"amount\":\"Option amount\",\"k\":\"true for call false for put\",\"l\":\"the amount locked now\",\"oC\":\"number of open call options\",\"oP\":\"number of open put options\",\"t\":\"time for the option\",\"tP\":\"the amount of tokens stored currently in the pool the option be created on\"},\"returns\":{\"_0\":\"profit total possible profit amount\"}}}},\"userdoc\":{\"methods\":{\"rate(uint256,uint256,uint256,bool,uint256,uint256,uint256)\":{\"notice\":\"Calculates maximum option buyer profit\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol\":\"RateCalc\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol\":{\"keccak256\":\"0xa7a179d3b3dc5b0f9e3c9e8ac4fd8bea706210ce0ae3579fc2ed2518b945e22c\",\"urls\":[\"bzz-raw://99291bf57226bd10689af2a4522bced067eaba6aaacd1261cda3ada242afca36\",\"dweb:/ipfs/QmWrRAr33BAfx8VdQX6d239yzvXiNNvt4YhbPpwshu4cMy\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol\":{\"keccak256\":\"0x93cbb8a1eba037488289332d862c57de273aed8859d52dd22d36d6320c828c57\",\"urls\":[\"bzz-raw://807f7a9c8816500c62071d8af504e4d002dd66556ae7e54d3dff5fe718b2f987\",\"dweb:/ipfs/QmUBVzcGoHcZvMXDXYioNFgytNbf96MVnBMKGXVgYC4pmz\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x3b21f2c8d626de3b9925ae33e972d8bf5c8b1bffb3f4ee94daeed7d0679036e6\",\"urls\":[\"bzz-raw://7f8d45329fecbf0836ad7543330c3ecd0f8d0ffa42d4016278c3eb2215fdcdfe\",\"dweb:/ipfs/QmXWLT7GcnHtA5NiD6MFi2CV3EWJY4wv5mLNnypqYDrxL3\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610121806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80634682fdce14602d575b600080fd5b606d600480360360e0811015604157600080fd5b50803590602081013590604081013590606081013515159060808101359060a08101359060c00135607f565b60408051918252519081900360200190f35b600060405162461bcd60e51b81526004018080602001828103825260338152602001806100b96033913960400191505060405180910390fdfe446f6e2774207573652074686973207261746563616c632069747320666f7220666f726d617420707572706f7365206f6e6c79a2646970667358221220972326d7776b52dc5b3881575e86788171867ea87a473c91222f93157678461964736f6c63430006060033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80634682fdce14602d575b600080fd5b606d600480360360e0811015604157600080fd5b50803590602081013590604081013590606081013515159060808101359060a08101359060c00135607f565b60408051918252519081900360200190f35b600060405162461bcd60e51b81526004018080602001828103825260338152602001806100b96033913960400191505060405180910390fdfe446f6e2774207573652074686973207261746563616c632069747320666f7220666f726d617420707572706f7365206f6e6c79a2646970667358221220972326d7776b52dc5b3881575e86788171867ea87a473c91222f93157678461964736f6c63430006060033",
   "immutableReferences": {},
-  "sourceMap": "116:716:13:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;116:716:13;;;;;;;",
-  "deployedSourceMap": "116:716:13:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;116:716:13;;;;;;;;;;;;;;;;12:1:-1;9;2:12;609:221:13;;;;;;15:3:-1;10;7:12;4:2;;;32:1;29;22:12;4:2;-1:-1;609:221:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;725:7;745:69;;-1:-1:-1;;;745:69:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
-  "source": "pragma solidity ^0.6.6;\n\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"./interfaces/IRateCalc.sol\";\n\n\ncontract RateCalc is IRateCalc {\n    using SafeMath for uint256;\n     /**\n     * @notice Calculates maximum option buyer profit\n     * @param amount Option amount\n     * @param l the amount locked now\n     * @param t time for the option\n     * @param k true for call false for put\n     * @param s number of open options in this direction\n     * @param tP the amount of tokens stored currently in the pool the option be created on\n     * @return profit total possible profit amount\n     */\n    function rate(uint256 amount,  uint256 l, uint256 t, bool k, uint256 s, uint256 tP) external view override returns (uint256)  {\n        require(false, \"Don't use this ratecalc its for format purpose only\");\n        \n    }\n}\n\n",
+  "sourceMap": "115:761:12:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;115:761:12;;;;;;;",
+  "deployedSourceMap": "115:761:12:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;115:761:12;;;;;;;;;;;;;;;;12:1:-1;9;2:12;640:234:12;;;;;;15:3:-1;10;7:12;4:2;;;32:1;29;22:12;4:2;-1:-1;640:234:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;769:7;789:69;;-1:-1:-1;;;789:69:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "source": "pragma solidity 0.6.6;\n\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"./interfaces/IRateCalc.sol\";\n\n\ncontract RateCalc is IRateCalc {\n    using SafeMath for uint256;\n     /**\n     * @notice Calculates maximum option buyer profit\n     * @param amount Option amount\n     * @param l the amount locked now\n     * @param t time for the option\n     * @param k true for call false for put\n     * @param oC number of open call options\n     * @param oP number of open put options\n     * @param tP the amount of tokens stored currently in the pool the option be created on\n     * @return profit total possible profit amount\n     */\n    function rate(uint256 amount,  uint256 l, uint256 t, bool k, uint256 oC, uint256 oP, uint256 tP) external view override returns (uint256)  {\n        require(false, \"Don't use this ratecalc its for format purpose only\");\n        \n    }\n}\n\n",
   "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol",
   "ast": {
     "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol",
     "exportedSymbols": {
       "RateCalc": [
-        7058
+        6719
       ]
     },
-    "id": 7059,
+    "id": 6720,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7025,
+        "id": 6684,
         "literals": [
           "solidity",
-          "^",
           "0.6",
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:13"
+        "src": "0:22:12"
       },
       {
         "absolutePath": "@openzeppelin/contracts/math/SafeMath.sol",
         "file": "@openzeppelin/contracts/math/SafeMath.sol",
-        "id": 7026,
+        "id": 6685,
         "nodeType": "ImportDirective",
-        "scope": 7059,
-        "sourceUnit": 12087,
-        "src": "25:51:13",
+        "scope": 6720,
+        "sourceUnit": 11678,
+        "src": "24:51:12",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol",
         "file": "./interfaces/IRateCalc.sol",
-        "id": 7027,
+        "id": 6686,
         "nodeType": "ImportDirective",
-        "scope": 7059,
-        "sourceUnit": 11082,
-        "src": "77:36:13",
+        "scope": 6720,
+        "sourceUnit": 10683,
+        "src": "76:36:12",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -104,56 +108,56 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7028,
+              "id": 6687,
               "name": "IRateCalc",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 11081,
-              "src": "137:9:13",
+              "referencedDeclaration": 10682,
+              "src": "136:9:12",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IRateCalc_$11081",
+                "typeIdentifier": "t_contract$_IRateCalc_$10682",
                 "typeString": "contract IRateCalc"
               }
             },
-            "id": 7029,
+            "id": 6688,
             "nodeType": "InheritanceSpecifier",
-            "src": "137:9:13"
+            "src": "136:9:12"
           }
         ],
         "contractDependencies": [
-          11081
+          10682
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 7058,
+        "id": 6719,
         "linearizedBaseContracts": [
-          7058,
-          11081
+          6719,
+          10682
         ],
         "name": "RateCalc",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "id": 7032,
+            "id": 6691,
             "libraryName": {
               "contractScope": null,
-              "id": 7030,
+              "id": 6689,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 12086,
-              "src": "159:8:13",
+              "referencedDeclaration": 11677,
+              "src": "158:8:12",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$12086",
+                "typeIdentifier": "t_contract$_SafeMath_$11677",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
-            "src": "153:27:13",
+            "src": "152:27:12",
             "typeName": {
-              "id": 7031,
+              "id": 6690,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "172:7:13",
+              "src": "171:7:12",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -162,12 +166,12 @@
           },
           {
             "baseFunctions": [
-              11080
+              10681
             ],
             "body": {
-              "id": 7056,
+              "id": 6717,
               "nodeType": "Block",
-              "src": "735:95:13",
+              "src": "779:95:12",
               "statements": [
                 {
                   "expression": {
@@ -176,14 +180,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "66616c7365",
-                        "id": 7052,
+                        "id": 6713,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "bool",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "753:5:13",
+                        "src": "797:5:12",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -194,14 +198,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "446f6e2774207573652074686973207261746563616c632069747320666f7220666f726d617420707572706f7365206f6e6c79",
-                        "id": 7053,
+                        "id": 6714,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "760:53:13",
+                        "src": "804:53:12",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_595ddeafab78c1e75dfed30b10fa0b7767a44cdec354406987bc72a42efc9ee1",
@@ -221,7 +225,7 @@
                           "typeString": "literal_string \"Don't use this ratecalc its for format purpose only\""
                         }
                       ],
-                      "id": 7051,
+                      "id": 6712,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -229,13 +233,13 @@
                         -18
                       ],
                       "referencedDeclaration": -18,
-                      "src": "745:7:13",
+                      "src": "789:7:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7054,
+                    "id": 6715,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -243,51 +247,51 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "745:69:13",
+                    "src": "789:69:12",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7055,
+                  "id": 6716,
                   "nodeType": "ExpressionStatement",
-                  "src": "745:69:13"
+                  "src": "789:69:12"
                 }
               ]
             },
             "documentation": {
-              "id": 7033,
+              "id": 6692,
               "nodeType": "StructuredDocumentation",
-              "src": "186:418:13",
-              "text": "@notice Calculates maximum option buyer profit\n@param amount Option amount\n@param l the amount locked now\n@param t time for the option\n@param k true for call false for put\n@param s number of open options in this direction\n@param tP the amount of tokens stored currently in the pool the option be created on\n@return profit total possible profit amount"
+              "src": "185:450:12",
+              "text": "@notice Calculates maximum option buyer profit\n@param amount Option amount\n@param l the amount locked now\n@param t time for the option\n@param k true for call false for put\n@param oC number of open call options\n@param oP number of open put options\n@param tP the amount of tokens stored currently in the pool the option be created on\n@return profit total possible profit amount"
             },
-            "functionSelector": "3a951448",
-            "id": 7057,
+            "functionSelector": "4682fdce",
+            "id": 6718,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "rate",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 7047,
+              "id": 6708,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
-              "src": "707:8:13"
+              "src": "751:8:12"
             },
             "parameters": {
-              "id": 7046,
+              "id": 6707,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7035,
+                  "id": 6694,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "623:14:13",
+                  "scope": 6718,
+                  "src": "654:14:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -295,10 +299,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7034,
+                    "id": 6693,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "623:7:13",
+                    "src": "654:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -309,13 +313,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 7037,
+                  "id": 6696,
                   "mutability": "mutable",
                   "name": "l",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "640:9:13",
+                  "scope": 6718,
+                  "src": "671:9:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -323,10 +327,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7036,
+                    "id": 6695,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "640:7:13",
+                    "src": "671:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -337,13 +341,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 7039,
+                  "id": 6698,
                   "mutability": "mutable",
                   "name": "t",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "651:9:13",
+                  "scope": 6718,
+                  "src": "682:9:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -351,10 +355,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7038,
+                    "id": 6697,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "651:7:13",
+                    "src": "682:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -365,13 +369,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 7041,
+                  "id": 6700,
                   "mutability": "mutable",
                   "name": "k",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "662:6:13",
+                  "scope": 6718,
+                  "src": "693:6:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -379,10 +383,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 7040,
+                    "id": 6699,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "662:4:13",
+                    "src": "693:4:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -393,13 +397,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 7043,
+                  "id": 6702,
                   "mutability": "mutable",
-                  "name": "s",
+                  "name": "oC",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "670:9:13",
+                  "scope": 6718,
+                  "src": "701:10:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -407,10 +411,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7042,
+                    "id": 6701,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "670:7:13",
+                    "src": "701:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -421,13 +425,41 @@
                 },
                 {
                   "constant": false,
-                  "id": 7045,
+                  "id": 6704,
+                  "mutability": "mutable",
+                  "name": "oP",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 6718,
+                  "src": "713:10:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6703,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "713:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6706,
                   "mutability": "mutable",
                   "name": "tP",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "681:10:13",
+                  "scope": 6718,
+                  "src": "725:10:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -435,10 +467,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7044,
+                    "id": 6705,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "681:7:13",
+                    "src": "725:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -448,21 +480,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "622:70:13"
+              "src": "653:83:12"
             },
             "returnParameters": {
-              "id": 7050,
+              "id": 6711,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7049,
+                  "id": 6710,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7057,
-                  "src": "725:7:13",
+                  "scope": 6718,
+                  "src": "769:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -470,10 +502,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7048,
+                    "id": 6709,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "725:7:13",
+                    "src": "769:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -483,27 +515,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "724:9:13"
+              "src": "768:9:12"
             },
-            "scope": 7058,
-            "src": "609:221:13",
+            "scope": 6719,
+            "src": "640:234:12",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 7059,
-        "src": "116:716:13"
+        "scope": 6720,
+        "src": "115:761:12"
       }
     ],
-    "src": "0:834:13"
+    "src": "0:878:12"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/RateCalc.sol",
       "exportedSymbols": {
         "RateCalc": [
-          7058
+          6719
         ]
       }
     },
@@ -512,60 +544,59 @@
         "attributes": {
           "literals": [
             "solidity",
-            "^",
             "0.6",
             ".6"
           ]
         },
-        "id": 7025,
+        "id": 6684,
         "name": "PragmaDirective",
-        "src": "0:23:13"
+        "src": "0:22:12"
       },
       {
         "attributes": {
-          "SourceUnit": 12087,
+          "SourceUnit": 11678,
           "absolutePath": "@openzeppelin/contracts/math/SafeMath.sol",
           "file": "@openzeppelin/contracts/math/SafeMath.sol",
-          "scope": 7059,
+          "scope": 6720,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 7026,
+        "id": 6685,
         "name": "ImportDirective",
-        "src": "25:51:13"
+        "src": "24:51:12"
       },
       {
         "attributes": {
-          "SourceUnit": 11082,
+          "SourceUnit": 10683,
           "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IRateCalc.sol",
           "file": "./interfaces/IRateCalc.sol",
-          "scope": 7059,
+          "scope": 6720,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 7027,
+        "id": 6686,
         "name": "ImportDirective",
-        "src": "77:36:13"
+        "src": "76:36:12"
       },
       {
         "attributes": {
           "abstract": false,
           "contractDependencies": [
-            11081
+            10682
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            7058,
-            11081
+            6719,
+            10682
           ],
           "name": "RateCalc",
-          "scope": 7059
+          "scope": 6720
         },
         "children": [
           {
@@ -577,17 +608,17 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "IRateCalc",
-                  "referencedDeclaration": 11081,
+                  "referencedDeclaration": 10682,
                   "type": "contract IRateCalc"
                 },
-                "id": 7028,
+                "id": 6687,
                 "name": "UserDefinedTypeName",
-                "src": "137:9:13"
+                "src": "136:9:12"
               }
             ],
-            "id": 7029,
+            "id": 6688,
             "name": "InheritanceSpecifier",
-            "src": "137:9:13"
+            "src": "136:9:12"
           },
           {
             "children": [
@@ -595,33 +626,33 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 12086,
+                  "referencedDeclaration": 11677,
                   "type": "library SafeMath"
                 },
-                "id": 7030,
+                "id": 6689,
                 "name": "UserDefinedTypeName",
-                "src": "159:8:13"
+                "src": "158:8:12"
               },
               {
                 "attributes": {
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 7031,
+                "id": 6690,
                 "name": "ElementaryTypeName",
-                "src": "172:7:13"
+                "src": "171:7:12"
               }
             ],
-            "id": 7032,
+            "id": 6691,
             "name": "UsingForDirective",
-            "src": "153:27:13"
+            "src": "152:27:12"
           },
           {
             "attributes": {
               "baseFunctions": [
-                11080
+                10681
               ],
-              "functionSelector": "3a951448",
+              "functionSelector": "4682fdce",
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
@@ -629,7 +660,7 @@
                 null
               ],
               "name": "rate",
-              "scope": 7058,
+              "scope": 6719,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -637,11 +668,11 @@
             "children": [
               {
                 "attributes": {
-                  "text": "@notice Calculates maximum option buyer profit\n@param amount Option amount\n@param l the amount locked now\n@param t time for the option\n@param k true for call false for put\n@param s number of open options in this direction\n@param tP the amount of tokens stored currently in the pool the option be created on\n@return profit total possible profit amount"
+                  "text": "@notice Calculates maximum option buyer profit\n@param amount Option amount\n@param l the amount locked now\n@param t time for the option\n@param k true for call false for put\n@param oC number of open call options\n@param oP number of open put options\n@param tP the amount of tokens stored currently in the pool the option be created on\n@return profit total possible profit amount"
                 },
-                "id": 7033,
+                "id": 6692,
                 "name": "StructuredDocumentation",
-                "src": "186:418:13"
+                "src": "185:450:12"
               },
               {
                 "attributes": {
@@ -649,9 +680,9 @@
                     null
                   ]
                 },
-                "id": 7047,
+                "id": 6708,
                 "name": "OverrideSpecifier",
-                "src": "707:8:13"
+                "src": "751:8:12"
               },
               {
                 "children": [
@@ -661,7 +692,7 @@
                       "mutability": "mutable",
                       "name": "amount",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -674,14 +705,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7034,
+                        "id": 6693,
                         "name": "ElementaryTypeName",
-                        "src": "623:7:13"
+                        "src": "654:7:12"
                       }
                     ],
-                    "id": 7035,
+                    "id": 6694,
                     "name": "VariableDeclaration",
-                    "src": "623:14:13"
+                    "src": "654:14:12"
                   },
                   {
                     "attributes": {
@@ -689,7 +720,7 @@
                       "mutability": "mutable",
                       "name": "l",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -702,14 +733,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7036,
+                        "id": 6695,
                         "name": "ElementaryTypeName",
-                        "src": "640:7:13"
+                        "src": "671:7:12"
                       }
                     ],
-                    "id": 7037,
+                    "id": 6696,
                     "name": "VariableDeclaration",
-                    "src": "640:9:13"
+                    "src": "671:9:12"
                   },
                   {
                     "attributes": {
@@ -717,7 +748,7 @@
                       "mutability": "mutable",
                       "name": "t",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -730,14 +761,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7038,
+                        "id": 6697,
                         "name": "ElementaryTypeName",
-                        "src": "651:7:13"
+                        "src": "682:7:12"
                       }
                     ],
-                    "id": 7039,
+                    "id": 6698,
                     "name": "VariableDeclaration",
-                    "src": "651:9:13"
+                    "src": "682:9:12"
                   },
                   {
                     "attributes": {
@@ -745,7 +776,7 @@
                       "mutability": "mutable",
                       "name": "k",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -758,22 +789,22 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 7040,
+                        "id": 6699,
                         "name": "ElementaryTypeName",
-                        "src": "662:4:13"
+                        "src": "693:4:12"
                       }
                     ],
-                    "id": 7041,
+                    "id": 6700,
                     "name": "VariableDeclaration",
-                    "src": "662:6:13"
+                    "src": "693:6:12"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "mutability": "mutable",
-                      "name": "s",
+                      "name": "oC",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -786,14 +817,42 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7042,
+                        "id": 6701,
                         "name": "ElementaryTypeName",
-                        "src": "670:7:13"
+                        "src": "701:7:12"
                       }
                     ],
-                    "id": 7043,
+                    "id": 6702,
                     "name": "VariableDeclaration",
-                    "src": "670:9:13"
+                    "src": "701:10:12"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "oP",
+                      "overrides": null,
+                      "scope": 6718,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 6703,
+                        "name": "ElementaryTypeName",
+                        "src": "713:7:12"
+                      }
+                    ],
+                    "id": 6704,
+                    "name": "VariableDeclaration",
+                    "src": "713:10:12"
                   },
                   {
                     "attributes": {
@@ -801,7 +860,7 @@
                       "mutability": "mutable",
                       "name": "tP",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -814,19 +873,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7044,
+                        "id": 6705,
                         "name": "ElementaryTypeName",
-                        "src": "681:7:13"
+                        "src": "725:7:12"
                       }
                     ],
-                    "id": 7045,
+                    "id": 6706,
                     "name": "VariableDeclaration",
-                    "src": "681:10:13"
+                    "src": "725:10:12"
                   }
                 ],
-                "id": 7046,
+                "id": 6707,
                 "name": "ParameterList",
-                "src": "622:70:13"
+                "src": "653:83:12"
               },
               {
                 "children": [
@@ -836,7 +895,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 7057,
+                      "scope": 6718,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -849,19 +908,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7048,
+                        "id": 6709,
                         "name": "ElementaryTypeName",
-                        "src": "725:7:13"
+                        "src": "769:7:12"
                       }
                     ],
-                    "id": 7049,
+                    "id": 6710,
                     "name": "VariableDeclaration",
-                    "src": "725:7:13"
+                    "src": "769:7:12"
                   }
                 ],
-                "id": 7050,
+                "id": 6711,
                 "name": "ParameterList",
-                "src": "724:9:13"
+                "src": "768:9:12"
               },
               {
                 "children": [
@@ -903,9 +962,9 @@
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
-                            "id": 7051,
+                            "id": 6712,
                             "name": "Identifier",
-                            "src": "745:7:13"
+                            "src": "789:7:12"
                           },
                           {
                             "attributes": {
@@ -920,9 +979,9 @@
                               "type": "bool",
                               "value": "false"
                             },
-                            "id": 7052,
+                            "id": 6713,
                             "name": "Literal",
-                            "src": "753:5:13"
+                            "src": "797:5:12"
                           },
                           {
                             "attributes": {
@@ -937,39 +996,39 @@
                               "type": "literal_string \"Don't use this ratecalc its for format purpose only\"",
                               "value": "Don't use this ratecalc its for format purpose only"
                             },
-                            "id": 7053,
+                            "id": 6714,
                             "name": "Literal",
-                            "src": "760:53:13"
+                            "src": "804:53:12"
                           }
                         ],
-                        "id": 7054,
+                        "id": 6715,
                         "name": "FunctionCall",
-                        "src": "745:69:13"
+                        "src": "789:69:12"
                       }
                     ],
-                    "id": 7055,
+                    "id": 6716,
                     "name": "ExpressionStatement",
-                    "src": "745:69:13"
+                    "src": "789:69:12"
                   }
                 ],
-                "id": 7056,
+                "id": 6717,
                 "name": "Block",
-                "src": "735:95:13"
+                "src": "779:95:12"
               }
             ],
-            "id": 7057,
+            "id": 6718,
             "name": "FunctionDefinition",
-            "src": "609:221:13"
+            "src": "640:234:12"
           }
         ],
-        "id": 7058,
+        "id": 6719,
         "name": "ContractDefinition",
-        "src": "116:716:13"
+        "src": "115:761:12"
       }
     ],
-    "id": 7059,
+    "id": 6720,
     "name": "SourceUnit",
-    "src": "0:834:13"
+    "src": "0:878:12"
   },
   "compiler": {
     "name": "solc",
@@ -977,15 +1036,16 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-21T05:15:36.092Z",
+  "updatedAt": "2021-06-14T19:21:29.613Z",
   "devdoc": {
     "methods": {
-      "rate(uint256,uint256,uint256,bool,uint256,uint256)": {
+      "rate(uint256,uint256,uint256,bool,uint256,uint256,uint256)": {
         "params": {
           "amount": "Option amount",
           "k": "true for call false for put",
           "l": "the amount locked now",
-          "s": "number of open options in this direction",
+          "oC": "number of open call options",
+          "oP": "number of open put options",
           "t": "time for the option",
           "tP": "the amount of tokens stored currently in the pool the option be created on"
         },
@@ -997,7 +1057,7 @@
   },
   "userdoc": {
     "methods": {
-      "rate(uint256,uint256,uint256,bool,uint256,uint256)": {
+      "rate(uint256,uint256,uint256,bool,uint256,uint256,uint256)": {
         "notice": "Calculates maximum option buyer profit"
       }
     }

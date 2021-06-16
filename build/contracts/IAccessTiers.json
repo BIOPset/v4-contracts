@@ -98,34 +98,33 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier1\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier2\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier3\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier4\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"tier1(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier2(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier3(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier4(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}}}},\"userdoc\":{\"methods\":{\"tier1(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier2(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier3(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier4(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol\":\"IAccessTiers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol\":{\"keccak256\":\"0xf86ccd27b8ffddaf77bee116504d8b4391bf24d07966d06d9a4574edaed565fe\",\"urls\":[\"bzz-raw://36dfc1e31ed13139161137e1c2ef422fbdb1e51f3bf6fb4250d4f88a5907526c\",\"dweb:/ipfs/QmbPXyb7sbaeoyc9b85AeJkoaXAdt5TzPHADyQ6TeaKJUw\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier1\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier2\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier3\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"power\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"}],\"name\":\"tier4\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"tier1(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier2(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier3(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}},\"tier4(uint256,uint256)\":{\"params\":{\"power\":\"the amount of control held by user trying to access this action\",\"total\":\"the total amount of control available\"},\"returns\":{\"_0\":\"boolean of users access to this tier\"}}}},\"userdoc\":{\"methods\":{\"tier1(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier2(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier3(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"},\"tier4(uint256,uint256)\":{\"notice\":\"checks if a user meets the requirement to call the given action\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol\":\"IAccessTiers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol\":{\"keccak256\":\"0x887923b877568de4682a8b671e4d15b2bcc2320c25fde147817b782a361ebfd5\",\"urls\":[\"bzz-raw://6220682157c0e369866b86623324ee0eee45b6492a80806128362317edab589f\",\"dweb:/ipfs/QmaHgvuDjo9N4vAzodSuWoNeaae6zFx58qcKQevnjiU5t2\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.6.6;\ninterface IAccessTiers {\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier1(uint256 power, uint256 total) external returns (bool);\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier2(uint256 power, uint256 total) external returns (bool);\n\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier3(uint256 power, uint256 total) external returns (bool);\n\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier4(uint256 power, uint256 total) external returns (bool);\n}\n",
+  "source": "pragma solidity 0.6.6;\ninterface IAccessTiers {\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier1(uint256 power, uint256 total) external returns (bool);\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier2(uint256 power, uint256 total) external returns (bool);\n\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier3(uint256 power, uint256 total) external returns (bool);\n\n\n    /**\n     * @notice checks if a user meets the requirement to call the given action\n     * @param power the amount of control held by user trying to access this action\n     * @param total the total amount of control available\n     * @return boolean of users access to this tier\n     */\n    function tier4(uint256 power, uint256 total) external returns (bool);\n}\n",
   "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol",
   "ast": {
     "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol",
     "exportedSymbols": {
       "IAccessTiers": [
-        10994
+        10593
       ]
     },
-    "id": 10995,
+    "id": 10594,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 10953,
+        "id": 10552,
         "literals": [
           "solidity",
-          "^",
           "0.6",
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:25"
+        "src": "0:22:24"
       },
       {
         "abstract": false,
@@ -134,9 +133,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 10994,
+        "id": 10593,
         "linearizedBaseContracts": [
-          10994
+          10593
         ],
         "name": "IAccessTiers",
         "nodeType": "ContractDefinition",
@@ -144,13 +143,13 @@
           {
             "body": null,
             "documentation": {
-              "id": 10954,
+              "id": 10553,
               "nodeType": "StructuredDocumentation",
-              "src": "53:284:25",
+              "src": "52:284:24",
               "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
             },
             "functionSelector": "60e96238",
-            "id": 10963,
+            "id": 10562,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -158,18 +157,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 10959,
+              "id": 10558,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10956,
+                  "id": 10555,
                   "mutability": "mutable",
                   "name": "power",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10963,
-                  "src": "357:13:25",
+                  "scope": 10562,
+                  "src": "356:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -177,10 +176,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10955,
+                    "id": 10554,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "357:7:25",
+                    "src": "356:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -191,13 +190,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 10958,
+                  "id": 10557,
                   "mutability": "mutable",
                   "name": "total",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10963,
-                  "src": "372:13:25",
+                  "scope": 10562,
+                  "src": "371:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -205,10 +204,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10957,
+                    "id": 10556,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "372:7:25",
+                    "src": "371:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -218,21 +217,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "356:30:25"
+              "src": "355:30:24"
             },
             "returnParameters": {
-              "id": 10962,
+              "id": 10561,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10961,
+                  "id": 10560,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10963,
-                  "src": "405:4:25",
+                  "scope": 10562,
+                  "src": "404:4:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -240,10 +239,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10960,
+                    "id": 10559,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "405:4:25",
+                    "src": "404:4:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -253,10 +252,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "404:6:25"
+              "src": "403:6:24"
             },
-            "scope": 10994,
-            "src": "342:69:25",
+            "scope": 10593,
+            "src": "341:69:24",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -264,13 +263,13 @@
           {
             "body": null,
             "documentation": {
-              "id": 10964,
+              "id": 10563,
               "nodeType": "StructuredDocumentation",
-              "src": "417:284:25",
+              "src": "416:284:24",
               "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
             },
             "functionSelector": "b930926b",
-            "id": 10973,
+            "id": 10572,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -278,18 +277,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 10969,
+              "id": 10568,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10966,
+                  "id": 10565,
                   "mutability": "mutable",
                   "name": "power",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10973,
-                  "src": "721:13:25",
+                  "scope": 10572,
+                  "src": "720:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -297,10 +296,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10965,
+                    "id": 10564,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "721:7:25",
+                    "src": "720:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -311,13 +310,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 10968,
+                  "id": 10567,
                   "mutability": "mutable",
                   "name": "total",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10973,
-                  "src": "736:13:25",
+                  "scope": 10572,
+                  "src": "735:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -325,10 +324,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10967,
+                    "id": 10566,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "736:7:25",
+                    "src": "735:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -338,21 +337,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "720:30:25"
+              "src": "719:30:24"
             },
             "returnParameters": {
-              "id": 10972,
+              "id": 10571,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10971,
+                  "id": 10570,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10973,
-                  "src": "769:4:25",
+                  "scope": 10572,
+                  "src": "768:4:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -360,10 +359,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10970,
+                    "id": 10569,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "769:4:25",
+                    "src": "768:4:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -373,10 +372,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "768:6:25"
+              "src": "767:6:24"
             },
-            "scope": 10994,
-            "src": "706:69:25",
+            "scope": 10593,
+            "src": "705:69:24",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -384,13 +383,13 @@
           {
             "body": null,
             "documentation": {
-              "id": 10974,
+              "id": 10573,
               "nodeType": "StructuredDocumentation",
-              "src": "782:284:25",
+              "src": "781:284:24",
               "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
             },
             "functionSelector": "6aac3462",
-            "id": 10983,
+            "id": 10582,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -398,18 +397,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 10979,
+              "id": 10578,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10976,
+                  "id": 10575,
                   "mutability": "mutable",
                   "name": "power",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10983,
-                  "src": "1086:13:25",
+                  "scope": 10582,
+                  "src": "1085:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -417,10 +416,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10975,
+                    "id": 10574,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1086:7:25",
+                    "src": "1085:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -431,13 +430,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 10978,
+                  "id": 10577,
                   "mutability": "mutable",
                   "name": "total",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10983,
-                  "src": "1101:13:25",
+                  "scope": 10582,
+                  "src": "1100:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -445,10 +444,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10977,
+                    "id": 10576,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1101:7:25",
+                    "src": "1100:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -458,21 +457,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1085:30:25"
+              "src": "1084:30:24"
             },
             "returnParameters": {
-              "id": 10982,
+              "id": 10581,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10981,
+                  "id": 10580,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10983,
-                  "src": "1134:4:25",
+                  "scope": 10582,
+                  "src": "1133:4:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -480,10 +479,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10980,
+                    "id": 10579,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1134:4:25",
+                    "src": "1133:4:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -493,10 +492,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1133:6:25"
+              "src": "1132:6:24"
             },
-            "scope": 10994,
-            "src": "1071:69:25",
+            "scope": 10593,
+            "src": "1070:69:24",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -504,13 +503,13 @@
           {
             "body": null,
             "documentation": {
-              "id": 10984,
+              "id": 10583,
               "nodeType": "StructuredDocumentation",
-              "src": "1147:284:25",
+              "src": "1146:284:24",
               "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
             },
             "functionSelector": "2786d65e",
-            "id": 10993,
+            "id": 10592,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -518,18 +517,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 10989,
+              "id": 10588,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10986,
+                  "id": 10585,
                   "mutability": "mutable",
                   "name": "power",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10993,
-                  "src": "1451:13:25",
+                  "scope": 10592,
+                  "src": "1450:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -537,10 +536,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10985,
+                    "id": 10584,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1451:7:25",
+                    "src": "1450:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -551,13 +550,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 10988,
+                  "id": 10587,
                   "mutability": "mutable",
                   "name": "total",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10993,
-                  "src": "1466:13:25",
+                  "scope": 10592,
+                  "src": "1465:13:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -565,10 +564,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 10987,
+                    "id": 10586,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1466:7:25",
+                    "src": "1465:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -578,21 +577,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1450:30:25"
+              "src": "1449:30:24"
             },
             "returnParameters": {
-              "id": 10992,
+              "id": 10591,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10991,
+                  "id": 10590,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 10993,
-                  "src": "1499:4:25",
+                  "scope": 10592,
+                  "src": "1498:4:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -600,10 +599,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 10990,
+                    "id": 10589,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1499:4:25",
+                    "src": "1498:4:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -613,27 +612,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1498:6:25"
+              "src": "1497:6:24"
             },
-            "scope": 10994,
-            "src": "1436:69:25",
+            "scope": 10593,
+            "src": "1435:69:24",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 10995,
-        "src": "24:1483:25"
+        "scope": 10594,
+        "src": "23:1483:24"
       }
     ],
-    "src": "0:1508:25"
+    "src": "0:1507:24"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAccessTiers.sol",
       "exportedSymbols": {
         "IAccessTiers": [
-          10994
+          10593
         ]
       }
     },
@@ -642,14 +641,13 @@
         "attributes": {
           "literals": [
             "solidity",
-            "^",
             "0.6",
             ".6"
           ]
         },
-        "id": 10953,
+        "id": 10552,
         "name": "PragmaDirective",
-        "src": "0:23:25"
+        "src": "0:22:24"
       },
       {
         "attributes": {
@@ -664,10 +662,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            10994
+            10593
           ],
           "name": "IAccessTiers",
-          "scope": 10995
+          "scope": 10594
         },
         "children": [
           {
@@ -682,7 +680,7 @@
               ],
               "name": "tier1",
               "overrides": null,
-              "scope": 10994,
+              "scope": 10593,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -692,9 +690,9 @@
                 "attributes": {
                   "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
                 },
-                "id": 10954,
+                "id": 10553,
                 "name": "StructuredDocumentation",
-                "src": "53:284:25"
+                "src": "52:284:24"
               },
               {
                 "children": [
@@ -704,7 +702,7 @@
                       "mutability": "mutable",
                       "name": "power",
                       "overrides": null,
-                      "scope": 10963,
+                      "scope": 10562,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -717,14 +715,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10955,
+                        "id": 10554,
                         "name": "ElementaryTypeName",
-                        "src": "357:7:25"
+                        "src": "356:7:24"
                       }
                     ],
-                    "id": 10956,
+                    "id": 10555,
                     "name": "VariableDeclaration",
-                    "src": "357:13:25"
+                    "src": "356:13:24"
                   },
                   {
                     "attributes": {
@@ -732,7 +730,7 @@
                       "mutability": "mutable",
                       "name": "total",
                       "overrides": null,
-                      "scope": 10963,
+                      "scope": 10562,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -745,19 +743,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10957,
+                        "id": 10556,
                         "name": "ElementaryTypeName",
-                        "src": "372:7:25"
+                        "src": "371:7:24"
                       }
                     ],
-                    "id": 10958,
+                    "id": 10557,
                     "name": "VariableDeclaration",
-                    "src": "372:13:25"
+                    "src": "371:13:24"
                   }
                 ],
-                "id": 10959,
+                "id": 10558,
                 "name": "ParameterList",
-                "src": "356:30:25"
+                "src": "355:30:24"
               },
               {
                 "children": [
@@ -767,7 +765,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 10963,
+                      "scope": 10562,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -780,24 +778,24 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 10960,
+                        "id": 10559,
                         "name": "ElementaryTypeName",
-                        "src": "405:4:25"
+                        "src": "404:4:24"
                       }
                     ],
-                    "id": 10961,
+                    "id": 10560,
                     "name": "VariableDeclaration",
-                    "src": "405:4:25"
+                    "src": "404:4:24"
                   }
                 ],
-                "id": 10962,
+                "id": 10561,
                 "name": "ParameterList",
-                "src": "404:6:25"
+                "src": "403:6:24"
               }
             ],
-            "id": 10963,
+            "id": 10562,
             "name": "FunctionDefinition",
-            "src": "342:69:25"
+            "src": "341:69:24"
           },
           {
             "attributes": {
@@ -811,7 +809,7 @@
               ],
               "name": "tier2",
               "overrides": null,
-              "scope": 10994,
+              "scope": 10593,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -821,9 +819,9 @@
                 "attributes": {
                   "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
                 },
-                "id": 10964,
+                "id": 10563,
                 "name": "StructuredDocumentation",
-                "src": "417:284:25"
+                "src": "416:284:24"
               },
               {
                 "children": [
@@ -833,7 +831,7 @@
                       "mutability": "mutable",
                       "name": "power",
                       "overrides": null,
-                      "scope": 10973,
+                      "scope": 10572,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -846,14 +844,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10965,
+                        "id": 10564,
                         "name": "ElementaryTypeName",
-                        "src": "721:7:25"
+                        "src": "720:7:24"
                       }
                     ],
-                    "id": 10966,
+                    "id": 10565,
                     "name": "VariableDeclaration",
-                    "src": "721:13:25"
+                    "src": "720:13:24"
                   },
                   {
                     "attributes": {
@@ -861,7 +859,7 @@
                       "mutability": "mutable",
                       "name": "total",
                       "overrides": null,
-                      "scope": 10973,
+                      "scope": 10572,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -874,19 +872,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10967,
+                        "id": 10566,
                         "name": "ElementaryTypeName",
-                        "src": "736:7:25"
+                        "src": "735:7:24"
                       }
                     ],
-                    "id": 10968,
+                    "id": 10567,
                     "name": "VariableDeclaration",
-                    "src": "736:13:25"
+                    "src": "735:13:24"
                   }
                 ],
-                "id": 10969,
+                "id": 10568,
                 "name": "ParameterList",
-                "src": "720:30:25"
+                "src": "719:30:24"
               },
               {
                 "children": [
@@ -896,7 +894,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 10973,
+                      "scope": 10572,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -909,24 +907,24 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 10970,
+                        "id": 10569,
                         "name": "ElementaryTypeName",
-                        "src": "769:4:25"
+                        "src": "768:4:24"
                       }
                     ],
-                    "id": 10971,
+                    "id": 10570,
                     "name": "VariableDeclaration",
-                    "src": "769:4:25"
+                    "src": "768:4:24"
                   }
                 ],
-                "id": 10972,
+                "id": 10571,
                 "name": "ParameterList",
-                "src": "768:6:25"
+                "src": "767:6:24"
               }
             ],
-            "id": 10973,
+            "id": 10572,
             "name": "FunctionDefinition",
-            "src": "706:69:25"
+            "src": "705:69:24"
           },
           {
             "attributes": {
@@ -940,7 +938,7 @@
               ],
               "name": "tier3",
               "overrides": null,
-              "scope": 10994,
+              "scope": 10593,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -950,9 +948,9 @@
                 "attributes": {
                   "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
                 },
-                "id": 10974,
+                "id": 10573,
                 "name": "StructuredDocumentation",
-                "src": "782:284:25"
+                "src": "781:284:24"
               },
               {
                 "children": [
@@ -962,7 +960,7 @@
                       "mutability": "mutable",
                       "name": "power",
                       "overrides": null,
-                      "scope": 10983,
+                      "scope": 10582,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -975,14 +973,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10975,
+                        "id": 10574,
                         "name": "ElementaryTypeName",
-                        "src": "1086:7:25"
+                        "src": "1085:7:24"
                       }
                     ],
-                    "id": 10976,
+                    "id": 10575,
                     "name": "VariableDeclaration",
-                    "src": "1086:13:25"
+                    "src": "1085:13:24"
                   },
                   {
                     "attributes": {
@@ -990,7 +988,7 @@
                       "mutability": "mutable",
                       "name": "total",
                       "overrides": null,
-                      "scope": 10983,
+                      "scope": 10582,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1003,19 +1001,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10977,
+                        "id": 10576,
                         "name": "ElementaryTypeName",
-                        "src": "1101:7:25"
+                        "src": "1100:7:24"
                       }
                     ],
-                    "id": 10978,
+                    "id": 10577,
                     "name": "VariableDeclaration",
-                    "src": "1101:13:25"
+                    "src": "1100:13:24"
                   }
                 ],
-                "id": 10979,
+                "id": 10578,
                 "name": "ParameterList",
-                "src": "1085:30:25"
+                "src": "1084:30:24"
               },
               {
                 "children": [
@@ -1025,7 +1023,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 10983,
+                      "scope": 10582,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -1038,24 +1036,24 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 10980,
+                        "id": 10579,
                         "name": "ElementaryTypeName",
-                        "src": "1134:4:25"
+                        "src": "1133:4:24"
                       }
                     ],
-                    "id": 10981,
+                    "id": 10580,
                     "name": "VariableDeclaration",
-                    "src": "1134:4:25"
+                    "src": "1133:4:24"
                   }
                 ],
-                "id": 10982,
+                "id": 10581,
                 "name": "ParameterList",
-                "src": "1133:6:25"
+                "src": "1132:6:24"
               }
             ],
-            "id": 10983,
+            "id": 10582,
             "name": "FunctionDefinition",
-            "src": "1071:69:25"
+            "src": "1070:69:24"
           },
           {
             "attributes": {
@@ -1069,7 +1067,7 @@
               ],
               "name": "tier4",
               "overrides": null,
-              "scope": 10994,
+              "scope": 10593,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -1079,9 +1077,9 @@
                 "attributes": {
                   "text": "@notice checks if a user meets the requirement to call the given action\n@param power the amount of control held by user trying to access this action\n@param total the total amount of control available\n@return boolean of users access to this tier"
                 },
-                "id": 10984,
+                "id": 10583,
                 "name": "StructuredDocumentation",
-                "src": "1147:284:25"
+                "src": "1146:284:24"
               },
               {
                 "children": [
@@ -1091,7 +1089,7 @@
                       "mutability": "mutable",
                       "name": "power",
                       "overrides": null,
-                      "scope": 10993,
+                      "scope": 10592,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1104,14 +1102,14 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10985,
+                        "id": 10584,
                         "name": "ElementaryTypeName",
-                        "src": "1451:7:25"
+                        "src": "1450:7:24"
                       }
                     ],
-                    "id": 10986,
+                    "id": 10585,
                     "name": "VariableDeclaration",
-                    "src": "1451:13:25"
+                    "src": "1450:13:24"
                   },
                   {
                     "attributes": {
@@ -1119,7 +1117,7 @@
                       "mutability": "mutable",
                       "name": "total",
                       "overrides": null,
-                      "scope": 10993,
+                      "scope": 10592,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1132,19 +1130,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 10987,
+                        "id": 10586,
                         "name": "ElementaryTypeName",
-                        "src": "1466:7:25"
+                        "src": "1465:7:24"
                       }
                     ],
-                    "id": 10988,
+                    "id": 10587,
                     "name": "VariableDeclaration",
-                    "src": "1466:13:25"
+                    "src": "1465:13:24"
                   }
                 ],
-                "id": 10989,
+                "id": 10588,
                 "name": "ParameterList",
-                "src": "1450:30:25"
+                "src": "1449:30:24"
               },
               {
                 "children": [
@@ -1154,7 +1152,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 10993,
+                      "scope": 10592,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -1167,34 +1165,34 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 10990,
+                        "id": 10589,
                         "name": "ElementaryTypeName",
-                        "src": "1499:4:25"
+                        "src": "1498:4:24"
                       }
                     ],
-                    "id": 10991,
+                    "id": 10590,
                     "name": "VariableDeclaration",
-                    "src": "1499:4:25"
+                    "src": "1498:4:24"
                   }
                 ],
-                "id": 10992,
+                "id": 10591,
                 "name": "ParameterList",
-                "src": "1498:6:25"
+                "src": "1497:6:24"
               }
             ],
-            "id": 10993,
+            "id": 10592,
             "name": "FunctionDefinition",
-            "src": "1436:69:25"
+            "src": "1435:69:24"
           }
         ],
-        "id": 10994,
+        "id": 10593,
         "name": "ContractDefinition",
-        "src": "24:1483:25"
+        "src": "23:1483:24"
       }
     ],
-    "id": 10995,
+    "id": 10594,
     "name": "SourceUnit",
-    "src": "0:1508:25"
+    "src": "0:1507:24"
   },
   "compiler": {
     "name": "solc",
@@ -1202,7 +1200,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-05-21T05:15:36.141Z",
+  "updatedAt": "2021-06-14T19:21:29.715Z",
   "devdoc": {
     "methods": {
       "tier1(uint256,uint256)": {

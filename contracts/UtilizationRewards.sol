@@ -1,12 +1,14 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 import "./interfaces/IUtilizationRewards.sol";
 
 contract UtilizationRewards is IUtilizationRewards{
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
     address public bO = 0x0000000000000000000000000000000000000000;//binary options
     address payable dao = 0x0000000000000000000000000000000000000000;
 
@@ -16,7 +18,7 @@ contract UtilizationRewards is IUtilizationRewards{
 
     uint256 public stakerBalance = 0; //balance of BIOP tokens for stakers
     uint256 public otherBalance = 0;//balance of BIOP tokens for trader/settler
-    ERC20 token;
+    IERC20 public immutable token;
 
     uint256 pricePoint = 1;//the BIOP/ETH price ratio used to determine Trader/Settler gas rewards
 
@@ -30,7 +32,7 @@ contract UtilizationRewards is IUtilizationRewards{
      */
     constructor(address token_) public {
       dao = msg.sender;
-      token = ERC20(token_);
+      token = IERC20(token_);
     }
 
      /**
@@ -60,7 +62,8 @@ contract UtilizationRewards is IUtilizationRewards{
      * @param other the BIOP tokens to transfer into this contract from the multisig for trader/settler rewards
      */
     function deposit(uint256 staker, uint256 other) public onlyDAO {
-      token.transferFrom(msg.sender, address(this), staker.add(other));
+        require(token.balanceOf(address(this)) == 0, "can't deposit while reward balance is not zero");
+      token.safeTransferFrom(msg.sender, address(this), staker.add(other));
       stakerBalance = stakerBalance.add(staker);
       otherBalance = otherBalance.add(other);
     }
@@ -69,7 +72,7 @@ contract UtilizationRewards is IUtilizationRewards{
      * @dev emergency withdraw function to recover funds if theres a error in the rewards contract
      */
     function withdraw() public onlyDAO {
-      token.transfer(msg.sender, token.balanceOf(address(this)));
+      token.safeTransfer(msg.sender, token.balanceOf(address(this)));
     }
 
    /**
@@ -148,8 +151,9 @@ contract UtilizationRewards is IUtilizationRewards{
      * @dev called by the binary options contract to claim Reward for user
      * @param amountStaker the amount in BIOP to transfer to this user for staking
      * @param amountOther the amount in BIOP to transfer to this user for trading/settling
+     * @param claimant the address who triggered the function higher up and should receive the claim
      **/
-    function distributeClaim(uint256 amountStaker, uint256 amountOther ) external override onlyBinaryOptions returns(uint256) {
+    function distributeClaim(uint256 amountStaker, uint256 amountOther, address payable claimant ) external override onlyBinaryOptions returns(uint256) {
        if (amountStaker > 0) {
             amountStaker = stakerAmountGuard(amountStaker);
        }
@@ -159,7 +163,7 @@ contract UtilizationRewards is IUtilizationRewards{
        uint256 total = dailyMaxGuard(amountStaker.add(amountOther));
        require(token.balanceOf(address(this)) >= total, "insufficent balance remaining");
        if (total > 0) {
-            token.transfer(tx.origin, total);
+            token.safeTransfer(claimant, total);
        }
        return amountOther;
     }

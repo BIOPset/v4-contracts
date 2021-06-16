@@ -1,4 +1,4 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 
 /******************************************************************************\
@@ -15,7 +15,7 @@ interface INativeAssetDenominatedBinaryOptions {
     function updatePoolLockSeconds(uint256 newLockSeconds_) external;
     function updateProtocolFee(uint256 newProtocolFee_) external;
     function openPosition(bool k_, address pp_, uint80 t_) external payable;
-    function closeStaking() external;
+    function toggleStaking() external;
     function transferOwner(address payable newOwner_) external;
     function transferDevFund(address payable newDevFund) external;
     function updateUtilizationRewards(address newUR) external;

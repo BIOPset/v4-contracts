@@ -1,7 +1,8 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
 
 import "./NativeAssetDenominatedBinaryOptions.sol";
 import "./APP.sol";
@@ -22,22 +23,24 @@ import "./interfaces/IAccessTiers.sol";
  */
 contract DAO {
     using SafeMath for uint256;
-    address public pA;//protocol address
-    address public appA;//approved price providers address
+    address public immutable pA;//protocol address
+    address public immutable appA;//approved price providers address
     address public tA;//token address
     address public aTA;//access tiers address
     address public fcry;//TokenDenominatedBinaryOptions factory address
-    address payable public trsy;//treasury
+    address payable public immutable trsy;//treasury
 
     mapping(address=>uint256) public votes;//amount of endorsement power currently directed at a address
-    mapping(address=>address) public rep;//representative/delegate/governer/endorsement currently backed by given address
+    mapping(address=>address payable) public rep;//representative/delegate/governer/endorsement currently backed by given address
     mapping(address=>uint256) public staked;//amount of BIOP they have staked
-    uint256 public dBIOP = 0;//the total amount of staked BIOP which has been endorsed for governance
+    uint256 public dBIOP;//the total amount of staked BIOP which has been endorsed for governance
+    uint256 public totalStakedAtLastPayment;
+    uint256 public lastPaymentReceived;
 
     //ETH rewards for stakers
-    uint256 public trg = 0;//total rewards generated
+    uint256 public trg;//total rewards generated
     mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address
-
+    mapping(address=>uint256) public lST;//last stake time
 
 
     constructor(address bo_, address v4_, address accessTiers_, address app_, address factory_, address payable trsy_) public {
@@ -67,11 +70,27 @@ contract DAO {
         ERC20 token = ERC20(tA);
         require(token.balanceOf(msg.sender) >= amount, "insufficent biop balance");
         require(token.transferFrom(msg.sender, address(this), amount), "staking failed");
+        
+        address payable delegate;
         if (staked[msg.sender] == 0) {
             //only for ETH
             lrc[msg.sender] = trg;
+        } else {
+            //automatically unendorse and rendorse if depositing to an existing non-zero stake to prevent endorsement amounts from becoming out of sync
+            delegate = rep[msg.sender];
+            unendorse();
         }
         staked[msg.sender] = staked[msg.sender].add(amount);
+
+        //claim pending rewards automatically if applicable before updating lST
+        if (lST[msg.sender] < lastPaymentReceived) {
+            claimETHRewards();
+        }
+        lST[msg.sender] = block.timestamp;
+
+        if (delegate != 0x0000000000000000000000000000000000000000) {
+            endorse(delegate);
+        }
         emit Stake(amount, totalStaked());
     }
 
@@ -97,6 +116,7 @@ contract DAO {
      * @param newSha the address to endorse
      */
     function endorse(address payable newSha) public {
+        require(newSha != 0x0000000000000000000000000000000000000000, "may not endorse 0 address");
         address oldSha = rep[msg.sender];
         if (oldSha == 0x0000000000000000000000000000000000000000) {
             dBIOP = dBIOP.add(staked[msg.sender]);
@@ -128,16 +148,17 @@ contract DAO {
 
     function pendingETHRewards(address account) public view returns (uint256) {
         uint256 base = bRSLC(account);
-        return base.mul(staked[account]).div(totalStaked());
+        return base.mul(staked[account]).div(totalStakedAtLastPayment);
     }
 
 
     function claimETHRewards() public {
-        require(lrc[msg.sender] <= trg, "no rewards available");
+        require(lrc[msg.sender] <= trg, "no rewards available, already claimed all pending");
+        require(lST[msg.sender] <= lastPaymentReceived, "no rewards available, not staked long enough");
 
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
-        require(msg.sender.send(toSend), "transfer failed");
+        Address.sendValue(msg.sender, toSend);
     }
 
 
@@ -184,6 +205,8 @@ contract DAO {
 
     //this function has to be present or transfers to the DAO fail silently
     fallback () external payable {
+        totalStakedAtLastPayment = totalStaked();
+        lastPaymentReceived = block.timestamp;
     }
 
      /**
@@ -261,8 +284,8 @@ contract DAO {
     }
 
     /**
-     * @notice update the maximum time an option can be created for
-     * @param nMT_ the time (in seconds) of maximum possible binary option
+     * @notice update the minimum time an option can be created for
+     * @param nMT_ the time (in seconds) of minimum possible binary option
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
     function uMNOT(uint256 nMT_, address addy_) external tierOneDelegation {
@@ -567,14 +590,14 @@ contract DAO {
      * @notice prevent new deposits into the pool. Effectivly end that pool.
      * @param addy_ the address of the pool to update or the token used for the TokenDenominatedBinaryOptions pool (pass pA to use the default ETH pool)
      */
-    function closeStaking(address addy_) external tierFourDelegation {
+    function toggleStaking(address addy_) external tierFourDelegation {
          if (addy_ == pA) {
             INativeAssetDenominatedBinaryOptions pr = INativeAssetDenominatedBinaryOptions(pA);
-            pr.closeStaking();
+            pr.toggleStaking();
         } else {
             TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
             TokenDenominatedBinaryOptions pr = TokenDenominatedBinaryOptions(factory.getTokenDenominatedBinaryOptionsAddress(addy_));
-            pr.closeStaking();
+            pr.toggleStaking();
         }
     }
 
@@ -594,7 +617,7 @@ contract DAO {
      * @notice update the main ETH pool
      * @param a the address of the new INativeAssetDenominatedBinaryOptions pool to use
      */
-    function updateProtocol(address payable a) external  {
+    function updateProtocol(address payable a) external tierFourDelegation {
         INativeAssetDenominatedBinaryOptions t = INativeAssetDenominatedBinaryOptions(a);
         tA = a;
     }
@@ -603,7 +626,7 @@ contract DAO {
      * @notice update the factoryOwner
      * @param a the address of the new DAO to control the factory
      */
-    function updateFactoryOwner(address payable a) external  {
+    function updateFactoryOwner(address payable a) external tierFourDelegation {
         TokenDenominatedBinaryOptionsFactory factory = TokenDenominatedBinaryOptionsFactory(fcry);
         factory.transferOwner(a);
     }
@@ -612,7 +635,7 @@ contract DAO {
      * @notice update the factory
      * @param a the address of the new factory to be controlled by the DAO
      */
-    function updateFactory(address payable a) external  {
+    function updateFactory(address payable a) external tierFourDelegation {
         fcry = a;
     }
 

@@ -1,7 +1,8 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 
 
@@ -13,14 +14,15 @@ import "../Chainlink/AggregatorProxy.sol";
 
 
 contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions {
-  using SafeMath for uint56;
+  using SafeMath for uint256;
+  using SafeERC20 for IERC20;
   address payable public treasury;
   address payable public owner;
   address public app;//the approved pp/ratecalc
   mapping(address=>uint256) public nW; //next withdraw (used for pool lock time)
 
-  uint256 public oC = 0;
-  uint256 public oP = 0;
+  uint256 public oC;
+  uint256 public oP;
 
 
 
@@ -34,8 +36,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   bool public open = true;
   Option[] public options;
 
-  address public sT;//the token pooled in this contract
-  uint256 base = 1000000000000000000;//one token of the underlying, used for expiring
+  IERC20 public immutable sT;//the token pooled in this contract
+  uint256 public base = 1000000000000000000;//one token of the underlying, used for expiring
 
   modifier onlyOwner() {
     require(owner == msg.sender, "Ownable: caller is not the owner");
@@ -46,12 +48,13 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   struct Option {
     address payable holder;
     int256 sP;//strike
-    uint80 pR;//purchase round
     uint256 pV;//purchase value
     uint256 lV;//in-the-money option value (lockedValue)
+    uint80 pR;//purchase round
     uint80 exp;//final round of option s
     bool dir;//direction (true for call)
     address pP;//price provider
+    bool complete;//has the option been exercised/expired yet
   }
 
   /* Events */
@@ -69,7 +72,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     event Expire(uint256 indexed id);
 
   constructor(string memory name_, string memory symbol_, address token_, address payable dao_, address app_, address payable treasury_) public ERC20(name_, symbol_) {
-    sT = token_;
+    sT = IERC20(token_);
     owner = dao_;
     app = app_;
     treasury = treasury_;
@@ -114,10 +117,10 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
 
   /**
     * @dev set the fee users can recieve for exercising/expiring other users options
-    * @param fee_ the new fee (in tenth percent) for exercising/expiring a options
+    * @param fee_ the new fee for exercising/expiring a options
     */
   function updateSettlerFee(uint256 fee_) external onlyOwner {
-    require(fee_ > 1 && fee_ < 100, "invalid fee");
+    require(fee_ >= 5, "invalid fee");
     settlerFee = settlerFee;
   }
 
@@ -160,7 +163,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
    /**
      * @dev used to send this pool into EOL mode when a newer one is open
      */
-    function closeStaking() external onlyOwner {
+    function toggleStaking() external onlyOwner {
         open = !open;
     }
 
@@ -173,9 +176,8 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     * @param amount_ the amount you want to deposit to be used for underwriting options
     */
   function stake(uint256 amount_) public override {
-    require(open == true, "pool deposits has closed");
-    ERC20 token = ERC20(sT);
-    require(token.transferFrom(msg.sender, address(this), amount_), "deposit failed");
+    require(open, "pool deposits has closed");
+    sT.safeTransferFrom(msg.sender, address(this), amount_);
     nW[msg.sender] = block.timestamp + poolLockSeconds;
     _mint(msg.sender, amount_);
   }
@@ -187,17 +189,16 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     */
   function withdraw(uint256 amount_) public override {
     require (balanceOf(msg.sender) >= amount_, "Insufficent Share Balance");
-    ERC20 token = ERC20(sT);
     //value to receive
-    uint256 vTR = amount_.mul(token.balanceOf(address(this))).div(totalSupply().sub(lockedAmount));
+    uint256 vTR = amount_.mul(sT.balanceOf(address(this)).sub(lockedAmount)).div(totalSupply());
     _burn(msg.sender, amount_);
     if (block.timestamp <= nW[msg.sender]) {
       //early withdraw fee
       uint256 penalty = vTR.div(100);
-      require(token.transfer(treasury, penalty), "transfer failed");
-      require(token.transfer(msg.sender, vTR.sub(penalty)), "transfer failed");
+      sT.safeTransfer(treasury, penalty);
+      sT.safeTransfer(msg.sender, vTR.sub(penalty));
     } else {
-      require(token.transfer(msg.sender, vTR), "transfer failed");
+      sT.safeTransfer(msg.sender, vTR);
     }
   }
 
@@ -205,8 +206,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     @dev Get the maximum possible option size
     */
   function getMaxAvailable() public view returns(uint256) {
-    ERC20 token = ERC20(sT);
-    uint256 balance = token.balanceOf(address(this));
+    uint256 balance = sT.balanceOf(address(this));
     if (balance > lockedAmount) {
       return balance.sub(lockedAmount);
     } else {
@@ -226,8 +226,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     IAPP app_ = IAPP(app);
     require(app_.aprvd(pair) != 0x0000000000000000000000000000000000000000, "invalid trading pair");
     RateCalc rc = RateCalc(app_.aprvd(pair));
-    ERC20 token = ERC20(sT);
-    return rc.rate(deposit, lockedAmount , t, k, oC, oP, token.balanceOf(address(this)));
+    return rc.rate(deposit, lockedAmount , t, k, oC, oP, sT.balanceOf(address(this)));
   }
 
   /**
@@ -262,8 +261,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     require(isApproved(pp_), "Invalid price provider");
     require(a_ <= getMaxAvailable(), "option size too big");
 
-    ERC20 token = ERC20(sT);
-    token.transferFrom(msg.sender, address(this), a_);
+    sT.safeTransferFrom(msg.sender, address(this), a_);
 
     AggregatorProxy priceProvider = AggregatorProxy(pp_);
     (uint80 lR, int256 lA, , , ) = priceProvider.latestRoundData();
@@ -275,12 +273,13 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     Option memory op = Option(
       msg.sender,
       lA,
-      lR,
       a_,
       lV,
+      lR,
       t_,//rounds until expiration
       k_,
-      pp_
+      pp_,
+      false
     );
     if (k_) {
       oC = oC.add(lV);
@@ -296,11 +295,13 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     * @dev exercise and expire functions have been depreciated in favor of this single complete option
     * @param oID id of the option to complete
     */
-  function complete(uint256 oID) external override returns(bool){
+  function complete(uint256 oID) external override{
     Option memory option = options[oID];
+    require(option.complete == false, "option already completed");
     AggregatorProxy priceProvider = AggregatorProxy(option.pP);
     (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
     require(lA != 0 && lR != 0, "not ready yet");
+    option.complete = true;
     if (option.dir) {
       //call option
       if (option.sP > lA) {
@@ -320,8 +321,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
         //ITM exercise
         exercise(option, oID);
       }
-      oP = oP.sub(oP);
-      return option.dir;
+      oP = oP.sub(option.lV);
     }
   }
 
@@ -335,18 +335,17 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
   function payout(uint256 amount, address payable exerciser, address payable winner) internal {
     require(amount <= lockedAmount, "insufficent pool balance available to payout");
 
-    ERC20 token = ERC20(sT);
-    require(amount <= token.balanceOf(address(this)), "insufficent balance in pool");
+    require(amount <= sT.balanceOf(address(this)), "insufficent balance in pool");
     if (exerciser != winner) {
       //good samaratin fee
       uint256 fee = amount.div(settlerFee).div(100);
 
       if (fee > 0) {
-        require(token.transfer(exerciser, fee), "exerciser transfer failed");
-        require(token.transfer(winner, amount.sub(fee)), "winner transfer failed");
+        sT.safeTransfer(exerciser, fee);
       }
+      sT.safeTransfer(winner, amount.sub(fee));
     } else {
-      require(token.transfer(winner, amount), "winner transfer failed");
+      sT.safeTransfer(winner, amount);
     }
     emit Payout(amount, winner);
   }
@@ -367,8 +366,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     if (lv > protocolFee && protocolFee > 0) {
       uint256 fee = lv.div(protocolFee);
 
-      ERC20 token = ERC20(sT);
-      require(token.transfer(treasury, fee), "protocol fee transfer failed");
+      sT.safeTransfer(treasury, fee);
       lv = lv.sub(fee);
     }
 
@@ -388,12 +386,11 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     require(option.lV <= lockedAmount, "insufficent locked pool balance to unlock");
 
 
-    ERC20 token = ERC20(sT);
-    require(option.lV <= token.balanceOf(address(this)), "insufficent balance in pool");
+    require(option.lV <= sT.balanceOf(address(this)), "insufficent balance in pool");
 
     uint256 fee = option.lV.div(settlerFee).div(100);
     if (fee > 0) {
-      require(token.transfer(msg.sender, fee), "good samaritan transfer failed");
+      sT.safeTransfer(msg.sender, fee);
     }
     lockedAmount = lockedAmount.sub(option.lV);
     emit Expire(oID);

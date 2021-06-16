@@ -1,4 +1,4 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 
 import "./interfaces/IAPP.sol";
@@ -10,6 +10,7 @@ import "./interfaces/IAPP.sol";
 
 contract APP is IAPP {
     address public owner;
+    address public pendingOwner;
     mapping(address=>address) private approved;
 
      /**
@@ -42,7 +43,16 @@ contract APP is IAPP {
     * @param newOwner new owner address
     */
     function transferOwner(address newOwner) external onlyOwner {
-        owner = newOwner;
+        require(newOwner != 0x0000000000000000000000000000000000000000, "invalid owner");
+        pendingOwner = newOwner;
+    }
+
+    /**
+    * @dev Accept pending ownership of this contract
+    */
+    function acceptOwnership(address newOwner) external {
+        require(msg.sender == pendingOwner, "only callable by pendingOwner");
+        owner = pendingOwner;
     }
 
      /**
@@ -51,6 +61,8 @@ contract APP is IAPP {
     * @param rateCalc_ the rate calc to use with the new price provider
     */
     function addPP(address newPP_, address rateCalc_) external override onlyOwner {
+        require(newPP_ != 0x0000000000000000000000000000000000000000, "Invalid Price Provider");
+        require(rateCalc_ != 0x0000000000000000000000000000000000000000, "Invalid RateCalc");
         approved[newPP_] = rateCalc_;
     }
 
@@ -59,7 +71,7 @@ contract APP is IAPP {
     * @param oldPP_ the price provider to disable
     */
     function removePP(address oldPP_) external override onlyOwner {
-        approved[oldPP_] = 0x0000000000000000000000000000000000000000;
+        delete approved[oldPP_];
     }
     
 }

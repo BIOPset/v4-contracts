@@ -1,10 +1,14 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
+
 
 contract Treasury {
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
 
     //the amount of each ETH transaction from the treasury that is distributed
     //directly and equally to all current DAO stakers
@@ -40,19 +44,19 @@ contract Treasury {
         if (sP > 0) {
             toStakers = amount.div(100).mul(sP);
             amount = amount.sub(toStakers);
-            require(msg.sender.send(toStakers), "staker transfer failed");
+            Address.sendValue(msg.sender, toStakers);
         }
-        require(destination.send(amount), "transfer failed");
+        Address.sendValue(destination, amount);
 
         emit FundsSent(amount, destination);
         return toStakers;
     }
 
     function sendERC20Funds(address token, uint256 amount, address payable destination) public onlyDAO {
-        ERC20 tk = ERC20(token);
+        IERC20 tk = IERC20(token);
         uint256 balance = tk.balanceOf(address(this));
         require(balance >= amount, "not enough to send");
-        tk.transfer(destination, amount);
+        tk.safeTransfer(destination, amount);
         emit ERC20FundsSent(token, amount, destination);
     }
 

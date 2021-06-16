@@ -1,4 +1,4 @@
-pragma solidity ^0.6.6;
+pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -14,7 +14,7 @@ import "./Chainlink/AggregatorProxy.sol";
 
 
 contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBinaryOptions {
-    using SafeMath for uint56;
+    using SafeMath for uint256;
     address payable public treasury;
     address payable public owner;
     address public uR; //utilization rewards
@@ -27,8 +27,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     mapping(address=>uint256) public lST;//last stake time
 
 
-    uint256 public oC = 0;//the total amount of captial locked in call direction
-    uint256 public oP = 0;//the total amount of capital locked in put direction
+    uint256 public oC;//the total amount of captial locked in call direction
+    uint256 public oP;//the total amount of capital locked in put direction
 
 
 
@@ -42,7 +42,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     bool public open = true;
     Option[] public options;
 
-    uint256 public tI = 0;//total interchange
+    uint256 public tI;//total interchange
     uint256 public rwd =  20000000000000000; //base utilization reward (0.02 BIOP)
     bool public rewEn = true;//rewards enabled
 
@@ -57,13 +57,14 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
     struct Option {
         address payable holder;
         int256 sP;//strike
-        uint80 pR;//purchase round
         uint256 pV;//purchase value
         uint256 lV;// in-the-money option value (lockedValue)
+        uint80 pR;//purchase round
         uint80 exp;//expiration round
         bool dir;//direction (true for call)
         address pP;//price provider
         address aPA;//alt pool address
+        bool complete;
     }
 
     /* Events */
@@ -157,7 +158,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             updateLPmetrics();
         }
 
-        uint256 otherClaimed = r.distributeClaim(stakerClaims, otherClaims);
+        uint256 otherClaimed = r.distributeClaim(stakerClaims, otherClaims, msg.sender);
         
         pClaims[msg.sender] = pClaims[msg.sender].sub(otherClaimed);
     }
@@ -215,10 +216,10 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
 
     /**
      * @dev set the fee users can recieve for settling other users options
-     * @param fee_ the new fee (in tenth percent) for settling a options
+     * @param fee_ the new fee for settling a options
      */
     function updateSettlerFee(uint256 fee_) external override onlyOwner {
-        require(fee_ > 1 && fee_ < 100, "invalid fee");
+        require(fee_ >= 5, "invalid fee");
         settlerFee = fee_;
     }
 
@@ -263,7 +264,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      /**
      * @dev used to send this pool into EOL mode when a newer one is open
      */
-    function closeStaking() external override onlyOwner {
+    function toggleStaking() external override onlyOwner {
         open = !open;
     }
 
@@ -275,7 +276,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
      * If rewards are available recieve BIOP governance tokens as well.
     */
     function stake() external payable {
-        require(open == true, "pool deposit closed");
+        require(open, "pool deposit closed");
         require(msg.value >= 100, "stake to small");
         if (balanceOf(msg.sender) == 0) {
             lW[msg.sender] = block.timestamp;
@@ -296,7 +297,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
        require (balanceOf(msg.sender) >= amount, "Insufficent Share Balance");
         lW[msg.sender] = block.timestamp;
         //value to receive
-        uint256 vTR = amount.mul(address(this).balance).div(totalSupply().sub(lockedAmount));
+        uint256 vTR = amount.mul(address(this).balance.sub(lockedAmount)).div(totalSupply());
         _burn(msg.sender, amount);
         if (block.timestamp <= nW[msg.sender]) {
             //early withdraw fee
@@ -361,13 +362,14 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         Option memory op = Option(
             msg.sender,
             lA,
-            lR,
             msg.value,
             lV,
+            lR,
             t_,//rounds until expiration
             k_,
             pp_,
-            address(this)
+            address(this),
+            false
         );
 
         options.push(op);
@@ -395,10 +397,11 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         external
     {
         Option memory option = options[oID];
-
+        require(option.complete == false, "option already completed");
         AggregatorProxy priceProvider = AggregatorProxy(option.pP);
         (uint80 lR, int256 lA, , , ) = priceProvider.getRoundData(uint80(option.pR+option.exp));
         require(lA != 0 && lR != 0, "not ready yet");
+        option.complete = true;
         if (option.dir) {
             //call option
             if (option.sP > lA) {
@@ -502,8 +505,8 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
             uint256 fee = amount.div(settlerFee).div(100);
             if (fee > 0) {
                 require(exerciser.send(fee), "exerciser transfer failed");
-                require(winner.send(amount.sub(fee)), "winner transfer failed");
             }
+            require(winner.send(amount.sub(fee)), "winner transfer failed");
         } else {
             require(winner.send(amount), "winner transfer failed");
         }

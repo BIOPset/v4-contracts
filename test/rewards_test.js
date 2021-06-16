@@ -53,7 +53,7 @@ contract("UtilizationRewards", (accounts) => {
           await instance.deposit(5000, 5000, { from: accounts[0] });
           await instance.updateDailyMax(5000, {from: accounts[0]});
           await instance.setupBinaryOptions(accounts[1], {from: accounts[0]});
-          await instance.distributeClaim(0, 5000,  {from: accounts[1]})
+          await instance.distributeClaim(0, 5000, accounts[1],  {from: accounts[1]})
           var balance = await token.balanceOf(accounts[1]);
           assert.equal(balance.toString(), "5000", "balance if incorrect");
         }
@@ -70,7 +70,7 @@ contract("UtilizationRewards", (accounts) => {
           await instance.deposit(5000, 5000, { from: accounts[0] });
           await instance.updateDailyMax(5000, {from: accounts[0]});
           await instance.setupBinaryOptions(accounts[1], {from: accounts[0]});
-          await instance.distributeClaim(0, 6000,  {from: accounts[1]})
+          await instance.distributeClaim(0, 6000, accounts[1],  {from: accounts[1]})
           var balance = await token.balanceOf(accounts[1]);
           assert.equal(balance.toString(), "5000", "balance if incorrect");
         }
@@ -88,7 +88,7 @@ contract("UtilizationRewards", (accounts) => {
           await instance.deposit(5000, 0, { from: accounts[0] });
           await instance.updateDailyMax(5000, {from: accounts[0]});
           await instance.setupBinaryOptions(accounts[1], {from: accounts[0]});
-          await instance.distributeClaim(0, 5000,  {from: accounts[1]})
+          await instance.distributeClaim(0, 5000, accounts[0],  {from: accounts[1]})
           var balance = await token.balanceOf(accounts[1]);
           assert.equal(balance.toString(), "0", "balance if incorrect");
         }
