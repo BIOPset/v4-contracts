@@ -47,8 +47,11 @@ contract BasicRateCalc is IRateCalc {
     }
 
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
-        //make sure that the option value is less than (or equal to) the amount that can be locked.
-        require(startRate <= canLock, "position too large");
+      //make sure that the option value is less than (or equal to) the amount that can be locked.
+      if (startRate <= canLock) {
         return startRate;
+      } 
+      //no match from pool
+      return amount;
     }
 }
