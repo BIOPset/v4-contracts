@@ -54,7 +54,7 @@ const FakeERC20Settings = {
 };
 
 //true for testrpc/ganache false for kovan
-const testing = false;
+const testing = true;
 
 module.exports = function (deployer) {
   try {
