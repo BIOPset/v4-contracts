@@ -93,7 +93,7 @@ contract NativeAssetDenominatedBinaryOptions is ERC20, INativeAssetDenominatedBi
         treasury = msg.sender;
         owner = msg.sender;
         biop = biop_;
-        lockedAmount = 0;
+        lockedAmount;
         contractCreated = block.timestamp;
         minT = 1;
         maxT = 1;

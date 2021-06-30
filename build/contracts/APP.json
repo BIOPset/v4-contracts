@@ -28,7 +28,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -41,7 +42,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -60,7 +62,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -120,22 +123,22 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rc_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"acceptOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newPP_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rateCalc_\",\"type\":\"address\"}],\"name\":\"addPP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp\",\"type\":\"address\"}],\"name\":\"aprvd\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oldPP_\",\"type\":\"address\"}],\"name\":\"removePP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"acceptOwnership(address)\":{\"details\":\"Accept pending ownership of this contract\"},\"addPP(address,address)\":{\"details\":\"enable a new price provider\",\"params\":{\"newPP_\":\"the price provider to add\",\"rateCalc_\":\"the rate calc to use with the new price provider\"}},\"aprvd(address)\":{\"details\":\"get the ratecalc for a price provider\",\"params\":{\"pp\":\"the price provider to look up\"}},\"constructor\":{\"params\":{\"pp_\":\"the price provider to add initially\",\"rc_\":\"the ratecalc to add initially\"}},\"removePP(address)\":{\"details\":\"disable a new price provider\",\"params\":{\"oldPP_\":\"the price provider to disable\"}},\"transferOwner(address)\":{\"details\":\"transfer the owner\",\"params\":{\"newOwner\":\"new owner address\"}}}},\"userdoc\":{\"methods\":{},\"notice\":\"****************************************************************************\\\\ Author: BIOPset (https://biopset.com) APP: Approved Price Providers /*****************************************************************************\"}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol\":\"APP\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol\":{\"keccak256\":\"0x0c777d41856b77318a1e34f0c610865241addc5162593406de35a018350ca72d\",\"urls\":[\"bzz-raw://3633bc3b84e911934d8e396d0e51149f6a9923bda57d8ba0ba3feb11a9e1e886\",\"dweb:/ipfs/QmdztQAB9JHiyQccM4CReS3XoUUonax8WZGBG2Z6VNi3UZ\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol\":{\"keccak256\":\"0xcadba1870505068ad62db38b5ccf21ccd7494fef7f44c706c0abc137e96b9b91\",\"urls\":[\"bzz-raw://d3388aae913d962bb82e4d1db5a86f68698006bd55bcc64aedf1ed3de6676088\",\"dweb:/ipfs/QmSibc4BQdcUuhfnfmbcFE4GYg763pcecksDYxcv3Zj81D\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5060405161055a38038061055a8339818101604052604081101561003357600080fd5b508051602091820151600080546001600160a01b0319908116331782556001600160a01b039384168252600290945260409020805492909116919092161790556104d8806100826000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c8063b7a9eaa91161005b578063b7a9eaa9146100f4578063bc0862151461011a578063e30c397814610148578063f4a6e1e2146101505761007d565b80634fb2e45d1461008257806351710e45146100aa5780638da5cb5b146100d0575b600080fd5b6100a86004803603602081101561009857600080fd5b50356001600160a01b0316610176565b005b6100a8600480360360208110156100c057600080fd5b50356001600160a01b031661023b565b6100d86102bf565b604080516001600160a01b039092168252519081900360200190f35b6100d86004803603602081101561010a57600080fd5b50356001600160a01b03166102ce565b6100a86004803603604081101561013057600080fd5b506001600160a01b03813581169160200135166102ec565b6100d8610414565b6100a86004803603602081101561016657600080fd5b50356001600160a01b0316610423565b6000546001600160a01b031633146101ce576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038116610219576040805162461bcd60e51b815260206004820152600d60248201526c34b73b30b634b21037bbb732b960991b604482015290519081900360640190fd5b600180546001600160a01b0319166001600160a01b0392909216919091179055565b6001546001600160a01b0316331461029a576040805162461bcd60e51b815260206004820152601d60248201527f6f6e6c792063616c6c61626c652062792070656e64696e674f776e6572000000604482015290519081900360640190fd5b50600154600080546001600160a01b0319166001600160a01b03909216919091179055565b6000546001600160a01b031681565b6001600160a01b039081166000908152600260205260409020541690565b6000546001600160a01b03163314610344576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038216610398576040805162461bcd60e51b815260206004820152601660248201527524b73b30b634b210283934b1b290283937bb34b232b960511b604482015290519081900360640190fd5b6001600160a01b0381166103e6576040805162461bcd60e51b815260206004820152601060248201526f496e76616c6964205261746543616c6360801b604482015290519081900360640190fd5b6001600160a01b03918216600090815260026020526040902080546001600160a01b03191691909216179055565b6001546001600160a01b031681565b6000546001600160a01b0316331461047b576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b0316600090815260026020526040902080546001600160a01b031916905556fea26469706673582212200592cd431fbf54920b8d0faabc511d4eb059623a42d51f00210e8513b34bfe7a64736f6c63430006060033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c8063b7a9eaa91161005b578063b7a9eaa9146100f4578063bc0862151461011a578063e30c397814610148578063f4a6e1e2146101505761007d565b80634fb2e45d1461008257806351710e45146100aa5780638da5cb5b146100d0575b600080fd5b6100a86004803603602081101561009857600080fd5b50356001600160a01b0316610176565b005b6100a8600480360360208110156100c057600080fd5b50356001600160a01b031661023b565b6100d86102bf565b604080516001600160a01b039092168252519081900360200190f35b6100d86004803603602081101561010a57600080fd5b50356001600160a01b03166102ce565b6100a86004803603604081101561013057600080fd5b506001600160a01b03813581169160200135166102ec565b6100d8610414565b6100a86004803603602081101561016657600080fd5b50356001600160a01b0316610423565b6000546001600160a01b031633146101ce576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038116610219576040805162461bcd60e51b815260206004820152600d60248201526c34b73b30b634b21037bbb732b960991b604482015290519081900360640190fd5b600180546001600160a01b0319166001600160a01b0392909216919091179055565b6001546001600160a01b0316331461029a576040805162461bcd60e51b815260206004820152601d60248201527f6f6e6c792063616c6c61626c652062792070656e64696e674f776e6572000000604482015290519081900360640190fd5b50600154600080546001600160a01b0319166001600160a01b03909216919091179055565b6000546001600160a01b031681565b6001600160a01b039081166000908152600260205260409020541690565b6000546001600160a01b03163314610344576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038216610398576040805162461bcd60e51b815260206004820152601660248201527524b73b30b634b210283934b1b290283937bb34b232b960511b604482015290519081900360640190fd5b6001600160a01b0381166103e6576040805162461bcd60e51b815260206004820152601060248201526f496e76616c6964205261746543616c6360801b604482015290519081900360640190fd5b6001600160a01b03918216600090815260026020526040902080546001600160a01b03191691909216179055565b6001546001600160a01b031681565b6000546001600160a01b0316331461047b576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b0316600090815260026020526040902080546001600160a01b031916905556fea26469706673582212200592cd431fbf54920b8d0faabc511d4eb059623a42d51f00210e8513b34bfe7a64736f6c63430006060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rc_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"acceptOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newPP_\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rateCalc_\",\"type\":\"address\"}],\"name\":\"addPP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"pp\",\"type\":\"address\"}],\"name\":\"aprvd\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oldPP_\",\"type\":\"address\"}],\"name\":\"removePP\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"acceptOwnership(address)\":{\"details\":\"Accept pending ownership of this contract\"},\"addPP(address,address)\":{\"details\":\"enable a new price provider\",\"params\":{\"newPP_\":\"the price provider to add\",\"rateCalc_\":\"the rate calc to use with the new price provider\"}},\"aprvd(address)\":{\"details\":\"get the ratecalc for a price provider\",\"params\":{\"pp\":\"the price provider to look up\"}},\"constructor\":{\"params\":{\"pp_\":\"the price provider to add initially\",\"rc_\":\"the ratecalc to add initially\"}},\"removePP(address)\":{\"details\":\"disable a new price provider\",\"params\":{\"oldPP_\":\"the price provider to disable\"}},\"transferOwner(address)\":{\"details\":\"transfer the owner\",\"params\":{\"newOwner\":\"new owner address\"}}}},\"userdoc\":{\"methods\":{},\"notice\":\"****************************************************************************\\\\ Author: BIOPset (https://biopset.com) APP: Approved Price Providers /*****************************************************************************\"}},\"settings\":{\"compilationTarget\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol\":\"APP\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol\":{\"keccak256\":\"0xd2928defd727ed52ced92a77adb4260e0047d8e06a571d943d1a50967ef8a1a1\",\"urls\":[\"bzz-raw://75aa15fa4483e82070457e3d07430c0ea703a8fbb555b10718d1700e035ea433\",\"dweb:/ipfs/QmW1dfuSdrhJ6GSM8HxCivP2q6i1onEX791YWzBH9dY3D9\"]},\"/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol\":{\"keccak256\":\"0xcadba1870505068ad62db38b5ccf21ccd7494fef7f44c706c0abc137e96b9b91\",\"urls\":[\"bzz-raw://d3388aae913d962bb82e4d1db5a86f68698006bd55bcc64aedf1ed3de6676088\",\"dweb:/ipfs/QmSibc4BQdcUuhfnfmbcFE4GYg763pcecksDYxcv3Zj81D\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161055a38038061055a8339818101604052604081101561003357600080fd5b508051602091820151600080546001600160a01b0319908116331782556001600160a01b039384168252600290945260409020805492909116919092161790556104d8806100826000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c8063b7a9eaa91161005b578063b7a9eaa9146100f4578063bc0862151461011a578063e30c397814610148578063f4a6e1e2146101505761007d565b80634fb2e45d1461008257806351710e45146100aa5780638da5cb5b146100d0575b600080fd5b6100a86004803603602081101561009857600080fd5b50356001600160a01b0316610176565b005b6100a8600480360360208110156100c057600080fd5b50356001600160a01b031661023b565b6100d86102bf565b604080516001600160a01b039092168252519081900360200190f35b6100d86004803603602081101561010a57600080fd5b50356001600160a01b03166102ce565b6100a86004803603604081101561013057600080fd5b506001600160a01b03813581169160200135166102ec565b6100d8610414565b6100a86004803603602081101561016657600080fd5b50356001600160a01b0316610423565b6000546001600160a01b031633146101ce576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038116610219576040805162461bcd60e51b815260206004820152600d60248201526c34b73b30b634b21037bbb732b960991b604482015290519081900360640190fd5b600180546001600160a01b0319166001600160a01b0392909216919091179055565b6001546001600160a01b0316331461029a576040805162461bcd60e51b815260206004820152601d60248201527f6f6e6c792063616c6c61626c652062792070656e64696e674f776e6572000000604482015290519081900360640190fd5b50600154600080546001600160a01b0319166001600160a01b03909216919091179055565b6000546001600160a01b031681565b6001600160a01b039081166000908152600260205260409020541690565b6000546001600160a01b03163314610344576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038216610398576040805162461bcd60e51b815260206004820152601660248201527524b73b30b634b210283934b1b290283937bb34b232b960511b604482015290519081900360640190fd5b6001600160a01b0381166103e6576040805162461bcd60e51b815260206004820152601060248201526f496e76616c6964205261746543616c6360801b604482015290519081900360640190fd5b6001600160a01b03918216600090815260026020526040902080546001600160a01b03191691909216179055565b6001546001600160a01b031681565b6000546001600160a01b0316331461047b576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b0316600090815260026020526040902080546001600160a01b031916905556fea2646970667358221220cf4e953ca6c84febfed39841bb101a60b41461e13587240f3841232fb68d59ca64736f6c63430006060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c8063b7a9eaa91161005b578063b7a9eaa9146100f4578063bc0862151461011a578063e30c397814610148578063f4a6e1e2146101505761007d565b80634fb2e45d1461008257806351710e45146100aa5780638da5cb5b146100d0575b600080fd5b6100a86004803603602081101561009857600080fd5b50356001600160a01b0316610176565b005b6100a8600480360360208110156100c057600080fd5b50356001600160a01b031661023b565b6100d86102bf565b604080516001600160a01b039092168252519081900360200190f35b6100d86004803603602081101561010a57600080fd5b50356001600160a01b03166102ce565b6100a86004803603604081101561013057600080fd5b506001600160a01b03813581169160200135166102ec565b6100d8610414565b6100a86004803603602081101561016657600080fd5b50356001600160a01b0316610423565b6000546001600160a01b031633146101ce576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038116610219576040805162461bcd60e51b815260206004820152600d60248201526c34b73b30b634b21037bbb732b960991b604482015290519081900360640190fd5b600180546001600160a01b0319166001600160a01b0392909216919091179055565b6001546001600160a01b0316331461029a576040805162461bcd60e51b815260206004820152601d60248201527f6f6e6c792063616c6c61626c652062792070656e64696e674f776e6572000000604482015290519081900360640190fd5b50600154600080546001600160a01b0319166001600160a01b03909216919091179055565b6000546001600160a01b031681565b6001600160a01b039081166000908152600260205260409020541690565b6000546001600160a01b03163314610344576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b038216610398576040805162461bcd60e51b815260206004820152601660248201527524b73b30b634b210283934b1b290283937bb34b232b960511b604482015290519081900360640190fd5b6001600160a01b0381166103e6576040805162461bcd60e51b815260206004820152601060248201526f496e76616c6964205261746543616c6360801b604482015290519081900360640190fd5b6001600160a01b03918216600090815260026020526040902080546001600160a01b03191691909216179055565b6001546001600160a01b031681565b6000546001600160a01b0316331461047b576040805162461bcd60e51b815260206004820152601660248201527527b7363c9031b0b63630b1363290313c9037bbb732b960511b604482015290519081900360640190fd5b6001600160a01b0316600090815260026020526040902080546001600160a01b031916905556fea2646970667358221220cf4e953ca6c84febfed39841bb101a60b41461e13587240f3841232fb68d59ca64736f6c63430006060033",
   "immutableReferences": {},
-  "sourceMap": "293:2047:0:-:0;;;544:109;5:9:-1;2:2;;;27:1;24;17:12;2:2;544:109:0;;;;;;;;;;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;544:109:0;;;;;;;599:5;:18;;-1:-1:-1;;;;;;599:18:0;;;607:10;599:18;;;-1:-1:-1;;;;;627:13:0;;;;;:8;:13;;;544:109;627:13;;:19;;;;;;;;;;;;;293:2047;;;;;;",
-  "deployedSourceMap": "293:2047:0:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;293:2047:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;1158:190:0;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1158:190:0;-1:-1:-1;;;;;1158:190:0;;:::i;:::-;;1422:167;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1422:167:0;-1:-1:-1;;;;;1422:167:0;;:::i;320:20::-;;;:::i;:::-;;;;-1:-1:-1;;;;;320:20:0;;;;;;;;;;;;;;965:102;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;965:102:0;-1:-1:-1;;;;;965:102:0;;:::i;1768:314::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;;;;;;1768:314:0;;;;;;;;;;:::i;346:27::-;;;:::i;2193:140::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;2193:140:0;-1:-1:-1;;;;;2193:140:0;;:::i;1158:190::-;798:5;;-1:-1:-1;;;;;798:5:0;784:10;:19;776:54;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;1236:54:0;::::1;1228:80;;;::::0;;-1:-1:-1;;;1228:80:0;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;1228:80:0;;;;;;;;;;;;;::::1;;1318:12;:23:::0;;-1:-1:-1;;;;;;1318:23:0::1;-1:-1:-1::0;;;;;1318:23:0;;;::::1;::::0;;;::::1;::::0;;1158:190::o;1422:167::-;1506:12;;-1:-1:-1;;;;;1506:12:0;1492:10;:26;1484:68;;;;;-1:-1:-1;;;1484:68:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1570:12:0;;;1562:20;;-1:-1:-1;;;;;;1562:20:0;-1:-1:-1;;;;;1570:12:0;;;1562:20;;;;;;1422:167::o;320:20::-;;;-1:-1:-1;;;;;320:20:0;;:::o;965:102::-;-1:-1:-1;;;;;1048:12:0;;;1024:7;1048:12;;;:8;:12;;;;;;;;965:102::o;1768:314::-;798:5;;-1:-1:-1;;;;;798:5:0;784:10;:19;776:54;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;1864:52:0;::::1;1856:87;;;::::0;;-1:-1:-1;;;1856:87:0;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;1856:87:0;;;;;;;;;;;;;::::1;;-1:-1:-1::0;;;;;1961:55:0;::::1;1953:84;;;::::0;;-1:-1:-1;;;1953:84:0;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;1953:84:0;;;;;;;;;;;;;::::1;;-1:-1:-1::0;;;;;2047:16:0;;::::1;;::::0;;;:8:::1;:16;::::0;;;;:28;;-1:-1:-1;;;;;;2047:28:0::1;::::0;;;::::1;;::::0;;1768:314::o;346:27::-;;;-1:-1:-1;;;;;346:27:0;;:::o;2193:140::-;798:5;;-1:-1:-1;;;;;798:5:0;784:10;:19;776:54;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;2265:16:0::1;2284:42;2265:16:::0;;;:8:::1;:16;::::0;;;;:61;;-1:-1:-1;;;;;;2265:61:0::1;::::0;;2193:140::o",
-  "source": "pragma solidity 0.6.6;\n\n\nimport \"./interfaces/IAPP.sol\";\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* APP: Approved Price Providers\n/******************************************************************************/\n\ncontract APP is IAPP {\n    address public owner;\n    address public pendingOwner;\n    mapping(address=>address) private approved;\n\n     /**\n    * @param pp_ the price provider to add initially\n    * @param rc_ the ratecalc to add initially\n    */\n    constructor(address pp_, address rc_) public {\n        owner = msg.sender;\n        approved[pp_] = rc_;\n    }\n\n     /**\n    * @dev Reverts if called by anyone other than the contract owner.\n    */\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Only callable by owner\");\n        _;\n    }\n\n     /**\n    * @dev get the ratecalc for a price provider\n    * @param pp the price provider to look up\n    */\n    function aprvd(address pp)  external view override returns(address){\n       return approved[pp];\n    }\n\n    /**\n    * @dev transfer the owner\n    * @param newOwner new owner address\n    */\n    function transferOwner(address newOwner) external onlyOwner {\n        require(newOwner != 0x0000000000000000000000000000000000000000, \"invalid owner\");\n        pendingOwner = newOwner;\n    }\n\n    /**\n    * @dev Accept pending ownership of this contract\n    */\n    function acceptOwnership(address newOwner) external {\n        require(msg.sender == pendingOwner, \"only callable by pendingOwner\");\n        owner = pendingOwner;\n    }\n\n     /**\n    * @dev enable a new price provider\n    * @param newPP_ the price provider to add\n    * @param rateCalc_ the rate calc to use with the new price provider\n    */\n    function addPP(address newPP_, address rateCalc_) external override onlyOwner {\n        require(newPP_ != 0x0000000000000000000000000000000000000000, \"Invalid Price Provider\");\n        require(rateCalc_ != 0x0000000000000000000000000000000000000000, \"Invalid RateCalc\");\n        approved[newPP_] = rateCalc_;\n    }\n\n    /**\n    * @dev disable a new price provider\n    * @param oldPP_ the price provider to disable\n    */\n    function removePP(address oldPP_) external override onlyOwner {\n        approved[oldPP_] = 0x0000000000000000000000000000000000000000;\n    }\n    \n}\n",
+  "sourceMap": "293:2009:0:-:0;;;544:109;5:9:-1;2:2;;;27:1;24;17:12;2:2;544:109:0;;;;;;;;;;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;544:109:0;;;;;;;599:5;:18;;-1:-1:-1;;;;;;599:18:0;;;607:10;599:18;;;-1:-1:-1;;;;;627:13:0;;;;;:8;:13;;;544:109;627:13;;:19;;;;;;;;;;;;;293:2009;;;;;;",
+  "deployedSourceMap": "293:2009:0:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;293:2009:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;1158:190:0;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1158:190:0;-1:-1:-1;;;;;1158:190:0;;:::i;:::-;;1422:167;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;1422:167:0;-1:-1:-1;;;;;1422:167:0;;:::i;320:20::-;;;:::i;:::-;;;;-1:-1:-1;;;;;320:20:0;;;;;;;;;;;;;;965:102;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;965:102:0;-1:-1:-1;;;;;965:102:0;;:::i;1768:314::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;;;;;;1768:314:0;;;;;;;;;;:::i;346:27::-;;;:::i;2193:102::-;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;-1:-1;2193:102:0;-1:-1:-1;;;;;2193:102:0;;:::i;1158:190::-;798:5;;-1:-1:-1;;;;;798:5:0;784:10;:19;776:54;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;1236:54:0;::::1;1228:80;;;::::0;;-1:-1:-1;;;1228:80:0;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;1228:80:0;;;;;;;;;;;;;::::1;;1318:12;:23:::0;;-1:-1:-1;;;;;;1318:23:0::1;-1:-1:-1::0;;;;;1318:23:0;;;::::1;::::0;;;::::1;::::0;;1158:190::o;1422:167::-;1506:12;;-1:-1:-1;;;;;1506:12:0;1492:10;:26;1484:68;;;;;-1:-1:-1;;;1484:68:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1570:12:0;;;1562:20;;-1:-1:-1;;;;;;1562:20:0;-1:-1:-1;;;;;1570:12:0;;;1562:20;;;;;;1422:167::o;320:20::-;;;-1:-1:-1;;;;;320:20:0;;:::o;965:102::-;-1:-1:-1;;;;;1048:12:0;;;1024:7;1048:12;;;:8;:12;;;;;;;;965:102::o;1768:314::-;798:5;;-1:-1:-1;;;;;798:5:0;784:10;:19;776:54;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;1864:52:0;::::1;1856:87;;;::::0;;-1:-1:-1;;;1856:87:0;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;1856:87:0;;;;;;;;;;;;;::::1;;-1:-1:-1::0;;;;;1961:55:0;::::1;1953:84;;;::::0;;-1:-1:-1;;;1953:84:0;;::::1;;::::0;::::1;::::0;::::1;::::0;;;;-1:-1:-1;;;1953:84:0;;;;;;;;;;;;;::::1;;-1:-1:-1::0;;;;;2047:16:0;;::::1;;::::0;;;:8:::1;:16;::::0;;;;:28;;-1:-1:-1;;;;;;2047:28:0::1;::::0;;;::::1;;::::0;;1768:314::o;346:27::-;;;-1:-1:-1;;;;;346:27:0;;:::o;2193:102::-;798:5;;-1:-1:-1;;;;;798:5:0;784:10;:19;776:54;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;-1:-1:-1;;;776:54:0;;;;;;;;;;;;;;;-1:-1:-1;;;;;2272:16:0::1;;::::0;;;:8:::1;:16;::::0;;;;2265:23;;-1:-1:-1;;;;;;2265:23:0::1;::::0;;2193:102::o",
+  "source": "pragma solidity 0.6.6;\n\n\nimport \"./interfaces/IAPP.sol\";\n\n/******************************************************************************\\\n* Author: BIOPset (https://biopset.com)\n* APP: Approved Price Providers\n/******************************************************************************/\n\ncontract APP is IAPP {\n    address public owner;\n    address public pendingOwner;\n    mapping(address=>address) private approved;\n\n     /**\n    * @param pp_ the price provider to add initially\n    * @param rc_ the ratecalc to add initially\n    */\n    constructor(address pp_, address rc_) public {\n        owner = msg.sender;\n        approved[pp_] = rc_;\n    }\n\n     /**\n    * @dev Reverts if called by anyone other than the contract owner.\n    */\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Only callable by owner\");\n        _;\n    }\n\n     /**\n    * @dev get the ratecalc for a price provider\n    * @param pp the price provider to look up\n    */\n    function aprvd(address pp)  external view override returns(address){\n       return approved[pp];\n    }\n\n    /**\n    * @dev transfer the owner\n    * @param newOwner new owner address\n    */\n    function transferOwner(address newOwner) external onlyOwner {\n        require(newOwner != 0x0000000000000000000000000000000000000000, \"invalid owner\");\n        pendingOwner = newOwner;\n    }\n\n    /**\n    * @dev Accept pending ownership of this contract\n    */\n    function acceptOwnership(address newOwner) external {\n        require(msg.sender == pendingOwner, \"only callable by pendingOwner\");\n        owner = pendingOwner;\n    }\n\n     /**\n    * @dev enable a new price provider\n    * @param newPP_ the price provider to add\n    * @param rateCalc_ the rate calc to use with the new price provider\n    */\n    function addPP(address newPP_, address rateCalc_) external override onlyOwner {\n        require(newPP_ != 0x0000000000000000000000000000000000000000, \"Invalid Price Provider\");\n        require(rateCalc_ != 0x0000000000000000000000000000000000000000, \"Invalid RateCalc\");\n        approved[newPP_] = rateCalc_;\n    }\n\n    /**\n    * @dev disable a new price provider\n    * @param oldPP_ the price provider to disable\n    */\n    function removePP(address oldPP_) external override onlyOwner {\n        delete approved[oldPP_];\n    }\n    \n}\n",
   "sourcePath": "/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol",
   "ast": {
     "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol",
     "exportedSymbols": {
       "APP": [
-        148
+        147
       ]
     },
-    "id": 149,
+    "id": 148,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -153,8 +156,8 @@
         "file": "./interfaces/IAPP.sol",
         "id": 2,
         "nodeType": "ImportDirective",
-        "scope": 149,
-        "sourceUnit": 10551,
+        "scope": 148,
+        "sourceUnit": 6689,
         "src": "25:31:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -169,10 +172,10 @@
               "id": 4,
               "name": "IAPP",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 10550,
+              "referencedDeclaration": 6688,
               "src": "309:4:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IAPP_$10550",
+                "typeIdentifier": "t_contract$_IAPP_$6688",
                 "typeString": "contract IAPP"
               }
             },
@@ -182,7 +185,7 @@
           }
         ],
         "contractDependencies": [
-          10550
+          6688
         ],
         "contractKind": "contract",
         "documentation": {
@@ -192,10 +195,10 @@
           "text": "****************************************************************************\\\nAuthor: BIOPset (https://biopset.com)\nAPP: Approved Price Providers\n/*****************************************************************************"
         },
         "fullyImplemented": true,
-        "id": 148,
+        "id": 147,
         "linearizedBaseContracts": [
-          148,
-          10550
+          147,
+          6688
         ],
         "name": "APP",
         "nodeType": "ContractDefinition",
@@ -208,7 +211,7 @@
             "name": "owner",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 148,
+            "scope": 147,
             "src": "320:20:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -238,7 +241,7 @@
             "name": "pendingOwner",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 148,
+            "scope": 147,
             "src": "346:27:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -267,7 +270,7 @@
             "name": "approved",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 148,
+            "scope": 147,
             "src": "379:42:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -535,7 +538,7 @@
               "parameters": [],
               "src": "589:0:0"
             },
-            "scope": 148,
+            "scope": 147,
             "src": "544:109:0",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -704,7 +707,7 @@
           },
           {
             "baseFunctions": [
-              10537
+              6675
             ],
             "body": {
               "id": 59,
@@ -850,7 +853,7 @@
               ],
               "src": "1023:9:0"
             },
-            "scope": 148,
+            "scope": 147,
             "src": "965:102:0",
             "stateMutability": "view",
             "virtual": false,
@@ -1103,7 +1106,7 @@
               "parameters": [],
               "src": "1218:0:0"
             },
-            "scope": 148,
+            "scope": 147,
             "src": "1158:190:0",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1347,7 +1350,7 @@
               "parameters": [],
               "src": "1474:0:0"
             },
-            "scope": 148,
+            "scope": 147,
             "src": "1422:167:0",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1355,7 +1358,7 @@
           },
           {
             "baseFunctions": [
-              10544
+              6682
             ],
             "body": {
               "id": 130,
@@ -1781,7 +1784,7 @@
               "parameters": [],
               "src": "1846:0:0"
             },
-            "scope": 148,
+            "scope": 147,
             "src": "1768:314:0",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1789,22 +1792,26 @@
           },
           {
             "baseFunctions": [
-              10549
+              6687
             ],
             "body": {
-              "id": 146,
+              "id": 145,
               "nodeType": "Block",
-              "src": "2255:78:0",
+              "src": "2255:40:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 144,
+                    "id": 143,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
-                    "leftHandSide": {
+                    "nodeType": "UnaryOperation",
+                    "operator": "delete",
+                    "prefix": true,
+                    "src": "2265:23:0",
+                    "subExpression": {
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
@@ -1813,7 +1820,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 13,
-                        "src": "2265:8:0",
+                        "src": "2272:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_address_$",
                           "typeString": "mapping(address => address)"
@@ -1827,7 +1834,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 134,
-                        "src": "2274:6:0",
+                        "src": "2281:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1838,41 +1845,20 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "2265:16:0",
+                      "src": "2272:16:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303030303030",
-                      "id": 143,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "2284:42:0",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address_payable",
-                        "typeString": "address payable"
-                      },
-                      "value": "0x0000000000000000000000000000000000000000"
-                    },
-                    "src": "2265:61:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
                     }
                   },
-                  "id": 145,
+                  "id": 144,
                   "nodeType": "ExpressionStatement",
-                  "src": "2265:61:0"
+                  "src": "2265:23:0"
                 }
               ]
             },
@@ -1883,7 +1869,7 @@
               "text": "@dev disable a new price provider\n@param oldPP_ the price provider to disable"
             },
             "functionSelector": "f4a6e1e2",
-            "id": 147,
+            "id": 146,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -1926,7 +1912,7 @@
                   "name": "oldPP_",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 147,
+                  "scope": 146,
                   "src": "2211:14:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1957,25 +1943,25 @@
               "parameters": [],
               "src": "2255:0:0"
             },
-            "scope": 148,
-            "src": "2193:140:0",
+            "scope": 147,
+            "src": "2193:102:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 149,
-        "src": "293:2047:0"
+        "scope": 148,
+        "src": "293:2009:0"
       }
     ],
-    "src": "0:2341:0"
+    "src": "0:2303:0"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/APP.sol",
       "exportedSymbols": {
         "APP": [
-          148
+          147
         ]
       }
     },
@@ -1994,10 +1980,10 @@
       },
       {
         "attributes": {
-          "SourceUnit": 10551,
+          "SourceUnit": 6689,
           "absolutePath": "/Users/x/Desktop/eth/BIOPv4/contracts/interfaces/IAPP.sol",
           "file": "./interfaces/IAPP.sol",
-          "scope": 149,
+          "scope": 148,
           "symbolAliases": [
             null
           ],
@@ -2011,16 +1997,16 @@
         "attributes": {
           "abstract": false,
           "contractDependencies": [
-            10550
+            6688
           ],
           "contractKind": "contract",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            148,
-            10550
+            147,
+            6688
           ],
           "name": "APP",
-          "scope": 149
+          "scope": 148
         },
         "children": [
           {
@@ -2040,7 +2026,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "IAPP",
-                  "referencedDeclaration": 10550,
+                  "referencedDeclaration": 6688,
                   "type": "contract IAPP"
                 },
                 "id": 4,
@@ -2059,7 +2045,7 @@
               "mutability": "mutable",
               "name": "owner",
               "overrides": null,
-              "scope": 148,
+              "scope": 147,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -2089,7 +2075,7 @@
               "mutability": "mutable",
               "name": "pendingOwner",
               "overrides": null,
-              "scope": 148,
+              "scope": 147,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -2118,7 +2104,7 @@
               "mutability": "mutable",
               "name": "approved",
               "overrides": null,
-              "scope": 148,
+              "scope": 147,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(address => address)",
@@ -2170,7 +2156,7 @@
               ],
               "name": "",
               "overrides": null,
-              "scope": 148,
+              "scope": 147,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "public"
@@ -2601,7 +2587,7 @@
           {
             "attributes": {
               "baseFunctions": [
-                10537
+                6675
               ],
               "functionSelector": "b7a9eaa9",
               "implemented": true,
@@ -2611,7 +2597,7 @@
                 null
               ],
               "name": "aprvd",
-              "scope": 148,
+              "scope": 147,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -2780,7 +2766,7 @@
               "kind": "function",
               "name": "transferOwner",
               "overrides": null,
-              "scope": 148,
+              "scope": 147,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3059,7 +3045,7 @@
               ],
               "name": "acceptOwnership",
               "overrides": null,
-              "scope": 148,
+              "scope": 147,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3320,14 +3306,14 @@
           {
             "attributes": {
               "baseFunctions": [
-                10544
+                6682
               ],
               "functionSelector": "bc086215",
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
               "name": "addPP",
-              "scope": 148,
+              "scope": 147,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3786,14 +3772,14 @@
           {
             "attributes": {
               "baseFunctions": [
-                10549
+                6687
               ],
               "functionSelector": "f4a6e1e2",
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
               "name": "removePP",
-              "scope": 148,
+              "scope": 147,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3825,7 +3811,7 @@
                       "mutability": "mutable",
                       "name": "oldPP_",
                       "overrides": null,
-                      "scope": 147,
+                      "scope": 146,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -3899,8 +3885,9 @@
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
-                          "operator": "=",
-                          "type": "address"
+                          "operator": "delete",
+                          "prefix": true,
+                          "type": "tuple()"
                         },
                         "children": [
                           {
@@ -3925,7 +3912,7 @@
                                 },
                                 "id": 140,
                                 "name": "Identifier",
-                                "src": "2265:8:0"
+                                "src": "2272:8:0"
                               },
                               {
                                 "attributes": {
@@ -3939,74 +3926,64 @@
                                 },
                                 "id": 141,
                                 "name": "Identifier",
-                                "src": "2274:6:0"
+                                "src": "2281:6:0"
                               }
                             ],
                             "id": 142,
                             "name": "IndexAccess",
-                            "src": "2265:16:0"
-                          },
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "hexvalue": "307830303030303030303030303030303030303030303030303030303030303030303030303030303030",
-                              "isConstant": false,
-                              "isLValue": false,
-                              "isPure": true,
-                              "lValueRequested": false,
-                              "subdenomination": null,
-                              "token": "number",
-                              "type": "address payable",
-                              "value": "0x0000000000000000000000000000000000000000"
-                            },
-                            "id": 143,
-                            "name": "Literal",
-                            "src": "2284:42:0"
+                            "src": "2272:16:0"
                           }
                         ],
-                        "id": 144,
-                        "name": "Assignment",
-                        "src": "2265:61:0"
+                        "id": 143,
+                        "name": "UnaryOperation",
+                        "src": "2265:23:0"
                       }
                     ],
-                    "id": 145,
+                    "id": 144,
                     "name": "ExpressionStatement",
-                    "src": "2265:61:0"
+                    "src": "2265:23:0"
                   }
                 ],
-                "id": 146,
+                "id": 145,
                 "name": "Block",
-                "src": "2255:78:0"
+                "src": "2255:40:0"
               }
             ],
-            "id": 147,
+            "id": 146,
             "name": "FunctionDefinition",
-            "src": "2193:140:0"
+            "src": "2193:102:0"
           }
         ],
-        "id": 148,
+        "id": 147,
         "name": "ContractDefinition",
-        "src": "293:2047:0"
+        "src": "293:2009:0"
       }
     ],
-    "id": 149,
+    "id": 148,
     "name": "SourceUnit",
-    "src": "0:2341:0"
+    "src": "0:2303:0"
   },
   "compiler": {
     "name": "solc",
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xdD5bdA7111b0cAa8D66e363fe017C9E258B9430B",
+      "transactionHash": "0xa931ebfa75d0e78b71e2dda49c4fb12b0f5f4c24beb34748dcf221ae1edca755"
+    },
     "42": {
       "events": {},
       "links": {},
-      "address": "0x25d779cF6523F8f1365065285CFebd14df92912e",
-      "transactionHash": "0xd264f84ed941e3ffd8100e544f9449b77853edc8387323a4f3bda29fe53d1933"
+      "address": "0xb2acfE0B1A7303Da48B32b3b67574c03BC39b0db",
+      "transactionHash": "0x4e308786a3a88eeaff2a602f05ed28e35d544049a192d4cc3292dee9de672e9e"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-06-14T19:21:29.419Z",
+  "updatedAt": "2021-06-22T04:29:44.260Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "acceptOwnership(address)": {
