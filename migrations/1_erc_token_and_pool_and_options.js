@@ -29,11 +29,11 @@ const boSettings = {
   name: "Pool Share",
   symbol: "pETH",
   owner: "0xC961AfDcA1c4A2A17eada10D2e89D052bEf74A85",
-  priceProviderAddress: "0x9326BFA02ADD2366b30bacB125260Af641031331", //"0x9326BFA02ADD2366b30bacB125260Af641031331" //kovan<- ->mainnet // "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", //mainnet address
+  priceProviderAddress: "0xd8bD0a1cB028a31AA859A21A3758685a95dE4623", //"0x9326BFA02ADD2366b30bacB125260Af641031331" //kovan<- ->mainnet // "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", //mainnet address
 };
 
 const appSettings = {
-  priceProviderAddress: "0x396c5E36DD0a0F5a5D33dae44368D4193f69a1F0", ///0x93 is kovan ETH/USD "0x9326BFA02ADD2366b30bacB125260Af641031331", //"0x9326BFA02ADD2366b30bacB125260Af641031331" //kovan<- ->mainnet // "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", //mainnet address
+  priceProviderAddress: "0xd8bD0a1cB028a31AA859A21A3758685a95dE4623", ///0x93 is kovan ETH/USD "0x9326BFA02ADD2366b30bacB125260Af641031331", //"0x9326BFA02ADD2366b30bacB125260Af641031331" //kovan<- ->mainnet // "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", //mainnet address
 };
 
 const UtilizationRewardsSettings = {
@@ -194,7 +194,8 @@ module.exports = function (deployer) {
                           UtilizationRewardsSettings.toTransfer
                         );
                         await urInstance.deposit(
-                          UtilizationRewardsSettings.toTransfer
+                          UtilizationRewardsSettings.toTransfer/2,
+                          UtilizationRewardsSettings.toTransfer/2
                         );
                         return deployer
                           .deploy(

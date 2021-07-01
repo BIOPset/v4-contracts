@@ -78,7 +78,6 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     treasury = treasury_;
     minT = 1;
     maxT = 1;
-    lockedAmount = 0;
   }
 
   //start of governance/maintanance functions
@@ -121,7 +120,7 @@ contract TokenDenominatedBinaryOptions is ERC20, ITokenDenominatedBinaryOptions 
     */
   function updateSettlerFee(uint256 fee_) external onlyOwner {
     require(fee_ >= 5, "invalid fee");
-    settlerFee = settlerFee;
+    settlerFee = fee_;
   }
 
 

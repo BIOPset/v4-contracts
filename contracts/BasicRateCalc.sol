@@ -32,14 +32,14 @@ contract BasicRateCalc is IRateCalc {
         //if the difference between calls and puts is zero
         if (oC == oP) {
           canLock = tP/200; //limit the lock to 0.5% of pool
+        } else {
+          if (k) { //opening a call option
+            canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock downward for balance
+          } else { //opening a put option
+            canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock upward for balance
+          }
         }
 
-        if (k) { //opening a call option
-          canLock = (tP/200).add(oP).sub(oC); //adjust the lock the lock downward for balance
-        } else { //opening a put option
-          canLock = (tP/200).add(oC).sub(oP); //adjust the lock the lock upward for balance
-        }
-       
 
         //the default return rate of biopset options is 2x
         uint256 double = amount.mul(2);
@@ -47,8 +47,11 @@ contract BasicRateCalc is IRateCalc {
     }
 
     function actualRate(uint256 amount, uint256 canLock, uint256 startRate) internal pure returns (uint256){
-        //make sure that the option value is less than (or equal to) the amount that can be locked.
-        require(startRate <= canLock, "position too large");
+      //make sure that the option value is less than (or equal to) the amount that can be locked.
+      if (startRate <= canLock) {
         return startRate;
+      } 
+      //no match from pool
+      return amount;
     }
 }

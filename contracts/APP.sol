@@ -19,6 +19,8 @@ contract APP is IAPP {
     */
     constructor(address pp_, address rc_) public {
         owner = msg.sender;
+        require(pp_ != 0x0000000000000000000000000000000000000000, "invalid price provider");
+        require(rc_ != 0x0000000000000000000000000000000000000000, "invalid ratecalc");
         approved[pp_] = rc_;
     }
 
