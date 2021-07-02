@@ -179,7 +179,7 @@ contract("DAO", (accounts) => {
     return DAO.deployed().then(async function (instance) {
       return BIOPTokenV4.deployed().then(async function (bp) {
         var staked = await instance.staked(accounts[5]);
-
+        await timeTravel(60*60*24*8);//8 days
         await instance.withdraw(staked, { from: accounts[5] });
         var staked2 = await instance.staked(accounts[5]);
         console.log(`staked ${staked}.\stake2 ${staked2}`);
