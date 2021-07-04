@@ -41,7 +41,10 @@ contract DAO {
     uint256 public trg;//total rewards generated
     mapping(address=>uint256) public lrc;//last rewards claimed at trg point for this address
     mapping(address=>uint256) public lST;//last stake time
-
+    mapping(address=>uint256) public lastClaimPoint;//point at which above a user is eligable to claim
+    mapping(uint256=>uint256) public claimPoints;//points of ETH transfers to this contract
+    mapping(uint256=>uint256) public totalStakedAtClaimPoint;//points of ETH transfers to this contract
+    uint256 public currentClaimPoint;
 
     constructor(address bo_, address v4_, address accessTiers_, address app_, address factory_, address payable trsy_) public {
       pA = bo_;
@@ -53,8 +56,6 @@ contract DAO {
     }
 
 
-    event Stake(uint256 amount, uint256 total);
-    event Withdraw(uint256 amount, uint256 total);
 
     function totalStaked() public view returns (uint256) {
         ERC20 token = ERC20(tA);
@@ -73,8 +74,9 @@ contract DAO {
         
         address payable delegate;
         if (staked[msg.sender] == 0) {
-            //only for ETH
+            //only for new stakers
             lrc[msg.sender] = trg;
+            lastClaimPoint[msg.sender] = currentClaimPoint;
         } else {
             //automatically unendorse and rendorse if depositing to an existing non-zero stake to prevent endorsement amounts from becoming out of sync
             delegate = rep[msg.sender];
@@ -91,7 +93,6 @@ contract DAO {
         if (delegate != 0x0000000000000000000000000000000000000000) {
             endorse(delegate);
         }
-        emit Stake(amount, totalStaked());
     }
 
 
@@ -102,13 +103,14 @@ contract DAO {
      */
     function withdraw(uint256 amount) public {
         require(staked[msg.sender] >= amount, "invalid amount");
+        require(lST[msg.sender]+7 days <= block.timestamp, "insufficent time since last deposit");
         ERC20 token = ERC20(tA);
         require(rep[msg.sender] ==  0x0000000000000000000000000000000000000000);
         require(token.transfer(msg.sender, amount), "staking failed");
         staked[msg.sender] = staked[msg.sender].sub(amount);
 
         uint256 totalBalance = token.balanceOf(address(this));
-        emit Withdraw(amount, totalBalance);
+       
     }
 
      /**
@@ -138,26 +140,36 @@ contract DAO {
         dBIOP = dBIOP.sub(staked[msg.sender]);
     }
 
+     //this function has to be present or transfers to the DAO fail silently
+    fallback () external payable {
+        totalStakedAtLastPayment = totalStaked();
+        lastPaymentReceived = block.timestamp;
+            
+        currentClaimPoint = currentClaimPoint+1;
+        totalStakedAtClaimPoint[currentClaimPoint] = totalStaked();
+    }
+
     /**
     * @notice base ETH rewards since last claim
     * @param acc the account to get the answer for
     */
     function bRSLC(address acc) public view returns (uint256) {
-        return trg.sub(lrc[acc]);
+        return totalStakedAtClaimPoint[currentClaimPoint].sub(totalStakedAtClaimPoint[lastClaimPoint[acc]]);
     }
 
     function pendingETHRewards(address account) public view returns (uint256) {
         uint256 base = bRSLC(account);
-        return base.mul(staked[account]).div(totalStakedAtLastPayment);
+        return base.mul(staked[account]).div(totalStakedAtClaimPoint[currentClaimPoint]+1);
     }
 
 
     function claimETHRewards() public {
         require(lrc[msg.sender] <= trg, "no rewards available, already claimed all pending");
         require(lST[msg.sender] <= lastPaymentReceived, "no rewards available, not staked long enough");
-
+        
         uint256 toSend = pendingETHRewards(msg.sender);
         lrc[msg.sender] = trg;
+        lastClaimPoint[msg.sender] = currentClaimPoint;
         Address.sendValue(msg.sender, toSend);
     }
 
@@ -203,11 +215,7 @@ contract DAO {
 
 
 
-    //this function has to be present or transfers to the DAO fail silently
-    fallback () external payable {
-        totalStakedAtLastPayment = totalStaked();
-        lastPaymentReceived = block.timestamp;
-    }
+   
 
      /**
      * @notice create a new TokenDenominatedBinaryOptions pool
