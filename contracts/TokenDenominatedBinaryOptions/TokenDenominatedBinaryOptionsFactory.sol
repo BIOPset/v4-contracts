@@ -1,7 +1,7 @@
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
+import "../interfaces/IERC20Named.sol";
 import "./TokenDenominatedBinaryOptions.sol";
+
 
 contract TokenDenominatedBinaryOptionsFactory {
     mapping(address => address) public tokenDenominatedBinaryOptionsAddresses;//erc20 token address mapped to ebop20 pool address
@@ -46,7 +46,7 @@ contract TokenDenominatedBinaryOptionsFactory {
     */
     function createTokenDenominatedBinaryOptions(address token_, address payable treasury_, address app_) external {
         require(tokenDenominatedBinaryOptionsAddresses[token_] == 0x0000000000000000000000000000000000000000, "a pool for this token already exists");
-        ERC20 token = ERC20(token_);
+        IERC20Named token = IERC20Named(token_);
         TokenDenominatedBinaryOptions newPool = new TokenDenominatedBinaryOptions(string(abi.encodePacked("Pool ", token.name)),  string(abi.encodePacked("p", token.symbol)), token_, owner, app_, treasury_);
         tokenDenominatedBinaryOptionsAddresses[address(token)] = address(newPool);
         emit TokenDenominatedBinaryOptionsCreated(newPool);
