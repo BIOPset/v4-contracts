@@ -43,7 +43,7 @@ contract DAO {
     mapping(address=>uint256) public lST;//last stake time
     mapping(address=>uint256) public lastClaimPoint;//point at which above a user is eligable to claim
     mapping(uint256=>uint256) public claimPoints;//points of ETH transfers to this contract
-    mapping(uint256=>uint256) public totalStakedAtClaimPoint;//points of ETH transfers to this contract
+    mapping(uint256=>uint256) public totalStakedAtClaimPoint;//amount of BIOP staked to this contract at a given claim point
     uint256 public currentClaimPoint;
 
     constructor(address bo_, address v4_, address accessTiers_, address app_, address factory_, address payable trsy_) public {
@@ -151,10 +151,10 @@ contract DAO {
 
     /**
     * @notice base ETH rewards since last claim
-    * @param acc the account to get the answer for
+    * @param account the account to get the answer for
     */
-    function bRSLC(address acc) public view returns (uint256) {
-        return totalStakedAtClaimPoint[currentClaimPoint].sub(totalStakedAtClaimPoint[lastClaimPoint[acc]]);
+    function bRSLC(address account) public view returns (uint256) {
+        return totalStakedAtClaimPoint[currentClaimPoint].sub(totalStakedAtClaimPoint[lastClaimPoint[account]]);
     }
 
     function pendingETHRewards(address account) public view returns (uint256) {
