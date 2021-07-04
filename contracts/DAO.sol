@@ -144,7 +144,7 @@ contract DAO {
     fallback () external payable {
         totalStakedAtLastPayment = totalStaked();
         lastPaymentReceived = block.timestamp;
-            
+        trg = trg.add(msg.value);
         currentClaimPoint = currentClaimPoint+1;
         totalStakedAtClaimPoint[currentClaimPoint] = totalStaked();
     }
@@ -402,8 +402,7 @@ contract DAO {
      */
     function sendTreasuryFunds(uint256 amount, address payable destination) external tierTwoDelegation {
         Treasury ty = Treasury(trsy);
-        uint256 toAdd = ty.sendFunds(amount, destination);
-        trg = trg.add(toAdd);
+        ty.sendFunds(amount, destination);
     }
 
     /**

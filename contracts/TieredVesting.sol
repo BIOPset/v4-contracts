@@ -10,6 +10,7 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 contract TieredVesting { 
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
+    bool public started;
     address public immutable tokenAddress;
     address payable claimant;
     uint256 public total;//total tokens to send over vesting period
@@ -42,11 +43,12 @@ contract TieredVesting {
 
     function start(uint256 amount) public {
         IERC20 token = IERC20(tokenAddress);
-        require (token.balanceOf(address(this)) == 0, "Vesting already initialized");
+        require (!started, "Vesting already initialized");
         token.safeTransferFrom(msg.sender, address(this), amount);
         total = amount;
         perTier = amount.div(tiers);
         startTime = block.timestamp;
+        started = true;
     }
 
     function collect() public onlyClaimant {
