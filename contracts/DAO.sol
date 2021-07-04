@@ -402,8 +402,7 @@ contract DAO {
      */
     function sendTreasuryFunds(uint256 amount, address payable destination) external tierTwoDelegation {
         Treasury ty = Treasury(trsy);
-        uint256 toAdd = ty.sendFunds(amount, destination);
-        
+        ty.sendFunds(amount, destination);
     }
 
     /**
